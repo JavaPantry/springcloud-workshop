@@ -18,4 +18,8 @@
         <java.version>17</java.version>
         <main.basedir>${project.basedir}</main.basedir>
     </properties>
+    <modules>
+        <module>eureka-server</module>
+    </modules>
+
 </project>
