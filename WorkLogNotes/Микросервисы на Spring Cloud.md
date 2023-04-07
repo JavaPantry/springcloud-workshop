@@ -318,3 +318,53 @@ Step 2: Connect your existing repository to Bitbucket
   - [AtBeginHeart/EurekaserverApplication](https://github.com/AtBeginHeart/EurekaserverApplication/blob/master/src/main/resources/application.yml)
 - github search: `spring-micro-demo`
   - [final-demos/springboot-microservices-demo](https://github.com/final-demos/springboot-microservices-demo/blob/main/eureka-server/src/main/resources/application.properties)
+
+## Reading
+- google search [spring microservices with Api gateway and spring authorization server](https://duckduckgo.com/?q=spring+microservices+with+Api+gateway+and+spring+authorization+server&atb=v314-1&ia=web)
+  - [Spring Boot Authorization: Creating an Authorization Server for your Microservices](DayToDayNotes\2023\April\Микросервисы на Spring Cloud\Spring Boot Authorization_ Creating an Authorization Server for your Microservices.pdf)
+  - [Using Spring Cloud Gateway with OAuth 2.0 Patterns](https://www.baeldung.com/spring-cloud-gateway-oauth2)
+- Spring Authorization Server
+  - [Spring Authorization Server](https://docs.spring.io/spring-authorization-server/docs/current/reference/html/getting-started.html)
+  - [Spring Boot Authorization Server](https://blog.devgenius.io/spring-boot-authorization-server-825230ae0ed2)
+
+# April 7, 2023 - Add Python service to Spring Cloud Eureka
+- follow article - [Spring Boot and Flask Microservice Discovery with Netflix Eureka](https://stackabuse.com/spring-boot-and-flask-microservices-eureka-client/)
+  - [PDF](DayToDayNotes\2023\April\Микросервисы на Spring Cloud\Spring Boot and Flask Microservice Discovery with Netflix Eureka.pdf)
+  - create Quart app project in C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite-quart
+  - add eureka registration in app.py
+
+    ```python
+    import py_eureka_client.eureka_client as eureka_client
+
+    rest_port = 5000
+    eureka_client.init(eureka_server="http://localhost:8761/eureka",
+                               app_name="data-aggregation-service",
+                               instance_port=rest_port)
+    app = Quart(__name__)
+
+    @app.route("/")
+    def home():
+        return "Hello, Quart!"
+    ```
+  - start eureka-server
+  - then all microservices
+  - start Quart app springcloud-sbsuite-quart
+  - start ApiGatewayApplication
+  - confirm all services in eureka server [console](http://localhost:8761/)
+    - ![](assets/EurekaServerConsole-confirm-4-QuartInstance.png)
+  - confirm services access via
+    - open api-gateway for [1st client](http://localhost:8765/main/test) -> Test eureka-client (instance eclient:71389d78-815e-47ce-a640-7c13b6b185ba} ) > Hello
+    - open api-gateway for [2nd client](http://localhost:8765/eclient2/new/name) -> Test eureka-client 2 > Hello
+    - open api-gateway for [2nd client](http://localhost:8765/new/name) -> Test eureka-client 2 > Hello
+    - http://localhost:5000/hello/Alex
+  - [test URL request to localhost:8765/data-aggregation-service/ failed](http://localhost:8765/data-aggregation-service/)
+    - render `Whitelabel Error Page`
+  - change Quart app host to `0.0.0.0`
+    ```
+    if __name__ == "__main__":
+      app.run(debug=True, host="0.0.0.0", port=rest_port)
+      # app.run(debug=True, host="127.0.0.1", port=rest_port)
+    ```
+  - Restart all apps in order
+    - ![](assets/Restart-all-apps-in-order.png)
+  - Test succeed [test URL request to localhost:8765/data-aggregation-service/](http://localhost:8765/data-aggregation-service/readFolder?folder=MyRequestFolder) > GET request path "/readFolder" folder: MyRequestFolder

@@ -1,0 +1,14 @@
+quart>=0.18.3
+quart-auth>=0.8.0
+quart-schema>=0.14.3
+quart-db>=0.4.1
+quart-cors>=0.6.0
+bcrypt>=4.0.1
+Jinja2>=3.1.2
+py-eureka-client>=0.11.7
+httpx>=0.23.3
+bcrypt>=4.0.1
+zxcvbn>=4.4.28
+itsdangerous>=2.1.2
+quart-rate-limiter>=0.7.0
+pydantic>=1.10.4
