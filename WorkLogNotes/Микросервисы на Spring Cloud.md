@@ -368,3 +368,6 @@ Step 2: Connect your existing repository to Bitbucket
   - Restart all apps in order
     - ![](assets/Restart-all-apps-in-order.png)
   - Test succeed [test URL request to localhost:8765/data-aggregation-service/](http://localhost:8765/data-aggregation-service/readFolder?folder=MyRequestFolder) > GET request path "/readFolder" folder: MyRequestFolder
+
+## April 13, 2023 - create branch to save dev stage
+- create branch `very-basic-cloud-base`
