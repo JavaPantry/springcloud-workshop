@@ -400,3 +400,21 @@ commit - create Spring Cloud config-server project
   spring.cloud.config.server.git.default-label=master
   ```
 commit - run Spring Cloud config-server project (and confirm that it registered in Eureka server)
+
+### Create config-server-repo folder
+- this isn't a project, just a folder with config-server config files to which config-server will connect
+  - create `springcloud-sbsuite/config-server-repo` folder
+- create config files for each microservice application
+  - create folders for each microservice application (e.g. name from `spring.application.name` in `application.properties` file. `spring.application.name=eclient )
+    - create `springcloud-sbsuite/config-server-repo/eclient` folder
+    - create `springcloud-sbsuite/config-server-repo/eclient2` folder
+    - create `springcloud-sbsuite/config-server-repo/data-aggregation-service` folder
+      - data-aggregation-service (python app has this name defined when it registers in Eureka server in app.py)
+      - `eureka_client.init(eureka_server="http://localhost:8761/eureka", app_name="data-aggregation-service", instance_port=rest_port)`
+  - currently my microservices don't have any database connection, so I don't need to create any config files for them
+    - but I will create config files for `eclient` and `eclient2` just to test config-server
+
+commit - Create config-server-repo folder
+ 
+### Later - Point config-server to config-server-repo folder
+- point `config.server.git.uri` to this repo - `spring.cloud.config.server.git.uri=https://bitbucket.org/JavaPantry/spring-cloud-eureka-base/src/master/config-server`
