@@ -378,4 +378,25 @@ Step 2: Connect your existing repository to Bitbucket
 commit - remove intelliJ `.idea` folder and reopen project
 
 ### Create Spring Cloud config-server project
-commit - create Spring Cloud config-server project 
+commit - create Spring Cloud config-server project
+
+- [Quick Intro to Spring Cloud Configuration](https://www.baeldung.com/spring-cloud-configuration)
+  - Last modified: February 16, 2023
+- [Spring Cloud Config Server: Step by Step](https://www.springcloud.io/post/2022-03/spring-cloud-config-server-step-by-step)
+  - 2022-03-17  tutorials
+- follow Udemy [course](https://www.udemy.com/course/spring-boot-microservices-with-spring-cloud-beginner-to-guru/learn/lecture/18588296#overview)
+- Add `@EnableConfigServer` to `ConfigServerApplication` class
+  - cannot find symbol EnableConfigServer
+  - directly import `import org.springframework.cloud.config.server.EnableConfigServer;`
+- in `config-server/src/main/resources/application.properties`
+  - `spring.cloud.config.server.git.uri=https://bitbucket.org/JavaPantry/spring-cloud-eureka-base/src/master/config-server`
+- Error: org.springframework.cloud.config.server.environment.JGitEnvironmentRepository [WARN ] 2023-04-15 12:29:21.102 - Error occured cloning to base directory.
+  org.eclipse.jgit.api.errors.TransportException: https://bitbucket.org/JavaPantry/spring-cloud-eureka-base/src/master/config-server: Authentication is required but no CredentialsProvider has been registered
+- to fix [see](C:\0-Bitbucket\d2d-notesbb\DayToDayNotes\2023\April\GPTChat-Configure-SpringCloudConfigServer.md)
+  ```properties
+  spring.cloud.config.server.git.uri=https://bitbucket.org/JavaPantry/spring-cloud-eureka-base/src/master/config-server
+  spring.cloud.config.server.git.username=JavaPantry
+  spring.cloud.config.server.git.password=API-key
+  spring.cloud.config.server.git.default-label=master
+  ```
+commit - run Spring Cloud config-server project (and confirm that it registered in Eureka server)

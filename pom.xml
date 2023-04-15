@@ -19,6 +19,7 @@
         <main.basedir>${project.basedir}</main.basedir>
     </properties>
     <modules>
+        <module>config-server</module>
         <module>eureka-server</module>
         <module>eureka-client</module>
         <module>eureka-client-2</module>
