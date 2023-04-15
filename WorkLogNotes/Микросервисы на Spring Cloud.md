@@ -416,5 +416,7 @@ commit - run Spring Cloud config-server project (and confirm that it registered 
 
 commit - Create config-server-repo folder
  
-### Later - Point config-server to config-server-repo folder
-- point `config.server.git.uri` to this repo - `spring.cloud.config.server.git.uri=https://bitbucket.org/JavaPantry/spring-cloud-eureka-base/src/master/config-server`
+### Point config-server to config-server-repo folder
+- point `config.server.git.uri` to this repo - `spring.cloud.config.server.git.uri=https://bitbucket.org/JavaPantry/spring-cloud-eureka-base/src/master/config-server-repo/`
+
+commit - Point config-server to config-server-repo folder 
