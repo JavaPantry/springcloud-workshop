@@ -368,3 +368,11 @@ Step 2: Connect your existing repository to Bitbucket
   - Restart all apps in order
     - ![](assets/Restart-all-apps-in-order.png)
   - Test succeed [test URL request to localhost:8765/data-aggregation-service/](http://localhost:8765/data-aggregation-service/readFolder?folder=MyRequestFolder) > GET request path "/readFolder" folder: MyRequestFolder
+
+## April 13, 2023 - create branch to save dev stage
+- create branch `very-basic-cloud-base` for vanilla spring cloud base
+  - only gateway, eureka-server, 2 springboot clients and one python client
+- switch back to master
+
+## April 15, 2023 - Remove Gradle dependencies from root pom project
+- remove intelliJ `.idea` folder and reopen project
