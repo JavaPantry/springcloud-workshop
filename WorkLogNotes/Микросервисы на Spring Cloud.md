@@ -375,4 +375,7 @@ Step 2: Connect your existing repository to Bitbucket
 - switch back to master
 
 ## April 15, 2023 - Remove Gradle dependencies from root pom project
-- remove intelliJ `.idea` folder and reopen project
+commit - remove intelliJ `.idea` folder and reopen project
+
+### Create Spring Cloud config-server project
+commit - create Spring Cloud config-server project 
