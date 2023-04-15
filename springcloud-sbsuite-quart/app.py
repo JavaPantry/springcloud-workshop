@@ -12,6 +12,7 @@ from blueprints.control import blueprint as control_blueprint
 rest_port = 5000
 eureka_client.init(eureka_server="http://localhost:8761/eureka",
                            app_name="data-aggregation-service",
+                           instance_host="localhost",
                            instance_port=rest_port)
 
 

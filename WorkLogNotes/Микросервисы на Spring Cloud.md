@@ -419,4 +419,44 @@ commit - Create config-server-repo folder
 ### Point config-server to config-server-repo folder
 - point `config.server.git.uri` to this repo - `spring.cloud.config.server.git.uri=https://bitbucket.org/JavaPantry/spring-cloud-eureka-base/src/master/config-server-repo/`
 
-commit - Point config-server to config-server-repo folder 
+commit - Point config-server to config-server-repo folder
+
+## Python client registered but can not be connected via API Gateway
+
+- WARNING: Error when getting host by   ip
+  - Traceback (most recent call last): File "c:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\springcloud-sbsuite-quart\.venv\lib\site-packages\py_eureka_client\netint_utils.py", line 35, 
+    - in get_host_by_ip return socket.gethostbyaddr(ip)[0] socket.herror: [Errno 11004] host not found
+      - https://github.com/keijack/python-eureka-client/issues/75
+        - That means that the host cannot find by ip automatically, you should specify the `instance_host` in init method.
+        ```python
+          eureka_client.init(eureka_server="http://localhost:8761/eureka",
+                              app_name="data-aggregation-service",
+                              instance_host="localhost",
+                              instance_port=rest_port)
+        ```
+        - error is gone
+        - in eureka console
+        - instead `DATA-AGGREGATION-SERVICE	n/a (1)	(1)	UP (1) - 10.0.7.97:data-aggregation-service:5000`
+          - shows `DATA-AGGREGATION-SERVICE	n/a (2)	(2)	UP (2) - 127.0.0.1:data-aggregation-service:5000 , 10.0.7.97:data-aggregation-service:5000`
+            - restart all apps in order
+              - EurekaServerApplication
+              - ConfigServerApplication
+              - EurekaClientApplication
+              - EurekaClient2Application
+              - DataAggregationServiceApplication
+              - ApiGatewayApplication
+              - console shows
+                ```console
+                Instances currently registered with Eureka
+                Application	AMIs	Availability Zones	Status
+                API-GATEWAY	n/a (1)	(1)	UP (1) - host.docker.internal:api-gateway:8765
+                CONFIG-SERVER	n/a (1)	(1)	UP (1) - config-server:88fc4f4b-b859-4680-81cb-aae005e5591e}
+                DATA-AGGREGATION-SERVICE	n/a (1)	(1)	UP (1) - 127.0.0.1:data-aggregation-service:5000
+                ECLIENT	n/a (1)	(1)	UP (1) - eclient:c32942aa-d3be-4e43-add9-f05574e78b35}
+                ECLIENT2	n/a (1)	(1)	UP (1) - host.docker.internal:eclient2:0
+                ```
+              - python microservice responsive again
+                - http://localhost:8765/data-aggregation-service/readFolder?folder=MyRequestFolder  -> GET request path "/readFolder" folder: MyRequestFolder
+                - http://localhost:8765/data-aggregation-service/ -> Hello, Quart!
+
+- commit - Fix error: Python client registered but can not be connected via API Gateway
