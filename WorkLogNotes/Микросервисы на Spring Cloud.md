@@ -374,7 +374,9 @@ Step 2: Connect your existing repository to Bitbucket
   - only gateway, eureka-server, 2 springboot clients and one python client
 - switch back to master
 
-## April 15, 2023 - Remove Gradle dependencies from root pom project
+## April 15, 2023 - Create Spring Cloud config-server project 
+
+### Remove Gradle dependencies from root pom project
 commit - remove intelliJ `.idea` folder and reopen project
 
 ### Create Spring Cloud config-server project
@@ -461,7 +463,8 @@ commit - Point config-server to config-server-repo folder
 
 - commit - Fix error: Python client registered but can not be connected via API Gateway
 
-## Add config property files for data-aggregation-service, eclient and eclient2
+## April 16, 2023 - Create config property files for data-aggregation-service, eclient and eclient2
+### Add config property files for data-aggregation-service, eclient and eclient2
 - config-server-repo/data-aggregation-service/application.properties
   - `mycloud.config.test.var=data-aggregation-service-app`
 - config-server-repo/eclient/application.properties
@@ -479,3 +482,62 @@ commit - Point config-server to config-server-repo folder
 - config-server-repo/eclient/application-local.properties
   - `mycloud.config.test.var=eclient-app-local`
 - commit - add application-local.properties file to config-server-repo
+- http://localhost:8888/eclient/local
+  - return `{"name":"eclient","profiles":["local"],"label":null,"version":"0b4debd0da7dbfb8b43994ccc6a8bc56b9c3617c","state":null,"propertySources":[]}`
+- http://localhost:8888/data-aggregation-service/default return `{"name":"data-aggregation-service","profiles":["default"],"label":null,"version":"0b4debd0da7dbfb8b43994ccc6a8bc56b9c3617c","state":null,"propertySources":[]}`
+- http://localhost:8888/eclient/default return `{"name":"eclient","profiles":["default"],"label":null,"version":"0b4debd0da7dbfb8b43994ccc6a8bc56b9c3617c","state":null,"propertySources":[]}`
+
+### Why I can't see the config property files in config-server?
+- follow - [Spring Cloud Config Server: Step by Step](https://www.springcloud.io/post/2022-03/spring-cloud-config-server-step-by-step)
+  - in `config-server/src/main/resources/application.properties`
+    - comment github location and point to local file system
+      - `spring.cloud.config.server.git.uri=file:///C:/IntelliJ_WS_SpringBootWorkshop/springcloud-sbsuite/springcloud-sbsuite-quart/config-server-repo`
+        - restrat config-server
+          - Error: org.springframework.cloud.config.server.environment.JGitEnvironmentRepository [INFO ] 2023-04-16 14:01:54.897 - Could not refresh default label main
+          - java.lang.IllegalStateException: Cannot load environment
+          - Caused by: java.lang.IllegalStateException: No .git at file:///c:/IntelliJ_WS_SpringBootWorkshop/springcloud-sbsuite/config-server-repo
+          - to **Fix** copy submodule `C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\config-server-repo` to `C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo`
+            - run git init in `C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo`
+            - add and commit your changes. The spring boot app will not read it until you commit it. Otherwise, it will not be able to find the file.
+              - git add .
+              - git commit -m "initial commit"
+            - repoint `spring.cloud.config.server.git.uri=file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo`
+
+            ```properties
+            # point to local file system
+            # replace `\` with `/` for windows path
+            #spring.cloud.config.server.git.uri=file:///c:/IntelliJ_WS_SpringBootWorkshop/springcloud-sbsuite/config-server-repo
+            spring.cloud.config.server.git.uri=file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo
+            spring.cloud.config.server.git.search-paths=/{application}
+            ```
+          - restart config-server
+          - http://localhost:8888/eclient/default -> `{"name":"eclient","profiles":["default"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,"propertySources":[{"name":"file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo/eclient/application.properties","source":{"mycloud.config.test.var":"eclient-app"}}]}`
+            ```properties
+            {"name":"eclient",
+             "profiles":["default"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,
+              "propertySources":[
+                 {"name":"file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo/eclient/application.properties",
+                  "source":{"mycloud.config.test.var":"eclient-app"}
+                 }
+              ]
+            }
+            ```
+          - http://localhost:8888/eclient/local   -> 
+            ```properties
+            {"name":"eclient",
+             "profiles":["local"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f",
+             "state":null,"propertySources":[
+                {"name":"file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo/eclient/application-local.properties",
+                 "source":{"mycloud.config.test.var":"eclient-app-local"}
+            }]}
+            ```
+          - http://localhost:8888/data-aggregation-service/default -> `{"name":"data-aggregation-service","profiles":["default"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,"propertySources":[{"name":"file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo/data-aggregation-service/application.properties","source":{"mycloud.config.test.var":"data-aggregation-service-app"}}]}`
+      - NOTE that for each service `mycloud.config.test.var` variable has unique value
+        - `data-aggregation-service` has `data-aggregation-service-app`
+        - `eclient` has `eclient-app`
+        - `eclient` has `eclient-app-local` for `local` profile 
+        - `eclient2` has `eclient2-app`
+
+- So to properly configure server-config property repository it should be located in separate folder with initialised (and committed) git
+
+- commit - Configure config-server to read local config-server-repo in file system
