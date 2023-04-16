@@ -469,3 +469,13 @@ commit - Point config-server to config-server-repo folder
 - config-server-repo/eclient2/application.properties
   - `mycloud.config.test.var=eclient2-app`
 - commit - Add config property files for data-aggregation-service, eclient and eclient2
+
+### Test config-server
+- http://localhost:8888/data-aggregation-service/local
+  - return `{"name":"data-aggregation-service","profiles":["local"],"label":null,"version":"83278e7f7240336288c205ed8042bae8afb05661","state":null,"propertySources":[]}`
+- http://localhost:8888/eclient/local
+  - return `{"name":"eclient","profiles":["local"],"label":null,"version":"83278e7f7240336288c205ed8042bae8afb05661","state":null,"propertySources":[]}`
+### add application-local.properties file to config-server-repo 
+- config-server-repo/eclient/application-local.properties
+  - `mycloud.config.test.var=eclient-app-local`
+- commit - add application-local.properties file to config-server-repo
