@@ -460,3 +460,12 @@ commit - Point config-server to config-server-repo folder
                 - http://localhost:8765/data-aggregation-service/ -> Hello, Quart!
 
 - commit - Fix error: Python client registered but can not be connected via API Gateway
+
+## Add config property files for data-aggregation-service, eclient and eclient2
+- config-server-repo/data-aggregation-service/application.properties
+  - `mycloud.config.test.var=data-aggregation-service-app`
+- config-server-repo/eclient/application.properties
+  - `mycloud.config.test.var=eclient-app`
+- config-server-repo/eclient2/application.properties
+  - `mycloud.config.test.var=eclient2-app`
+- commit - Add config property files for data-aggregation-service, eclient and eclient2
