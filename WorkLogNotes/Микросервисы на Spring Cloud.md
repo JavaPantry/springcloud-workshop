@@ -541,3 +541,81 @@ commit - Point config-server to config-server-repo folder
 - So to properly configure server-config property repository it should be located in separate folder with initialised (and committed) git
 
 - commit - Configure config-server to read local config-server-repo in file system
+
+### Create config-server-repo in bitbacket repository
+- create new repository `config-server-repo` in `MicroservicesWorkshop` project
+  - cd C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo
+    - git remote add origin git@bitbucket.org:JavaPantry/config-server-repo.git
+    - git push -u origin master
+- in `config-server/src/main/resources/application.properties` point uri to bitbucket repository - https://bitbucket.org/JavaPantry/config-server-repo
+
+  ```properties
+  server.port=8888
+  
+  # unique id for this eureka client
+  spring.application.name=config-server
+  
+  spring.cloud.config.server.git.uri=https://bitbucket.org/JavaPantry/config-server-repo
+  spring.cloud.config.server.git.username=JavaPantry
+  spring.cloud.config.server.git.password=C98LcSyS9wbmFuevstdz
+  spring.cloud.config.server.git.default-label=master
+  spring.cloud.config.server.git.clone-on-start=true
+  spring.cloud.config.server.git.search-paths=/{application}
+  
+  # point to local file system
+  # replace `\` with `/` for windows path
+  # ERROR should be outside current project folder. This is error location: spring.cloud.config.server.git.uri=file:///c:/IntelliJ_WS_SpringBootWorkshop/springcloud-sbsuite/config-server-repo
+  #spring.cloud.config.server.git.uri=file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo
+  #spring.cloud.config.server.git.search-paths=/{application}
+  
+  logging.level.org.springframework.cloud=DEBUG
+  logging.level.org.springframework.web=DEBUG
+  ```
+  
+- restart config-server app
+  - Test config-server
+    - http://localhost:8888/eclient2/local
+      ```properties
+         {"name":"eclient2",
+           "profiles":["local"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,
+           "propertySources":[
+               {"name":"https://bitbucket.org/JavaPantry/config-server-repo/eclient2/application.properties",
+                "source":{"mycloud.config.test.var":"eclient2-app"}
+         }]}
+      ```
+    - http://localhost:8888/eclient2/default
+      ```properties
+        {"name":"eclient2",
+         "profiles":["default"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,
+         "propertySources":[
+              {"name":"https://bitbucket.org/JavaPantry/config-server-repo/eclient2/application.properties",
+               "source":{"mycloud.config.test.var":"eclient2-app"}
+      }]}
+      ```
+    - http://localhost:8888/eclient/default
+      ```
+        {"name":"eclient",
+         "profiles":["default"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,
+          "propertySources":[{"name":"https://bitbucket.org/JavaPantry/config-server-repo/eclient/application.properties",
+                              "source":{"mycloud.config.test.var":"eclient-app"}
+                                }
+                            ]
+            }
+  ```
+    - http://localhost:8888/eclient/local
+        ```
+          {"name":"eclient",
+          "profiles":["local"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,
+          "propertySources":[
+                             {"name":"https://bitbucket.org/JavaPantry/config-server-repo/eclient/application-local.properties",
+                              "source":{"mycloud.config.test.var":"eclient-app-local"}
+                              },
+                              {"name":"https://bitbucket.org/JavaPantry/config-server-repo/eclient/application.properties",
+                              "source":{"mycloud.config.test.var":"eclient-app"}
+                              }
+                            ]}
+        ```
+    - http://localhost:8888/data-aggregation-service/default
+      - `{"name":"data-aggregation-service","profiles":["default"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,"propertySources":[{"name":"https://bitbucket.org/JavaPantry/config-server-repo/data-aggregation-service/application.properties","source":{"mycloud.config.test.var":"data-aggregation-service-app"}}]}`
+  
+- commit - Configure config-server to read config-server-repo from bitbucket repository
