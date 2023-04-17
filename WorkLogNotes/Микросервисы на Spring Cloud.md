@@ -374,7 +374,7 @@ Step 2: Connect your existing repository to Bitbucket
   - only gateway, eureka-server, 2 springboot clients and one python client
 - switch back to master
 
-## April 15, 2023 - Create Spring Cloud config-server project 
+## April 15, 2023 - Create Spring Cloud config-server project
 
 ### Remove Gradle dependencies from root pom project
 commit - remove intelliJ `.idea` folder and reopen project
@@ -417,7 +417,7 @@ commit - run Spring Cloud config-server project (and confirm that it registered 
     - but I will create config files for `eclient` and `eclient2` just to test config-server
 
 commit - Create config-server-repo folder
- 
+
 ### Point config-server to config-server-repo folder
 - point `config.server.git.uri` to this repo - `spring.cloud.config.server.git.uri=https://bitbucket.org/JavaPantry/spring-cloud-eureka-base/src/master/config-server-repo/`
 
@@ -426,7 +426,7 @@ commit - Point config-server to config-server-repo folder
 ## Python client registered but can not be connected via API Gateway
 
 - WARNING: Error when getting host by   ip
-  - Traceback (most recent call last): File "c:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\springcloud-sbsuite-quart\.venv\lib\site-packages\py_eureka_client\netint_utils.py", line 35, 
+  - Traceback (most recent call last): File "c:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\springcloud-sbsuite-quart\.venv\lib\site-packages\py_eureka_client\netint_utils.py", line 35,
     - in get_host_by_ip return socket.gethostbyaddr(ip)[0] socket.herror: [Errno 11004] host not found
       - https://github.com/keijack/python-eureka-client/issues/75
         - That means that the host cannot find by ip automatically, you should specify the `instance_host` in init method.
@@ -478,7 +478,7 @@ commit - Point config-server to config-server-repo folder
   - return `{"name":"data-aggregation-service","profiles":["local"],"label":null,"version":"83278e7f7240336288c205ed8042bae8afb05661","state":null,"propertySources":[]}`
 - http://localhost:8888/eclient/local
   - return `{"name":"eclient","profiles":["local"],"label":null,"version":"83278e7f7240336288c205ed8042bae8afb05661","state":null,"propertySources":[]}`
-### add application-local.properties file to config-server-repo 
+### add application-local.properties file to config-server-repo
 - config-server-repo/eclient/application-local.properties
   - `mycloud.config.test.var=eclient-app-local`
 - commit - add application-local.properties file to config-server-repo
@@ -522,7 +522,7 @@ commit - Point config-server to config-server-repo folder
               ]
             }
             ```
-          - http://localhost:8888/eclient/local   -> 
+          - http://localhost:8888/eclient/local   ->
             ```properties
             {"name":"eclient",
              "profiles":["local"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f",
@@ -535,43 +535,46 @@ commit - Point config-server to config-server-repo folder
       - NOTE that for each service `mycloud.config.test.var` variable has unique value
         - `data-aggregation-service` has `data-aggregation-service-app`
         - `eclient` has `eclient-app`
-        - `eclient` has `eclient-app-local` for `local` profile 
+        - `eclient` has `eclient-app-local` for `local` profile
         - `eclient2` has `eclient2-app`
 
 - So to properly configure server-config property repository it should be located in separate folder with initialised (and committed) git
 
 - commit - Configure config-server to read local config-server-repo in file system
 
-### Create config-server-repo in bitbacket repository
+### Create config-server-repo in bitbucket repository
 - create new repository `config-server-repo` in `MicroservicesWorkshop` project
-  - cd C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo
-    - git remote add origin git@bitbucket.org:JavaPantry/config-server-repo.git
-    - git push -u origin master
+  - [Projects/MicroservicesWorkshop](https://bitbucket.org/JavaPantry/workspace/projects/MIC)
+    - ![](assets/config-server-repo.png)
+  - Commit
+    - cd C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo
+      - git remote add origin git@bitbucket.org:JavaPantry/config-server-repo.git
+      - git push -u origin master
 - in `config-server/src/main/resources/application.properties` point uri to bitbucket repository - https://bitbucket.org/JavaPantry/config-server-repo
 
   ```properties
   server.port=8888
-  
+
   # unique id for this eureka client
   spring.application.name=config-server
-  
+
   spring.cloud.config.server.git.uri=https://bitbucket.org/JavaPantry/config-server-repo
   spring.cloud.config.server.git.username=JavaPantry
   spring.cloud.config.server.git.password=C98LcSyS9wbmFuevstdz
   spring.cloud.config.server.git.default-label=master
   spring.cloud.config.server.git.clone-on-start=true
   spring.cloud.config.server.git.search-paths=/{application}
-  
+
   # point to local file system
   # replace `\` with `/` for windows path
   # ERROR should be outside current project folder. This is error location: spring.cloud.config.server.git.uri=file:///c:/IntelliJ_WS_SpringBootWorkshop/springcloud-sbsuite/config-server-repo
   #spring.cloud.config.server.git.uri=file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo
   #spring.cloud.config.server.git.search-paths=/{application}
-  
+
   logging.level.org.springframework.cloud=DEBUG
   logging.level.org.springframework.web=DEBUG
   ```
-  
+
 - restart config-server app
   - Test config-server
     - http://localhost:8888/eclient2/local
@@ -617,5 +620,5 @@ commit - Point config-server to config-server-repo folder
         ```
     - http://localhost:8888/data-aggregation-service/default
       - `{"name":"data-aggregation-service","profiles":["default"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,"propertySources":[{"name":"https://bitbucket.org/JavaPantry/config-server-repo/data-aggregation-service/application.properties","source":{"mycloud.config.test.var":"data-aggregation-service-app"}}]}`
-  
+
 - commit - Configure config-server to read config-server-repo from bitbucket repository
