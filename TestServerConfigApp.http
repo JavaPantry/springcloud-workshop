@@ -1,0 +1,18 @@
+### get default profiles
+GET {{host}}/eclient/default
+
+### get local profiles
+GET {{host}}/eclient/local
+
+### Encrypt the data (send raw data)
+POST {{host}}/encrypt
+
+eclient-app-local-secured
+
+### Decript the data (send raw data)
+POST {{host}}/decrypt
+
+11f093e57adcf38c91ef3af5762bea3edc8b4acf313e37d651266d440e5342a7fe3dfa5cd958fb7fc0bca1d1d07a8740
+
+### get local-secure profiles
+GET {{host}}/eclient/local-secure

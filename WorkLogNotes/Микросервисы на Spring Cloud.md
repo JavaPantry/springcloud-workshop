@@ -622,3 +622,189 @@ commit - Point config-server to config-server-repo folder
       - `{"name":"data-aggregation-service","profiles":["default"],"label":null,"version":"9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state":null,"propertySources":[{"name":"https://bitbucket.org/JavaPantry/config-server-repo/data-aggregation-service/application.properties","source":{"mycloud.config.test.var":"data-aggregation-service-app"}}]}`
 
 - commit - Configure config-server to read config-server-repo from bitbucket repository
+
+## April 16, 2023 - Securing Config Server
+- follow udemy course [Securing Config Server](https://www.udemy.com/course/spring-boot-microservices-with-spring-cloud-beginner-to-guru/learn/lecture/19751322#overview)
+  - John uses postman
+  - I'll use [IntelliJ Http Client](https://www.youtube.com/results?search_query=intellij+http+client)
+    - [Start using Intellij Idea Http Client](https://youtu.be/jRZi3f3YmSs)
+    - [HttpClient doc](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html)
+
+### Use IntelliJ HttpClient to test encrypt/decrypt endpoints in ConfigServerApplication
+- follow Udemy microservices [@](C:\IntelliJ_WS-SpringGuru\Spring Boot Microservices with Spring Cloud and Docker Course\SpringCloud - Securing Spring Cloud-25.md)
+- more convinent than use browser and postman (not to mention that http test files will be saved in git)
+  - this section copied [to](LearningNotes\IntelliJ\IntelliJ HttpClient to test endpoints\IntelliJ-HttpClient.md)
+- create `project-root\menu New\menu HttpRequest-> TestServerConfigApp.http`
+- add
+  ```
+   ### get default profiles
+   GET http://localhost:8888/eclient/default
+
+   ### get local profiles
+   GET http://localhost:8888/eclient/local
+  ```
+- run methods in `TestServerConfigApp.http` file by click green arrow on left side of method
+- ![](assets/HttpClient-TestServerConfigApp.png)
+- responses
+
+  ```console
+    GET http://localhost:8888/eclient/default
+
+      {
+      "name": "eclient","profiles": ["default"],"label": null,
+      "version": "9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state": null,
+      "propertySources": [
+      {
+        "name": "https://bitbucket.org/JavaPantry/config-server-repo/eclient/application.properties",
+        "source": {"mycloud.config.test.var": "eclient-app"}
+      }]}
+
+    GET http://localhost:8888/eclient/local
+
+      {
+      "name": "eclient","profiles": ["local"],"label": null,
+      "version": "9ae8fc961f57afbb8ddc14a1c5f7a8b9ea61201f","state": null,
+      "propertySources": [
+      {
+        "name": "https://bitbucket.org/JavaPantry/config-server-repo/eclient/application-local.properties",
+        "source": {"mycloud.config.test.var": "eclient-app-local"}
+      },
+      {
+        "name": "https://bitbucket.org/JavaPantry/config-server-repo/eclient/application.properties",
+        "source": {"mycloud.config.test.var": "eclient-app"}
+      }]}
+  ```
+
+- add HttpClient environment
+  - ![](assets/add-HttpClient-environment.png)
+- create http-client.env.json
+  - ![](assets/http-client-env-json.png)
+  ```
+  {
+    "local": {
+  	"host": "http://localhost:8888"
+    }
+  }
+  ```
+- activate environment
+  - ![](assets/activate-environment.png)
+- and replace `http://localhost:8888` with `{{host}}`
+  ```
+  ### get default profiles
+  GET {{host}}/eclient/default
+
+  ### get local profiles
+  GET {{host}}/eclient/local
+  ```
+- try to POST `POST {{host}}/encrypt`
+  ```
+  ### Encrypt the data
+  POST {{host}}/encrypt
+
+  mypassword
+  ```
+  - ERROR because I haven't set encript key
+- in `config-server/src/main/resources/application.properties` switch to local file
+  - comment bitbucket connection
+  - and uncomment `spring.cloud.config.server.git.uri=file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo`
+- **WRONG** `encrypt.key=MySuperSecretKey` to `config-server/src/main/resources/bootstrap.properties`
+  - !!! Later we'll put it in environment variable
+- Restart `ConfigServerApplication`
+  - try `POST {{host}}/encrypt` -> same Error `"status": 400, "error": "Bad Request",`
+- put `encrypt.key=MySuperSecretKey` to `config-server/src/main/resources/application.properties`
+  - correct format in HTTP Client to POST **RAW** data
+  ```
+  ### Encrypt the data
+  POST {{host}}/encrypt
+
+  mypassword
+  ```
+  - response
+  ```
+  POST http://localhost:8888/encrypt
+  Content-Type: text/plain;charset=UTF-8
+  64de50e93acf5b39889af96e2cd3facfea66c22361bf4a69d7c99c8495588242
+  ```
+  - decrypt
+  ```
+  ### Decript the data
+  POST {{host}}/decrypt
+
+  64de50e93acf5b39889af96e2cd3facfea66c22361bf4a69d7c99c8495588242
+  ```
+  - response
+  ```
+  POST http://localhost:8888/decrypt
+  Content-Type: text/plain;charset=UTF-8
+  mypassword
+  ```
+
+- in `config-server/src/main/resources/application.properties` switch to local file
+  - uncomment bitbucket connection
+  - and comment `spring.cloud.config.server.git.uri=file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo`
+  - restart ConfigServerApplication
+  - test encrypt/decrypt again - tests run **OK**
+
+### Encrypt some properties in ConfigServerApplication/eclient
+- in `config-server/src/main/resources/application.properties` switch to local file
+  - comment bitbucket connection
+  - and uncomment `spring.cloud.config.server.git.uri=file:///C:/IntelliJ_WS_SpringBootWorkshop/config-server-repo`
+- create `c:\IntelliJ_WS_SpringBootWorkshop\config-server-repo\eclient\application-local-secure.properties` file in config-server-repo repository
+  - add variable `mycloud.config.test.var=eclient-app-local-secured`
+  - run encrypt
+    ```
+    ### Encrypt the data
+    POST {{host}}/encrypt
+
+    eclient-app-local-secured
+    ```
+  - Response > 11f093e57adcf38c91ef3af5762bea3edc8b4acf313e37d651266d440e5342a7fe3dfa5cd958fb7fc0bca1d1d07a8740
+  - rest decrypt
+    ```
+    ### Decript the data (send raw data)
+    POST {{host}}/decrypt
+
+    11f093e57adcf38c91ef3af5762bea3edc8b4acf313e37d651266d440e5342a7fe3dfa5cd958fb7fc0bca1d1d07a8740
+    ```
+  - Response > eclient-app-local-secured
+  - put encrypted `eclient-app-local-secured` in `application-local-secure.properties`
+    - `mycloud.config.test.var={cipher}11f093e57adcf38c91ef3af5762bea3edc8b4acf313e37d651266d440e5342a7fe3dfa5cd958fb7fc0bca1d1d07a8740`
+  - commit and push to git
+    ```
+    C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo>git add .
+    C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo>git commit -m "add secured property"
+    C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo>git push
+    ```
+  - restart ConfigServerApplication (looks like not required. profile picked up)
+    ```
+    ### get local-secure profiles
+    GET {{host}}/eclient/local-secure
+    ```
+  - Response - NOTE that `mycloud.config.test.var` is decripted  `"mycloud.config.test.var": "eclient-app-local-secured"`
+    ```
+    GET http://localhost:8888/eclient/local-secure
+
+    {
+      "name": "eclient",
+      "profiles": [
+    	"local-secure"
+      ],
+      "label": null,
+      "version": "113de9e3cd5b1991a20aa6be3e8494a88ccdd555",
+      "state": null,
+      "propertySources": [
+    	{
+    	  "name": "https://bitbucket.org/JavaPantry/config-server-repo/eclient/application-local-secure.properties",
+    	  "source": {
+    		"mycloud.config.test.var": "eclient-app-local-secured"
+    	  }
+    	},
+    	{
+    	  "name": "https://bitbucket.org/JavaPantry/config-server-repo/eclient/application.properties",
+    	  "source": {
+    		"mycloud.config.test.var": "eclient-app"
+    	  }
+    	}
+      ]
+    }
+    ```
