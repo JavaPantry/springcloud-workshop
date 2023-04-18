@@ -623,7 +623,7 @@ commit - Point config-server to config-server-repo folder
 
 - commit - Configure config-server to read config-server-repo from bitbucket repository
 
-## April 16, 2023 - Securing Config Server
+## April 16-17, 2023 - Securing Config Server
 - follow udemy course [Securing Config Server](https://www.udemy.com/course/spring-boot-microservices-with-spring-cloud-beginner-to-guru/learn/lecture/19751322#overview)
   - John uses postman
   - I'll use [IntelliJ Http Client](https://www.youtube.com/results?search_query=intellij+http+client)
@@ -808,3 +808,51 @@ commit - Point config-server to config-server-repo folder
       ]
     }
     ```
+
+- excersizes above could be executed from command line `curl`
+  - see in [spring-cloud-config/docs/3.0.5](https://docs.spring.io/spring-cloud-config/docs/3.0.5/reference/html/#_security)
+  ```
+  $ curl localhost:8888/encrypt -s -d mysecret
+  682bc583f4641835fa2db009355293665d2647dade3375c0ee201de2a49f7bda
+
+  $ curl localhost:8888/decrypt -s -d 682bc583f4641835fa2db009355293665d2647dade3375c0ee201de2a49f7bda
+  mysecret
+  ```
+
+## April 18, 2023 - Securing Config Server
+### 287. Secure Spring Cloud Config Server 9min
+- add security to `config-server/pom.xml`
+  ```
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
+  ```
+- will add basic authentication with randomized password for user
+  - to define user and password add following properties in `config-server/src/main/resources/application.properties`
+  ```
+  spring.security.user.name=avp
+  spring.security.user.password=password
+  ```
+- start EurekaServerApplication
+- start ConfigServerApplication
+- now if you try access ConfigServerApplication you'll get basic authentication form
+  - http://localhost:8888/data-aggregation-service/default
+  - and cold login with `avp/password` and see response
+  - open http://localhost:8888/data-aggregation-service/default as already logged in user
+  - open http://localhost:8888/eclient/default as already logged in user
+- try to start eclient - http://localhost:50358/main/test (note 50358 is a port assigned at startup)
+  - add `spring.cloud.config.fail-fast=true` `in eureka-client/src/main/resources/application.properties`
+    - suppose to `fail fast` if config server is not available, but in udemy course John meant that it will fail for unauthenticated access
+  - it should fail on start (but started without errors)
+    - means that it is not reading ConfigServerApplication security
+  - started without errors even if I shut down ConfigServerApplication
+- try to import properties from ConfigServerApplication
+  - [Spring Boot Config Data Import](https://docs.spring.io/spring-cloud-config/docs/3.0.5/reference/html/#config-data-import)
+    - note: -	A bootstrap file (properties or yaml) is not needed for the Spring Boot Config Data method of import via spring.config.import.
+  - In `eureka-client/src/main/resources/application.properties` add
+    ```
+    # note last slash `/` in the path is important.
+    spring.config.import=optional:configserver:http://localhost:8888/
+    ```
+  -
