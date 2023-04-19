@@ -855,4 +855,48 @@ commit - Point config-server to config-server-repo folder
     # note last slash `/` in the path is important.
     spring.config.import=optional:configserver:http://localhost:8888/
     ```
-  -
+  - In `eureka-client/src/main/resources/application.properties` add
+    ```
+    # suppose to specify config server url and fail fast if not available
+    spring.cloud.config.uri=http://localhost:8888
+    ```
+
+## April 19, 2023 - Securing Config Server
+
+### Secure Eureka Server
+288. Use Spring Security to Secure Eureka Server 10min
+- add security to `eureka-server/pom.xml`
+  ```
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
+  ```
+- will add basic authentication with randomized password for user
+  - to define user and password add following properties in `eureka-client/src/main/resources/application.properties`
+  ```
+  spring.security.user.name=avp
+  spring.security.user.password=password
+  ```
+- course suggests to create `class SecurityConfig extends WebSecurityConfigurerAdapter`
+  - `WebSecurityConfigurerAdapter` is deprecated in 3.x
+  - [How to fix error of WebSecurityConfigurerAdapter when upgrade to Spring Boot 3.0.0?](https://stackoverflow.com/questions/74666596/how-to-fix-error-of-websecurityconfigureradapter-when-upgrade-to-spring-boot-3-0)
+    - WebSecurityConfigurerAdapter is deprecated and should use component-based security configuration. You'll have to create a SecurityFilterChain bean for HTTPSecurity and shouldn't extend WebSecurityConfigurerAdapter as other answer suggested. Please refer https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter for more details.
+- start EurekaServerApplication
+  - open eureka server console @ http://localhost:8761/
+  - now it shows basic authentication popup to login. Enter `avp/password` to login
+-
+
+#### Configure ConfigServerApplication app
+
+- go to `config-server/src/main/resources/application.properties`
+- add `eureka.client.service-url.defaultZone=http://netflix:eureka@localhost:8761/eureka`
+  - course suggests put `#eureka.client.service-url.defaultZone=http://netflix:eureka@localhost:8761/eureka`
+- but beacause we define `avp/password` to login add `eureka.client.service-url.defaultZone=http://avp:password@localhost:8761/eureka`
+- now start ConfigServerApplication (Started - Ok)
+- Refresh eureka server console @ http://localhost:8761/
+  - confirm - Instances currently registered with Eureka: `CONFIG-SERVER`	n/a (1)	(1)	UP (1) - config-server:a9e6807b-bb21-4ae8-a096-2f032567bb4b}
+-
+
+289. Secure Inventory Service with Spring Security 4min
+-
