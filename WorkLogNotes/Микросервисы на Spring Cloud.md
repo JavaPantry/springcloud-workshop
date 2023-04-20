@@ -954,6 +954,17 @@ commit - Point config-server to config-server-repo folder
       - on success login confirm render `Test eureka-client 2 > Hello`
 - commit - Secure Eclient2 Microservice
 
+### Create Dummy Eclien2Service within Eclient microservice
+- create `interface Eclient2Service` within `eureka-client/src/main/java/com/springcloud/sbsuite/eurekaclient/eclient2`
+  - with dummy implementation in `eureka-client/src/main/java/com/springcloud/sbsuite/eurekaclient/eclient2/Eclient2ServiceRestTemplateImpl.java`
+    - dummy - no actual contact to eclient2 service
+- wire `Eclient2Service` in `eureka-client/src/main/java/com/springcloud/sbsuite/eurekaclient/api/TestController.java`
+  - `private final Eclient2Service eclient2Service;` with constructor
+- test http://localhost:eclientport/main/eclient2/name
+  - twice asking for basic authentication -> enter `avp/password`
+  - Response: `Test eureka-client (instance eclient:2ada3e91-79b8-4949-9ee1-f8e9c69f804c} ) eclient2 response > Test eureka-client 2 > Hello`
+- commit - Create Dummy Eclien2Service within Eclient microservice
+
 ??? ### 290. Configure RESTTemplate for HTTP Basic Authentication 5min
 
 
