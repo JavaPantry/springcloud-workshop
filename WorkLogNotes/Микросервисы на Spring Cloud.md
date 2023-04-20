@@ -965,9 +965,18 @@ commit - Point config-server to config-server-repo folder
   - Response: `Test eureka-client (instance eclient:2ada3e91-79b8-4949-9ee1-f8e9c69f804c} ) eclient2 response > Test eureka-client 2 > Hello`
 - commit - Create Dummy Eclien2Service within Eclient microservice
 
+### Connect Eclient microservice to Eclient2 with Eclien2Service
+- Add `private final RestTemplate restTemplate;` to
+  - build rest template `this.restTemplate = restTemplateBuilder.basicAuthentication("avp", "password").build();`
+  - make a call to `String eclient2url = "http://localhost:8765/new/name";`
+    - `String response = restTemplate.exchange(eclient2url, HttpMethod.GET, null, String.class).getBody();`
+- Errors: Eureka server doesn't list all services nor API Gateway
+  - **When did it happen?!**
+- commit - Connect Eclient microservice to Eclient2 with Eclien2Service
+  - Cloud not properly loaded
+
 ??? ### 290. Configure RESTTemplate for HTTP Basic Authentication 5min
-
-
+-
 ??? 291. Configure Feign Client for HTTP Basic Authentication 6min
 -
 ??? 292. Security Retrospective 6min
