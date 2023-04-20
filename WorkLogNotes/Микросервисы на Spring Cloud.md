@@ -902,7 +902,7 @@ commit - Point config-server to config-server-repo folder
 
 ## April 20, 2023 - Secure Eclient Microservice
 
-289. Secure Inventory Service with Spring Security 4min
+### 289. Secure Inventory Service with Spring Security 4min
 - [Secure Inventory Service](https://www.udemy.com/course/spring-boot-microservices-with-spring-cloud-beginner-to-guru/learn/lecture/19910046#overview)
 - add Security to `eureka-client/pom.xml`
   ```
@@ -932,8 +932,31 @@ commit - Point config-server to config-server-repo folder
 
 - commit - Secure Eclient Microservice
 
-??? 290. Configure RESTTemplate for HTTP Basic Authentication 5min
--
+### Configure eclient2 security
+- here I need to make eclient microservice communicate with eclient2 (I skip this in very basic project layout)
+  - make same changes to eclient2 as I did in eclient (see `289. Secure Inventory Service with Spring Security 4min`)
+    - add security dependency in `eureka-client-2/pom.xml`
+      ```
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+      </dependency>
+      ```
+    - copy and add `eureka-client-2/src/main/java/com/springcloud/sbsuite/eurekaclient/config/WebSecurityConfig.java`
+    - add user/password to `eureka-client-2/src/main/resources/application.properties`
+      ```
+      spring.security.user.name=avp
+      spring.security.user.password=password
+      ```
+    - open http://localhost:61137/new/name
+      - and confirm basic authentication popup
+      - enter `avp/password`
+      - on success login confirm render `Test eureka-client 2 > Hello`
+- commit - Secure Eclient2 Microservice
+
+??? ### 290. Configure RESTTemplate for HTTP Basic Authentication 5min
+
+
 ??? 291. Configure Feign Client for HTTP Basic Authentication 6min
 -
 ??? 292. Security Retrospective 6min
