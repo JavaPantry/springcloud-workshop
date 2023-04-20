@@ -882,6 +882,8 @@ commit - Point config-server to config-server-repo folder
   - `WebSecurityConfigurerAdapter` is deprecated in 3.x
   - [How to fix error of WebSecurityConfigurerAdapter when upgrade to Spring Boot 3.0.0?](https://stackoverflow.com/questions/74666596/how-to-fix-error-of-websecurityconfigureradapter-when-upgrade-to-spring-boot-3-0)
     - WebSecurityConfigurerAdapter is deprecated and should use component-based security configuration. You'll have to create a SecurityFilterChain bean for HTTPSecurity and shouldn't extend WebSecurityConfigurerAdapter as other answer suggested. Please refer https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter for more details.
+    - Instead `@Override protected void configure(HttpSecurity http) throws Exception {...}`
+    - create `@Bean public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {...}`
 - start EurekaServerApplication
   - open eureka server console @ http://localhost:8761/
   - now it shows basic authentication popup to login. Enter `avp/password` to login
@@ -898,5 +900,41 @@ commit - Point config-server to config-server-repo folder
   - confirm - Instances currently registered with Eureka: `CONFIG-SERVER`	n/a (1)	(1)	UP (1) - config-server:a9e6807b-bb21-4ae8-a096-2f032567bb4b}
 -
 
+## April 20, 2023 - Secure Eclient Microservice
+
 289. Secure Inventory Service with Spring Security 4min
+- [Secure Inventory Service](https://www.udemy.com/course/spring-boot-microservices-with-spring-cloud-beginner-to-guru/learn/lecture/19910046#overview)
+- add Security to `eureka-client/pom.xml`
+  ```
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
+  ```
+- add `eureka-client/src/main/java/com/springcloud/sbsuite/eurekaclient/config/WebSecurityConfig.java`
+- course suggests to create `class WebSecurityConfig extends WebSecurityConfigurerAdapter`
+  - `WebSecurityConfigurerAdapter` is deprecated in 3.x
+  - [How to fix error of WebSecurityConfigurerAdapter when upgrade to Spring Boot 3.0.0?](https://stackoverflow.com/questions/74666596/how-to-fix-error-of-websecurityconfigureradapter-when-upgrade-to-spring-boot-3-0)
+    - WebSecurityConfigurerAdapter is deprecated and should use component-based security configuration. You'll have to create a SecurityFilterChain bean for HTTPSecurity and shouldn't extend WebSecurityConfigurerAdapter as other answer suggested. Please refer https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter for more details.
+      - Instead `@Override protected void configure(HttpSecurity http) throws Exception {...}`
+      - create `@Bean public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {...}`
+- will add basic authentication with randomized password for user
+- to define user and password add following properties in `eureka-client/src/main/resources/application.properties`
+  ```
+  spring.security.user.name=avp
+  spring.security.user.password=password
+  ```
+- start ECLIENT
+- open http://localhost:59338/main/test
+  - and confirm basic authentication popup
+  - enter `avp/password`
+  - on success login confirm render `Test eureka-client (instance eclient:xxx-...-xxx} ) > Hello`
+
+- commit - Secure Eclient Microservice
+
+??? 290. Configure RESTTemplate for HTTP Basic Authentication 5min
+-
+??? 291. Configure Feign Client for HTTP Basic Authentication 6min
+-
+??? 292. Security Retrospective 6min
 -
