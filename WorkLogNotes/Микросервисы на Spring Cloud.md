@@ -1023,6 +1023,7 @@ commit - Point config-server to config-server-repo folder
 - Previous issue
   - I can test ConfigServerApplication asking for application properties but can't read them from client
 - Solution
+  - read how to read properties from remote config repo [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/3.0.5/reference/html/#_client_side_usage)
   - make sure that you have `spring.config.import` in project `eureka-client/src/main/resources/application.properties`
     - `spring.config.import=optional:configserver:http://localhost:8888/`
   - add dependency `eureka-client/pom.xml`
