@@ -982,6 +982,7 @@ commit - Point config-server to config-server-repo folder
 ??? 292. Security Retrospective 6min
 
 ## April 21, 2023 - Rollback security in springcloud-sbsuite
+### Rollback security in `very-basic-cloud-base-no-secure`
 - make branch `very-basic-cloud-base-no-secure`
   - comment `spring-boot-starter-security` in all modules
   - refresh mavens in project
@@ -1007,3 +1008,13 @@ commit - Point config-server to config-server-repo folder
   - test in HttpClient file TestApiGateway.http - Ok
   - test in HttpClient file TestServerConfigApp.http - Ok
 - commit - Turn off security and add HttpClient tests
+
+### Make a branch with basic security in `very-basic-cloud-base-with-failed-security`
+- from master branch make new branch `very-basic-cloud-base-with-failed-security`
+  - to store stage where security applied but whole cloud not discoverable
+- after that will merge `very-basic-cloud-base-no-secure` to `master`
+- commit - Make a branch with basic security to store stage where security applied but whole cloud not discoverable
+
+### Merge `very-basic-cloud-base-no-secure` into `master` branch to continue with Docker
+- test loading cloud in Browsers and HttpClient
+- commit - Merge very-basic-cloud-base-no-secure into master branch to continue with Docker
