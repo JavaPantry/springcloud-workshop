@@ -1018,3 +1018,56 @@ commit - Point config-server to config-server-repo folder
 ### Merge `very-basic-cloud-base-no-secure` into `master` branch to continue with Docker
 - test loading cloud in Browsers and HttpClient
 - commit - Merge very-basic-cloud-base-no-secure into master branch to continue with Docker
+
+### Read properties from ConfigServerApplication repo
+- Previous issue
+  - I can test ConfigServerApplication asking for application properties but can't read them from client
+- Solution
+  - make sure that you have `spring.config.import` in project `eureka-client/src/main/resources/application.properties`
+    - `spring.config.import=optional:configserver:http://localhost:8888/`
+  - add dependency `eureka-client/pom.xml`
+    ```
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-config</artifactId>
+    </dependency>
+    ```
+  - add mapped method to `eureka-client/src/main/java/com/springcloud/sbsuite/eurekaclient/api/TestController.java`
+    ```
+    @Value("${mycloud.config.test.var}")
+    private String configVar;
+    ...
+    @GetMapping("/config-var")
+    public String testConfigVar() {
+        return String.format("Test eureka-client config var > %s", configVar);
+    }
+    ```
+  - **Not required** add `@ConfigurationPropertiesScan` annotation in `eureka-client/src/main/java/com/springcloud/sbsuite/eurekaclient/EurekaClientApplication.java` **Not required**
+  - rename `config-server-repo/eclient/application-local-secure.properties` to `config-server-repo/eclient/application-localsecure.properties`
+    - after any change in repo you need to submit repository
+      ```
+      C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo>git add .
+      C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo>git commit -m "add localsecure eclient properties"
+      C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo>git push
+      ```
+  - build and start `eureka-client` module
+  - Testing
+    - no active profile (as initial build)
+    ```
+    GET http://localhost:8765/eclient/main/config-var
+    > Test eureka-client config var > eclient-app
+    ```
+    - Change active profile to `local` in Intellij project Run/Debug dialog
+    ```
+    GET http://localhost:8765/eclient/main/config-var
+    > Test eureka-client config var > eclient-app-local
+    ```
+    - Change active profile to `localsecure` in Intellij project Run/Debug dialog
+      - will show `mycloud.config.test.var={cipher}xxxx....xxx`
+      - note that response shows decrypted variable
+    ```
+    GET http://localhost:8765/eclient/main/config-var
+    Test eureka-client config var > eclient-app-local-secured
+    ```
+
+- commit - Fix Reading properties from ConfigServerApplication repo

@@ -4,6 +4,9 @@ GET {{config-host}}/eclient/default
 ### get eclient local profiles
 GET {{config-host}}/eclient/local
 
+### get eclient localsecure profiles
+GET {{config-host}}/eclient/localsecure
+
 ### get eclient2 default profiles
 GET {{config-host}}/eclient2/default
 

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/main")
 public class TestController {
 
+    @Value("${mycloud.config.test.var}")
+    private String configVar;
+
     @Value("${eureka.instance.instance-id}")
     private String instanceId;
 
@@ -32,5 +35,10 @@ public class TestController {
     public String testEclient2() {
         String eclient2response = eclient2Service.testName();
         return String.format("Test eureka-client (instance %s) eclient2 response > %s", instanceId, eclient2response);
+    }
+
+    @GetMapping("/config-var")
+    public String testConfigVar() {
+        return String.format("Test eureka-client config var > %s", configVar);
     }
 }

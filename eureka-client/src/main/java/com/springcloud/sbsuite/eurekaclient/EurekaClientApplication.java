@@ -2,6 +2,7 @@ package com.springcloud.sbsuite.eurekaclient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 /**
  - adding `@EnableEurekaClient` **NOT RECOGNIZED**

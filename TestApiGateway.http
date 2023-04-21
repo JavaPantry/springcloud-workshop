@@ -13,6 +13,9 @@ GET {{gateway-host}}/eclient2/new/name
 ### get eclient2 from eclient - OK
 GET {{gateway-host}}/eclient/main/eclient2/name
 
+### get config-var from eclient - OK
+GET {{gateway-host}}/eclient/main/config-var
+
 ### get python root - OK
 GET {{gateway-host}}/data-aggregation-service/
 
