@@ -881,7 +881,7 @@ commit - Point config-server to config-server-repo folder
 - course suggests to create `class SecurityConfig extends WebSecurityConfigurerAdapter`
   - `WebSecurityConfigurerAdapter` is deprecated in 3.x
   - [How to fix error of WebSecurityConfigurerAdapter when upgrade to Spring Boot 3.0.0?](https://stackoverflow.com/questions/74666596/how-to-fix-error-of-websecurityconfigureradapter-when-upgrade-to-spring-boot-3-0)
-    - WebSecurityConfigurerAdapter is deprecated and should use component-based security configuration. You'll have to create a SecurityFilterChain bean for HTTPSecurity and shouldn't extend WebSecurityConfigurerAdapter as other answer suggested. Please refer https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter for more details.
+    - WebSecurityConfigurerAdapter is deprecated and should use component-based security configuration. You'll have to create a SecurityFilterChain bean for HTTPSecurity and shouldn't extend WebSecurityConfigurerAdapter as other answer suggested. Please refer [Spring Security without the WebSecurityConfigurerAdapter](https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter) for more details.
     - Instead `@Override protected void configure(HttpSecurity http) throws Exception {...}`
     - create `@Bean public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {...}`
 - start EurekaServerApplication
@@ -915,7 +915,7 @@ commit - Point config-server to config-server-repo folder
 - course suggests to create `class WebSecurityConfig extends WebSecurityConfigurerAdapter`
   - `WebSecurityConfigurerAdapter` is deprecated in 3.x
   - [How to fix error of WebSecurityConfigurerAdapter when upgrade to Spring Boot 3.0.0?](https://stackoverflow.com/questions/74666596/how-to-fix-error-of-websecurityconfigureradapter-when-upgrade-to-spring-boot-3-0)
-    - WebSecurityConfigurerAdapter is deprecated and should use component-based security configuration. You'll have to create a SecurityFilterChain bean for HTTPSecurity and shouldn't extend WebSecurityConfigurerAdapter as other answer suggested. Please refer https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter for more details.
+    - WebSecurityConfigurerAdapter is deprecated and should use component-based security configuration. You'll have to create a SecurityFilterChain bean for HTTPSecurity and shouldn't extend WebSecurityConfigurerAdapter as other answer suggested. Please refer [Spring Security without the WebSecurityConfigurerAdapter](https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter) for more details.
       - Instead `@Override protected void configure(HttpSecurity http) throws Exception {...}`
       - create `@Bean public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {...}`
 - will add basic authentication with randomized password for user
@@ -980,4 +980,37 @@ commit - Point config-server to config-server-repo folder
 ??? 291. Configure Feign Client for HTTP Basic Authentication 6min
 -
 ??? 292. Security Retrospective 6min
--
+
+## April 21, 2023 - Rollback security in springcloud-sbsuite
+### Rollback security in `very-basic-cloud-base-no-secure`
+- make branch `very-basic-cloud-base-no-secure`
+  - comment `spring-boot-starter-security` in all modules
+  - refresh mavens in project
+  - confirm all applications are UP in [EutekaServerApplication](http://localhost:8761/)
+    - API-GATEWAY	UP (1) - host.docker.internal:api-gateway:8765
+    - CONFIG-SERVER	UP (1) - config-server:91f07997-88cc-4e87-a743-eab38cfc01de}
+    - DATA-AGGREGATION-SERVICE UP (1) - 127.0.0.1:data-aggregation-service:5000
+    - ECLIENT	UP (1) - eclient:a2bb2bee-6abc-44ec-9903-16231ceb68d6}
+    - ECLIENT2	UP (1) - host.docker.internal:eclient2:0
+  - add Python service profiles in `config-server-repo/data-aggregation-service`
+    - change `mycloud.config.test.var=data-aggregation-service-app-default` application.properties
+    - add `mycloud.config.test.var=data-aggregation-service-app-local` in application-local.properties
+  - test loading cloud in Browsers
+    - ECLIENT http://localhost:8765/main/test
+    - ECLIENT http://localhost:8765/eclient/main/test
+    - ECLIENT2 via ECLIENT http://localhost:8765/eclient/main/eclient2/name
+    - ECLIENT2 http://localhost:8765/new/name
+    - ECLIENT2 http://localhost:8765/eclient2/new/name
+    - Python http://localhost:8765/data-aggregation-service/
+    - Python http://localhost:8765/data-aggregation-service/hello/Alexei Ptitchkin
+    - Python http://localhost:8765/data-aggregation-service/readFolder?folder=MyRequestFolder
+    - Python http://localhost:8765/data-aggregation-service//folder/FolderAsPath
+  - test in HttpClient file TestApiGateway.http - Ok
+  - test in HttpClient file TestServerConfigApp.http - Ok
+- commit - Turn off security and add HttpClient tests
+
+### Make a branch with basic security in `very-basic-cloud-base-with-failed-security`
+- from master branch make new branch `very-basic-cloud-base-with-failed-security`
+  - to store stage where security applied but whole cloud not discoverable
+- after that will merge `very-basic-cloud-base-no-secure` to `master`
+- commit - Make a branch with basic security to store stage where security applied but whole cloud not discoverable
