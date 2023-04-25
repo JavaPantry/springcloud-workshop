@@ -1072,3 +1072,27 @@ commit - Point config-server to config-server-repo folder
     ```
 
 - commit - Fix Reading properties from ConfigServerApplication repo
+
+
+## April 24, 2023 - Dockerize springcloud-sbsuite
+
+### Make a branch for Docker `very-basic-cloud-base-docker`
+
+## April 25, 2023 - Dockerize springcloud-sbsuite
+### Enable docker layering in all submodules pom files
+
+- add <layers><enabled>true</enabled></layers> in all submodules pom files
+
+```
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <layers>
+            <enabled>true</enabled>
+        </layers>
+    </configuration>
+</plugin>
+```
+
+- commit - Enable docker layering in all submodules pom files
