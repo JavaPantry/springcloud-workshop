@@ -1,0 +1,55 @@
+version: '3.9'
+
+services:
+  eureka-server:
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - 8761:8761
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - 8765:8765
+    depends_on:
+      - eureka-server
+
+  config-server:
+    build:
+      context: ./config-server
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8888
+    depends_on:
+      - eureka-server
+    environment:
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_URI=https://bitbucket.org/JavaPantry/config-server-repo
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME=JavaPantry
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD=C98LcSyS9wbmFuevstdz
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_DEFAULT_LABEL=master
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_CLONE_ON_START=true
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_SEARCH_PATHS=/{application}
+
+  eureka-client:
+    build:
+      context: ./eureka-client
+      dockerfile: Dockerfile
+    image: eclient:latest
+    container_name: eclient
+    restart: unless-stopped
+    depends_on:
+      - api-gateway
+
+  eureka-client-2:
+    build:
+      context: ./eureka-client-2
+      dockerfile: Dockerfile
+    image: eclient-2:latest
+    container_name: eclient-2
+    restart: unless-stopped
+    depends_on:
+      - api-gateway
+

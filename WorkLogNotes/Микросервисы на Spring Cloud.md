@@ -1096,3 +1096,37 @@ commit - Point config-server to config-server-repo folder
 ```
 
 - commit - Enable docker layering in all submodules pom files
+
+### Add Dockerfile for each module and docker-compose.yml
+- see GPTChat-SpringCloud-Docker-Deployment.md
+- try to run docker-compose up -d
+
+```
+#0 62.55 [INFO] -------------------------------------------------------
+#0 62.55 [INFO]  T E S T S
+#0 62.55 [INFO] -------------------------------------------------------
+#0 63.66 [INFO] Running com.springcloud.sbsuite.eurekaclient.EurekaClientApplicationTests
+#0 63.95 20:36:49.278 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [EurekaClientApplicationTests]: using SpringBootContextLoader
+#0 63.96 20:36:49.287 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.springcloud.sbsuite.eurekaclient.EurekaClientApplicationTests]: no resource found for suffixes {-context.xml, C
+ontext.groovy}.
+#0 63.96 20:36:49.289 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.springcloud.sbsuite.eurekaclient.EurekaClientApplicationTests]: EurekaClientApplicationTests doe
+s not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+
+#0 64.41 20:36:49.731 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [EurekaClientApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+#0 68.92 20:36:54.216 [main] ERROR org.springframework.boot.SpringApplication -- Application run failed
+#0 68.92 org.springframework.cloud.config.client.ConfigClientFailFastException: Could not locate PropertySource and the fail fast property is set, failing
+
+#0 69.03 20:36:54.352 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- After test class: class [EurekaClientApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+#0 69.30 [ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 5.374 s <<< FAILURE! - in com.springcloud.sbsuite.eurekaclient.EurekaClientApplicationTests
+
+#0 69.30 [ERROR] contextLoads  Time elapsed: 0.062 s  <<< ERROR!
+#0 69.30 java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@303a5119  org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@9da1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomize
+r@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@4d465b11, org.springframework.boot.test.context.SpringBootTestAnnotation@af3a81eb], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.co
+ntext.SpringBootContextLoader, parent = null]
+```
+
+- comment out test classes
+- try to run docker-compose up -d
+  - all sevices and eureka cloud started but not responsive
+  - eclient constantly restarting
+- commit - initial dockerizing springcloud-sbsuite
