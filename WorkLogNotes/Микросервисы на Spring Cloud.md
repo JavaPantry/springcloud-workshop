@@ -1121,7 +1121,7 @@ org.springframework.cloud.config.client.ConfigClientFailFastException: Could not
 
 [ERROR] contextLoads  Time elapsed: 0.062 s  <<< ERROR!
 java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@303a5119  ```
-
+```
 - comment out test classes
 - try to run `docker-compose up -d`
   - all sevices and eureka cloud started but not responsive
