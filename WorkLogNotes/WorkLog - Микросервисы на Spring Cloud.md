@@ -1127,3 +1127,72 @@ java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMerge
   - all sevices and eureka cloud started but not responsive
   - eclient constantly restarting
 - commit - initial dockerizing springcloud-sbsuite
+
+## May 3, 2023 - Dockerize test springcloud-sbsuite-docker
+### Create dummy **springcloud-sbsuite-docker\eureka-client** clone 
+- Dummy microservice project cloned from `C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\eureka-client`
+  - to `C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite-docker\eureka-client`
+  - init Git `C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite-docker\eureka-client>git init`
+- see [Docker CheetSeet](LearningNotes\Docker-Kubernetes\Docker-CheetSeet.md)
+- build image `C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite-docker\eureka-client>docker build -t eclient-test .`
+
+```
+[+] Building 69.1s (18/18) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                  0.2s
+ => => naming to docker.io/library/eclient-test
+```
+
+- Run `docker run -p8080:8080 eclient-test`
+  - add `-d` for detach
+  - fix errors
+
+```
+in pom.xml
+<!--May 3:
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-config</artifactId>
+</dependency>-->
+
+in application.properties
+server.port=0 -> server.port=8080
+# May 3: eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+# May 3: spring.config.import=optional:configserver:http://localhost:8888/
+# May 3: spring.cloud.config.fail-fast=true
+# May 3: spring.cloud.config.uri=http://localhost:8888
+
+in TestController.java
+//May 3: @ Value("${mycloud.config.test.var}")
+```
+
+- Run `docker run -p8080:8080 eclient-test`
+- Test in IntelliJ HttpClient
+
+```
+### get eclient via gateway via gateway- OK
+GET http://localhost:8080/main/test
+
+### get direct eclient - OK
+GET http://localhost:8080/main/config-var
+```
+
+- confirm unpacked app loaded
+
+```
+app
+  BOOT-INF
+    classes
+      application.properties
+      com
+        springcloud
+          sbsuite
+            eurekaclient
+              api\TestController.class
+              eclient2
+              EurekaClientApplication.class
+```
+
