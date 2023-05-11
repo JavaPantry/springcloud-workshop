@@ -1220,3 +1220,11 @@ app
   api-gateway:
     depends_on:
       - config-server  instead eureka-server
+
+### Fix Issue that microservices within dockerized spring cloud are not discoverable
+- **Fix** replace in all properties files `localhost` with `host.docker.internal`
+  - `eureka.client.service-url.defaultZone=http://localhost:8761/eureka`
+  - `eureka.client.service-url.defaultZone=http://host.docker.internal:8761/eureka`
+  - within `Eclient2ServiceRestTemplateImpl.java` replace  `localhost` with `host.docker.internal`
+    - String eclient2url = "http://localhost:8765/new/name";
+    - String eclient2url = "http://host.docker.internal:8765/new/name";

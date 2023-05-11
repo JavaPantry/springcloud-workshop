@@ -16,7 +16,7 @@ public class Eclient2ServiceRestTemplateImpl implements Eclient2Service{
 	}
 	@Override
 	public String testName() {
-		String eclient2url = "http://localhost:8765/new/name";
+		String eclient2url = "http://host.docker.internal:8765/new/name";
 		String response = restTemplate.exchange(eclient2url, HttpMethod.GET, null, String.class).getBody();
 		return String.format("> eureka-client 2 Service > %s", response);
 	}
