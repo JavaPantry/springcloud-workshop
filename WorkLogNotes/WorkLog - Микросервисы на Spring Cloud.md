@@ -1212,3 +1212,11 @@ app
   - all sevices and eureka cloud started but not responsive
   - eclient constantly restarting
   - kill docker containers and run whole cloud from intelliJ one-by-one - Ok
+
+### Rearrange service dependencies in docker-compose.yaml
+  config-server:
+    depends_on:
+      - eureka-server
+  api-gateway:
+    depends_on:
+      - config-server  instead eureka-server
