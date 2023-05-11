@@ -1129,7 +1129,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMerge
 - commit - initial dockerizing springcloud-sbsuite
 
 ## May 3, 2023 - Dockerize test springcloud-sbsuite-docker
-### Create dummy **springcloud-sbsuite-docker\eureka-client** clone 
+### Create dummy **springcloud-sbsuite-docker\eureka-client** clone
 - Dummy microservice project cloned from `C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\eureka-client`
   - to `C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite-docker\eureka-client`
   - init Git `C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite-docker\eureka-client>git init`
@@ -1196,3 +1196,19 @@ app
               EurekaClientApplication.class
 ```
 
+## May 10 - Resume on Dockerizing springcloud-sbsuite
+- read IntelliJ Idea [Integrated tools/Docker](https://www.jetbrains.com/help/idea/docker.html)
+- all following actions done in in IntelliJ Idea
+  - open `C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\docker-compose.yml`
+  - click on double green arrow next to `services`
+  - all services started but eclient immediately failed (and continue restarting)
+    - 2023-05-10 16:16:41 Caused by: org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8888/eclient/default": Connection refused
+    - 2023-05-10 16:16:41 20:16:41.243 [main] ERROR org.springframework.boot.SpringApplication -- Application run failed
+    - 2023-05-10 16:16:41 org.springframework.cloud.config.client.ConfigClientFailFastException: Could not locate PropertySource and the fail fast property is set, failing
+    - see `spring.cloud.config.fail-fast=true` in `eureka-client/src/main/resources/application.properties`
+
+- committed - May 10, 2023 - sync eclient & eclient2 properties
+  - run docker compose from within IntelliJ
+  - all sevices and eureka cloud started but not responsive
+  - eclient constantly restarting
+  - kill docker containers and run whole cloud from intelliJ one-by-one - Ok
