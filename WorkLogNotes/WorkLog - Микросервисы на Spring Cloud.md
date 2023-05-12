@@ -1213,6 +1213,8 @@ app
   - eclient constantly restarting
   - kill docker containers and run whole cloud from intelliJ one-by-one - Ok
 
+## May 11 - Finalize Dockerizing springcloud-sbsuite
+
 ### Rearrange service dependencies in docker-compose.yaml
   config-server:
     depends_on:
@@ -1228,3 +1230,6 @@ app
   - within `Eclient2ServiceRestTemplateImpl.java` replace  `localhost` with `host.docker.internal`
     - String eclient2url = "http://localhost:8765/new/name";
     - String eclient2url = "http://host.docker.internal:8765/new/name";
+
+## May 12 - Finalize Dockerizing springcloud-sbsuite
+### Merge `very-basic-cloud-base-docker` branch to `master` branch
