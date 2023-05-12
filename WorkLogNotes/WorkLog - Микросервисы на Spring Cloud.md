@@ -1233,3 +1233,6 @@ app
 
 ## May 12 - Finalize Dockerizing springcloud-sbsuite
 ### Merge `very-basic-cloud-base-docker` branch to `master` branch
+- run test requests from TestApiGateway.http - Ok
+- python app still not dockerized (not discoverable (but visible in eureka server console http://localhost:8761/), but runs as standalone server at port 5000)
+- commit - Merge `very-basic-cloud-base-docker` branch to `master` branch
