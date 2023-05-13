@@ -1236,3 +1236,10 @@ app
 - run test requests from TestApiGateway.http - Ok
 - python app still not dockerized (not discoverable (but visible in eureka server console http://localhost:8761/), but runs as standalone server at port 5000)
 - commit - Merge `very-basic-cloud-base-docker` branch to `master` branch
+
+### Dockerize python springcloud-sbsuite-quart service
+- create simplified `Dockerfile`
+- add service `sbsuite-quart` to docker-compose.yml
+  - `DATA-AGGREGATION-SERVICE` visible in eureka server console (port 8761)
+  - HTTP Error code 500 on request via ApiGateway:8765
+- commit - Dockerize python springcloud-sbsuite-quart service

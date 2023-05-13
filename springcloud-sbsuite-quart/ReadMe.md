@@ -68,10 +68,11 @@ wsproto           1.2.0
 - 
 
 ## Old notes Delete old flask imagesDelete old flask images
-~/u/DockerSuiteTest/flask-service  docker image ls
-~/u/DockerSuiteTest/flask-service  docker image rm flaskservice
+docker image ls
+docker image rm sbsuite-quart
 
-~/u/DockerSuiteTest/flask-service  docker image build -t flaskservice-cors .
-~/u/DockerSuiteTest/flask-service  docker image ls
-~/u/DockerSuiteTest/flask-service  docker container run -d -p 5000:5000 flaskservice-cors
-~/u/DockerSuiteTest/flask-service  docker container ls -a
+docker image build -t sbsuite-quart .
+docker image ls
+docker container run -d -p 5000:5000 sbsuite-quart
+docker container ls -a
+docker rm <containerId>

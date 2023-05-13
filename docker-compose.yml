@@ -53,3 +53,12 @@ services:
     depends_on:
       - api-gateway
 
+  sbsuite-quart:
+    build:
+      context: ./springcloud-sbsuite-quart
+      dockerfile: Dockerfile
+    image: sbsuite-quart:latest
+    container_name: sbsuite-quart
+    restart: unless-stopped
+    depends_on:
+      - api-gateway

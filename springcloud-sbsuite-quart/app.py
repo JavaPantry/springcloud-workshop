@@ -10,9 +10,9 @@ from utils.FileSysExplorer import FileSysExplorer
 from blueprints.control import blueprint as control_blueprint
 
 rest_port = 5000
-eureka_client.init(eureka_server="http://localhost:8761/eureka",
+eureka_client.init(eureka_server="http://host.docker.internal:8761/eureka",
                            app_name="data-aggregation-service",
-                           instance_host="localhost",
+                           instance_host="host.docker.internal",
                            instance_port=rest_port)
 
 
