@@ -1243,3 +1243,12 @@ app
   - `DATA-AGGREGATION-SERVICE` visible in eureka server console (port 8761)
   - HTTP Error code 500 on request via ApiGateway:8765
 - commit - Dockerize python springcloud-sbsuite-quart service
+
+## May 13 - Dead end branch before make services more specific
+- will rename and create new services for each microservice
+  - ordering service
+  - inventory service
+  - payment service
+  - shipping service
+  - etc.
+- commit - Dead end branch before make services more specific
