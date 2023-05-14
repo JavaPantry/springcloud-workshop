@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.springcloud.sbsuite</groupId>
-    <artifactId>eureka-client</artifactId>
+    <artifactId>inventory-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eureka-client</name>
     <description>eureka-client</description>

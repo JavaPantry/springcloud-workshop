@@ -1253,3 +1253,21 @@ app
   - shipping service
   - etc.
 - commit - Dead end branch before make services more specific
+
+### Rename `eureka-client` to `inventory-service`
+- rename module `eureka-client` to `inventory-service` in root pom.xml
+- in separate config-server-repo project
+  - in `C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo>` rename `eureka-client` to `inventory-service`
+    - git add .
+    - git commit -m "rename eureka-client to inventory-service"
+    - git push
+    - copy it in project `config-server-repo`
+- Rename EurekaClientApplication.java to InventoryServiceApplication.java
+
+## May 14, 2023 - springcloud-sbsuite refactor services
+### Rename `eclient` service to `inventory-service`
+- replace `host.docker.internal` with `localhost` in all property files
+- replace `host.docker.internal` with `localhost` in Eclient2ServiceRestTemplateImpl.java
+- strat whole cloud from IntelliJ - Ok
+- test requests to `inventory-service` from TestApiGateway.http - Ok
+- commit - Rename `eclient` service to `inventory-service`

@@ -2,7 +2,6 @@ package com.springcloud.sbsuite.eurekaclient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 /**
  - adding `@EnableEurekaClient` **NOT RECOGNIZED**
@@ -12,10 +11,10 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
       and if we have the `spring.application.name=eclient` in yml or properties file it will be registered to Eureka Server
  */
 @SpringBootApplication
-public class EurekaClientApplication {
+public class InventoryServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EurekaClientApplication.class, args);
+        SpringApplication.run(InventoryServiceApplication.class, args);
     }
 
 }

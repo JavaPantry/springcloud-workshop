@@ -4,14 +4,24 @@ GET {{gateway-host}}/main/test
 ### get direct eclient - OK
 GET {{gateway-host}}/eclient/main/test
 
+### get direct inventory-service - OK
+GET {{gateway-host}}/inventory-service/main/test
+
+### get config-var from inventory-service - OK
+GET {{gateway-host}}/inventory-service/main/config-var
+
+### get eclient2 from inventory-service - OK
+GET {{gateway-host}}/inventory-service/main/eclient2/name
+
+### get eclient2 from eclient - OK
+GET {{gateway-host}}/eclient/main/eclient2/name
+
 ### get eclient2 via gateway - OK
 GET {{gateway-host}}/new/name
 
 ### get direct eclient2 - OK
 GET {{gateway-host}}/eclient2/new/name
 
-### get eclient2 from eclient - OK
-GET {{gateway-host}}/eclient/main/eclient2/name
 
 ### get config-var from eclient - OK
 GET {{gateway-host}}/eclient/main/config-var
