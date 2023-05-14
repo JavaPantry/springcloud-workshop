@@ -7,12 +7,12 @@ GET {{gateway-host}}/inventory-service/main/test
 ### get config-var from inventory-service - OK
 GET {{gateway-host}}/inventory-service/main/config-var
 
-### get eclient2 from inventory-service - OK
+### get store-service via inventory-service - OK
 GET {{gateway-host}}/inventory-service/main/eclient2/name
 
 ### get store-service via gateway - OK
 GET {{gateway-host}}/new/name
 
-### get direct eclient2 - OK
+### get direct store-service - OK
 GET {{gateway-host}}/store-service/new/name
 
