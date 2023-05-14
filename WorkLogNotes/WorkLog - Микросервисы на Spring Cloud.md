@@ -1296,3 +1296,9 @@ app
    
 ### Merge `rename-services` branch to `master` branch
 - commit - Merge `rename-services` branch to `master` branch
+
+### Introduce profile for local development
+- profile `localdev` to distinguish between local development and dockerized cloud
+- see [chat](WorkLogNotes/GPTChat-introduce-local-docker-profile.md)
+- test running whole cloud on local-dev profile - Ok
+- commit - Introduce profile for local development
