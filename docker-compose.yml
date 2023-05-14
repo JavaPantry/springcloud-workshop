@@ -33,22 +33,22 @@ services:
     depends_on:
       - config-server
 
-  eureka-client:
+  inventory-service:
     build:
-      context: ./eureka-client
+      context: ./inventory-service
       dockerfile: Dockerfile
-    image: eclient:latest
-    container_name: eclient
+    image: inventory-service:latest
+    container_name: inventory-service
     restart: unless-stopped
     depends_on:
       - api-gateway
 
-  eureka-client-2:
+  store-service:
     build:
-      context: ./eureka-client-2
+      context: ./store-service
       dockerfile: Dockerfile
-    image: eclient-2:latest
-    container_name: eclient-2
+    image: store-service:latest
+    container_name: store-service
     restart: unless-stopped
     depends_on:
       - api-gateway
