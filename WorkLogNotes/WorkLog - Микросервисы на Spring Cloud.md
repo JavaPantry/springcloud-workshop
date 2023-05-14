@@ -1294,3 +1294,5 @@ app
 - test requests to `store-service` from TestApiGateway.http - Ok
 - commit - Rename `eclient2` service to `store-service`
    
+### Merge `rename-services` branch to `master` branch
+- commit - Merge `rename-services` branch to `master` branch
