@@ -1311,3 +1311,21 @@ app
     - [ERROR] 2023-05-14 21:30:49.959 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8765/new/name": Connect to http://localhost:8765 [localhost/127.0.0.1] failed: Connection refused] with root cause
       2023-05-14 17:30:49 org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8765 [localhost/127.0.0.1] failed: Connection refused
 - commit - run whole cloud on docker
+
+### Fix inventory-service/main/eclient2/name Error 500
+- in Eclient2ServiceRestTemplateImpl.java read `hostnameurl` property and form proper url 
+
+```java
+class Eclient2ServiceRestTemplateImpl
+	@Value("${hostnameurl}")
+	private String hostnameurl;
+
+	@Override
+	public String testName(){
+		String eclient2url=String.format("http://%s:8765/new/name",hostnameurl);
+		// ...
+		}
+}
+```
+
+- commit - Fix inventory-service/main/eclient2/name Error 500
