@@ -1,0 +1,11 @@
+### get python root - OK
+GET {{gateway-host}}/data-aggregation-service/
+
+### get python hello - OK
+GET {{gateway-host}}/data-aggregation-service/hello/Alexei Ptitchkin
+
+### get python folder as argument request - OK
+GET {{gateway-host}}/data-aggregation-service/readFolder?folder=MyRequestFolder
+
+### get python folder as path request - OK
+GET {{gateway-host}}/data-aggregation-service/folder/FolderAsPath

@@ -1,9 +1,6 @@
 ### get eclient via gateway via gateway- OK
 GET {{gateway-host}}/main/test
 
-### get direct eclient - OK
-GET {{gateway-host}}/eclient/main/test
-
 ### get direct inventory-service - OK
 GET {{gateway-host}}/inventory-service/main/test
 
@@ -13,27 +10,9 @@ GET {{gateway-host}}/inventory-service/main/config-var
 ### get eclient2 from inventory-service - OK
 GET {{gateway-host}}/inventory-service/main/eclient2/name
 
-### get eclient2 from eclient - OK
-GET {{gateway-host}}/eclient/main/eclient2/name
-
-### get eclient2 via gateway - OK
+### get store-service via gateway - OK
 GET {{gateway-host}}/new/name
 
 ### get direct eclient2 - OK
-GET {{gateway-host}}/eclient2/new/name
+GET {{gateway-host}}/store-service/new/name
 
-
-### get config-var from eclient - OK
-GET {{gateway-host}}/eclient/main/config-var
-
-### get python root - OK
-GET {{gateway-host}}/data-aggregation-service/
-
-### get python hello - OK
-GET {{gateway-host}}/data-aggregation-service/hello/Alexei Ptitchkin
-
-### get python folder as argument request - OK
-GET {{gateway-host}}/data-aggregation-service/readFolder?folder=MyRequestFolder
-
-### get python folder as path request - OK
-GET {{gateway-host}}/data-aggregation-service/folder/FolderAsPath

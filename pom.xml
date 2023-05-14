@@ -22,7 +22,7 @@
         <module>config-server</module>
         <module>eureka-server</module>
         <module>inventory-service</module>
-        <module>eureka-client-2</module>
+        <module>store-service</module>
         <module>api-gateway</module>
     </modules>
 

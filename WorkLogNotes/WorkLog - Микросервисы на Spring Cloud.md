@@ -1265,9 +1265,32 @@ app
 - Rename EurekaClientApplication.java to InventoryServiceApplication.java
 
 ## May 14, 2023 - springcloud-sbsuite refactor services
-### Rename `eclient` service to `inventory-service`
+### Rename `eureka-client` service to `inventory-service`
+- rename module name in file system and in root pom
 - replace `host.docker.internal` with `localhost` in all property files
 - replace `host.docker.internal` with `localhost` in Eclient2ServiceRestTemplateImpl.java
 - strat whole cloud from IntelliJ - Ok
 - test requests to `inventory-service` from TestApiGateway.http - Ok
 - commit - Rename `eclient` service to `inventory-service`
+
+### Rename `eureka-client-2` service to `store-service`
+- rename module name in file system and in root pom
+- rename module `eureka-client-2` to `store-service` in root pom.xml
+- in separate config-server-repo project
+  - in `C:\IntelliJ_WS_SpringBootWorkshop\config-server-repo>` rename `eclient2` to `store-service`
+    - git add .
+    - git commit -m "rename eclient2 to store-service"
+    - git push
+    - copy it in project `config-server-repo`
+- Rename EurekaClient2Application.java to StoreServiceApplication.java
+- rename load-balancer urls in api-gateway/src/main/resources/application.properties
+  - spring.cloud.gateway.routes[0].uri=lb://inventory-service
+  - spring.cloud.gateway.routes[1].uri=lb://store-service
+- strat whole cloud from IntelliJ - Ok
+  - API-GATEWAY	- UP
+  - CONFIG-SERVER	- UP
+  - INVENTORY-SERVICE - UP
+  - STORE-SERVICE	- UP
+- test requests to `store-service` from TestApiGateway.http - Ok
+- commit - Rename `eclient2` service to `store-service`
+   
