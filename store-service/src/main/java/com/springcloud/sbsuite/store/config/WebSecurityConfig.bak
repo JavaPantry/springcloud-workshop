@@ -1,4 +1,4 @@
-package com.springcloud.sbsuite.eurekaclient2.config;
+package com.springcloud.sbsuite.store.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

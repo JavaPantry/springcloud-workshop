@@ -1334,3 +1334,19 @@ class Eclient2ServiceRestTemplateImpl
 - eureka-client -> inventory-service
 - eureka-client-2 -> store-service
 - commit - Rename service modules in pom files
+
+### Rename endpoints in inventory-service and store-service
+- in store-service
+  - rename package `com.springcloud.sbsuite.eurekaclient2.api` to `com.springcloud.sbsuite.store.api` 
+  - in StoreController.java - @GetMapping("/new/name") -> @GetMapping("store/inventory")
+- in inventory-service
+  - rename package `com.springcloud.sbsuite.eurekaclient.api` to `com.springcloud.sbsuite.inventory.api`
+  - rename TestController.java to InventoryController.java
+    - @GetMapping("/main/test") -> @GetMapping("inventory/test")
+    - @GetMapping("/main/eclient2/name") -> @GetMapping("inventory/store/inventory")
+- in api-gateway/src/main/resources/application.properties
+  - rename load-balancer routers ids and predicates
+- fix tests in TestApiGateway.http
+- test in local-dev profile - Ok
+- test in docker - Ok
+- commit - Rename endpoints in inventory-service and store-service

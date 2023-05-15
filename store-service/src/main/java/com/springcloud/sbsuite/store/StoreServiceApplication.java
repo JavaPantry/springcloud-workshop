@@ -1,4 +1,4 @@
-package com.springcloud.sbsuite.eurekaclient2;
+package com.springcloud.sbsuite.store;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

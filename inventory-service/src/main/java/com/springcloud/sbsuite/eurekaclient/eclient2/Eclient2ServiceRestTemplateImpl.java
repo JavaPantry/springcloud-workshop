@@ -19,11 +19,11 @@ public class Eclient2ServiceRestTemplateImpl implements Eclient2Service{
 												.build();
 	}
 	@Override
-	public String testName() {
+	public String getInventory() {
 		//String eclient2url = "http://{hostnameurl}:8765/new/name";
-		String eclient2url = String.format("http://%s:8765/new/name", hostnameurl);
+		String storeInventoryUrl = String.format("http://%s:8765/store/inventory", hostnameurl);
 
-		String response = restTemplate.exchange(eclient2url, HttpMethod.GET, null, String.class).getBody();
-		return String.format("> eureka-client 2 Service > %s", response);
+		String response = restTemplate.exchange(storeInventoryUrl, HttpMethod.GET, null, String.class).getBody();
+		return String.format("> RestTemplate call to Inventory Service > %s", response);
 	}
 }
