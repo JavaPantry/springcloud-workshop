@@ -11,8 +11,8 @@
     <groupId>com.springcloud.sbsuite</groupId>
     <artifactId>inventory-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>eureka-client</name>
-    <description>eureka-client</description>
+    <name>inventory-service</name>
+    <description>inventory service</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2022.0.2</spring-cloud.version>

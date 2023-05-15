@@ -1327,5 +1327,10 @@ class Eclient2ServiceRestTemplateImpl
 		}
 }
 ```
-
 - commit - Fix inventory-service/main/eclient2/name Error 500
+
+## May 15, 2023 - springcloud-sbsuite refactor services
+### Rename service modules in pom files
+- eureka-client -> inventory-service
+- eureka-client-2 -> store-service
+- commit - Rename service modules in pom files
