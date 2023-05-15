@@ -5,10 +5,10 @@ GET {{gateway-host}}/inventory/test
 GET {{gateway-host}}/inventory-service/inventory/test
 
 ### get direct store-service via gateway
-GET {{gateway-host}}/inventory/storeinventory
+GET {{gateway-host}}/inventory/
 
 ### get direct store-service via inventory-service
-GET {{gateway-host}}/inventory-service/inventory/storeinventory
+GET {{gateway-host}}/inventory-service/inventory/
 
 ### get config-var from inventory-service - OK
 GET {{gateway-host}}/inventory-service/inventory/config-var

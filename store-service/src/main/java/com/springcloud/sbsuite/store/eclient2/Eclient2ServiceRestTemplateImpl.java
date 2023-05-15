@@ -1,4 +1,4 @@
-package com.springcloud.sbsuite.inventory.eclient2;
+package com.springcloud.sbsuite.store.eclient2;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -21,9 +21,9 @@ public class Eclient2ServiceRestTemplateImpl implements Eclient2Service{
 	@Override
 	public String getInventory() {
 		//String eclient2url = "http://{hostnameurl}:8765/new/name";
-		String storeInventoryUrl = String.format("http://%s:8765/store/inventory", hostnameurl);
+		String storeInventoryUrl = String.format("http://%s:8765/inventory/", hostnameurl);
 
 		String response = restTemplate.exchange(storeInventoryUrl, HttpMethod.GET, null, String.class).getBody();
-		return String.format("> RestTemplate call to Inventory Service > %s", response);
+		return String.format("> Eclient2ServiceRestTemplateImpl call to Inventory Service > %s", response);
 	}
 }

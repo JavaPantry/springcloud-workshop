@@ -1353,3 +1353,10 @@ class Eclient2ServiceRestTemplateImpl
 
 ### Rename package `com.springcloud.sbsuite.eurekaclient2` to `com.springcloud.sbsuite.inventory`  
 - commit - Rename package `eurekaclient2` to `inventory` in inventory-service module
+
+### Move "/storeinventory" from inventory-service to store-service
+Originally "/storeinventory" mapping was in dummy "eclient" service  which became "inventory-service" (i.e. have no sense in inventory-service ask store-service for inventory). So move it to store-service.
+And vice versa move "/inventory" from store-service to inventory-service.
+- test in local-dev profile - Ok
+- test in docker - Ok
+- commit - Move "/storeinventory" from inventory-service to store-service
