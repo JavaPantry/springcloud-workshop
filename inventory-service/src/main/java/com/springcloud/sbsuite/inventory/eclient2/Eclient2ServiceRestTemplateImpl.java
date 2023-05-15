@@ -1,4 +1,4 @@
-package com.springcloud.sbsuite.eurekaclient.eclient2;
+package com.springcloud.sbsuite.inventory.eclient2;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

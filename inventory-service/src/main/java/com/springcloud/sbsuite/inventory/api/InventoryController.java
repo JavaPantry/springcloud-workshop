@@ -1,7 +1,7 @@
-package com.springcloud.sbsuite.eurekaclient.api;
+package com.springcloud.sbsuite.inventory.api;
 
 
-import com.springcloud.sbsuite.eurekaclient.eclient2.Eclient2Service;
+import com.springcloud.sbsuite.inventory.eclient2.Eclient2Service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

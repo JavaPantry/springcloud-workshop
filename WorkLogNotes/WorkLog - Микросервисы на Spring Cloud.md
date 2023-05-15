@@ -1105,19 +1105,19 @@ commit - Point config-server to config-server-repo folder
 [INFO] -------------------------------------------------------
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
-[INFO] Running com.springcloud.sbsuite.eurekaclient.EurekaClientApplicationTests
+[INFO] Running com.springcloud.sbsuite.inventory.EurekaClientApplicationTests
 
 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [EurekaClientApplicationTests]: using SpringBootContextLoader
-[main] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.springcloud.sbsuite.eurekaclient.EurekaClientApplicationTests]: no resource found for suffixes {-context.xml, C
+[main] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.springcloud.sbsuite.inventory.EurekaClientApplicationTests]: no resource found for suffixes {-context.xml, C
 ontext.groovy}.
 
-[main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.springcloud.sbsuite.eurekaclient.EurekaClientApplicationTests]: EurekaClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.springcloud.sbsuite.inventory.EurekaClientApplicationTests]: EurekaClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
 
 DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [EurekaClientApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
 ERROR org.springframework.boot.SpringApplication -- Application run failed
 org.springframework.cloud.config.client.ConfigClientFailFastException: Could not locate PropertySource and the fail fast property is set, failing
 
-[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 5.374 s <<< FAILURE! - in com.springcloud.sbsuite.eurekaclient.EurekaClientApplicationTests
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 5.374 s <<< FAILURE! - in com.springcloud.sbsuite.inventory.EurekaClientApplicationTests
 
 [ERROR] contextLoads  Time elapsed: 0.062 s  <<< ERROR!
 java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@303a5119  ```
@@ -1340,7 +1340,7 @@ class Eclient2ServiceRestTemplateImpl
   - rename package `com.springcloud.sbsuite.eurekaclient2.api` to `com.springcloud.sbsuite.store.api` 
   - in StoreController.java - @GetMapping("/new/name") -> @GetMapping("store/inventory")
 - in inventory-service
-  - rename package `com.springcloud.sbsuite.eurekaclient.api` to `com.springcloud.sbsuite.inventory.api`
+  - rename package `com.springcloud.sbsuite.inventory.api` to `com.springcloud.sbsuite.inventory.api`
   - rename TestController.java to InventoryController.java
     - @GetMapping("/main/test") -> @GetMapping("inventory/test")
     - @GetMapping("/main/eclient2/name") -> @GetMapping("inventory/store/inventory")
@@ -1350,3 +1350,6 @@ class Eclient2ServiceRestTemplateImpl
 - test in local-dev profile - Ok
 - test in docker - Ok
 - commit - Rename endpoints in inventory-service and store-service
+
+### Rename package `com.springcloud.sbsuite.eurekaclient2` to `com.springcloud.sbsuite.inventory`  
+- commit - Rename package `eurekaclient2` to `inventory` in inventory-service module
