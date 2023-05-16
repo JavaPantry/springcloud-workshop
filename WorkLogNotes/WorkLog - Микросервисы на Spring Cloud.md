@@ -1368,7 +1368,9 @@ And vice versa move "/inventory" from store-service to inventory-service.
 
 ### Add Lombok to all services
 - add lombok dependency to inventory-service and store-service
+  - lombok plugin bundled by default in IntelliJ 
   - need to enable annotation processing in IntelliJ
+    - Settings -> Build, Execution, Deployment -> Compiler -> Annotation Processors -> Enable annotation processing SET
 
 ```xml
 <dependency>
@@ -1378,3 +1380,4 @@ And vice versa move "/inventory" from store-service to inventory-service.
 </dependency>
 ```
 - commit - Add Lombok to inventory and store services
+
