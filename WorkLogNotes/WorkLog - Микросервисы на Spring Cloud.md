@@ -1360,3 +1360,21 @@ And vice versa move "/inventory" from store-service to inventory-service.
 - test in local-dev profile - Ok
 - test in docker - Ok
 - commit - Move "/storeinventory" from inventory-service to store-service
+
+## May 16, 2023 - 
+### Remove spring-cloud-starter-config dependency from inventory-service pom.xml
+- turn out I need this dependency if I want to refer `@Value("${mycloud.config.test.var}")` in InventoryController.java
+- roll back
+
+### Add Lombok to all services
+- add lombok dependency to inventory-service and store-service
+  - need to enable annotation processing in IntelliJ
+
+```xml
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <optional>true</optional>
+</dependency>
+```
+- commit - Add Lombok to inventory and store services
