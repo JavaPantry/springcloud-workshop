@@ -22,5 +22,8 @@ GET {{gateway-host}}/store-service/store/inventory
 ### get direct product-service
 GET {{gateway-host}}/product-service/product/
 
+### get direct order-service
+GET {{gateway-host}}/order-service/order/
+
 ### get config-var from product-service
 #GET {{gateway-host}}/product-service/product/config-var

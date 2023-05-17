@@ -63,6 +63,16 @@ services:
     depends_on:
       - api-gateway
 
+  order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    image: order-service:latest
+    container_name: order-service
+    restart: unless-stopped
+    depends_on:
+      - api-gateway
+
   sbsuite-quart:
     build:
       context: ./springcloud-sbsuite-quart

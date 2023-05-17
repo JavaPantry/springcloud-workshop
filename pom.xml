@@ -35,10 +35,11 @@
     <modules>
         <module>config-server</module>
         <module>eureka-server</module>
+        <module>api-gateway</module>
         <module>inventory-service</module>
         <module>store-service</module>
         <module>product-service</module>
-        <module>api-gateway</module>
+        <module>order-service</module>
     </modules>
 
 </project>

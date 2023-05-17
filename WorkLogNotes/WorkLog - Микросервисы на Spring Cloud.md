@@ -1416,3 +1416,21 @@ And vice versa move "/inventory" from store-service to inventory-service.
 - test in local-dev profile - Ok
 - test in docker - Ok
 - submit - Clone store-service as product-service
+
+### Clone product-service as order-service
+- copy whole product-service folder as order-service and rename all occurrences of `product` to `order`
+  - Rename application name `spring.application.name=order-service` in application.properties
+- add product-service to config-server-repo/product-service
+  - copy to `c:\IntelliJ_WS_SpringBootWorkshop\config-server-repo\product-service`
+  - push repo to bitbucket
+    - git add .
+    - git commit -m "add order-service"
+    - git push
+- add `order-service` section to docker-compose.yml
+- add `local-dev` as active profile to ProductServiceApplication Run/Debug configuration
+- TODO: property defined in config-server-repo/product-service/product-service.properties is not visible in product-service
+  - `@Value("${mycloud.config.test.var}")` is not resolved in ProductController.java
+  - same property is resolved in InventoryController.java
+- test in local-dev profile - Ok
+- test in docker - Ok
+- submit - Clone product-service as order-service
