@@ -37,6 +37,7 @@
         <module>eureka-server</module>
         <module>inventory-service</module>
         <module>store-service</module>
+        <module>product-service</module>
         <module>api-gateway</module>
     </modules>
 

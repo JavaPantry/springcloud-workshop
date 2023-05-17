@@ -1398,3 +1398,21 @@ And vice versa move "/inventory" from store-service to inventory-service.
     - select menu item `On Frame deactivation` - then select `Update classes and resources`
 
 - commit - Add spring-boot-devtools dependency to inventory-service and store-service
+
+### Clone store-service to product-service
+- copy whole store-service folder as product-service and rename all occurrences of `store` to `product`
+  - Rename application name `spring.application.name=product-service` in application.properties
+- add product-service to config-server-repo/product-service
+  - copy to `c:\IntelliJ_WS_SpringBootWorkshop\config-server-repo\product-service`
+  - push repo to bitbucket
+    - git add .
+    - git commit -m "add product-service"
+    - git push
+- add `product-service` section to docker-compose.yml
+- add `local-dev` as active profile to ProductServiceApplication Run/Debug configuration
+- TODO: property defined in config-server-repo/product-service/product-service.properties is not visible in product-service
+  - `@Value("${mycloud.config.test.var}")` is not resolved in ProductController.java
+  - same property is resolved in InventoryController.java
+- test in local-dev profile - Ok
+- test in docker - Ok
+- submit - Clone store-service as product-service
