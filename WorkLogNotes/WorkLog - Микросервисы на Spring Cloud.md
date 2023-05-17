@@ -1381,3 +1381,20 @@ And vice versa move "/inventory" from store-service to inventory-service.
 ```
 - commit - Add Lombok to inventory and store services
 
+## May 17, 2023 - devtools
+
+### Add spring-boot-devtools dependency to inventory-service and store-service
+
+  ```
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+  </dependency>
+  ```
+
+- open Run/Edit configuration
+  - in `build and run` section click `Modify options`
+    - select menu item `On 'Update' action` - then select `Update classes and resources`
+    - select menu item `On Frame deactivation` - then select `Update classes and resources`
+
+- commit - Add spring-boot-devtools dependency to inventory-service and store-service
