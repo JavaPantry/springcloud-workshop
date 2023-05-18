@@ -1381,7 +1381,7 @@ And vice versa move "/inventory" from store-service to inventory-service.
 ```
 - commit - Add Lombok to inventory and store services
 
-## May 17, 2023 - devtools
+## May 17, 2023 - devtools, add product-service and order-service 
 
 ### Add spring-boot-devtools dependency to inventory-service and store-service
 
@@ -1434,3 +1434,17 @@ And vice versa move "/inventory" from store-service to inventory-service.
 - test in local-dev profile - Ok
 - test in docker - Ok
 - submit - Clone product-service as order-service
+
+## May 18, 2023 - add shared data module for base entity and dto classes
+### Add shared data module for base entity and dto classes
+- create new module `shared-data` in IntelliJ
+  - add jpa and lombok dependencies to pom.xml 
+  - BaseEntity.java for all entities in service modules
+  - *Dto.java for all dto in service modules
+  - add lombok dependency to shared-data pom.xml
+  - add shared-data dependency to product-service pom.xml
+  - turn off jpa autoconfigure in product-service pom.xml
+    - `spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration`
+- test in local-dev profile - Ok
+- test in docker - skipped
+- commit - add shared data module for base entity and dto classes

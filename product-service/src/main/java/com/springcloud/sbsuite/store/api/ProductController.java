@@ -1,6 +1,7 @@
 package com.springcloud.sbsuite.store.api;
 
 
+import com.springcloud.sbsuite.store.domain.Product;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,8 @@ public class ProductController {
 
     @GetMapping("/")
     public String getProducts() {
-        return String.format("Test ProductController (instance %s)", instanceId);
+        Product product = Product.builder().name("Test Product").description("Test Product Description").build();
+        return String.format("Test ProductController (instance %s) Product: %s", instanceId, product.toString());
     }
 
 //    @GetMapping("/config-var")
