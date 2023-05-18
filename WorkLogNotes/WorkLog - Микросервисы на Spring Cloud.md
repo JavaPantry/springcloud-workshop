@@ -1444,6 +1444,7 @@ And vice versa move "/inventory" from store-service to inventory-service.
   - add lombok dependency to shared-data pom.xml
   - add shared-data dependency to product-service pom.xml
   - turn off jpa autoconfigure in product-service pom.xml
+    - [Disable Spring Data Auto Configuration](https://www.baeldung.com/spring-data-disable-auto-config) 
     - `spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration`
 - test in local-dev profile - Ok
 - test in docker - skipped
