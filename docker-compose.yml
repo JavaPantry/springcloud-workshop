@@ -35,8 +35,8 @@ services:
 
   inventory-service:
     build:
-      context: ./inventory-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: inventory-service/Dockerfile
     image: inventory-service:latest
     container_name: inventory-service
     restart: unless-stopped
@@ -45,8 +45,8 @@ services:
 
   store-service:
     build:
-      context: ./store-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: store-service/Dockerfile
     image: store-service:latest
     container_name: store-service
     restart: unless-stopped
@@ -55,8 +55,8 @@ services:
 
   product-service:
     build:
-      context: ./product-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: product-service/Dockerfile
     image: product-service:latest
     container_name: product-service
     restart: unless-stopped
@@ -65,8 +65,8 @@ services:
 
   order-service:
     build:
-      context: ./order-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: order-service/Dockerfile
     image: order-service:latest
     container_name: order-service
     restart: unless-stopped

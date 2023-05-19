@@ -1,7 +1,12 @@
 FROM maven:3.8.6-amazoncorretto-19 AS buildOne
 WORKDIR /app
-COPY . /app
-RUN mvn package
+
+COPY ./shared-data/ /app/shared-data
+RUN mvn -f shared-data/pom.xml clean package -DskipTests
+
+COPY ./store-service/ /app/store-service
+RUN mvn -f store-service/pom.xml clean package -DskipTests
+#RUN mvn -f ./pom.xml clean package -DskipTests
 
 FROM amazoncorretto:19-al2-jdk as buildTwo
 WORKDIR /app
