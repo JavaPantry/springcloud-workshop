@@ -1449,3 +1449,98 @@ And vice versa move "/inventory" from store-service to inventory-service.
 - test in local-dev profile - Ok
 - test in docker - skipped
 - commit - add shared data module for base entity and dto classes
+
+### Build docker image for product-service with shared-data dependency
+- see [Build-docker-image-with-dependency-from-another-module](Build-docker-image-with-dependency-from-another-module.md)
+- Posted question for stackoverflow - [How to build docker image with dependency from another module](https://stackoverflow.com/questions/76285229/how-to-build-docker-image-with-dependency-from-another-module)
+
+How to build docker image with dependency from another module
+ 
+- projectRoot
+  - docker-compose.yml
+  - product-service (module folder)
+    - src\
+    - Dockerfile
+    - pom.xml
+  - shared-data (module folder for jar library)
+    - src\ 
+    - pom.xml
+
+docker-compose.yml
+```
+version: '3.9'
+
+services:
+  product-service:
+    build:
+      context: ./product-service
+      dockerfile: Dockerfile
+    image: product-service:latest
+    container_name: product-service
+    restart: unless-stopped
+```
+
+how I can build docker image for product-service with dependency from shared-data module?
+my approach was to build shared-data module first and then build product-service module with dependency to shared-data module. 
+
+Dockerfile
+```
+FROM maven:3.8.6-amazoncorretto-19 AS buildOne
+
+# Set the working directory to /shared-data
+WORKDIR /shared-data
+
+# Copy the shared-data module folder to /shared-data in the container
+COPY ../shared-data /shared-data
+
+# Build the shared-data module
+RUN mvn package
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the project files to /app in the container
+COPY . /app
+
+# Build the product-service module
+RUN mvn package
+
+FROM amazoncorretto:19-al2-jdk as buildTwo
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Set the JAR_FILE argument to the location of the product-service JAR file
+ARG JAR_FILE=/app/target/*.jar
+
+# Copy the built JAR file from buildOne stage to application.jar
+COPY --from=buildOne ${JAR_FILE} application.jar
+
+# Extract the layers from the application.jar
+RUN java -Djarmode=layertools -jar application.jar extract
+
+FROM amazoncorretto:19-al2-jdk
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the dependencies from buildTwo stage
+COPY --from=buildTwo /app/dependencies/ ./
+COPY --from=buildTwo /app/snapshot-dependencies/ ./
+COPY --from=buildTwo /app/spring-boot-loader/ ./
+COPY --from=buildTwo /app/application/ ./
+
+# Set the entry point for the Docker container
+ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+```
+
+The problem is that docker can't go outside his context folder, thus line `COPY ../shared-data /shared-data` is not working.
+
+can you suggest how to solve this problem?
+
+- Posted on stackoverflow - [How to build docker image with dependency from another module](https://stackoverflow.com/questions/76285229/how-to-build-docker-image-with-dependency-from-another-module)
+
+
+## May 19, 2023 - add shared data module for base entity and dto classes
+- see chat with [ChatGpt](GPTChat-DTO-Library-for-Dockerized-SpringCloud-project.md)
+- commit - add GPTChat-DTO-Library-for-Dockerized-SpringCloud-project.md
