@@ -1544,3 +1544,22 @@ can you suggest how to solve this problem?
 ## May 19, 2023 - add shared data module for base entity and dto classes
 - see chat with [ChatGpt](GPTChat-DTO-Library-for-Dockerized-SpringCloud-project.md)
 - commit - add GPTChat-DTO-Library-for-Dockerized-SpringCloud-project.md
+
+### Switch to branch `dockerize with shared-data_dependency`
+- follow [ChatGpt](GPTChat-DTO-Library-for-Dockerized-SpringCloud-project.md)
+- can't build product-service docker image with shared-data dependency
+  - failed to solve: executor failed running [/bin/sh -c mvn -f product-service/pom.xml clean package -DskipTests]: exit code: 1
+  - `docker-compose` process finished with exit code 17
+- commit - can't dockerize modules with shared-data dependency
+- switch back to master branch
+
+### Remove shared-data module from master pom file and copy shared-data dto classes to all service modules
+- remove shared-data dependency from product-service pom.xml
+- copy shared-data dto classes to product-service
+- build and run all cloud services
+- test in local-dev profile - Ok
+- test on docker - Failed
+  - because product-service can't find  dependency on spring-boot-starter-data-jpa (in local build shared-data indirectly add dependency on spring-boot-starter-data-jpa)
+  - add spring-boot-starter-data-jpa dependency to product-service pom.xml
+- test on docker - Ok
+- commit - remove shared-data module from master pom file and copy shared-data dto classes to all service modules

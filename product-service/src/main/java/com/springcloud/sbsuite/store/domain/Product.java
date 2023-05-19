@@ -1,6 +1,5 @@
 package com.springcloud.sbsuite.store.domain;
 
-import com.springcloud.sbsuite.shareddata.base.BaseEntity;
 import lombok.*;
 
 @Data
