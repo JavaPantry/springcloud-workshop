@@ -40,7 +40,6 @@
         <module>store-service</module>
         <module>product-service</module>
         <module>order-service</module>
-        <!--<module>shared-data</module>-->
     </modules>
 
 </project>

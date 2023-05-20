@@ -1563,3 +1563,9 @@ can you suggest how to solve this problem?
   - add spring-boot-starter-data-jpa dependency to product-service pom.xml
 - test on docker - Ok
 - commit - remove shared-data module from master pom file and copy shared-data dto classes to all service modules
+
+## May 19, 2023 - remove shared data module
+### Remove shared data module completely
+- test in local-dev profile - Ok
+- test on docker - Ok
+- commit - remove shared data module completely
