@@ -15,26 +15,19 @@ import java.sql.Timestamp;
 @MappedSuperclass
 public class BaseEntity {
 
-	public BaseEntity(Long id, Long version, Timestamp createdDate, Timestamp lastModifiedDate) {
-		this.id = id;
-		this.version = version;
-		this.createdDate = createdDate;
-		this.lastModifiedDate = lastModifiedDate;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Version
-	private Long version;
+	private Long version = 0L;
 
 	@CreationTimestamp
 	@Column(updatable = false)
-	private Timestamp createdDate;
+	private Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
 	@UpdateTimestamp
-	private Timestamp lastModifiedDate;
+	private Timestamp lastModifiedDate = new Timestamp(System.currentTimeMillis());
 
 	public boolean isNew() {
 		return this.id == null;

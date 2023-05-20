@@ -1578,3 +1578,10 @@ can you suggest how to solve this problem?
 - test in local-dev profile - Ok
 - test on docker - Ok
 - commit - duplicate business entities in all service modules
+
+### Modify BaseEntity.java and add specific entities to all service modules
+- modify BaseEntity.java
+- remove Product.java from inventory-service, order-service and store-service
+- add specific entities to all inventory-service and order-service
+- **TODO** - One time reproduced: inventory service can't map `mycloud.config.test.var` from config server
+- commit - modify BaseEntity.java and add specific entities to all service modules 
