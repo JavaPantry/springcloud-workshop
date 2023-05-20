@@ -1569,3 +1569,12 @@ can you suggest how to solve this problem?
 - test in local-dev profile - Ok
 - test on docker - Ok
 - commit - remove shared data module completely
+
+### Duplicate business entities in all service modules
+- add BaseEntity.java and *Dto.java to all service modules
+- add spring-boot-starter-data-jpa dependency to all service modules
+- turn off jpa autoconfigure in application.properties for all service modules
+  - `spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration`
+- test in local-dev profile - Ok
+- test on docker - Ok
+- commit - duplicate business entities in all service modules
