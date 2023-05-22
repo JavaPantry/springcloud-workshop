@@ -1591,3 +1591,4 @@ can you suggest how to solve this problem?
 ## modify all dockerfiles to skip tests
 - add `clean package -DskipTests` to build command in all dockerfiles
 - commit - modify all dockerfiles to skip tests
+- commit - create minimal dummy prototype for dockerized spring cloud microservice project 
