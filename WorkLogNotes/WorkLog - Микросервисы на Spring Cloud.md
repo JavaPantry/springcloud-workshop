@@ -1603,3 +1603,37 @@ can you suggest how to solve this problem?
     - productdb with users `productuser` and `productadmin`
 - test `database-service.yml` file - database created Ok
 - commit - create docker-compose file for MySQL database
+
+## Connect to databases
+- add mysql dependency to all service modules
+  - ERROR: Could not find artifact mysql:mysql-connector-java:pom:unknown in netflix-candidates (https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates)
+    - see [MySQL-Connector-Dependency](WorkLogNotes/MySQL-Connector-Dependency.md)
+- add flyway dependency to all service modules
+  - change `<artifactId>flyway-core</artifactId>` to `<artifactId>flyway-mysql</artifactId>`
+  - create db/migration folder in all service modules with minimalistic `V1__init_database.sql`
+  - add hibernate and flyway properties to all service modules
+    ```properties
+    spring.jpa.database=mysql
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+    spring.jpa.hibernate.ddl-auto=validate
+    spring.jpa.defer-datasource-initialization=false
+    #Show SQL
+    spring.jpa.properties.hibernate.show_sql=true
+    #Format SQL
+    spring.jpa.properties.hibernate.format_sql=true
+    #Show bind values
+    logging.level.org.hibernate.type.descriptor.sql=trace
+  
+    spring.datasource.username=XXXXXuser
+    spring.datasource.password=password
+    spring.datasource.url=jdbc:mysql://127.0.0.1:3306/XXXXXdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+  
+    #spring.flyway.locations=classpath:db/migration/common,classpath:db/migration/{vendor}
+    spring.flyway.locations=classpath:db/migration
+    spring.flyway.user=XXXXXadmin
+    spring.flyway.password=password
+    ```
+- add `@Entity` to basic entities in all service modules
+- test on local - Ok
+- test on docker - services started but can't connect to database defined in `database-service.yml`
+- commit - connect to databases

@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@AttributeOverrides({
+/*@AttributeOverrides({
         @AttributeOverride(
                 name = "shippingAddress.streetAddress",
                 column = @Column(name = "shipping_address")
@@ -42,25 +42,26 @@ import java.util.Set;
                 name = "billToAddress.zipCode",
                 column = @Column(name = "bill_to_zip_code")
         )
-})
+})*/
 @Data
 @NoArgsConstructor
 public class OrderHeader extends BaseEntity {
 
+    private String name;
     //@ManyToOne
-    private Customer customer;
+//    private Customer customer;
 
     //@Embedded
-    private Address shippingAddress;
+//    private Address shippingAddress;
 
     //@Embedded
-    private Address billToAddress;
+//    private Address billToAddress;
 
 //    @Enumerated(EnumType.STRING)
 //    private OrderStatus orderStatus;
 
     //@OneToMany(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Set<OrderLine> orderLines;
+//    private Set<OrderLine> orderLines;
 
     /*@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "orderHeader")
     private OrderApproval orderApproval;
@@ -70,7 +71,7 @@ public class OrderHeader extends BaseEntity {
     }
     */
 
-    public OrderHeader(Customer customer, Address shippingAddress, Address billToAddress) {
+    /*public OrderHeader(Customer customer, Address shippingAddress, Address billToAddress) {
         this.customer = customer;
         this.shippingAddress = shippingAddress;
         this.billToAddress = billToAddress;
@@ -82,7 +83,5 @@ public class OrderHeader extends BaseEntity {
         }
         orderLines.add(orderLine);
         //orderLine.setOrderHeader(this);
-    }
-
-
+    }*/
 }

@@ -38,11 +38,11 @@ import java.util.UUID;
 public class Inventory extends BaseEntity {
 
     @Builder
-    public Inventory(Long beerId, Integer quantity) {
-        this.beerId = beerId;
+    public Inventory(Long productId, Integer quantity) {
+        this.productId = productId;
         this.quantity = quantity;
     }
 
-    private Long beerId;
+    private Long productId;
     private Integer quantity = 0;
 }
