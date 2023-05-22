@@ -1,6 +1,17 @@
 version: '3.9'
 
 services:
+#  scms-sbsuite-db:
+#    image: mysql:8.0
+#    restart: unless-stopped
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=pswd
+#    ports:
+#      - '3306:3306'
+#    volumes:
+#      - ./mysql:/var/lib/mysql
+#      - ./database/initdb/:/docker-entrypoint-initdb.d/
+
   eureka-server:
     build:
       context: ./eureka-server
@@ -82,3 +93,6 @@ services:
     restart: unless-stopped
     depends_on:
       - api-gateway
+
+#volumes:
+#  prfdb:

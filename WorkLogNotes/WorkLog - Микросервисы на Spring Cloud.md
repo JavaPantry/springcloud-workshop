@@ -1591,4 +1591,15 @@ can you suggest how to solve this problem?
 ## modify all dockerfiles to skip tests
 - add `clean package -DskipTests` to build command in all dockerfiles
 - commit - modify all dockerfiles to skip tests
-- commit - create minimal dummy prototype for dockerized spring cloud microservice project 
+- commit - create minimal dummy prototype for dockerized spring cloud microservice project
+
+## Create docker-compose file for MySQL database
+- create `database-service.yml` file for MySQL database
+  - map `springcloud-sbsuite\mysql` as mysql volume created in project root folder
+  - add `mysql` to gitiignore file
+  - create `database/initdb/Init.sql` file for database with users initialization
+    - inventorydb with users `inventoryuser` and `inventoryadmin`
+    - orderdb with users `orderuser` and `orderadmin`
+    - productdb with users `productuser` and `productadmin`
+- test `database-service.yml` file - database created Ok
+- commit - create docker-compose file for MySQL database
