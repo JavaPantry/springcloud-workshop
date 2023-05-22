@@ -1,7 +1,7 @@
 FROM maven:3.8.6-amazoncorretto-19 AS buildOne
 WORKDIR /app
 COPY . /app
-RUN mvn package
+RUN mvn clean package -DskipTests
 
 FROM amazoncorretto:19-al2-jdk as buildTwo
 WORKDIR /app

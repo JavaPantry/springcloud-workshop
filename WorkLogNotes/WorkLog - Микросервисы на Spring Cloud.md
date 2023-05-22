@@ -1564,7 +1564,7 @@ can you suggest how to solve this problem?
 - test on docker - Ok
 - commit - remove shared-data module from master pom file and copy shared-data dto classes to all service modules
 
-## May 19, 2023 - remove shared data module
+## May 20, 2023 - remove shared data module
 ### Remove shared data module completely
 - test in local-dev profile - Ok
 - test on docker - Ok
@@ -1585,3 +1585,9 @@ can you suggest how to solve this problem?
 - add specific entities to all inventory-service and order-service
 - **TODO** - One time reproduced: inventory service can't map `mycloud.config.test.var` from config server
 - commit - modify BaseEntity.java and add specific entities to all service modules 
+
+# May 22, 2023 - dummy work cleaning code and add business logic to services
+
+## modify all dockerfiles to skip tests
+- add `clean package -DskipTests` to build command in all dockerfiles
+- commit - modify all dockerfiles to skip tests
