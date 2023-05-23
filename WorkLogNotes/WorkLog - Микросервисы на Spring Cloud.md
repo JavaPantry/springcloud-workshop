@@ -1615,6 +1615,7 @@ can you suggest how to solve this problem?
     ```properties
     spring.jpa.database=mysql
     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+    #spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
     spring.jpa.hibernate.ddl-auto=validate
     spring.jpa.defer-datasource-initialization=false
     #Show SQL
