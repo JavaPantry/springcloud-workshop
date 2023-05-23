@@ -1622,6 +1622,7 @@ can you suggest how to solve this problem?
     #Format SQL
     spring.jpa.properties.hibernate.format_sql=true
     #Show bind values
+    logging.level.org.hibernate.orm.jdbc.bind=trace
     logging.level.org.hibernate.type.descriptor.sql=trace
   
     spring.datasource.username=XXXXXuser
@@ -1637,3 +1638,9 @@ can you suggest how to solve this problem?
 - test on local - Ok
 - test on docker - services started but can't connect to database defined in `database-service.yml`
 - commit - connect to databases
+
+# May 23, 2023 - persistency layer
+- add `logging.level.org.hibernate.orm.jdbc.bind=trace` to all service modules application.properties
+  - from udemy `Spring framework 6` course - `133. Flyway Migration Script Configuration`
+- commit - add `logging.level.org.hibernate.orm.jdbc.bind=trace` to all service modules application.properties
+    
