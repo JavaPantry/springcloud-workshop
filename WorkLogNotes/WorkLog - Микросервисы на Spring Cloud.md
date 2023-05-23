@@ -1644,4 +1644,58 @@ can you suggest how to solve this problem?
 - add `logging.level.org.hibernate.orm.jdbc.bind=trace` to all service modules application.properties
   - from udemy `Spring framework 6` course - `133. Flyway Migration Script Configuration`
 - commit - add `logging.level.org.hibernate.orm.jdbc.bind=trace` to all service modules application.properties
+
+## Add order-service persistency layer generate DDL scripts
+- create order specific entities with hibernate annotations to link related entities
+- use spring schema generation to generate sql script for flyway
+  - from udemy `Spring framework 6` course - `128. Schema Script Generation`
+    - `springframeworkguru/spring-6-rest-mvc` branch [75-db-create-scripts](https://github.com/springframeworkguru/spring-6-rest-mvc/tree/75-db-create-scripts)
+    ```
+    spring.jpa.properties.jakarta.persistence.schema-generation.scripts.action=drop-and-create
+    spring.jpa.properties.jakarta.persistence.schema-generation.scripts.create-source=metadata
+    spring.jpa.properties.jakarta.persistence.schema-generation.scripts.drop-target=drop-and-create.sql
+    spring.jpa.properties.jakarta.persistence.schema-generation.scripts.create-target=drop-and-create.sql
+    ``` 
     
+  - after run application check root of the project `springcloud-sbsuite\drop-and-create.sql`
+- move and rename `drop-and-create.sql` to `order-service/src/main/resources/db/migration/V1__init_database.sql`
+  ```sql
+  -- replace 
+      alter table order_header 
+              add constraint FKbkj7uhdpxqe8qb2b1g6poijwt 
+              foreign key (customer_id) 
+              references customer (id);
+      alter table order_line 
+              add constraint FKoujl67v3lk4glhmln31imw1wo 
+              foreign key (order_header_id) 
+              references order_header (id);
+
+        -- with
+            
+        create table order_header(
+                id        bigint not null auto_increment,
+                customer_id bigint,
+                ...
+                constraint order_customer_fk FOREIGN KEY (customer_id) references customer (id),
+                PRIMARY KEY (`id`)
+        ) engine = InnoDB;
+      
+        create table order_line (
+                id bigint not null auto_increment,
+                created_date timestamp,
+                last_modified_date timestamp,
+                version bigint,
+                product_id bigint,
+                quantity_ordered integer,
+                order_header_id bigint,
+                constraint order_header_pk FOREIGN KEY (order_header_id) references order_header(id),
+                #        constraint order_line_product_fk FOREIGN KEY (product_id) references product(id)
+                primary key (id)
+        ) engine=InnoDB;
+       ```
+  - generate few test record for customer, order_header and order_line tables
+  - comment out `spring.jpa.properties.jakarta.persistence.schema-generation.scripts.*` properties
+  - clean `orderdb` database
+  - run service to allow flyway to create and populate tables 
+- test on local - Ok
+- commit - add order-service persistency layer generate DDL scripts

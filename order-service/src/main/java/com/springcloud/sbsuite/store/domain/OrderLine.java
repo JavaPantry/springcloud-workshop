@@ -1,24 +1,30 @@
 package com.springcloud.sbsuite.store.domain;
 
 import com.springcloud.sbsuite.store.dto.ProductDto;
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-//@Entity
+@Entity
+@Data
+@NoArgsConstructor
 public class OrderLine extends BaseEntity {
 
     private Integer quantityOrdered;
 
-    //@ManyToOne
+    @ManyToOne
     private OrderHeader orderHeader;
 
     //@ManyToOne
-    private ProductDto product;
+    //private ProductDto product;
 
-    public OrderLine(Integer quantityOrdered, OrderHeader orderHeader, ProductDto product) {
+    private Long productId;
+
+    public OrderLine(Integer quantityOrdered, OrderHeader orderHeader, Long productId) {
         this.quantityOrdered = quantityOrdered;
         this.orderHeader = orderHeader;
-        this.product = product;
+        this.productId = productId;
     }
 
 }
