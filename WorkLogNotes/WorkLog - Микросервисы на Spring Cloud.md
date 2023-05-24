@@ -1706,3 +1706,17 @@ can you suggest how to solve this problem?
   - from [93. Creating JPA Entities](https://www.udemy.com/course/spring-framework-6-beginner-to-guru/learn/lecture/33674952#overview)
   - test on local - Ok
 - commit - remove @Data annotation from entities
+
+## Add services and jpa repositories with tests
+- OrderService
+  - CustomerRepository
+  - OrderHeaderRepository
+  - OrderLineRepository
+  - TestCustomersWithOrders
+- ProductService
+  - ProductRepository
+  - TestProducts
+- InventoryService
+  - InventoryRepository
+  - TestInventory
+- commit - add services and jpa repositories with tests
