@@ -1,9 +1,7 @@
 package com.springcloud.sbsuite.store.domain;
 
 import jakarta.persistence.Embedded;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
@@ -13,8 +11,12 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString(callSuper = true)
+@Builder
 @Entity
 public class Customer extends BaseEntity {
 

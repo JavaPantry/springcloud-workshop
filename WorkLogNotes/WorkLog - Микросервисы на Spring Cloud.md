@@ -1699,3 +1699,10 @@ can you suggest how to solve this problem?
   - run service to allow flyway to create and populate tables 
 - test on local - Ok
 - commit - add order-service persistency layer generate DDL scripts
+
+# May 23, 2023 - persistency layer
+## remove @Data annotation from entities 
+- Using @Data for JPA entities is not recommended. It can cause severe performance and memory consumption issues.
+  - from [93. Creating JPA Entities](https://www.udemy.com/course/spring-framework-6-beginner-to-guru/learn/lecture/33674952#overview)
+  - test on local - Ok
+- commit - remove @Data annotation from entities

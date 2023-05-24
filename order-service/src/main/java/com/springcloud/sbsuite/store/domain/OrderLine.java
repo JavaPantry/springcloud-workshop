@@ -3,12 +3,15 @@ package com.springcloud.sbsuite.store.domain;
 import com.springcloud.sbsuite.store.dto.ProductDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Data
 @NoArgsConstructor
+@Getter
+@Setter
+@ToString(callSuper = true)
+@Builder
+
 public class OrderLine extends BaseEntity {
 
     private Integer quantityOrdered;

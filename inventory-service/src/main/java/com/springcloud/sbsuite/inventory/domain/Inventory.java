@@ -16,10 +16,7 @@
  */
 package com.springcloud.sbsuite.inventory.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import jakarta.persistence.Column;
@@ -31,9 +28,11 @@ import java.util.UUID;
 /**
  * Created by jt on 2019-01-26.
  */
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
+@ToString(callSuper = true)
+@Builder
 @Entity
 public class Inventory extends BaseEntity {
 

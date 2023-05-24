@@ -1,13 +1,17 @@
 package com.springcloud.sbsuite.store.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString(callSuper = true)
+@Builder
 @Entity
 @AttributeOverrides({
         @AttributeOverride(
@@ -43,8 +47,6 @@ import java.util.Set;
                 column = @Column(name = "bill_to_zip_code")
         )
 })
-@Data
-@NoArgsConstructor
 public class OrderHeader extends BaseEntity {
 
     private String name;
