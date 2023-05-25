@@ -1845,3 +1845,20 @@ class ProductControllerIT {
 - add `NotFoundException` to be thown by `ProductController` if product not found
 - add test in `ProductControllerIT` and `ProductServiceTest`
 - commit - add and test get product by id
+
+## Add and test get product by id in TestApiGateway http client
+- add `@PathVariable Long id` to `getProductById` in `ProductController`
+  - Fix null id value
+  - In the given code snippet, the getProductById method in the ProductController class is expecting a Long parameter named id. However, when the GET request is made to the endpoint /product/1, the id parameter is not being populated correctly, resulting in a null value.
+    - To fix this issue, you can modify the code in the following way:
+  
+      ```java
+    
+        @GetMapping(value = "/{id}")
+        public ProductDto getProductById(@PathVariable Long id) {
+          ProductDto dto = productService.fetchProductById(id).orElseThrow(NotFoundException::new);
+          return dto;
+        }
+      ```
+    - By adding the @PathVariable annotation before the id parameter, you inform Spring that the value for id should be extracted from the path variable in the request URL. This way, the id parameter will be correctly populated with the value from the request URL, such as /product/1.
+  - commit - add and test get product by id in TestApiGateway http client

@@ -7,6 +7,7 @@ import com.springcloud.sbsuite.store.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +33,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/{id}")
-    public ProductDto getProductById(Long id) {
+    public ProductDto getProductById(@PathVariable Long id) {
         ProductDto dto = productService.fetchProductById(id).orElseThrow(NotFoundException::new);
         return dto;
     }

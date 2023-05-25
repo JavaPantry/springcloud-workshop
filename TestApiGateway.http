@@ -22,6 +22,9 @@ GET {{gateway-host}}/store-service/store/inventory
 ### get direct product-service
 GET {{gateway-host}}/product-service/product/
 
+### get product by id direct product-service
+GET {{gateway-host}}/product-service/product/1
+
 ### get direct order-service
 GET {{gateway-host}}/order-service/order/
 
