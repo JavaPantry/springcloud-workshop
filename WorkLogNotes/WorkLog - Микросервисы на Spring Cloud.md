@@ -1767,6 +1767,8 @@ can you suggest how to solve this problem?
 
 - commit - add mapstruct dependencies
 
+# May 25, 2023 - mapstruct to convert entities to dto and back 
+
 ## Add mapstruct to convert entities to dto in product-service
 - fix dummy ProductDto (remove beer specifics)
 - add mappper interface `ProductMapper`
@@ -1795,3 +1797,11 @@ can you suggest how to solve this problem?
 - add `@SpringBootTest class ProductServiceTest{}`
 - test on local - Ok
 - commit - add mapstruct to convert entities to dto in product-service
+
+## Failed attempt to test ProductService as DataJpaTest
+- replace `@SpringBootTest` with `@DataJpaTest` in `ProductServiceTest`
+  - failed with error `Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test`
+    - Failed to load ApplicationContext for [MergedContextConfiguration@446626a7 testClass = com.springcloud.sbsuite.store.services.ProductServiceTest
+  - Rollback
+- commit - failed attempt to test ProductService as DataJpaTest
+
