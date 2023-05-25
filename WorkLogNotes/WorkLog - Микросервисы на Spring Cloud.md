@@ -1766,3 +1766,32 @@ can you suggest how to solve this problem?
 ```
 
 - commit - add mapstruct dependencies
+
+## Add mapstruct to convert entities to dto in product-service
+- fix dummy ProductDto (remove beer specifics)
+- add mappper interface `ProductMapper`
+  - add `DateMapper` to map `OffsetDateTime` to `Timestamp` and back
+  - mark `ProductMapper` with `@Mapper(uses = {DateMapper.class})` to make `productMapper` aware of `OffsetDateTime` to `Timestamp` conversion 
+- add product mapper to `ProductServiceImpl`
+  - call mapping for all products returned by `findAll().stream()`
+      ```java
+      public class ProductServiceImpl implements ProductService {
+  
+          @Autowired
+          ProductRepository productRepository;
+          @Autowired
+          ProductMapper productMapper;
+  
+          @Override
+          public List<ProductDto> fetchProducts(){
+              List<ProductDto> products = productRepository.findAll()
+                                                          .stream()
+                                                          .map(productMapper::productToProductDto)
+                                                          .collect(Collectors.toList());
+              return products;
+          }
+      }
+      ```
+- add `@SpringBootTest class ProductServiceTest{}`
+- test on local - Ok
+- commit - add mapstruct to convert entities to dto in product-service

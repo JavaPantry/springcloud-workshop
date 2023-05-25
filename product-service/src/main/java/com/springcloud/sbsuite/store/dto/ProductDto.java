@@ -22,11 +22,6 @@ public class ProductDto {
 
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ssZ", shape=JsonFormat.Shape.STRING)
     private OffsetDateTime lastModifiedDate = null;
-    private String beerName;
-    private String beerStyle;
-    private String upc;
-    private Integer quantityOnHand;
-
-    @JsonFormat(shape= JsonFormat.Shape.STRING)
-    private BigDecimal price;
+    private String name;
+    private String description;
 }
