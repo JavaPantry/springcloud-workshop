@@ -1720,3 +1720,49 @@ can you suggest how to solve this problem?
   - InventoryRepository
   - TestInventory
 - commit - add services and jpa repositories with tests
+
+## Add mapstruct dependencies
+- [Using MapStruct with Project Lombok](https://springframework.guru/using-mapstruct-with-project-lombok/)
+- [Quick Guide to MapStruct](https://www.baeldung.com/mapstruct)
+- [Udemy 97. MapStruct Dependencies and Configuration 5min](https://www.udemy.com/course/spring-framework-6-beginner-to-guru/learn/lecture/33721954#overview)
+- add following dependencies to all service modules
+
+```
+<dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct</artifactId>
+    <version>${org.mapstruct.version}</version>
+</dependency>
+
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-compiler-plugin</artifactId>
+  <version>3.10.1</version>
+  <configuration>
+      <source>17</source>
+      <target>17</target>
+      <annotationProcessorPaths>
+          <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${org.mapstruct.version}</version>
+          </path>
+          <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+          </path>
+          <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>0.2.0</version>
+          </path>
+      </annotationProcessorPaths>
+      <compilerArgs>
+          <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
+      </compilerArgs>
+  </configuration>
+</plugin>
+```
+
+- commit - add mapstruct dependencies
