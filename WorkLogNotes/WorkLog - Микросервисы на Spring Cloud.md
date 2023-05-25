@@ -1830,3 +1830,18 @@ class ProductControllerIT {
 - run ProductControllerIT on local - Ok
 - test on local - Ok
 - commit - add integration test for ProductController
+
+## Add and test get product by id
+- add `fetchProductById` to `ProductService`
+  ```java
+    public Optional<ProductDto> fetchProductById(Long id) {
+      return Optional.ofNullable(productMapper.productToProductDto(
+      productRepository.findById(id).orElse(null)
+      )
+      );
+    }
+  ```
+  
+- add `NotFoundException` to be thown by `ProductController` if product not found
+- add test in `ProductControllerIT` and `ProductServiceTest`
+- commit - add and test get product by id

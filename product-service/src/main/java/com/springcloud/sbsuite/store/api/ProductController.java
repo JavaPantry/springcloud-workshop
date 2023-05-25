@@ -28,8 +28,13 @@ public class ProductController {
     @GetMapping("/")
     public List<ProductDto> getProducts() {
         List<ProductDto> dtos = productService.fetchProducts();
-        //return String.format("Test ProductController (instance %s) Product: %s", instanceId, product.toString());
         return dtos;
+    }
+
+    @GetMapping(value = "/{id}")
+    public ProductDto getProductById(Long id) {
+        ProductDto dto = productService.fetchProductById(id).orElseThrow(NotFoundException::new);
+        return dto;
     }
 
 //    @GetMapping("/config-var")
