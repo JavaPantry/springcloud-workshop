@@ -30,7 +30,7 @@ public class ProductOrderDto {
 
     private Long customerId;
     private String customerRef;
-    private List<ProductOrderLineDto> beerOrderLines;
+    private List<OrderLineDto> beerOrderLines;
     private String orderStatus;
     private String orderStatusCallbackUrl;
 }

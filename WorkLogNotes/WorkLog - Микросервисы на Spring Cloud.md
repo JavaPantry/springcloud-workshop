@@ -1868,3 +1868,12 @@ class ProductControllerIT {
 
 ## Replace dummy `EurekaClient2ApplicationTests` in all services with specific to service app test
 - commit - replace dummy `EurekaClient2ApplicationTests` in all services with specific to service app test
+
+## Add mapstruct to convert entities to dto in order-service
+- [Testing MapStruct](https://mapstruct.org/development/testing-mapstruct/)
+- !!! [Quick Guide to MapStruct](https://www.baeldung.com/mapstruct)
+  - [Use Mapper in Another Mapper with Mapstruct and Java](https://www.baeldung.com/java-mapstruct-nested-mapping)
+- TODO - Fail to properly instantiate DateMapper in Non-Spring test
+
+## Add test for OrderController and OrderService with mapstruct mapper for OrderLineDto and OrderLine
+- commit - add test for OrderController and OrderService with mapstruct mapper for OrderLineDto and OrderLine

@@ -11,16 +11,12 @@ import lombok.*;
 @Setter
 @ToString(callSuper = true)
 @Builder
-
 public class OrderLine extends BaseEntity {
 
     private Integer quantityOrdered;
 
     @ManyToOne
     private OrderHeader orderHeader;
-
-    //@ManyToOne
-    //private ProductDto product;
 
     private Long productId;
 

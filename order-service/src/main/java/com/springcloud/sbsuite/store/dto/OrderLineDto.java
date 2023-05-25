@@ -7,14 +7,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductOrderLineDto {
+public class OrderLineDto {
 
     @JsonProperty("id")
     private Long id = null;
@@ -30,12 +29,6 @@ public class ProductOrderLineDto {
     @JsonProperty("lastModifiedDate")
     private OffsetDateTime lastModifiedDate = null;
 
-    private String upc;
-    private String beerName;
-    private String beerStyle;
-    private Long beerId;
-    private Integer orderQuantity = 0;
-    private BigDecimal price;
-
-    private Integer quantityAllocated;
+    private Long productId;
+    private Integer quantityOrdered;
 }
