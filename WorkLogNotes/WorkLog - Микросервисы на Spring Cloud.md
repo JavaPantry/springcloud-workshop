@@ -1861,4 +1861,7 @@ class ProductControllerIT {
         }
       ```
     - By adding the @PathVariable annotation before the id parameter, you inform Spring that the value for id should be extracted from the path variable in the request URL. This way, the id parameter will be correctly populated with the value from the request URL, such as /product/1.
-  - commit - add and test get product by id in TestApiGateway http client
+- commit - add and test get product by id in TestApiGateway http client
+
+## Replace ProductDto in inventory and order services with ProductDto from product-service
+- commit - replace ProductDto in inventory and order services with ProductDto from product-service
