@@ -1805,3 +1805,28 @@ can you suggest how to solve this problem?
   - Rollback
 - commit - failed attempt to test ProductService as DataJpaTest
 
+## Add integration test for ProductController
+- modify `ProductController` to use `ProductService` instead of return dummy string
+- mark test class with `IT` suffix `ProductControllerIT`
+
+```java
+@SpringBootTest
+class ProductControllerIT {
+	@Autowired
+	ProductController productController;
+
+	@Test
+	void testListProducts() {
+
+		List<ProductDto> products = productController.getProducts();
+		assertNotNull(products);
+		// assert products size > 0
+		ProductDto product = products.get(0);
+		assertNotNull(product);
+		assertEquals("Product 1", product.getName());
+	}
+}
+```
+- run ProductControllerIT on local - Ok
+- test on local - Ok
+- commit - add integration test for ProductController

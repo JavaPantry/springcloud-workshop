@@ -2,10 +2,15 @@ package com.springcloud.sbsuite.store.api;
 
 
 import com.springcloud.sbsuite.store.domain.Product;
+import com.springcloud.sbsuite.store.dto.ProductDto;
+import com.springcloud.sbsuite.store.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -17,11 +22,14 @@ public class ProductController {
     @Value("${eureka.instance.instance-id}")
     private String instanceId;
 
+    @Autowired
+    ProductService productService;
 
     @GetMapping("/")
-    public String getProducts() {
-        Product product = Product.builder().name("Test Product").description("Test Product Description").build();
-        return String.format("Test ProductController (instance %s) Product: %s", instanceId, product.toString());
+    public List<ProductDto> getProducts() {
+        List<ProductDto> dtos = productService.fetchProducts();
+        //return String.format("Test ProductController (instance %s) Product: %s", instanceId, product.toString());
+        return dtos;
     }
 
 //    @GetMapping("/config-var")
