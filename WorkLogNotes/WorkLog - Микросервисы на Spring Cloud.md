@@ -1865,6 +1865,3 @@ class ProductControllerIT {
 
 ## Replace ProductDto in inventory and order services with ProductDto from product-service
 - commit - replace ProductDto in inventory and order services with ProductDto from product-service
-
-## Replace dummy `EurekaClient2ApplicationTests` in all services with specific to service app test
-- commit - replace dummy `EurekaClient2ApplicationTests` in all services with specific to service app test
