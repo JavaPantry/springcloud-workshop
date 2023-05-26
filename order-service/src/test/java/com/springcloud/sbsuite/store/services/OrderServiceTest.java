@@ -2,6 +2,7 @@ package com.springcloud.sbsuite.store.services;
 
 import com.springcloud.sbsuite.store.api.NotFoundException;
 import com.springcloud.sbsuite.store.domain.OrderLine;
+import com.springcloud.sbsuite.store.dto.OrderHeaderDto;
 import com.springcloud.sbsuite.store.dto.OrderLineDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,13 @@ class OrderServiceTest {
 	void fetchCustomenrs() {
 	}
 
-//	@Test
+	@Test
 	void fetchOrderHeaders() {
+		List<OrderHeaderDto> orderHeaders = orderService.fetchOrderHeaders();
+		assertNotNull(orderHeaders);
+		OrderHeaderDto orderHeader = orderHeaders.get(0);
+		assertNotNull(orderHeader);
+		assertEquals("order1", orderHeader.getName());
 	}
 
 	@Test

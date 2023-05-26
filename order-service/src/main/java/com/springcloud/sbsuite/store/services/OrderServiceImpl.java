@@ -3,7 +3,9 @@ package com.springcloud.sbsuite.store.services;
 import com.springcloud.sbsuite.store.domain.Customer;
 import com.springcloud.sbsuite.store.domain.OrderHeader;
 import com.springcloud.sbsuite.store.domain.OrderLine;
+import com.springcloud.sbsuite.store.dto.OrderHeaderDto;
 import com.springcloud.sbsuite.store.dto.OrderLineDto;
+import com.springcloud.sbsuite.store.mappers.OrderHeaderMapper;
 import com.springcloud.sbsuite.store.mappers.OrderLineMapper;
 import com.springcloud.sbsuite.store.repositories.CustomerRepository;
 import com.springcloud.sbsuite.store.repositories.OrderHeaderRepository;
@@ -30,6 +32,9 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	OrderLineMapper orderLineMapper;
 
+	@Autowired
+	OrderHeaderMapper orderHeaderMapper;
+
 	@Override
 	public List<Customer> fetchCustomenrs(){
 		List<Customer> customenrs = customerRepository.findAll();
@@ -37,9 +42,19 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderHeader> fetchOrderHeaders() {
-		List<OrderHeader> orderHeaders = orderHeaderRepository.findAll();
-		return null;
+	public List<OrderHeaderDto> fetchOrderHeaders() {
+
+		List<OrderHeader> headers = orderHeaderRepository.findAll();
+
+		List<OrderHeaderDto> orderHeaders = headers.stream()
+												.map(orderHeaderMapper::orderHeaderToOrderHeaderDto)
+												.collect(Collectors.toList());
+
+		/*List<OrderHeaderDto> orderHeaders = orderHeaderRepository.findAll()
+				.stream()
+				.map(orderHeaderMapper::orderHeaderToOrderHeaderDto)
+				.collect(Collectors.toList());*/
+		return orderHeaders;
 	}
 
 	@Override

@@ -1883,3 +1883,16 @@ class ProductControllerIT {
 ## Duplicate OrderLineDto in inventory and product services
 - commit - duplicate OrderLineDto in inventory and product services
 - commit - duplicate OrderLineDto in store service
+
+## add mapstruct to convert OrderHeader entity to dto and back in order-service
+- create AddressDto, ContactDto with mappers
+- move OrderStatus.java to dto package 
+- create OrderHeaderDto and OrderHeaderMapper
+  - comment out back reference to CustomerDto in OrderHeaderDto
+- during `fetchOrderHeaders()` test throws exception
+  - LazyInitializationException: failed to lazily initialize a collection of role: 
+  - com.springcloud.sbsuite.store.domain.OrderHeader.orderLines: could not initialize proxy - no Session
+  - [Eager/Lazy Loading in Hibernate](https://www.baeldung.com/hibernate-lazy-eager-loading)
+   - FIX by adding `fetch = FetchType.EAGER`
+   - `@OneToMany(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)`
+- commit - add mapstruct to convert OrderHeader entity to dto and back in order-service

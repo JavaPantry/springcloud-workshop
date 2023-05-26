@@ -1,9 +1,10 @@
 package com.springcloud.sbsuite.store.domain;
 
+import com.springcloud.sbsuite.store.dto.OrderStatus;
 import lombok.*;
 
 import jakarta.persistence.*;
-import java.util.HashSet;
+
 import java.util.Set;
 
 @NoArgsConstructor
@@ -62,7 +63,7 @@ public class OrderHeader extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @OneToMany(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private Set<OrderLine> orderLines;
 
     /*@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "orderHeader")
