@@ -1896,3 +1896,7 @@ class ProductControllerIT {
    - FIX by adding `fetch = FetchType.EAGER`
    - `@OneToMany(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)`
 - commit - add mapstruct to convert OrderHeader entity to dto and back in order-service
+
+## update OrderHeader table address for testing purposes in order-service
+- add V2__add_address_to_order-header.sql migration
+- commit - update OrderHeader table address for testing purposes in order-service
