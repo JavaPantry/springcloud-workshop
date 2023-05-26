@@ -1906,3 +1906,11 @@ class ProductControllerIT {
 - add CustomerDto and CustomerMapper
 - add `, fetch = FetchType.EAGER` to `Set<OrderHeader> orders`
 - commit - add mapstruct to convert Customer entity to dto and back in order-service
+
+## Duplicate dtos from order-service in store-service, product-service, inventory-service
+- AddressDto
+- ContactDto
+- CustomerDto
+- OrderHeaderDto
+- OrderStatus
+- commit - Duplicate dtos from order-service in store-service, product-service, inventory-service

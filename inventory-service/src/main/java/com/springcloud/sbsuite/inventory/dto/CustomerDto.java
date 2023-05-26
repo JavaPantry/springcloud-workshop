@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -29,6 +30,7 @@ public class CustomerDto {
     @JsonProperty("lastModifiedDate")
     private OffsetDateTime lastModifiedDate = null;
 
-    private String customerName;
-
+    private AddressDto address;
+    private ContactDto contact;
+    private Set<OrderHeaderDto> orders;
 }
