@@ -1882,3 +1882,4 @@ class ProductControllerIT {
 # May 26, 2023 - Adding CRUD ops to services with mapstruct to convert entities to dto and back
 ## Duplicate OrderLineDto in inventory and product services
 - commit - duplicate OrderLineDto in inventory and product services
+- commit - duplicate OrderLineDto in store service
