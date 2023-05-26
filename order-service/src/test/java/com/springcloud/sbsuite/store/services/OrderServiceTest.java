@@ -2,6 +2,7 @@ package com.springcloud.sbsuite.store.services;
 
 import com.springcloud.sbsuite.store.api.NotFoundException;
 import com.springcloud.sbsuite.store.domain.OrderLine;
+import com.springcloud.sbsuite.store.dto.CustomerDto;
 import com.springcloud.sbsuite.store.dto.OrderHeaderDto;
 import com.springcloud.sbsuite.store.dto.OrderLineDto;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,13 @@ class OrderServiceTest {
 	@Autowired
 	OrderService orderService;
 
-//	@Test
+	@Test
 	void fetchCustomenrs() {
+		List<CustomerDto> customers = orderService.fetchCustomenrs();
+		assertNotNull(customers);
+		CustomerDto customer = customers.get(0);
+		assertNotNull(customer);
+		assertEquals("Alexey Pashin", customer.getContact().getName());
 	}
 
 	@Test

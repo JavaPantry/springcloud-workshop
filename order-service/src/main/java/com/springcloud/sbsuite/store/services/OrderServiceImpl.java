@@ -3,8 +3,10 @@ package com.springcloud.sbsuite.store.services;
 import com.springcloud.sbsuite.store.domain.Customer;
 import com.springcloud.sbsuite.store.domain.OrderHeader;
 import com.springcloud.sbsuite.store.domain.OrderLine;
+import com.springcloud.sbsuite.store.dto.CustomerDto;
 import com.springcloud.sbsuite.store.dto.OrderHeaderDto;
 import com.springcloud.sbsuite.store.dto.OrderLineDto;
+import com.springcloud.sbsuite.store.mappers.CustomerMapper;
 import com.springcloud.sbsuite.store.mappers.OrderHeaderMapper;
 import com.springcloud.sbsuite.store.mappers.OrderLineMapper;
 import com.springcloud.sbsuite.store.repositories.CustomerRepository;
@@ -35,9 +37,15 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	OrderHeaderMapper orderHeaderMapper;
 
+	@Autowired
+	CustomerMapper customerMapper;
+
 	@Override
-	public List<Customer> fetchCustomenrs(){
-		List<Customer> customenrs = customerRepository.findAll();
+	public List<CustomerDto> fetchCustomenrs(){
+		List<CustomerDto> customenrs = customerRepository.findAll()
+				.stream()
+				.map(customerMapper::customerToCustomerDto)
+				.collect(Collectors.toList());
 		return customenrs;
 	}
 

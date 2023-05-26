@@ -1900,3 +1900,9 @@ class ProductControllerIT {
 ## update OrderHeader table address for testing purposes in order-service
 - add V2__add_address_to_order-header.sql migration
 - commit - update OrderHeader table address for testing purposes in order-service
+
+## add mapstruct to convert Customer entity to dto and back in order-service
+- add V3__add_address_to_customer.sql migration
+- add CustomerDto and CustomerMapper
+- add `, fetch = FetchType.EAGER` to `Set<OrderHeader> orders`
+- commit - add mapstruct to convert Customer entity to dto and back in order-service

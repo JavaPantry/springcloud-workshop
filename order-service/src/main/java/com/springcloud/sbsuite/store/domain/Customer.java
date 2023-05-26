@@ -1,12 +1,10 @@
 package com.springcloud.sbsuite.store.domain;
 
-import jakarta.persistence.Embedded;
+import jakarta.persistence.*;
 import lombok.*;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -25,7 +23,7 @@ public class Customer extends BaseEntity {
     @Embedded
     private Contact contact;
 
-    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private Set<OrderHeader> orders = new LinkedHashSet<>();
 
 //    public void addOrderHeader(OrderHeader orderHeader) {
