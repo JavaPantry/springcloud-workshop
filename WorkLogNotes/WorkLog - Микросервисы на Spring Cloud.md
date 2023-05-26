@@ -1877,3 +1877,8 @@ class ProductControllerIT {
 
 ## Add test for OrderController and OrderService with mapstruct mapper for OrderLineDto and OrderLine
 - commit - add test for OrderController and OrderService with mapstruct mapper for OrderLineDto and OrderLine
+
+
+# May 26, 2023 - Adding CRUD ops to services with mapstruct to convert entities to dto and back
+## Duplicate OrderLineDto in inventory and product services
+- commit - duplicate OrderLineDto in inventory and product services
