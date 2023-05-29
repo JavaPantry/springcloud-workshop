@@ -1914,3 +1914,17 @@ class ProductControllerIT {
 - OrderHeaderDto
 - OrderStatus
 - commit - Duplicate dtos from order-service in store-service, product-service, inventory-service
+
+# May 26, 2023 - continue on mapping entities to dto and back, add CRUD ops to all services 
+## Adding Mapping entities ops to inventory service with mapstruct to convert entities to dto and back
+- add InventoryDto and InventoryMapper
+- add `public Optional<Inventory> findByProductId(Long productId);` to InventoryRepository
+- InventoryService and InventoryServiceImpl.java
+- ERRORs in starting InventoryServiceTest.java
+  - java.lang.IllegalStateException: Failed to load ApplicationContext for 
+  - Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inventoryController': Injection of autowired dependencies failed
+  - Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'mycloud.config.test.var' in value "${mycloud.config.test.var}"
+  - FIXED by commenting out `@Value("${mycloud.config.test.var}") private String configVar;`
+  - TODO - why only inventory service can see mycloud.config.test.var from config-server-repo/inventory-service/application.properties
+- fix TestApiGateway.http
+- commit - Adding Mapping entities ops to inventory service, test inventory service and inventory controller
