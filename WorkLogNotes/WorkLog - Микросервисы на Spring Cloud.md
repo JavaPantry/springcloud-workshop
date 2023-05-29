@@ -1928,3 +1928,6 @@ class ProductControllerIT {
   - TODO - why only inventory service can see mycloud.config.test.var from config-server-repo/inventory-service/application.properties
 - fix TestApiGateway.http
 - commit - Adding Mapping entities ops to inventory service, test inventory service and inventory controller
+
+## Adding Create, Update and Delete ops to inventory service
+-commit - Adding Create, Update and Delete ops to inventory service

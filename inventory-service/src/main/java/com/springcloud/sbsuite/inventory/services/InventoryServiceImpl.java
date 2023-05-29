@@ -44,4 +44,30 @@ public class InventoryServiceImpl implements InventoryService {
 				)
 		);
 	}
+
+	@Override
+	public Optional<InventoryDto> saveInventory(InventoryDto dto) {
+		Inventory inventory = null;
+		if(dto.getId() != null) {
+			inventory = inventoryRepository.findById(dto.getId()).orElse(null);
+			inventory.setQuantity(dto.getQuantity());
+		}else {
+			inventory = inventoryMapper.inventoryDtoToInventory(dto);
+		}
+		Inventory updated = inventoryRepository.save(inventory);
+		return Optional.of(inventoryMapper.inventoryToInventoryDto(updated) );
+	}
+
+	@Override
+	public boolean deleteInventory(InventoryDto dto) {
+		// following mapping return inventory with id = null which cause exception during delete operation
+		/*Inventory inventoryToDelete = inventoryMapper.inventoryDtoToInventory(dto);
+		inventoryRepository.delete(inventoryToDelete);*/
+
+		if (inventoryRepository.existsById(dto.getId())) {
+			inventoryRepository.deleteById(dto.getId());
+			return true;
+		}
+		return false;
+	}
 }
