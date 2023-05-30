@@ -1915,7 +1915,7 @@ class ProductControllerIT {
 - OrderStatus
 - commit - Duplicate dtos from order-service in store-service, product-service, inventory-service
 
-# May 26, 2023 - continue on mapping entities to dto and back, add CRUD ops to all services 
+# May 29, 2023 - continue on mapping entities to dto and back, add CRUD ops to all services 
 ## Adding Mapping entities ops to inventory service with mapstruct to convert entities to dto and back
 - add InventoryDto and InventoryMapper
 - add `public Optional<Inventory> findByProductId(Long productId);` to InventoryRepository
@@ -1931,3 +1931,9 @@ class ProductControllerIT {
 
 ## Adding Create, Update and Delete ops to inventory service
 -commit - Adding Create, Update and Delete ops to inventory service
+- TODO - add controller test
+
+# May 30, 2023 - continue adding CRUD ops to all services
+## Adding Create, Update and Delete ops to product service
+- TODO - add controller test
+- commit - Adding Create, Update and Delete ops to product service

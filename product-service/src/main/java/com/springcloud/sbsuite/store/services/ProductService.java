@@ -9,5 +9,8 @@ public interface ProductService {
 
 	public List<ProductDto> fetchProducts();
 	public Optional<ProductDto> fetchProductById(Long id);
+
+	public Optional<ProductDto> saveProduct(ProductDto dto);
+	public boolean deleteProduct(ProductDto entity);
 }
 
