@@ -14,5 +14,7 @@ public interface OrderService {
 	public List<OrderLineDto> fetchOrderLines();
 
 	public Optional<OrderLineDto> fetchOrderLineById(Long id);
+	public Optional<OrderHeaderDto> fetchOrderHeaderById(Long id);
+	public Optional<CustomerDto> fetchCustomerById(Long id);
 }
 

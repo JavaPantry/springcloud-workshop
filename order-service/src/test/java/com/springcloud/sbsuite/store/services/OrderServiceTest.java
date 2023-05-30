@@ -5,6 +5,7 @@ import com.springcloud.sbsuite.store.domain.OrderLine;
 import com.springcloud.sbsuite.store.dto.CustomerDto;
 import com.springcloud.sbsuite.store.dto.OrderHeaderDto;
 import com.springcloud.sbsuite.store.dto.OrderLineDto;
+import com.springcloud.sbsuite.store.dto.OrderStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -55,5 +56,19 @@ class OrderServiceTest {
 	@Test
 	void testGetOrderLineByIdNotFound() {
 		assertNull(orderService.fetchOrderLineById(100L).orElse(null));
+	}
+
+	@Test
+	void fetchOrderHeaderById() {
+		OrderHeaderDto orderHeaderDto = orderService.fetchOrderHeaderById(1L).orElseThrow(NotFoundException::new);
+		assertNotNull(orderHeaderDto);
+		assertEquals(OrderStatus.COMPLETED, orderHeaderDto.getOrderStatus());
+	}
+
+	@Test
+	void fetchCustomerById() {
+		CustomerDto customerDto = orderService.fetchCustomerById(1L).orElseThrow(NotFoundException::new);
+		assertNotNull(customerDto);
+		assertEquals(1L, customerDto.getId());
 	}
 }

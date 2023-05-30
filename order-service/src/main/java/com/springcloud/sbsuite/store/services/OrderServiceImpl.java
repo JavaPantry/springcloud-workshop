@@ -82,5 +82,21 @@ public class OrderServiceImpl implements OrderService {
 		);
 	}
 
+	@Override
+	public Optional<OrderHeaderDto> fetchOrderHeaderById(Long id) {
+		return Optional.ofNullable(orderHeaderMapper.orderHeaderToOrderHeaderDto(
+						orderHeaderRepository.findById(id).orElse(null)
+				)
+		);
+	}
+
+	@Override
+	public Optional<CustomerDto> fetchCustomerById(Long id) {
+		return Optional.ofNullable(customerMapper.customerToCustomerDto(
+								customerRepository.findById(id).orElse(null)
+				)
+		);
+	}
+
 
 }
