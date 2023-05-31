@@ -1945,4 +1945,15 @@ class ProductControllerIT {
 ## Adding Create, Update and Delete ops to Order service
 - commit - add default constructor to OrderHeaderDto
 - commit - add default constructor to AddressDto and ContactDto
-- commit - Adding Create, Update and Delete ops to OrderHeader and Customer in order service 
+- commit - Adding Create, Update and Delete ops to OrderHeader and Customer in order service
+
+## Java Bean Validation Maven Dependencies 2min
+110. Java Bean Validation Maven Dependencies 2min - [59-mvn-validation-deps branch](https://github.com/springframeworkguru/spring-6-rest-mvc/tree/59-mvn-validation-deps)
+- add validation dependencies to pom.xml in all services
+  ```
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+  </dependency>
+  ```
+- commit - add Java Bean Validation Maven Dependencies
