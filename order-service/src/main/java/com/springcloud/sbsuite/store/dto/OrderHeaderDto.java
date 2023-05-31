@@ -8,7 +8,8 @@ import java.time.OffsetDateTime;
 import java.util.Set;
 
 @Data
-@ToString(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class OrderHeaderDto{
 

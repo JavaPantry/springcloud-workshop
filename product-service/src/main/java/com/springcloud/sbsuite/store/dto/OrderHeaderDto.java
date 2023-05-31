@@ -2,17 +2,19 @@ package com.springcloud.sbsuite.store.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
 import java.util.Set;
 
 @Data
-@ToString(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class OrderHeaderDto{
+public class OrderHeaderDto {
 
     @JsonProperty("id")
     private Long id = null;
