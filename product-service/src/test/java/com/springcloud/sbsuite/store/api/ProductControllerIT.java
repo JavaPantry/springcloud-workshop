@@ -38,4 +38,19 @@ class ProductControllerIT {
 			productController.getProductById(100L);
 		});
 	}
+
+	@Test
+	void testPostProduct() {
+		ProductDto product = new ProductDto().builder().name("test product").description("test product description").build();
+		//ProductDto product = new ProductDto().builder().description("").build();
+		ProductDto newProduct = productController.createProduct(product).getBody();
+		assertNotNull(newProduct);
+		assertEquals("test product", newProduct.getName());
+		assertEquals("test product description", newProduct.getDescription());
+		product = productController.getProductById(newProduct.getId());
+		assertNotNull(product);
+		assertEquals("test product", product.getName());
+		assertEquals("test product description", product.getDescription());
+
+	}
 }

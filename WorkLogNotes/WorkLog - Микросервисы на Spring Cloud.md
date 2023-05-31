@@ -1957,3 +1957,82 @@ class ProductControllerIT {
   </dependency>
   ```
 - commit - add Java Bean Validation Maven Dependencies
+
+## Adding Validation to ProductDto in product service
+- see 111. Controller Binding Validation 3min in udemy spring-6
+- add `@NotBlank` and `@NotNull` to ProductDto
+  ```java
+    @NotBlank
+    @NotNull
+    private String name;
+
+    @NotBlank
+    @NotNull
+    private String description;
+  ```
+
+  - create `createProduct()` in ProductController
+    ```java
+      @PostMapping
+      public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
+          ProductDto dto = productService.createProduct(productDto);
+          return new ResponseEntity<>(dto, HttpStatus.CREATED);
+      }
+    ```
+- add create product test
+  ```java
+	@Test
+	void testPostProduct() {
+		ProductDto product = new ProductDto().builder().name("test product").description("test product description").build();
+		ProductDto newProduct = productController.createProduct(product).getBody();
+		assertNotNull(newProduct);
+		assertEquals("test product", newProduct.getName());
+		assertEquals("test product description", newProduct.getDescription());
+		product = productController.getProductById(newProduct.getId());
+		assertNotNull(product);
+		assertEquals("test product", product.getName());
+		assertEquals("test product description", product.getDescription());
+	}
+  ```
+  - add `@Valid` to `public ProductDto createProduct(@Valid @RequestBody ProductDto productDto)`
+      ```java
+      @PostMapping("/")
+      public ResponseEntity<ProductDto> createProduct(@Validated @RequestBody ProductDto productDto) {
+        ProductDto dto = productService.saveProduct(productDto).orElseThrow(NotFoundException::new);
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+      }
+      ```
+- create class ProductControllerWebIT.java for testing with MockMVC (see 70. MockMVC Configuration 7min in udemy spring-6)
+  - you need to add `import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;` to resolve `post` in `mockMvc.perform(`
+  - Fix error Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'productController': 
+    - Unsatisfied dependency expressed through field 'productService': 
+    - No qualifying bean of type 'com.springcloud.sbsuite.store.services.ProductService' available: 
+    - expected at least 1 bean which qualifies as autowire candidate. 
+    - Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+    - to fix add `@MockBean ProductService productService;` 
+      ```java
+          @WebMvcTest(ProductController.class)
+          public class ProductControllerWebIT {
+          @Autowired
+          MockMvc mockMvc;
+      
+              @Autowired
+              ProductController productController;
+      
+              @Autowired
+              ObjectMapper objectMapper;
+              @Test
+              void testCreateNewBeer() throws Exception {
+                  ProductDto product = new ProductDto().builder().name("test product").description("test product description").build();
+      
+                  mockMvc.perform(post("/product/")
+                                  .accept(MediaType.APPLICATION_JSON)
+                                  .contentType(MediaType.APPLICATION_JSON)
+                                  .content(objectMapper.writeValueAsString(product)));
+              }
+          }
+      ```
+- in ProductControllerWebIT create invalid product to test validation
+  - `ProductDto product = new ProductDto().builder().description("").build();`
+  - test runs Ok **but should fail**
+- commit - Adding Validation to ProductDto in product service (Validation doesn't work)
