@@ -1941,4 +1941,8 @@ class ProductControllerIT {
 ## Adding fetchById for orderHeader and Customer to Order service
 - commit - Adding fetchById for orderHeader and Customer to Order service
 
+# May 31, 2023 - continue adding CRUD ops to all services
 ## Adding Create, Update and Delete ops to Order service
+- commit - add default constructor to OrderHeaderDto
+- commit - add default constructor to AddressDto and ContactDto
+- commit - Adding Create, Update and Delete ops to OrderHeader and Customer in order service 

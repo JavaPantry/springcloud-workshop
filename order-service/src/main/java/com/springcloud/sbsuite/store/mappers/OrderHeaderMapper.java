@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(uses = {DateMapper.class, OrderLineMapper.class, AddressMapper.class})
 public interface OrderHeaderMapper {
-	OrderHeader orderHeaderDtoToOrderLine(OrderHeaderDto orderHeaderDto);
+	OrderHeader orderHeaderDtoToOrderHeader(OrderHeaderDto orderHeaderDto);
 	OrderHeaderDto orderHeaderToOrderHeaderDto(OrderHeader orderHeader);
 }

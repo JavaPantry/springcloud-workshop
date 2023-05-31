@@ -98,5 +98,72 @@ public class OrderServiceImpl implements OrderService {
 		);
 	}
 
+	@Override
+	public Optional<OrderLineDto> saveOrderLine(OrderLineDto dto) {
+		OrderLine orderLine = null;
+		if(dto.getId() != null) {
+			orderLine = orderLineRepository.findById(dto.getId()).orElse(null);
+			orderLine.setQuantityOrdered(dto.getQuantityOrdered());
+		}else {
+			orderLine = orderLineMapper.orderLineDtoToOrderLine(dto);
+		}
+		OrderLine updated = orderLineRepository.save(orderLine);
+		return Optional.of(orderLineMapper.orderLineToOrderLineDto(updated) );
+	}
+
+	@Override
+	public boolean deleteOrderLine(OrderLineDto dto) {
+		if(orderLineRepository.existsById(dto.getId())) {
+			orderLineRepository.deleteById(dto.getId());
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Optional<OrderHeaderDto> saveOrderHeader(OrderHeaderDto dto) {
+		OrderHeader orderHeader = null;
+		if(dto.getId() != null) {
+			orderHeader = orderHeaderRepository.findById(dto.getId()).orElse(null);
+			orderHeader.setOrderStatus(dto.getOrderStatus());
+		}else {
+			orderHeader = orderHeaderMapper.orderHeaderDtoToOrderHeader((dto));
+		}
+		OrderHeader updated = orderHeaderRepository.save(orderHeader);
+		return Optional.of(orderHeaderMapper.orderHeaderToOrderHeaderDto(updated) );
+	}
+
+	@Override
+	public boolean deleteOrderHeader(OrderHeaderDto dto) {
+		if(orderHeaderRepository.existsById(dto.getId())) {
+			orderHeaderRepository.deleteById(dto.getId());
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Optional<CustomerDto> saveCustomer(CustomerDto dto) {
+		Customer customer = null;
+		if(dto.getId() != null) {
+			customer = customerRepository.findById(dto.getId()).orElse(null);
+			customer.getContact().setName(dto.getContact().getName());
+		}else {
+			customer = customerMapper.customerDtoToCustomer((dto));
+		}
+		Customer updated = customerRepository.save(customer);
+		return Optional.of(customerMapper.customerToCustomerDto(updated) );
+
+	}
+
+	@Override
+	public boolean deleteCustomer(CustomerDto dto) {
+		if(customerRepository.existsById(dto.getId())) {
+			customerRepository.deleteById(dto.getId());
+			return true;
+		}
+		return false;
+	}
+
 
 }
