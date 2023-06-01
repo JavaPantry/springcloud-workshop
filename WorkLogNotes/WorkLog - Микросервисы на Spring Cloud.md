@@ -2036,3 +2036,36 @@ class ProductControllerIT {
   - `ProductDto product = new ProductDto().builder().description("").build();`
   - test runs Ok **but should fail**
 - commit - Adding Validation to ProductDto in product service (Validation doesn't work)
+
+
+# June 1, 2023 - adding validation in product controller 
+
+## continue with "Adding Validation to ProductDto in product service"
+- fix ProductControllerWebIT.java
+  - see "70. MockMVC Configuration 7min" in udemy spring-6
+  - see "111. Controller Binding Validation 3min" in udemy spring-6
+  - remove `@Autowired ProductController productController;` from ProductControllerWebIT.java
+  - add `given(productService.saveProduct(any(ProductDto.class))).willReturn(Optional.ofNullable(product));` before call to `mockMvc.perform(post("/product/")`
+  - add `.andExpect(status().isCreated());` after call to `mockMvc.perform(post("/product/")`
+  - add `testCreateNewInvalidProduct()` to test create invalid product with `.andExpect(status().isBadRequest());` after call to `mockMvc.perform(post("/product/")`
+    ```java
+      @Test
+      void testCreateNewInvalidProduct() throws Exception {
+          ProductDto product = new ProductDto().builder().description("").build();
+          mockMvc.perform(post("/product/")
+                          .accept(MediaType.APPLICATION_JSON)
+                          .contentType(MediaType.APPLICATION_JSON)
+                          .content(objectMapper.writeValueAsString(product)))
+                  .andExpect(status().isBadRequest());
+      }
+    ```
+- actually validation worked. I was expecting exception but it didn't happen.
+- returned status is 400 - which means "bad request"
+  - java.lang.AssertionError: Status expected:<201> but was:<400>
+- once I send valid Dto, test passes and status is 201 - which means "created"
+  - this means that validation works
+- with invalid dto controller's method `createProduct(@Validated @RequestBody ProductDto productDto)` wasn't called because dto didn't pass validation
+- **Note** that I removed '/' from PostMapping in ProductController
+  - `@PostMapping("/")` to `@PostMapping()`
+  - TODO - do same for all controllers i.e. remove '/' from `@GetMapping("/")` and remove trailing '/' from all http client tests
+- commit - Fixing Validation to ProductDto in product service (Validation works)

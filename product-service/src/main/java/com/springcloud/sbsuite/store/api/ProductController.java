@@ -32,7 +32,7 @@ public class ProductController {
         return dtos;
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<ProductDto> createProduct(@Validated @RequestBody ProductDto productDto) {
         ProductDto dto = productService.saveProduct(productDto).orElseThrow(NotFoundException::new);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);

@@ -11,8 +11,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 // for post(..)
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import java.util.Optional;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.mockito.BDDMockito.*;
 // for status().isCreated()
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -21,28 +23,38 @@ public class ProductControllerWebIT {
 	@Autowired
 	MockMvc mockMvc;
 
-	@Autowired
-	ProductController productController;
-
 	@MockBean
 	ProductService productService;
 
 	@Autowired
 	ObjectMapper objectMapper;
 	@Test
-	void testCreateNewBeer() throws Exception {
-		//ProductDto product = new ProductDto().builder().name("test product").description("test product description").build();
-		ProductDto product = new ProductDto().builder().build();
+	void testCreateNewProduct() throws Exception {
+		ProductDto product = new ProductDto().builder().name("test product").description("test product description").build();
 
+		given(productService.saveProduct(any(ProductDto.class))).willReturn(Optional.ofNullable(product));
 
-		//given(beerService.saveNewBeer(any(BeerDTO.class))).willReturn(beerServiceImpl.listBeers().get(1));
-
-		mockMvc.perform(post("/product/")
+		mockMvc.perform(post("/product")
 						.accept(MediaType.APPLICATION_JSON)
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(product)))
-			/*	.andExpect(status().isCreated())
-		.andExpect(header().exists("Location"))*/;
+					.andExpect(status().isCreated());
+		/*.andExpect(header().exists("Location"))*/;
 	}
+
+	@Test
+	void testCreateNewInvalidProduct() throws Exception {
+		ProductDto product = new ProductDto().builder().build();
+
+		given(productService.saveProduct(any(ProductDto.class))).willReturn(Optional.ofNullable(product));
+
+		mockMvc.perform(post("/product")
+						.accept(MediaType.APPLICATION_JSON)
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(objectMapper.writeValueAsString(product)))
+				.andExpect(status().isBadRequest());
+		/*.andExpect(header().exists("Location"))*/;
+	}
+
 
 }
