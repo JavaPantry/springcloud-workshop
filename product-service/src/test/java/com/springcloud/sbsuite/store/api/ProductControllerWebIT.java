@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MvcResult;
 // for post(..)
 import java.util.Optional;
 
+import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.mockito.BDDMockito.*;
 // for status().isCreated()
@@ -53,7 +54,9 @@ public class ProductControllerWebIT {
 						.accept(MediaType.APPLICATION_JSON)
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(product)))
-				.andExpect(status().isBadRequest()).andReturn();
+				.andExpect(status().isBadRequest())
+				.andExpect(jsonPath("$.length()", is(4)))
+				.andReturn();
 
 		System.out.println(mvcResult.getResponse().getContentAsString());
 	}

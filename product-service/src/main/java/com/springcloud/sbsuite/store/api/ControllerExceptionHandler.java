@@ -18,10 +18,6 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     ResponseEntity handleBindErrors(MethodArgumentNotValidException exception){
-        return ResponseEntity.badRequest().body(exception.getBindingResult().getFieldErrors());
-    }
-    /*@ExceptionHandler(MethodArgumentNotValidException.class)
-    ResponseEntity handleBindErrors(MethodArgumentNotValidException exception){
 
         List errorList = exception.getFieldErrors().stream()
                 .map(fieldError -> {
@@ -31,5 +27,5 @@ public class ControllerExceptionHandler {
                 }).collect(Collectors.toList());
 
         return ResponseEntity.badRequest().body(errorList);
-    }*/
+    }
 }

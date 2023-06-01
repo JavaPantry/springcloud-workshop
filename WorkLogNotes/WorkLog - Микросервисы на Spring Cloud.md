@@ -2114,3 +2114,31 @@ class ProductControllerIT {
        - check out `mvcResult.getResponse().getContentAsString()` too much info that "name" and "description" are null and rejected
          
 - commit - add ControllerExceptionHandler to handle validation errors
+
+## Handle Validation Errors with custom errror message in response body
+- 113. Custom Error Body 4min
+  - [62-custom-error-message branch](https://github.com/springframeworkguru/spring-6-rest-mvc/tree/62-custom-error-message)
+
+- modify ControllerExceptionHandler to return custom error message
+    ```java
+    @ControllerAdvice
+    public class ControllerExceptionHandler {
+  
+        @ExceptionHandler(MethodArgumentNotValidException.class)
+        ResponseEntity handleBindErrors(MethodArgumentNotValidException exception){
+  
+            List errorList = exception.getFieldErrors().stream()
+                    .map(fieldError -> {
+                        Map<String, String > errorMap = new HashMap<>();
+                        errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
+                        return errorMap;
+                    }).collect(Collectors.toList());
+  
+            return ResponseEntity.badRequest().body(errorList);
+        }
+    }
+    ```
+- ProductControllerWebIT:testCreateNewInvalidProduct() test will print much nicer message 
+  - `[{"name":"must not be blank"},{"description":"must not be blank"},{"name":"must not be null"},{"description":"must not be null"}]`
+- consider to add `.andExpect(jsonPath("$.length()", is(4)))` to testCreateNewInvalidProduct() to check that there are 4 errors
+- commit - add custom error message to ControllerExceptionHandler
