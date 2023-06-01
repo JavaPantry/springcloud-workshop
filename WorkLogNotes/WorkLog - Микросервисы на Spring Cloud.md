@@ -2078,3 +2078,39 @@ class ProductControllerIT {
 - trailing '/' from `String storeInventoryUrl = String.format("http://%s:8765/inventory", hostnameurl);` in Eclient2ServiceRestTemplateImpl:
 - remove trailing '/' from all http client tests
 - commit - Fix GetMapping root url in all controllers
+
+## Handle Validation Errors
+
+- 112. Custom Validation Handler 4min
+   - [61-custom-validation-error-handler branch](https://github.com/springframeworkguru/spring-6-rest-mvc/tree/61-custom-validation-error-handler)
+     - add `MvcResult mvcResult = mockMvc.perform(post(post...` to `ProductControllerWebIT:testCreateNewInvalidProduct()`
+         ```java
+            @Test
+            void testCreateNewInvalidProduct() throws Exception {
+            ProductDto product = new ProductDto().builder().build();
+    
+            given(productService.saveProduct(any(ProductDto.class))).willReturn(Optional.ofNullable(product));
+    
+            MvcResult mvcResult = mockMvc.perform(post("/product")
+                               .accept(MediaType.APPLICATION_JSON)
+                               .contentType(MediaType.APPLICATION_JSON)
+                               .content(objectMapper.writeValueAsString(product)))
+                       .andExpect(status().isBadRequest()).andReturn();
+            
+            System.out.println(mvcResult.getResponse().getContentAsString());
+           }
+         ```
+       - add `@ControllerAdvice` to `ControllerExceptionHandler`
+         ```java
+         @ControllerAdvice
+         public class ControllerExceptionHandler {
+    
+             @ExceptionHandler(MethodArgumentNotValidException.class)
+             ResponseEntity handleBindErrors(MethodArgumentNotValidException exception){
+                 return ResponseEntity.badRequest().body(exception.getBindingResult().getFieldErrors());
+             }
+         }
+         ```
+       - check out `mvcResult.getResponse().getContentAsString()` too much info that "name" and "description" are null and rejected
+         
+- commit - add ControllerExceptionHandler to handle validation errors

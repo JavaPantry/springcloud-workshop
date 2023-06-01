@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 // for post(..)
 import java.util.Optional;
@@ -48,12 +49,13 @@ public class ProductControllerWebIT {
 
 		given(productService.saveProduct(any(ProductDto.class))).willReturn(Optional.ofNullable(product));
 
-		mockMvc.perform(post("/product")
+		MvcResult mvcResult = mockMvc.perform(post("/product")
 						.accept(MediaType.APPLICATION_JSON)
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(product)))
-				.andExpect(status().isBadRequest());
-		/*.andExpect(header().exists("Location"))*/;
+				.andExpect(status().isBadRequest()).andReturn();
+
+		System.out.println(mvcResult.getResponse().getContentAsString());
 	}
 
 
