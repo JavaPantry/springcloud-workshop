@@ -25,7 +25,7 @@ public class OrderController {
     private String instanceId;
 
 
-    @GetMapping("/")
+    @GetMapping()
     public String getOrders() {
         return String.format("Test OrderController (instance %s)", instanceId);
     }

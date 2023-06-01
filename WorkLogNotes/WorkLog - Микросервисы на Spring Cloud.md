@@ -2069,3 +2069,9 @@ class ProductControllerIT {
   - `@PostMapping("/")` to `@PostMapping()`
   - TODO - do same for all controllers i.e. remove '/' from `@GetMapping("/")` and remove trailing '/' from all http client tests
 - commit - Fixing Validation to ProductDto in product service (Validation works)
+
+## Fix @GetMapping("/") in all controllers
+- remove '/' from `@GetMapping("/")` in all controllers
+- trailing '/' from `String storeInventoryUrl = String.format("http://%s:8765/inventory", hostnameurl);` in Eclient2ServiceRestTemplateImpl:
+- remove trailing '/' from all http client tests
+- commit - Fix GetMapping root url in all controllers

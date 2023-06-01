@@ -19,7 +19,7 @@ public class PrototypeController {
 
 
     // TODO check if "/store/inventory" will work
-    @GetMapping("/")
+    @GetMapping()
     public String testStore() {
         return "Hello from Prototype Service " + instanceId + "!";
     }

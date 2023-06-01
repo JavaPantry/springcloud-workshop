@@ -24,7 +24,7 @@ public class InventoryController {
     @Autowired
     InventoryService inventoryService;
 
-    @GetMapping("/")
+    @GetMapping()
     public List<InventoryDto> getInventory() {
         List<InventoryDto> dtos = inventoryService.fetchInventories();
         return dtos;

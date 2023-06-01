@@ -26,7 +26,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/")
+    @GetMapping()
     public List<ProductDto> getProducts() {
         List<ProductDto> dtos = productService.fetchProducts();
         return dtos;

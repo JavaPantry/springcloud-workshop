@@ -1,8 +1,8 @@
 ### get direct store-service via gateway
-GET {{gateway-host}}/inventory/
+GET {{gateway-host}}/inventory
 
 ### get direct store-service via inventory-service
-GET {{gateway-host}}/inventory-service/inventory/
+GET {{gateway-host}}/inventory-service/inventory
 
 ### get inventory with id from inventory-service
 GET {{gateway-host}}/inventory-service/inventory/1
@@ -17,13 +17,13 @@ GET {{gateway-host}}/store/inventory
 GET {{gateway-host}}/store-service/store/inventory
 
 ### get direct product-service
-GET {{gateway-host}}/product-service/product/
+GET {{gateway-host}}/product-service/product
 
 ### get product by id direct product-service
 GET {{gateway-host}}/product-service/product/1
 
 ### get direct order-service
-GET {{gateway-host}}/order-service/order/
+GET {{gateway-host}}/order-service/order
 
 ### get config-var from product-service
 #GET {{gateway-host}}/product-service/product/config-var
