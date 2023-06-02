@@ -59,11 +59,20 @@ class ProductServiceTest {
 	@Transactional
 	@Test
 	void saveNewInvalidProduct() {
-		ProductDto product = new ProductDto().builder().build();
-		// assert exception thrown when save invalid product
-		ProductDto finalProduct = product;
 		assertThrows(ConstraintViolationException.class, () -> {
-			ProductDto newProduct = productService.saveProduct(finalProduct).orElseThrow(NotFoundException::new);
+			ProductDto product = new ProductDto().builder().build();
+			ProductDto newProduct = productService.saveProduct(product).orElseThrow(NotFoundException::new);
+			assertNotNull(newProduct);
+		});
+	}
+
+	@Rollback
+	@Transactional
+	@Test
+	void saveInvalidProductWithTooShortName() {
+		assertThrows(ConstraintViolationException.class, () -> {
+			ProductDto product = new ProductDto().builder().name("E").build();
+			ProductDto newProduct = productService.saveProduct(product).orElseThrow(NotFoundException::new);
 			assertNotNull(newProduct);
 		});
 	}

@@ -2195,3 +2195,44 @@ class ProductControllerIT {
     }
   ```
 - commit - add JPA validation in product entity and test
+
+## Add JPA constraint validation in product service
+- 115. Database Constraint Validation 4min
+  - [65-database-constraint-validation branch](https://github.com/springframeworkguru/spring-6-rest-mvc/tree/65-database-constraint-validation)
+- use `jakarta.validation.constraints.Size;` and `jakarta.persistence.Column`
+  ``` 
+    - @NotBlank
+      @NotNull
+      @Size(min = 2, max = 100)
+      @Column(length = 100)
+      String name;
+  ```
+  - create test `ProductServiceTest::saveNewInvalidProduct()` test empty product for JPA validation
+    ```java
+      	void saveInvalidProductWithTooShortName() {
+			ProductDto product = new ProductDto().builder().name("E").build();
+			ProductDto newProduct = productService.saveProduct(product).orElseThrow(NotFoundException::new);
+			assertNotNull(newProduct);
+        }
+    ```
+    - throws `ConstraintViolationException` as expected
+      ```
+      jakarta.validation.ConstraintViolationException: Validation failed for classes [com.springcloud.sbsuite.store.domain.Product] during persist time for groups [jakarta.validation.groups.Default, ]
+        List of constraint violations:[
+        ConstraintViolationImpl{interpolatedMessage='must not be blank', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotBlank.message}'}
+        ConstraintViolationImpl{interpolatedMessage='size must be between 2 and 100', propertyPath=name, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.Size.message}'}
+        ConstraintViolationImpl{interpolatedMessage='must not be null', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotNull.message}'}
+        ]
+      ```
+- wrap `productService.saveProduct(product)` in `assertThrows(ConstraintViolationException.class, () -> productService.saveProduct(product).orElseThrow(NotFoundException::new));`
+  ```
+  void saveInvalidProductWithTooShortName() {
+		assertThrows(ConstraintViolationException.class, () -> {
+			ProductDto product = new ProductDto().builder().name("E").build();
+			ProductDto newProduct = productService.saveProduct(product).orElseThrow(NotFoundException::new);
+			assertNotNull(newProduct);
+		});
+	}
+  ```
+  
+- commit - add JPA constraint validation in product service
