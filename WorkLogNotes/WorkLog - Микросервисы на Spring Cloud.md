@@ -2142,3 +2142,14 @@ class ProductControllerIT {
   - `[{"name":"must not be blank"},{"description":"must not be blank"},{"name":"must not be null"},{"description":"must not be null"}]`
 - consider to add `.andExpect(jsonPath("$.length()", is(4)))` to testCreateNewInvalidProduct() to check that there are 4 errors
 - commit - add custom error message to ControllerExceptionHandler
+
+# June 2, 2023 - adding JPA validation in product controller
+
+## Clean up and sync Dtos in services
+- removed
+  - ProductInventoryDto
+  - ProductOrderDto
+  - ProductOrderLineDto
+- sync InventoryDto with all services
+- remove `import jakarta.persistence.Embeddable;` from *Dto.java
+- commit - Clean up and sync Dtos in services

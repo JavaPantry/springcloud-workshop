@@ -1,36 +1,26 @@
 package com.springcloud.sbsuite.store.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.time.OffsetDateTime;
-import java.util.List;
 
+/**
+ * Created by jt on 2019-01-26.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
 @Builder
-public class ProductOrderDto {
-
-    @JsonProperty("id")
+public class InventoryDto {
     private Long id = null;
-
-    @JsonProperty("version")
     private Integer version = null;
 
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ssZ", shape=JsonFormat.Shape.STRING)
-    @JsonProperty("createdDate")
     private OffsetDateTime createdDate = null;
 
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ssZ", shape=JsonFormat.Shape.STRING)
-    @JsonProperty("lastModifiedDate")
     private OffsetDateTime lastModifiedDate = null;
-
-    private Long customerId;
-    private String customerRef;
-    private List<OrderLineDto> beerOrderLines;
-    private String orderStatus;
-    private String orderStatusCallbackUrl;
+    private Long productId;
+    private Integer quantity = 0;
 }
