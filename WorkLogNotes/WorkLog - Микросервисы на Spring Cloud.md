@@ -2236,3 +2236,22 @@ class ProductControllerIT {
   ```
   
 - commit - add JPA constraint validation in product service
+
+## JPA Validation Error Handler
+- 117. JPA Validation Error Handler 2min
+  - [67-jpa-violoation-error-data branch](https://github.com/springframeworkguru/spring-6-rest-mvc/tree/67-jpa-violoation-error-data)
+- add `@ExceptionHandler ResponseEntity handleJPAViolations(TransactionSystemException exception)` to `CustomErrorController`
+```
+@ControllerAdvice
+public class CustomErrorController {
+
+    @ExceptionHandler
+    ResponseEntity handleJPAViolations(TransactionSystemException exception){
+        return ResponseEntity.badRequest().build();
+    }
+```
+
+- 118. JPA Validation Error Message 5min
+  - [68-jpa-validation-error-msg branch](https://github.com/springframeworkguru/spring-6-rest-mvc/tree/68-jpa-validation-error-msg)
+  - code in this branch doesn't reflect what John did in the video to retrieve error messages in `ResponseEntity handleJPAViolations(TransactionSystemException exception){}`
+- commit - add JPA validation error handler (skipped)
