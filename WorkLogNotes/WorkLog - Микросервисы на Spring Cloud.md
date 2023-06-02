@@ -2153,3 +2153,45 @@ class ProductControllerIT {
 - sync InventoryDto with all services
 - remove `import jakarta.persistence.Embeddable;` from *Dto.java
 - commit - Clean up and sync Dtos in services
+
+## Add JPA validation in product controller
+- 114. JPA Validation 3min
+  - [branch](https://github.com/springframeworkguru/spring-6-rest-mvc/tree/64-jpa-validation)
+- add JPA validation to Product.java
+  - `@NotBlank(message = "Product name must not be blank")`
+  - `@NotNull(message = "Product name must not be null")`
+  - `@NotBlank(message = "Product description must not be blank")`
+  - `@NotNull(message = "Product description must not be null")`
+- create `ProductServiceTest::saveNewInvalidProduct()` test empty product for JPA validation
+  ```java
+	@Rollback
+	@Transactional
+	@Test
+	void saveNewInvalidProduct() {
+		ProductDto product = new ProductDto().builder().build();
+		ProductDto newProduct = productService.saveProduct(product).orElseThrow(NotFoundException::new);
+		assertNotNull(newProduct);
+        ...
+	}
+  ``` 
+- failed as expected
+    ```
+    jakarta.validation.ConstraintViolationException: Validation failed for classes [com.springcloud.sbsuite.store.domain.Product] during persist time for groups [jakarta.validation.groups.Default, ]
+    List of constraint violations:[
+    ConstraintViolationImpl{interpolatedMessage='must not be blank', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotBlank.message}'}
+    ConstraintViolationImpl{interpolatedMessage='must not be null', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotNull.message}'}
+    ConstraintViolationImpl{interpolatedMessage='must not be null', propertyPath=name, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotNull.message}'}
+    ConstraintViolationImpl{interpolatedMessage='must not be blank', propertyPath=name, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotBlank.message}'}
+    ]
+    ```
+- add assertThrows to `ProductServiceTest::saveNewInvalidProduct()` test
+  ```java
+    @Rollback
+    @Transactional
+    @Test
+    void saveNewInvalidProduct() {
+        ProductDto product = new ProductDto().builder().build();
+        assertThrows(ConstraintViolationException.class, () -> productService.saveProduct(product).orElseThrow(NotFoundException::new));
+    }
+  ```
+- commit - add JPA validation in product entity and test

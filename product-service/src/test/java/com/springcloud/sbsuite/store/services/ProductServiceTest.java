@@ -2,6 +2,7 @@ package com.springcloud.sbsuite.store.services;
 
 import com.springcloud.sbsuite.store.api.NotFoundException;
 import com.springcloud.sbsuite.store.dto.ProductDto;
+import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -54,6 +55,18 @@ class ProductServiceTest {
 		assertEquals("test product description", product.getDescription());
 	}
 
+	@Rollback
+	@Transactional
+	@Test
+	void saveNewInvalidProduct() {
+		ProductDto product = new ProductDto().builder().build();
+		// assert exception thrown when save invalid product
+		ProductDto finalProduct = product;
+		assertThrows(ConstraintViolationException.class, () -> {
+			ProductDto newProduct = productService.saveProduct(finalProduct).orElseThrow(NotFoundException::new);
+			assertNotNull(newProduct);
+		});
+	}
 	@Rollback
 	@Transactional
 	@Test
