@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.store.services;
 
 import com.springcloud.sbsuite.store.domain.Product;
-import com.springcloud.sbsuite.store.dto.ProductDto;
+import com.springcloud.sbsuite.dto.ProductDto;
 import com.springcloud.sbsuite.store.mappers.ProductMapper;
 import com.springcloud.sbsuite.store.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

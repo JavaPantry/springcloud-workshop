@@ -1,6 +1,6 @@
 package com.springcloud.sbsuite.inventory.api;
 
-import com.springcloud.sbsuite.inventory.dto.InventoryDto;
+import com.springcloud.sbsuite.dto.InventoryDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

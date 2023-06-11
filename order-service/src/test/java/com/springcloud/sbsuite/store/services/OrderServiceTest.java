@@ -1,8 +1,7 @@
 package com.springcloud.sbsuite.store.services;
 
 import com.springcloud.sbsuite.store.api.NotFoundException;
-import com.springcloud.sbsuite.store.domain.OrderLine;
-import com.springcloud.sbsuite.store.dto.*;
+import dto.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

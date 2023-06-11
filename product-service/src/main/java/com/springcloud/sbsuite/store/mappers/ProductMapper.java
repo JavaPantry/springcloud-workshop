@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.store.mappers;
 
 import com.springcloud.sbsuite.store.domain.Product;
-import com.springcloud.sbsuite.store.dto.ProductDto;
+import com.springcloud.sbsuite.dto.ProductDto;
 import org.mapstruct.Mapper;
 
 @Mapper(uses = {DateMapper.class})

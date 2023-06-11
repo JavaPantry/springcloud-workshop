@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.inventory.mappers;
 
 import com.springcloud.sbsuite.inventory.domain.Inventory;
-import com.springcloud.sbsuite.inventory.dto.InventoryDto;
+import com.springcloud.sbsuite.dto.InventoryDto;
 import org.mapstruct.Mapper;
 
 @Mapper(uses = {DateMapper.class})

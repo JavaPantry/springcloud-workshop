@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.inventory.services;
 
 import com.springcloud.sbsuite.inventory.domain.Inventory;
-import com.springcloud.sbsuite.inventory.dto.InventoryDto;
+import com.springcloud.sbsuite.dto.InventoryDto;
 import com.springcloud.sbsuite.inventory.mappers.InventoryMapper;
 import com.springcloud.sbsuite.inventory.repositories.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.springcloud.sbsuite.store.services;
 
-import com.springcloud.sbsuite.store.dto.ProductDto;
+import com.springcloud.sbsuite.dto.ProductDto;
 
 import java.util.List;
 import java.util.Optional;

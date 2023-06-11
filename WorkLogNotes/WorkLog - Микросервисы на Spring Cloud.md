@@ -2255,3 +2255,25 @@ public class CustomErrorController {
   - [68-jpa-validation-error-msg branch](https://github.com/springframeworkguru/spring-6-rest-mvc/tree/68-jpa-validation-error-msg)
   - code in this branch doesn't reflect what John did in the video to retrieve error messages in `ResponseEntity handleJPAViolations(TransactionSystemException exception){}`
 - commit - add JPA validation error handler (skipped)
+
+# June 5, 2023 - 
+## sync InventoryDto
+  - remove `import com.springcloud.sbsuite.inventory.domain.BaseEntity; jakarta.persistence.Entity;`
+- commit - sync InventoryDto
+## Udemy springframework 6 - Section 13 - CSV File loading
+
+# June 7, 2023 - watch JMS from "Spring Boot Microservices with Spring Cloud and Docker" course
+- [Section 13 - JMS Messaging](C:\IntelliJ_WS-SpringGuru\Spring Boot Microservices with Spring Cloud and Docker Course\13-14-JMS Messaging.md)
+
+# June 8, 2023 - watch JMS from "Spring Boot Microservices with Spring Cloud and Docker" course
+- [Section 14 - JMS Messaging](C:\IntelliJ_WS-SpringGuru\Spring Boot Microservices with Spring Cloud and Docker Course\13-14-JMS Messaging.md)
+
+## TODO: fix pom parent dependencies in all modules
+- Fixing Parent POM
+  - already has `<parent><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-parent</artifactId><version>3.0.5</version></parent>`
+- fix `<parent>` in all child modules
+- move `<dependencyManagement>` from child modules to parent pom
+- move `<artifactId>spring-boot-maven-plugin</artifactId>` from child modules to parent pom
+- **Rollback** because it's unclear how these modules will be built in docker-compose driven build
+  
+      

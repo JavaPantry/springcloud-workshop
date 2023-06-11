@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.store.mappers;
 
 import com.springcloud.sbsuite.store.domain.Customer;
-import com.springcloud.sbsuite.store.dto.CustomerDto;
+import dto.CustomerDto;
 import org.mapstruct.Mapper;
 
 @Mapper(uses = {DateMapper.class, OrderHeaderMapper.class, AddressMapper.class, ContactMapper.class})

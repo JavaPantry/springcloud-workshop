@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.store.services;
 
 import com.springcloud.sbsuite.store.api.NotFoundException;
-import com.springcloud.sbsuite.store.dto.ProductDto;
+import com.springcloud.sbsuite.dto.ProductDto;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest

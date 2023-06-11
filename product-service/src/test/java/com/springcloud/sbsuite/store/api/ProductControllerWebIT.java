@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.store.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springcloud.sbsuite.store.dto.ProductDto;
+import com.springcloud.sbsuite.dto.ProductDto;
 import com.springcloud.sbsuite.store.services.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

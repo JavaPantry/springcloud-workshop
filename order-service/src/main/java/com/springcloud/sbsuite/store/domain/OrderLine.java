@@ -1,6 +1,5 @@
 package com.springcloud.sbsuite.store.domain;
 
-import com.springcloud.sbsuite.store.dto.ProductDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;

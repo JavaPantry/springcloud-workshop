@@ -1,9 +1,8 @@
 package com.springcloud.sbsuite.store.services;
 
-import com.springcloud.sbsuite.store.dto.CustomerDto;
-import com.springcloud.sbsuite.store.dto.OrderHeaderDto;
-import com.springcloud.sbsuite.store.dto.OrderLineDto;
-import com.springcloud.sbsuite.store.dto.ProductDto;
+import dto.CustomerDto;
+import dto.OrderHeaderDto;
+import dto.OrderLineDto;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.inventory.services;
 
 
-import com.springcloud.sbsuite.inventory.dto.InventoryDto;
+import com.springcloud.sbsuite.dto.InventoryDto;
 
 import java.util.List;
 import java.util.Optional;
