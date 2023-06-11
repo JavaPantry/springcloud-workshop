@@ -2277,3 +2277,8 @@ public class CustomErrorController {
 - **Rollback** because it's unclear how these modules will be built in docker-compose driven build
   
       
+# June 10, 2023 - Saturday
+
+- move all dtos in all services to new package com.springcloud.sbsuite.dto
+  - one package name for dto for less sync effort
+- commit - move all dtos in all services to new package com.springcloud.sbsuite.dto
