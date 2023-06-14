@@ -25,5 +25,8 @@ GET {{gateway-host}}/product-service/product/1
 ### get direct order-service
 GET {{gateway-host}}/order-service/orders
 
+### send DUMMY create order to order-service
+GET {{gateway-host}}/order-service/orders/createorder
+
 ### get config-var from product-service
 #GET {{gateway-host}}/product-service/product/config-var

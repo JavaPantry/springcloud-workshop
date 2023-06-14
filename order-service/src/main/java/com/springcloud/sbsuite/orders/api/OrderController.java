@@ -46,5 +46,8 @@ public class OrderController {
 //    public String testConfigVar() {
 //        return String.format("Test eureka-client config var > %s", configVar);
 //    }
-
+    @GetMapping("/createorder")
+    public String createOrder() {
+        return orderService.placeOrder(1L, 1);
+    }
 }

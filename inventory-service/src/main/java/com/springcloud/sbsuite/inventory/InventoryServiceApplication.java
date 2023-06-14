@@ -1,7 +1,10 @@
 package com.springcloud.sbsuite.inventory;
 
+import com.springcloud.sbsuite.dto.OrderPlacedEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.kafka.annotation.KafkaListener;
 
 /**
  - adding `@EnableEurekaClient` **NOT RECOGNIZED**
@@ -11,10 +14,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
       and if we have the `spring.application.name=eclient` in yml or properties file it will be registered to Eureka Server
  */
 @SpringBootApplication
+@Slf4j
 public class InventoryServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(InventoryServiceApplication.class, args);
     }
 
+    @KafkaListener(topics = "notificationTopic")
+    public void handleNotification(OrderPlacedEvent orderPlacedEvent) {
+        log.info("Received Order Notification for Product - {}", orderPlacedEvent.getProductId());
+        System.out.println("Received Order Notification for Product - " + orderPlacedEvent.getProductId());
+    }
 }

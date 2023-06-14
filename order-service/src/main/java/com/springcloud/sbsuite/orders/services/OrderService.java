@@ -24,5 +24,6 @@ public interface OrderService {
 	public Optional<CustomerDto> saveCustomer(CustomerDto dto);
 	public boolean deleteCustomer(CustomerDto dto);
 
+	public String placeOrder(Long productId, Integer quantity);
 }
 

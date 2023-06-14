@@ -2293,3 +2293,81 @@ public class CustomErrorController {
 - Accidentally rename `store` package to `orders` in product and store services 
 - refactor Product and Store service package
 - commit - refactor Product and Store service package
+
+## Add Kafka messagging service to order-service
+- follow - **04:21:11** - Event Driven Architecture using Kafka [@](https://youtu.be/mPPhcU7oWDU?t=15672)
+  - install kafka server [@](https://youtu.be/mPPhcU7oWDU?t=15808)
+    - start docker as described in [quickstart kafka docker](https://developer.confluent.io/quickstart/kafka-docker/)
+    - create kafka-service.yml [@](https://youtu.be/mPPhcU7oWDU?t=15850)
+    - run `docker-compose -f kafka-service.yml up -d`
+      - we'll start kafka server from IntelliJ IDE 
+      - confirm kafka server is running in docker desktop
+      - zookeeper 4ecf1865e09b confluentinc/cp-zookeeper:7.3.2 Running
+      - broker b64ef8fbe873 confluentinc/cp-kafka:7.3.2 Running 9092:9092
+    - verify broker is running `docker logs -f broker`   (copilot generated `docker-compose -f kafka-service.yml ps`)
+  - look for required dependecy [@](https://docs.spring.io/spring-kafka/docs/current/reference/html/#quick-tour) 
+  - add `spring-kafka` dependency in order-service pom.xml
+
+      ```xml
+      <dependency>
+        <groupId>org.springframework.kafka</groupId>
+        <artifactId>spring-kafka</artifactId>
+        <!-- Removed by me version>3.0.7</version -->
+      </dependency>
+      ```
+  - add kafka properties in order-service application.yml
+    ```
+    # Kafka Properties
+    spring.kafka.bootstrap-servers=localhost:9092
+    spring.kafka.template.default-topic=orderTopic
+    spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+    spring.kafka.producer.value-serializer=org.springframework.kafka.support.serializer.JsonSerializer
+    spring.kafka.producer.properties.spring.json.type.mapping=event:com.springcloud.sbsuite.dto.OrderPlacedEvent
+    ```
+  - inject `KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;` in `OrderService.java` [@](https://youtu.be/mPPhcU7oWDU?t=16369)
+    ```
+    @Autowired
+    private KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
+    ```
+  - create `com.springcloud.sbsuite.dto.OrderPlacedEvent`
+  - send event to kafka `kafkaTemplate.send("orderTopic", new OrderPlacedEvent(productId, quantity));`
+  - we need to add rest api endpoint to send order to kafka
+    ``` 
+    @GetMapping("/createorder")
+    public String createOrder() {
+    return orderService.placeOrder(1L, 1);
+    }
+    ``` 
+    - add `orderService.placeOrder(
+  - ??? create notification service project [@](https://youtu.be/mPPhcU7oWDU?t=16737) @ 04:38:57
+      - OR ??? make inventory-service listen to kafka topic `orderTopic` [@](https://youtu.be/mPPhcU7oWDU?t=16737) @ 04:38:57
+      - copy `OrderPlacedEvent` class to inventory-service
+      - add kafka dependency in inventory-service pom.xml
+      - add kafka properties in inventory-service application.yml
+      - add `@KafkaListener(topics = "orderTopic")` in `InventoryServiceApplication.java`
+        ```java
+          @KafkaListener(topics = "notificationTopic")
+          public void handleNotification(OrderPlacedEvent orderPlacedEvent) {
+              // send out an email notification
+             log.info("Received Notification for Order - {}", orderPlacedEvent.getOrderNumber());
+          }
+        ``` 
+        
+- add test call to create order in TestApiGateway.http http client
+  ```
+  ### send DUMMY create order to order-service
+  GET {{gateway-host}}/order-service/orders/createorder
+  ```
+- run all services and execute `send DUMMY create order to order-service`
+  ```
+  GET http://localhost:8765/order-service/orders/createorder
+  
+  HTTP/1.1 200 OK
+  Content-Type: text/plain;charset=UTF-8
+  Content-Length: 23
+  Date: Wed, 14 Jun 2023 21:19:01 GMT
+  >>>  Event sent successfully
+  Response code: 200 (OK); Time: 1478ms (1 s 478 ms); Content length: 23 bytes (23 B)
+  ```
+- check inventory service logs for kafka message - **NONE**
+- commit - add kafka messaging to order-service

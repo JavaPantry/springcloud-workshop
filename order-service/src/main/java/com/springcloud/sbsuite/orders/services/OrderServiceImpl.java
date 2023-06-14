@@ -1,5 +1,6 @@
 package com.springcloud.sbsuite.orders.services;
 
+import com.springcloud.sbsuite.dto.OrderPlacedEvent;
 import com.springcloud.sbsuite.orders.domain.Customer;
 import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
@@ -13,6 +14,7 @@ import com.springcloud.sbsuite.orders.repositories.CustomerRepository;
 import com.springcloud.sbsuite.orders.repositories.OrderHeaderRepository;
 import com.springcloud.sbsuite.orders.repositories.OrderLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +41,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	CustomerMapper customerMapper;
+
+	@Autowired
+	KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
 
 	@Override
 	public List<CustomerDto> fetchCustomenrs(){
@@ -163,6 +168,12 @@ public class OrderServiceImpl implements OrderService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public String placeOrder(Long productId, Integer quantity) {
+		kafkaTemplate.send("orderTopic", new OrderPlacedEvent(productId, quantity));
+		return "Event sent successfully";
 	}
 
 
