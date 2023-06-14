@@ -1,6 +1,6 @@
 package com.springcloud.sbsuite.store.domain;
 
-import dto.OrderStatus;
+import com.springcloud.sbsuite.dto.OrderStatus;
 import lombok.*;
 
 import jakarta.persistence.*;

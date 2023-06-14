@@ -1,5 +1,6 @@
 package com.springcloud.sbsuite.store.services;
 
+import com.springcloud.sbsuite.dto.*;
 import com.springcloud.sbsuite.store.api.NotFoundException;
 import dto.*;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package dto;
+package com.springcloud.sbsuite.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

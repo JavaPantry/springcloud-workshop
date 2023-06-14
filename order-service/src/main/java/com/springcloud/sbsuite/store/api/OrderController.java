@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.store.api;
 
 
-import dto.OrderLineDto;
+import com.springcloud.sbsuite.dto.OrderLineDto;
 import com.springcloud.sbsuite.store.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

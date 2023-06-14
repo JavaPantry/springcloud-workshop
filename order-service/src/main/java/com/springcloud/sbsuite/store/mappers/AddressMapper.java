@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.store.mappers;
 
 import com.springcloud.sbsuite.store.domain.Address;
-import dto.AddressDto;
+import com.springcloud.sbsuite.dto.AddressDto;
 import org.mapstruct.Mapper;
 
 @Mapper

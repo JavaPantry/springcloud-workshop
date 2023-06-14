@@ -1,6 +1,6 @@
 package com.springcloud.sbsuite.store.api;
 
-import dto.OrderLineDto;
+import com.springcloud.sbsuite.dto.OrderLineDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
 package com.springcloud.sbsuite.store;
 
 import com.springcloud.sbsuite.store.domain.OrderLine;
-import dto.OrderLineDto;
+import com.springcloud.sbsuite.dto.OrderLineDto;
 import com.springcloud.sbsuite.store.mappers.OrderLineMapper;
 import org.mapstruct.factory.Mappers;
 

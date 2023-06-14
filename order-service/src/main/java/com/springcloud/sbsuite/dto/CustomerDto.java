@@ -1,4 +1,4 @@
-package dto;
+package com.springcloud.sbsuite.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderHeaderDto {
+public class CustomerDto {
 
     @JsonProperty("id")
     private Long id = null;
@@ -30,10 +30,7 @@ public class OrderHeaderDto {
     @JsonProperty("lastModifiedDate")
     private OffsetDateTime lastModifiedDate = null;
 
-    private String name;
-    //private Customer customer;
-    private AddressDto shippingAddress;
-    private AddressDto billToAddress;
-    private OrderStatus orderStatus;
-    private Set<OrderLineDto> orderLines;
+    private AddressDto address;
+    private ContactDto contact;
+    private Set<OrderHeaderDto> orders;
 }
