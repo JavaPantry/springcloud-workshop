@@ -2284,7 +2284,12 @@ public class CustomErrorController {
 - commit - move all dtos in all services to new package com.springcloud.sbsuite.dto
 
 # June 14, 2023 - Refactoring folders and packages in all services
+
+## Order Service folders refactory
 - commit - move all order-service dtos package com.springcloud.sbsuite.dto
 - rename order-service package com.springcloud.sbsuite.store to com.springcloud.sbsuite.orders
   - rename `@RequestMapping("/order")` api entrypoint in order-service OrderController.java to `@RequestMapping("/orders")`
   - commit - rename order-service package com.springcloud.sbsuite.store to com.springcloud.sbsuite.orders
+- Accidentally rename `store` package to `orders` in product and store services 
+- refactor Product and Store service package
+- commit - refactor Product and Store service package
