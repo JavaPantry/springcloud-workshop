@@ -2371,3 +2371,16 @@ public class CustomErrorController {
   ```
 - check inventory service logs for kafka message - **NONE**
 - commit - add kafka messaging to order-service
+
+## Fix kafka topic listening in inventory-service
+- change topic listener in inventory-service from `notificationTopic` to `orderTopic` 
+  - `@KafkaListener(topics = "orderTopic")`
+- run all services and execute `send DUMMY create order to order-service`
+  - confirm inventory-service logs show kafka message
+  ```
+  com.springcloud.sbsuite.inventory.InventoryServiceApplication [INFO ] 2023-06-14 17:33:46.015 - Received Order Notification for Product - 1
+  ```
+  
+- commit - fix kafka topic listening in inventory-service
+
+  

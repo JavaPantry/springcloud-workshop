@@ -21,7 +21,7 @@ public class InventoryServiceApplication {
         SpringApplication.run(InventoryServiceApplication.class, args);
     }
 
-    @KafkaListener(topics = "notificationTopic")
+    @KafkaListener(topics = "orderTopic")
     public void handleNotification(OrderPlacedEvent orderPlacedEvent) {
         log.info("Received Order Notification for Product - {}", orderPlacedEvent.getProductId());
         System.out.println("Received Order Notification for Product - " + orderPlacedEvent.getProductId());
