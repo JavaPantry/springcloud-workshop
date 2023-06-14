@@ -1,4 +1,4 @@
-package com.springcloud.sbsuite.store.dto;
+package com.springcloud.sbsuite.orders.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

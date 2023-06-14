@@ -1337,7 +1337,7 @@ class Eclient2ServiceRestTemplateImpl
 
 ### Rename endpoints in inventory-service and store-service
 - in store-service
-  - rename package `com.springcloud.sbsuite.eurekaclient2.api` to `com.springcloud.sbsuite.store.api` 
+  - rename package `com.springcloud.sbsuite.eurekaclient2.api` to `com.springcloud.sbsuite.orders.api` 
   - in StoreController.java - @GetMapping("/new/name") -> @GetMapping("store/inventory")
 - in inventory-service
   - rename package `com.springcloud.sbsuite.inventory.api` to `com.springcloud.sbsuite.inventory.api`
@@ -1801,7 +1801,7 @@ can you suggest how to solve this problem?
 ## Failed attempt to test ProductService as DataJpaTest
 - replace `@SpringBootTest` with `@DataJpaTest` in `ProductServiceTest`
   - failed with error `Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test`
-    - Failed to load ApplicationContext for [MergedContextConfiguration@446626a7 testClass = com.springcloud.sbsuite.store.services.ProductServiceTest
+    - Failed to load ApplicationContext for [MergedContextConfiguration@446626a7 testClass = com.springcloud.sbsuite.orders.services.ProductServiceTest
   - Rollback
 - commit - failed attempt to test ProductService as DataJpaTest
 
@@ -1891,7 +1891,7 @@ class ProductControllerIT {
   - comment out back reference to CustomerDto in OrderHeaderDto
 - during `fetchOrderHeaders()` test throws exception
   - LazyInitializationException: failed to lazily initialize a collection of role: 
-  - com.springcloud.sbsuite.store.domain.OrderHeader.orderLines: could not initialize proxy - no Session
+  - com.springcloud.sbsuite.orders.domain.OrderHeader.orderLines: could not initialize proxy - no Session
   - [Eager/Lazy Loading in Hibernate](https://www.baeldung.com/hibernate-lazy-eager-loading)
    - FIX by adding `fetch = FetchType.EAGER`
    - `@OneToMany(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)`
@@ -2006,7 +2006,7 @@ class ProductControllerIT {
   - you need to add `import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;` to resolve `post` in `mockMvc.perform(`
   - Fix error Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'productController': 
     - Unsatisfied dependency expressed through field 'productService': 
-    - No qualifying bean of type 'com.springcloud.sbsuite.store.services.ProductService' available: 
+    - No qualifying bean of type 'com.springcloud.sbsuite.orders.services.ProductService' available: 
     - expected at least 1 bean which qualifies as autowire candidate. 
     - Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
     - to fix add `@MockBean ProductService productService;` 
@@ -2176,12 +2176,12 @@ class ProductControllerIT {
   ``` 
 - failed as expected
     ```
-    jakarta.validation.ConstraintViolationException: Validation failed for classes [com.springcloud.sbsuite.store.domain.Product] during persist time for groups [jakarta.validation.groups.Default, ]
+    jakarta.validation.ConstraintViolationException: Validation failed for classes [com.springcloud.sbsuite.orders.domain.Product] during persist time for groups [jakarta.validation.groups.Default, ]
     List of constraint violations:[
-    ConstraintViolationImpl{interpolatedMessage='must not be blank', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotBlank.message}'}
-    ConstraintViolationImpl{interpolatedMessage='must not be null', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotNull.message}'}
-    ConstraintViolationImpl{interpolatedMessage='must not be null', propertyPath=name, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotNull.message}'}
-    ConstraintViolationImpl{interpolatedMessage='must not be blank', propertyPath=name, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotBlank.message}'}
+    ConstraintViolationImpl{interpolatedMessage='must not be blank', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.orders.domain.Product, messageTemplate='{jakarta.validation.constraints.NotBlank.message}'}
+    ConstraintViolationImpl{interpolatedMessage='must not be null', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.orders.domain.Product, messageTemplate='{jakarta.validation.constraints.NotNull.message}'}
+    ConstraintViolationImpl{interpolatedMessage='must not be null', propertyPath=name, rootBeanClass=class com.springcloud.sbsuite.orders.domain.Product, messageTemplate='{jakarta.validation.constraints.NotNull.message}'}
+    ConstraintViolationImpl{interpolatedMessage='must not be blank', propertyPath=name, rootBeanClass=class com.springcloud.sbsuite.orders.domain.Product, messageTemplate='{jakarta.validation.constraints.NotBlank.message}'}
     ]
     ```
 - add assertThrows to `ProductServiceTest::saveNewInvalidProduct()` test
@@ -2217,11 +2217,11 @@ class ProductControllerIT {
     ```
     - throws `ConstraintViolationException` as expected
       ```
-      jakarta.validation.ConstraintViolationException: Validation failed for classes [com.springcloud.sbsuite.store.domain.Product] during persist time for groups [jakarta.validation.groups.Default, ]
+      jakarta.validation.ConstraintViolationException: Validation failed for classes [com.springcloud.sbsuite.orders.domain.Product] during persist time for groups [jakarta.validation.groups.Default, ]
         List of constraint violations:[
-        ConstraintViolationImpl{interpolatedMessage='must not be blank', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotBlank.message}'}
-        ConstraintViolationImpl{interpolatedMessage='size must be between 2 and 100', propertyPath=name, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.Size.message}'}
-        ConstraintViolationImpl{interpolatedMessage='must not be null', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.store.domain.Product, messageTemplate='{jakarta.validation.constraints.NotNull.message}'}
+        ConstraintViolationImpl{interpolatedMessage='must not be blank', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.orders.domain.Product, messageTemplate='{jakarta.validation.constraints.NotBlank.message}'}
+        ConstraintViolationImpl{interpolatedMessage='size must be between 2 and 100', propertyPath=name, rootBeanClass=class com.springcloud.sbsuite.orders.domain.Product, messageTemplate='{jakarta.validation.constraints.Size.message}'}
+        ConstraintViolationImpl{interpolatedMessage='must not be null', propertyPath=description, rootBeanClass=class com.springcloud.sbsuite.orders.domain.Product, messageTemplate='{jakarta.validation.constraints.NotNull.message}'}
         ]
       ```
 - wrap `productService.saveProduct(product)` in `assertThrows(ConstraintViolationException.class, () -> productService.saveProduct(product).orElseThrow(NotFoundException::new));`
@@ -2282,3 +2282,9 @@ public class CustomErrorController {
 - move all dtos in all services to new package com.springcloud.sbsuite.dto
   - one package name for dto for less sync effort
 - commit - move all dtos in all services to new package com.springcloud.sbsuite.dto
+
+# June 14, 2023 - Refactoring folders and packages in all services
+- commit - move all order-service dtos package com.springcloud.sbsuite.dto
+- rename order-service package com.springcloud.sbsuite.store to com.springcloud.sbsuite.orders
+  - rename `@RequestMapping("/order")` api entrypoint in order-service OrderController.java to `@RequestMapping("/orders")`
+  - commit - rename order-service package com.springcloud.sbsuite.store to com.springcloud.sbsuite.orders

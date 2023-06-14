@@ -23,7 +23,7 @@ GET {{gateway-host}}/product-service/product
 GET {{gateway-host}}/product-service/product/1
 
 ### get direct order-service
-GET {{gateway-host}}/order-service/order
+GET {{gateway-host}}/order-service/orders
 
 ### get config-var from product-service
 #GET {{gateway-host}}/product-service/product/config-var

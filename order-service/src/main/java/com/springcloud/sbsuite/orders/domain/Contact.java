@@ -1,13 +1,13 @@
-package com.springcloud.sbsuite.orders.dto;
+package com.springcloud.sbsuite.orders.domain;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class ContactDto {
+@Embeddable
+public class Contact {
 	private String name;
 	private String phone;
 	private String email;
