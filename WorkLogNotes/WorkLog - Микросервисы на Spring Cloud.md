@@ -2384,4 +2384,23 @@ public class CustomErrorController {
   
 - commit - fix kafka topic listening in inventory-service
 
-  
+## Merge database-service and kafka-service compose files
+- docker-compose.yml - docker compose file for all services to run within docker
+- kill springcloud-sbsuite docker containers (with their images?)
+  - b64ef8fbe873   confluentinc/cp-kafka:7.3.2       "/etc/confluent/dock…"   18 hours ago   Up 18 hours   0.0.0.0:9092->9092/tcp              broker                               
+  - 4ecf1865e09b   confluentinc/cp-zookeeper:7.3.2   "/etc/confluent/dock…"   18 hours ago   Up 18 hours   2181/tcp, 2888/tcp, 3888/tcp        zookeeper                            
+  - 211837a8dbe8   mysql:8.0                         "docker-entrypoint.s…"   3 weeks ago    Up 3 weeks    0.0.0.0:3306->3306/tcp, 33060/tcp   springcloud-sbsuite-scms-sbsuite-db-1
+- merging files to docker-compose-local-dev-env.yml
+  - `database-service.yml` - docker compose file for mysql 
+  - `kafka-service.yml` - docker compose file for kafka
+- start docker compose with `docker-compose -f docker-compose-local-dev-env.yml up -d`
+  - confirm mysql and kafka servers are running in docker desktop
+  - $ docker ps
+    CONTAINER ID   IMAGE                             NAMES
+    4d2360ab0d50   confluentinc/cp-kafka:7.3.2       scms-broker
+    b6fa26c1ce32   mysql:8.0                         scms-sbsuite-db
+    8607d64835ad   confluentinc/cp-zookeeper:7.3.2   scms-zookeeper
+
+- run all services and test with http-client `TestApiGateway.http`
+- remove `database-service.yml` and `kafka-service.yml`
+- commit - merge database-service and kafka-service compose files
