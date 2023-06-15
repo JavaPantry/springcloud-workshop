@@ -2295,6 +2295,7 @@ public class CustomErrorController {
 - commit - refactor Product and Store service package
 
 ## Add Kafka messagging service to order-service
+- create branch `kafka`
 - follow - **04:21:11** - Event Driven Architecture using Kafka [@](https://youtu.be/mPPhcU7oWDU?t=15672)
   - install kafka server [@](https://youtu.be/mPPhcU7oWDU?t=15808)
     - start docker as described in [quickstart kafka docker](https://developer.confluent.io/quickstart/kafka-docker/)
@@ -2302,9 +2303,9 @@ public class CustomErrorController {
     - run `docker-compose -f kafka-service.yml up -d`
       - we'll start kafka server from IntelliJ IDE 
       - confirm kafka server is running in docker desktop
-      - zookeeper 4ecf1865e09b confluentinc/cp-zookeeper:7.3.2 Running
-      - broker b64ef8fbe873 confluentinc/cp-kafka:7.3.2 Running 9092:9092
-    - verify broker is running `docker logs -f broker`   (copilot generated `docker-compose -f kafka-service.yml ps`)
+        - zookeeper 4ecf1865e09b confluentinc/cp-zookeeper:7.3.2 Running
+        - broker b64ef8fbe873 confluentinc/cp-kafka:7.3.2 Running 9092:9092
+    - verify broker is running `/c/IntelliJ_WS_SpringBootWorkshop/springcloud-sbsuite$ docker logs -f broker`   (copilot generated `docker-compose -f kafka-service.yml ps`)
   - look for required dependecy [@](https://docs.spring.io/spring-kafka/docs/current/reference/html/#quick-tour) 
   - add `spring-kafka` dependency in order-service pom.xml
 
