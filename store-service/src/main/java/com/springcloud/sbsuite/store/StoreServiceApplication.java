@@ -14,7 +14,7 @@ public class StoreServiceApplication {
 		SpringApplication.run(StoreServiceApplication.class, args);
 	}
 
-	@KafkaListener(topics = "orderTopic")
+	@KafkaListener(topics = "orderTopic", groupId = "storeOrderTopicId")
 	public void handleNotification(OrderPlacedEvent orderPlacedEvent) {
 		log.info("StoreServiceApplication:: Received Order Notification for Product - {}", orderPlacedEvent.getProductId());
 	}

@@ -2413,3 +2413,9 @@ public class CustomErrorController {
 - see [GPTChat](WorkLogNotes/GPTChat-Kafka-Multi-Listener-Events.md)
   -  Only one event listener in group will receive event from one topic.   All event listeners of one topic in different groups will receive event.
 - commit - Add Store app listener for order event and Fix issue that only one listener receive kafka message
+
+## use groupId in kafka listener and skip groupId definition in application.properties
+- By defining the groupId directly in the @KafkaListener annotation, it takes precedence over any other configuration sources, such as the application properties. Therefore, the groupId specified in the annotation will be used for that specific listener.
+- However, it's important to note that if you have multiple listeners within the same application and you want them to share the same consumer group ID, you will need to define the groupId consistently for all of them, either through the annotation or the application properties.
+  - see [GPTChat](WorkLogNotes/GPTChat-Kafka-Multi-Listener-Events.md)
+- commit - use groupId in kafka listener and skip groupId definition in application.properties
