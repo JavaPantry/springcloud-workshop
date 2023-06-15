@@ -1,4 +1,4 @@
-package com.springcloud.sbsuite.dto;
+package com.springcloud.sbsuite.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

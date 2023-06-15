@@ -1,6 +1,6 @@
 package com.springcloud.sbsuite.orders.services;
 
-import com.springcloud.sbsuite.dto.OrderPlacedEvent;
+import com.springcloud.sbsuite.event.OrderPlacedEvent;
 import com.springcloud.sbsuite.orders.domain.Customer;
 import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;

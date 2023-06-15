@@ -2323,14 +2323,14 @@ public class CustomErrorController {
     spring.kafka.template.default-topic=orderTopic
     spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
     spring.kafka.producer.value-serializer=org.springframework.kafka.support.serializer.JsonSerializer
-    spring.kafka.producer.properties.spring.json.type.mapping=event:com.springcloud.sbsuite.dto.OrderPlacedEvent
+    spring.kafka.producer.properties.spring.json.type.mapping=event:com.springcloud.sbsuite.event.OrderPlacedEvent
     ```
   - inject `KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;` in `OrderService.java` [@](https://youtu.be/mPPhcU7oWDU?t=16369)
     ```
     @Autowired
     private KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
     ```
-  - create `com.springcloud.sbsuite.dto.OrderPlacedEvent`
+  - create `com.springcloud.sbsuite.event.OrderPlacedEvent`
   - send event to kafka `kafkaTemplate.send("orderTopic", new OrderPlacedEvent(productId, quantity));`
   - we need to add rest api endpoint to send order to kafka
     ``` 
@@ -2404,3 +2404,7 @@ public class CustomErrorController {
 - run all services and test with http-client `TestApiGateway.http`
 - remove `database-service.yml` and `kafka-service.yml`
 - commit - merge database-service and kafka-service compose files
+
+## Move OrderPlacedEvent to common event package in all services
+- sync event package in order-service, inventory-service, product-service and store-service
+- commit - move OrderPlacedEvent to common event package in all services

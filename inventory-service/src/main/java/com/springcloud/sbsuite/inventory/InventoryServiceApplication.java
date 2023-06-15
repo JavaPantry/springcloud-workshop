@@ -1,6 +1,6 @@
 package com.springcloud.sbsuite.inventory;
 
-import com.springcloud.sbsuite.dto.OrderPlacedEvent;
+import com.springcloud.sbsuite.event.OrderPlacedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
