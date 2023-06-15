@@ -2408,3 +2408,8 @@ public class CustomErrorController {
 ## Move OrderPlacedEvent to common event package in all services
 - sync event package in order-service, inventory-service, product-service and store-service
 - commit - move OrderPlacedEvent to common event package in all services
+
+## Add Store app listener for order event and Fix issue that only one listener receive kafka message
+- see [GPTChat](WorkLogNotes/GPTChat-Kafka-Multi-Listener-Events.md)
+  -  Only one event listener in group will receive event from one topic.   All event listeners of one topic in different groups will receive event.
+- commit - Add Store app listener for order event and Fix issue that only one listener receive kafka message
