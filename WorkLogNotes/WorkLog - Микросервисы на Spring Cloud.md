@@ -2419,3 +2419,10 @@ public class CustomErrorController {
 - However, it's important to note that if you have multiple listeners within the same application and you want them to share the same consumer group ID, you will need to define the groupId consistently for all of them, either through the annotation or the application properties.
   - see [GPTChat](WorkLogNotes/GPTChat-Kafka-Multi-Listener-Events.md)
 - commit - use groupId in kafka listener and skip groupId definition in application.properties
+
+## Multi-Method Listeners
+- [Set Mapping Types in the Producer](https://www.baeldung.com/spring-kafka#multi-method-listeners)
+  - see how we can configure our application to send various kinds of objects to the same topic and then consume them
+  - configProps.put(JsonSerializer.TYPE_MAPPINGS, "greeting:com.baeldung.spring.kafka.Greeting, farewell:com.baeldung.spring.kafka.Farewell");
+- how I can map more than one mapping for kafka producer in application properties file?
+  - see [GPTChat](WorkLogNotes/GPTChat-Kafka-Multi-Listener-Events.md)
