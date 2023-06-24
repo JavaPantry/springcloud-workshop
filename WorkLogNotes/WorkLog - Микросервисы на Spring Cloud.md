@@ -2434,3 +2434,26 @@ public class CustomErrorController {
   - `cd store-app` & `npm install` & `npm run dev`
   - open http://127.0.0.1:3000/
 - commit - Create dummy nuxt store app
+
+## Basic UI Layout with Nuxt
+### add bootstrap to nuxt app
+- follow [Nuxt styling](https://nuxt.com/docs/getting-started/styling#external-stylesheets)
+- same as [Nuxt 3 Crash Course #7 - Adding Tailwind CSS | The Net Ninja](https://youtu.be/dvanqBUoxhc?list=PL4cUxeGkcC9haQlqdCQyYmL_27TesCGPC&t=36)
+- TODO: add bootstrap to nuxt app (as installed dependency)
+    - `npm install bootstrap`
+    - add bootstrap css to `nuxt.config.js`
+      ```js
+      css: [
+        'bootstrap/dist/css/bootstrap.css'
+      ],
+    ```
+### Add default layout
+- add `store-app/layouts/default.vue`
+
+### Add Nav header component
+- `store-app/components/Nav.vue`
+
+### Add home page
+- `store-app/pages/index.vue`
+
+- commit - Basic UI Layout with Nuxt
