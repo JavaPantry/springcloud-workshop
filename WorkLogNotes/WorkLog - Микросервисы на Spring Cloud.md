@@ -2426,3 +2426,11 @@ public class CustomErrorController {
   - configProps.put(JsonSerializer.TYPE_MAPPINGS, "greeting:com.baeldung.spring.kafka.Greeting, farewell:com.baeldung.spring.kafka.Farewell");
 - how I can map more than one mapping for kafka producer in application properties file?
   - see [GPTChat](WorkLogNotes/GPTChat-Kafka-Multi-Listener-Events.md)
+
+# June 26, 2023 - Nuxt Store App
+## Create dummy nuxt store app
+- [create nuxt store app](https://nuxt.com/docs/getting-started/installation)
+  - `npx nuxi@latest init store-app`
+  - `cd store-app` & `npm install` & `npm run dev`
+  - open http://127.0.0.1:3000/
+- commit - Create dummy nuxt store app
