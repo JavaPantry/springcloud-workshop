@@ -2467,3 +2467,4 @@ public class CustomErrorController {
   - ![](assets/errorPages.png)
   - After I've add app.vue and remove wrong error.vue files - everything start working.
 - commit - Add Error page
+- commit - add handleError btn with clearError

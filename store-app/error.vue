@@ -4,15 +4,19 @@
 			<h1>Global error page: This Page not found</h1>
 			<p>{{error.statusCode}}</p>
 			<p>{{error.message}}</p>
-      <NuxtLink to="/">Go Back home</NuxtLink>
+			<div><button @click="handleError">Go to the home page</button></div>
 		</div>
 	</div>
 </template>
 
+
 <script setup>
-defineProps({
-	error: Object
-})
+const props = defineProps({
+	error: Object,
+	required: true,
+});
+
+const handleError = () => clearError({ redirect: '/' });
 </script>
 
 <style scoped>
