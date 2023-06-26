@@ -2457,3 +2457,13 @@ public class CustomErrorController {
 - `store-app/pages/index.vue`
 
 - commit - Basic UI Layout with Nuxt
+
+# June 25, 2023 - Nuxt Store App layouting UI
+
+## Add Error page
+- see [Nuxt Error Page](WorkLogNotes/GPTChat-NuxtErrorPage.md)
+- check [Custom error page in nuxt 3 application not working](https://stackoverflow.com/questions/76552735/custom-error-page-in-nuxt-3-application-not-working/76553062#76553062)
+  - In project, I have layouts (with default.vue) and pages (with index.vue) folders. Wherever I put the error.vue file, the system won't recognize it.
+  - ![](assets/errorPages.png)
+  - After I've add app.vue and remove wrong error.vue files - everything start working.
+- commit - Add Error page
