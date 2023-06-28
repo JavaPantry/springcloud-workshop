@@ -2468,3 +2468,8 @@ public class CustomErrorController {
   - After I've add app.vue and remove wrong error.vue files - everything start working.
 - commit - Add Error page
 - commit - add handleError btn with clearError
+
+# June 28, 2023 - Nuxt Store App layouting UI
+## Add Products index page
+- add `store-app/pages/products/index.vue` with fetch from fake store 'https://fakestoreapi.com/products'
+- commit - Add Products index page
