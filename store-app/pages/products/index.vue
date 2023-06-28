@@ -6,12 +6,6 @@
             <div class="grid grid-cols-4 gap-5">
                 <div v-for="product in products">
                     <ProductCard :product="product" />
-<!--                    <h4>{{ product.title }}</h4>
-                    <p>{{ product.id }}. {{ product.description }}</p>
-                    <img :src="`${product.image}`"/>
-                    <NuxtLink :to="`/products/${product.id}`">
-                        <button class="btn btn-primary">View Details</button>
-                    </NuxtLink>-->
                 </div>
             </div>
         </div>

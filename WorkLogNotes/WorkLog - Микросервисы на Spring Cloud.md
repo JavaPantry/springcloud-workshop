@@ -2493,3 +2493,4 @@ public class CustomErrorController {
 - rename ProductCard.vue to Card.vue and ProductDetails.vue to Details.vue
 - nuxt router will find them as `<ProductCard>` and `<ProductDetails>`
 - commit - Move ProductCard and ProductDetails to product folder in components
+- commit - Minor styling ProductDetails
