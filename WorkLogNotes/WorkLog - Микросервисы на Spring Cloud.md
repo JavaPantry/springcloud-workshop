@@ -2482,3 +2482,8 @@ public class CustomErrorController {
 ## Add Product Card component
 - add `store-app/components/ProductCard.vue`
 - commit - Add Product Card component
+
+## Add ProductDetails component
+- add `store-app/components/ProductDetails.vue`
+- remove product details from `store-app/pages/products/[id].vue` and use ProductDetails component to render details
+- commit - Add ProductDetails component
