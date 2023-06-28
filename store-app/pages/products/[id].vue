@@ -12,7 +12,7 @@ if (!product.value) {
 
 <template>
 	<NuxtLayout>
-			<div><ProductDetails :product="product" /></div>
+				<ProductDetails :product="product" />
 	</NuxtLayout>
 </template>
 

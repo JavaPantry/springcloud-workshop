@@ -2487,3 +2487,9 @@ public class CustomErrorController {
 - add `store-app/components/ProductDetails.vue`
 - remove product details from `store-app/pages/products/[id].vue` and use ProductDetails component to render details
 - commit - Add ProductDetails component
+
+## Move ProductCard and ProductDetails to product folder in components
+- Move ProductCard and ProductDetails to product folder in components
+- rename ProductCard.vue to Card.vue and ProductDetails.vue to Details.vue
+- nuxt router will find them as `<ProductCard>` and `<ProductDetails>`
+- commit - Move ProductCard and ProductDetails to product folder in components

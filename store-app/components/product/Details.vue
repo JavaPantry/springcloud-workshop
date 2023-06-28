@@ -19,6 +19,9 @@ const { product } = defineProps(['product'])
 			<p>{{ product.description }}</p>
 			<p>Price : {{ product.price }}</p>
 			<p>Category: {{ product.category }}</p>
+<!--			<NuxtLink :to="`/products/${product.id}`">-->
+				<button class="btn btn-primary">Add to Cart</button>
+<!--			</NuxtLink>-->
 		</div>
 	</div>
 </template>
