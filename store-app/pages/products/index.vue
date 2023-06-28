@@ -4,12 +4,15 @@
             <h2>Products</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In perspiciatis omnis consequatur quod necessitatibus autem repellat aperiam quia atque fugit praesentium earum rerum minus, porro asperiores explicabo inventore animi ducimus. Itaque voluptatum facilis nobis, praesentium, quasi pariatur veniam veritatis quo eligendi, ratione libero impedit. Distinctio, delectus sapiente adipisci assumenda obcaecati aliquid exercitationem sit ad autem! Veritatis nihil accusamus recusandae esse?</p>
             <div class="grid grid-cols-4 gap-5">
-                <div v-for="p in products">
+                <div v-for="product in products">
 <!--                    <ProductCard :product="p" />-->
-                    <h4>{{ p.title }}</h4>
-                    <p>{{ p.description }}</p>
-                    <img :src="`${p.image}`"/>
-                    <button class="btn btn-primary">Detail</button>
+                    <h4>{{ product.title }}</h4>
+                    <p>{{ product.id }}. {{ product.description }}</p>
+                    <img :src="`${product.image}`"/>
+<!--                    <button class="btn btn-primary">Detail</button>-->
+                    <NuxtLink :to="`/products/${product.id}`">
+                        <button class="btn btn-primary">View Details</button>
+                    </NuxtLink>
                 </div>
             </div>
         </div>

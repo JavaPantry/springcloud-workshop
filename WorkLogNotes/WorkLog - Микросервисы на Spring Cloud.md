@@ -2473,3 +2473,8 @@ public class CustomErrorController {
 ## Add Products index page
 - add `store-app/pages/products/index.vue` with fetch from fake store 'https://fakestoreapi.com/products'
 - commit - Add Products index page
+
+## Add Products Detail page
+- add `store-app/pages/products/[id].vue` with fetch from fake store 'https://fakestoreapi.com/products'
+- layout detail page with flexbox
+- commit - Add Products Detail page
