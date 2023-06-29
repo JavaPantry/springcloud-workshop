@@ -3,19 +3,12 @@ const { product } = defineProps(['product'])
 </script>
 
 <template>
-	<div class="container">
-		<!--<div><ProductDetails :product="product" /></div>-->
-		<div class="mybox">
-			<img :src="`${product.image}`" class="thumb"/>
-			<div>
-				<h5>stars</h5>
-			</div>
-		</div>
-		<div class="mybox">
-			<h4>{{ product.title }}</h4>
-			<p>{{ product.description }}</p>
-			<p>Price : {{ product.price }}</p>
-			<p>Category: {{ product.category }}</p>
+	<div class="card" style="width: 18rem;">
+		<img :src="`${product.image}`" class="card-img-top" :alt="`${product.title}`">
+		<div class="card-body">
+			<h3 class="card-title">{{ product.title }}</h3>
+			<h6 class="card-subtitle">Category: {{ product.category }}</h6>
+			<p class="card-text">{{ product.description }}</p>
 			<NuxtLink :to="`/products/${product.id}`">
 				<button class="btn btn-primary">View Details</button>
 			</NuxtLink>
@@ -25,22 +18,5 @@ const { product } = defineProps(['product'])
 
 
 <style scoped>
-.container {
-	display: flex;
-	flex-direction: row;
-}
-
-.mybox {
-	display: flex;
-	flex-direction: column;
-	border: blue 1px solid;
-	margin: 20px;
-}
-
-.thumb {
-	max-height: 200px;
-	max-width: 200px;
-	margin: 0 auto;
-}
 
 </style>
