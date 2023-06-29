@@ -2500,4 +2500,5 @@ public class CustomErrorController {
 - [Bootstrap Card component](https://getbootstrap.com/docs/5.0/components/card/)
 - commit - Apply bootstrap style to product page and ProductCard
 - commit - Add gaps around cards in product page
-- commit - Apply horizontal layout to ProductCard 
+- commit - Apply horizontal layout to ProductCard
+- commit - Apply bootstrap style to ProductDetail Card

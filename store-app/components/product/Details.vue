@@ -3,47 +3,29 @@ const { product } = defineProps(['product'])
 </script>
 
 <template>
-	<div class="container">
-		<div class="mybox">
-			<h2>{{ product.title }}</h2>
-		</div>
-	</div>
-	<div class="container">
-		<div class="mybox">
-			<img :src="`${product.image}`" class="thumb"/>
-			<div>
-				<h5>stars</h5>
+	<div class="card" style="width: 100%;">
+		<h3 class="card-header">{{ product.title }}</h3>
+		<div class="row g-0">
+			<div class="col-md-2">
+				<img :src="`${product.image}`" class="img-fluid rounded-start" :alt="`${product.title}`">
 			</div>
-		</div>
-		<div class="mybox">
-			<p>{{ product.description }}</p>
-			<p>Price : {{ product.price }}</p>
-			<p>Category: {{ product.category }}</p>
-			<NuxtLink :to="`/products/${product.id}`" style="text-align: center">
-				<button class="btn btn-primary">Add to Cart</button>
-			</NuxtLink>
+			<div class="col-md-10">
+				<div class="card-body">
+					<h6 class="card-subtitle">Category: {{ product.category }}</h6>
+					<br>
+					<p class="card-text">{{ product.description }}</p>
+					<NuxtLink :to="`/products/${product.id}`">
+						<button class="btn btn-primary">View Details</button>
+					</NuxtLink>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <style scoped>
 
-.container {
-	display: flex;
-	flex-direction: row;
+img {
+	padding: 1rem;
 }
-
-.mybox {
-	display: flex;
-	flex-direction: column;
-	border: blue 1px solid;
-	margin: 20px;
-}
-
-.thumb {
-	max-height: 200px;
-	max-width: 200px;
-	margin: 0 auto;
-}
-
 </style>
