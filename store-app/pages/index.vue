@@ -3,16 +3,17 @@
  import { useShopStore } from '@/stores/shop'
 
  const shop = useShopStore()
-
+ const {count} = useShopStore() // decompose count from shop store
+ const {shops} = useShopStore() // decompose shops from shop store
 
 </script>
 <template>
     <NuxtLayout>
         <div>
             <h2>Home</h2>
-            <h5>Counter: {{shop.count}}</h5>
+            <h5>Counter: {{count}}</h5>
             <ul>
-                <li v-for="shop in shop.shops" :key="shop.id">
+                <li v-for="shop in shops" :key="shop.id">
                     {{shop.name}}
                 </li>
             </ul>

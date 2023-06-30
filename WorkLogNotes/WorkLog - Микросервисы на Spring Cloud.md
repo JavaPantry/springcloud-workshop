@@ -2552,3 +2552,4 @@ public class CustomErrorController {
     </template>
     ```
 - commit - Add Pinia store dependency and minimal state
+- commit - decompose count and shops from shop store

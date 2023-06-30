@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useShopStore = defineStore('shop', {
     state: () => ({
-        count: 1,
+        count: 3,
         shops: [
             {
                 id: 1,
@@ -17,6 +17,16 @@ export const useShopStore = defineStore('shop', {
             {
                 id: 2,
                 name: 'eCharge',
+                address: 'Address 2',
+                phone: 'Phone 2',
+                email: 'Email 2',
+                website: 'Website 2',
+                description: 'Description 2',
+                image: 'https://picsum.photos/200/300'
+            },
+            {
+                id: 3,
+                name: 'Canada Computers',
                 address: 'Address 2',
                 phone: 'Phone 2',
                 email: 'Email 2',
