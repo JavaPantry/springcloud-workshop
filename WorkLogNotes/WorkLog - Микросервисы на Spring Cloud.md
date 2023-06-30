@@ -2553,3 +2553,13 @@ public class CustomErrorController {
     ```
 - commit - Add Pinia store dependency and minimal state
 - commit - decompose count and shops from shop store
+
+## Fetch products from fake store in pinia store
+- Is axios module been deperecated? https://axios.nuxtjs.org/setup
+  - Axios module supports Nuxt 2. Nuxt 3 users can use the new isomorphic $fetch API (migration guide).
+- Use fake store [api](https://fakestoreapi.com/) [Docs](https://fakestoreapi.com/docs)
+- fetch products in shop::fetchProducts() and render them in products/index.vue
+  - TODO: remove `@ts-ignore` before `this.products = result;` in shop.ts
+- use reference wrap arounf products `const {products} = storeToRefs(shop)` in products/index.vue
+- TODO: products aren't rendered in products/index.vue on entry
+- commit - Fetch products from fake store in pinia store

@@ -1,3 +1,15 @@
+<script setup>
+import { storeToRefs}   from "pinia";
+
+import { useShopStore } from '@/stores/shop'
+
+const shop = useShopStore();
+shop.fetchProducts();
+
+const {products} = storeToRefs(shop)
+
+</script>
+
 <template>
     <NuxtLayout>
         <div class="container">
@@ -12,10 +24,6 @@
     </NuxtLayout>
 </template>
 
-<script setup>
-//  fetch the products
-const { data: products } = await useFetch('https://fakestoreapi.com/products')
-</script>
 
 <style scoped>
 </style>

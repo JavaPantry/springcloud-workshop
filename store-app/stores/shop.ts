@@ -34,6 +34,20 @@ export const useShopStore = defineStore('shop', {
                 description: 'Description 2',
                 image: 'https://picsum.photos/200/300'
             }
-            ]
+            ],
+        products: []
     }),
+    actions: {
+        fetchProducts: async function () {
+            try {
+                const {data: result} = await useFetch('https://fakestoreapi.com/products');
+                console.log("fetchProducts() -> " + result);
+                // @ts-ignore
+                this.products = result;
+            } catch (error) {
+                //showTooltip(error) - let the form component display the error
+                return error
+            }
+        },
+    }
 })
