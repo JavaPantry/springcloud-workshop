@@ -2459,7 +2459,7 @@ public class CustomErrorController {
 - commit - Basic UI Layout with Nuxt
 
 # June 25, 2023 - Nuxt Store App layouting UI
-
+- branch `nuxt-store-app`
 ## Add Error page
 - see [Nuxt Error Page](WorkLogNotes/GPTChat-NuxtErrorPage.md)
 - check [Custom error page in nuxt 3 application not working](https://stackoverflow.com/questions/76552735/custom-error-page-in-nuxt-3-application-not-working/76553062#76553062)
@@ -2495,10 +2495,60 @@ public class CustomErrorController {
 - commit - Move ProductCard and ProductDetails to product folder in components
 - commit - Minor styling ProductDetails
 
-# June 28, 2023 - Nuxt Store App layouting UI
+# June 29, 2023 - Nuxt Store App layouting UI
 ## Apply bootstrap style to product page and ProductCard
 - [Bootstrap Card component](https://getbootstrap.com/docs/5.0/components/card/)
 - commit - Apply bootstrap style to product page and ProductCard
 - commit - Add gaps around cards in product page
 - commit - Apply horizontal layout to ProductCard
 - commit - Apply bootstrap style to ProductDetail Card
+
+# June 30, 2023 - Nuxt Store App Add Pinia store
+- branch `nuxt-store-app-pinia`
+
+## Add Pinia store dependency and minimal state
+- [Pinia home](https://pinia.vuejs.org/)
+- article [Adding Pinia to Nuxt 3](https://dev.to/tao/adding-pinia-to-nuxt-3-2023-3l77)
+  - [Install Pinia](https://pinia.vuejs.org/ssr/nuxt.html)
+    - run `npm install pinia @pinia/nuxt`
+      - cause `npm ERR! code ERESOLVE` add `"overrides": {"vue": "latest"}` to package.json
+        - run `npm install` again and then `npm install pinia @pinia/nuxt`
+        - succeed -> `"dependencies": {"@pinia/nuxt": "^0.4.11","pinia": "^2.1.4"}`
+    - add `pinia` to `nuxt.config.js`
+      ```js
+      export default {
+        modules: [
+          '@pinia/nuxt'
+        ],
+      }
+      ```
+    - add [Auto imports]
+    - stores/shop.ts
+    ```ts
+    import { defineStore } from 'pinia'
+  
+    export const useShopStore = defineStore('shop', {
+    state: () => ({
+      count: 0,
+      shops: [{id: 1,name: 'Best Buy',}]
+    }),
+    })
+    ```
+    - add `store-app/pages/index.vue` with `setup()` and `useShopStore()`
+    ```
+    <script setup>
+     import { useShopStore } from '@/stores/shop'
+     const shop = useShopStore()
+    </script>
+    <template>
+        <NuxtLayout>
+            <div>
+                <h5>Counter: {{shop.count}}</h5>
+                <ul>
+                    <li v-for="shop in shop.shops" :key="shop.id">{{shop.name}}</li>
+                </ul>
+            </div>
+        </NuxtLayout>
+    </template>
+    ```
+- commit - Add Pinia store dependency and minimal state
