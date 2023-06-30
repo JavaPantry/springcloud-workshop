@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 
+import Product  from "@/models/Product";
+
 export const useShopStore = defineStore('shop', {
     state: () => ({
         count: 3,
@@ -35,15 +37,16 @@ export const useShopStore = defineStore('shop', {
                 image: 'https://picsum.photos/200/300'
             }
             ],
-        products: []
+        //products: <Product[]>[]
+        products: [] as Product[]
     }),
     actions: {
         fetchProducts: async function () {
             try {
-                const {data: result} = await useFetch('https://fakestoreapi.com/products');
-                console.log("fetchProducts() -> " + result);
+                const {data} = await useFetch('https://fakestoreapi.com/products');
+                //TODO - fix this  typescript error `TS2352: Conversion of type 'Ref<unknown>' to type 'Product[]' may be a mistake because neither type sufficiently overlaps with the other.`
                 // @ts-ignore
-                this.products = result;
+                this.products = data as Product[];
             } catch (error) {
                 //showTooltip(error) - let the form component display the error
                 return error

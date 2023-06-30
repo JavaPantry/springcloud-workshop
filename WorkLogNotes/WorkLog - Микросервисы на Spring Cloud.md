@@ -2563,3 +2563,10 @@ public class CustomErrorController {
 - use reference wrap arounf products `const {products} = storeToRefs(shop)` in products/index.vue
 - TODO: products aren't rendered in products/index.vue on entry
 - commit - Fetch products from fake store in pinia store
+
+## Use typescript in pinia store
+- create Product.ts in models folder with `Product` interface
+  - follow [Job interface|object](https://youtu.be/H-hXNym2CK8?list=PL4cUxeGkcC9gCtAuEdXTjNVE5bbMFo5OD&t=421)
+- still have an error `typescript error TS2352: Conversion of type 'Ref<unknown>' to type 'Product[]' may be a mistake because neither type sufficiently overlaps with the other.`
+  - in `this.products = data as Product[];`
+- commit - add `Product` interface and use typescript in pinia store
