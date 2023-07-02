@@ -43,10 +43,10 @@ export const useShopStore = defineStore('shop', {
     actions: {
         fetchProducts: async function () {
             try {
+                console.log('entry fetchProducts()');
                 const {data} = await useFetch('https://fakestoreapi.com/products');
-                //TODO - fix this  typescript error `TS2352: Conversion of type 'Ref<unknown>' to type 'Product[]' may be a mistake because neither type sufficiently overlaps with the other.`
-                // @ts-ignore
-                this.products = data as Product[];
+                console.log('fetchProducts() - data: ', data);
+                this.products = data.value as Product[];
             } catch (error) {
                 //showTooltip(error) - let the form component display the error
                 return error

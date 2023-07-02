@@ -2570,3 +2570,100 @@ public class CustomErrorController {
 - still have an error `typescript error TS2352: Conversion of type 'Ref<unknown>' to type 'Product[]' may be a mistake because neither type sufficiently overlaps with the other.`
   - in `this.products = data as Product[];`
 - commit - add `Product` interface and use typescript in pinia store
+
+# July 2, 2023 - Pinia store
+
+## Error in products rendering (stackoverflow)
+Nuxt page doesn't render array from Pinia store [published](https://stackoverflow.com/questions/76599821/nuxt-page-doesnt-render-array-from-pinia-store)
+
+- I have Nuxt page for products list with `fetchProducts()` method from pinia store
+- product list NOT rendered on page 1st visit.
+
+```
+<script setup>
+import { storeToRefs}   from "pinia";
+import { useShopStore } from '@/stores/shop'
+
+const shop = useShopStore();
+shop.fetchProducts();
+const {products} = storeToRefs(shop)
+const hasProducts = computed(() => products.value.length > 0);
+
+</script>
+
+<template>
+    <NuxtLayout>
+        <div class="container">
+            <h2>Products</h2>
+            <div class="container" v-if="hasProducts">
+	              <div class="row row-cols-1 gap-3">
+                    <ProductCard :product="product" v-for="product in products" :key="product.id"/>
+                </div>
+            </div>
+            <div v-else>
+                <h3>Products NOT loaded</h3><br>
+            </div>
+        </div>
+    </NuxtLayout>
+</template>
+```
+
+As you can see on following snapshot products are loaded and available in pinia store, but array `products` on page is empty.
+
+![](assets/markdown-img-paste-20230702122616710.png)
+
+If I go back to home and return to product page products are rendered without any problem or warnings in console.
+
+Any suggestion what I can do to fix or even investigate the issue?
+
+PS. Store code if it's matter here
+
+```
+import { defineStore } from 'pinia'
+
+import Product  from "@/models/Product";
+
+export const useShopStore = defineStore('shop', {
+    state: () => ({
+        //products: <Product[]>[]
+        products: [] as Product[]
+    }),
+    actions: {
+        fetchProducts: async function () {
+            try {
+                const {data} = await useFetch('https://fakestoreapi.com/products');
+                //TODO - fix this  typescript error `TS2352: Conversion of type 'Ref<unknown>' to type 'Product[]' may be a mistake because neither type sufficiently overlaps with the other.`
+                // @ts-ignore
+                this.products = data as Product[];
+            } catch (error) {
+                return error
+            }
+        },
+    }
+})
+```
+
+- similar question: [(Nuxt 3) Computed property from Pinia store doesn't affect the template](https://stackoverflow.com/questions/75521777/nuxt-3-computed-property-from-pinia-store-doesnt-affect-the-template?rq=2)
+
+### My Answer
+
+I'm not sure how valid it is, but assign `this.products = data.value as Product[];` instead of `this.products = data as Product[];` seems to fix the issue.   
+
+```ts
+fetchProducts: async function () {
+  try {
+    const {data} = await useFetch('https://fakestoreapi.com/products');
+    this.products = data.value as Product[];
+  } catch (error) {
+    //showTooltip(error) - let the form component display the error
+    return error
+  }
+}
+```
+
+Please let me know if it's valid solution or not. I'm still learning Vue 3 and Nuxt 3 and not sure that using `useFetch` in pinia store is a good idea.
+
+- This also Solved - fix this  typescript error `TS2352: Conversion of type 'Ref<unknown>' to type 'Product[]' may be a mistake because neither type sufficiently overlaps with the other.`
+  - no need for `// @ts-ignore`
+
+- commit - Fix error in products rendering
