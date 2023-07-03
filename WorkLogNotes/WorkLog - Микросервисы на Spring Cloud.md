@@ -2667,3 +2667,7 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
   - no need for `// @ts-ignore`
 
 - commit - Fix error in products rendering
+
+# July 3, 2023 -  Nuxt Store App Add Vuetify
+- merge nuxt-store-app-pinia into nuxt-store-app
+- C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\store-app>npm install
