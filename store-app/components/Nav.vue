@@ -1,29 +1,41 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <NuxtLink class="navbar-brand" to="/">Store</NuxtLink>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <NuxtLink
-                                to="/"
-                                class="nav-link"
-                                activeClass="active"
-                                aria-current="page"
-                        >Home</NuxtLink>
-                    </li>
-                    <li class="nav-item">
-                        <NuxtLink to="/products" class="nav-link" activeClass="active"
-                        >Product list</NuxtLink>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        <v-app-bar
+                color="primary"
+                density="compact"
+                >
+                <template v-slot:prepend>
+                    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+                </template>
+    
+                <v-app-bar-title>Store UI</v-app-bar-title>
+    
+
+                <!-- NOT available
+                <v-icon icon="fa:fas fa-search"></v-icon>
+                <v-icon icon="fa:fas fa-list"></v-icon>
+                <v-icon icon="fa:fas fa-edit"></v-icon> -->
+
+
+                <v-icon start icon="mdi-home"></v-icon>
+                <v-icon aria-hidden="false">
+                    mdi-account
+                </v-icon>
+                <v-spacer></v-spacer>
+                
+                <v-btn to="/">
+                  <v-icon start icon="mdi-home"></v-icon>
+                  Home
+                </v-btn>
+
+                <v-btn to="/products">
+                  <v-icon start icon="mdi-factory"></v-icon>
+                  Products
+                </v-btn>
+                <template v-slot:append>
+                    <v-btn icon="mdi-dots-vertical"></v-btn>
+                </template>
+        </v-app-bar>
 </template>
 
 <style scoped>
-.ml-auto {
-    margin-left: auto;
-}
 </style>

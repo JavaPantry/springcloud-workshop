@@ -4,8 +4,26 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@invictus.codes/nuxt-vuetify'
   ],
+  vuetify: {
+    /* vuetify options */
+    vuetifyOptions: {
+      // @TODO: list all vuetify options
+    },
+
+    moduleOptions: {
+      /* nuxt-vuetify module options */
+      treeshaking: true,
+      useIconCDN: true,
+
+      /* vite-plugin-vuetify options */
+      styles: true,
+      autoImport: true,
+      importLabComponents: true, 
+    }
+  },
   pinia: {
     autoImports: [
       // automatically imports `defineStore`
@@ -15,12 +33,12 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      link: [
-        {
-          rel: "stylesheet",
-          href: "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
-        },
-      ]
+      // link: [
+      //   {
+      //     rel: "stylesheet",
+      //     href: "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
+      //   },
+      // ]
     }
   }
 })

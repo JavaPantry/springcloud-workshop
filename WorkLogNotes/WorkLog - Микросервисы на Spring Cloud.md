@@ -2671,3 +2671,31 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 # July 3, 2023 -  Nuxt Store App Add Vuetify
 - merge nuxt-store-app-pinia into nuxt-store-app
 - C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\store-app>npm install
+
+## Add Vuetify 
+- nuxt vuetify module - https://nuxt.com/modules/nuxt-vuetify
+  - `npm install --save-dev @invictus.codes/nuxt-vuetify`
+  - add vuetify config to nuxt.config.ts
+    ```ts
+    modules: [
+    '@invictus.codes/nuxt-vuetify'
+    ],
+    vuetify: {
+    vuetifyOptions: {
+    // @TODO: list all vuetify options
+    },
+  
+    moduleOptions: {
+    treeshaking: true,
+    useIconCDN: true,
+        /* vite-plugin-vuetify options */
+        styles: true,
+        autoImport: true,
+        importLabComponents: true, 
+    }
+    }
+    ```
+- remove Bootstrap styles from nuxt.config.ts
+- insert vuetify into default layout
+- replace plain html in Nav.vue with Vuetify `<<v-app-bar>`
+- commit - Add Vuetify, remove Bootstrap and add Vuetify to default layout and nav bar

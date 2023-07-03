@@ -1,10 +1,12 @@
 <template>
-    <div>
+    <v-layout>
         <Nav />
-        <div class="container mx-auto p-4">
+        <v-main>
+            <v-container fluid>
             <slot />
-        </div>
-    </div>
+            </v-container>
+        </v-main>
+    </v-layout>
 </template>
 
 <style scoped>
