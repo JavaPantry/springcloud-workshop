@@ -2699,3 +2699,8 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 - insert vuetify into default layout
 - replace plain html in Nav.vue with Vuetify `<<v-app-bar>`
 - commit - Add Vuetify, remove Bootstrap and add Vuetify to default layout and nav bar
+
+## Add Vuetify to products page
+- add Vuetify to products/index.vue and product/_id.vue
+- replace plain html in Card.vue and Details.vue with Vuetify
+- commit - Add Vuetify to products page
