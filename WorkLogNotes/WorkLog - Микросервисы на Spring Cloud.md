@@ -2668,7 +2668,7 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 
 - commit - Fix error in products rendering
 
-# July 3, 2023 -  Nuxt Store App Add Vuetify
+# July 3, 2023 - Nuxt Store App Add Vuetify
 - merge nuxt-store-app-pinia into nuxt-store-app
 - C:\IntelliJ_WS_SpringBootWorkshop\springcloud-sbsuite\store-app>npm install
 
@@ -2676,25 +2676,26 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 - nuxt vuetify module - https://nuxt.com/modules/nuxt-vuetify
   - `npm install --save-dev @invictus.codes/nuxt-vuetify`
   - add vuetify config to nuxt.config.ts
+    
     ```ts
     modules: [
     '@invictus.codes/nuxt-vuetify'
     ],
     vuetify: {
-    vuetifyOptions: {
-    // @TODO: list all vuetify options
-    },
-  
-    moduleOptions: {
-    treeshaking: true,
-    useIconCDN: true,
-        /* vite-plugin-vuetify options */
-        styles: true,
-        autoImport: true,
-        importLabComponents: true, 
-    }
+        vuetifyOptions: {
+            // @TODO: list all vuetify options
+        },
+        moduleOptions: {
+            treeshaking: true,
+            useIconCDN: true,
+            // vite-plugin-vuetify options
+            styles: true,
+            autoImport: true,
+            importLabComponents: true, 
+        }
     }
     ```
+    
 - remove Bootstrap styles from nuxt.config.ts
 - insert vuetify into default layout
 - replace plain html in Nav.vue with Vuetify `<<v-app-bar>`
@@ -2704,3 +2705,10 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 - add Vuetify to products/index.vue and product/_id.vue
 - replace plain html in Card.vue and Details.vue with Vuetify
 - commit - Add Vuetify to products page
+
+# July 4, 2023 - Revisit Store-service
+## Add Store mysql database to docker-compose-local-dev-env.yml
+- create store mysql db in database/initdb/Init.sql
+- run docker-compose-local-dev-env.yml
+- confirm store db is created
+- commit - Add Store mysql database to docker-compose-local-dev-env.yml
