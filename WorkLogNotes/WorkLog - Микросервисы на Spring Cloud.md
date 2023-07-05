@@ -2741,3 +2741,61 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 - test apis with http-client
   - TODO: - Not an error but need attention: -  "path": "/inventory/product/1"  "message": "query did not return a unique result: 5",
 commit - Merge nuxt-store-app branch into master
+
+## Create store-admin Vutify app
+- create branch `vuetify-store-admin-ui`
+
+## create Vuetify Vue3 store-admin UI app
+### Attempt to create plain Vue3 app and then add Vuetify
+  - only `vuetify` dependency is added to `package.json`
+  ```
+    npm init vue@latest
+    Vue.js - The Progressive JavaScript Framework
+
+    √ Project name: ... store-admin
+    √ Add TypeScript? ... No / Yes
+    √ Add JSX Support? ... No / Yes
+    √ Add Vue Router for Single Page Application development? ... No / Yes
+    √ Add Pinia for state management? ... No / Yes
+    √ Add Vitest for Unit Testing? ... No / Yes
+    √ Add an End-to-End Testing Solution? » No
+    √ Add ESLint for code quality? ... No / Yes
+    √ Add Prettier for code formatting? ... No / Yes
+
+    Scaffolding project in store-admin...
+    Done. Now run:
+  
+    cd store-admin
+    npm install
+    npm run dev
+
+    ### add vuetify
+    - [Vue CLI](https://next.vuetifyjs.com/en/getting-started/installation/#vue-cli)
+      Vue CLI is currently in maintenance mode and no longer the default tooling used to build Vue applications. Vuetify projects are now generated using vite. We plan on enabling the Vue CLI installation path in an official guide in the future.
+    - [Manual steps](https://next.vuetifyjs.com/en/getting-started/installation/#manual-steps)
+      - `npm add vuetify@^3.0.7`
+      - only `vuetify` dependency is added to `package.json`
+  ``` 
+ 
+### Create Vuetify Vue3 store-admin UI app using vuetify CLI
+- https://vuetifyjs.com/en/getting-started/installation/
+- `$npm create vuetify`
+
+  ```
+  >npm create vuetify
+  
+  Vuetify.js - Material Component Framework for Vue
+  
+  √ Project name: ... store-admin
+  √ Which preset would you like to install? » Essentials (Vuetify, VueRouter, Pinia)
+  √ Use TypeScript? ... No / Yes
+  √ Would you like to install dependencies with yarn, npm, or pnpm? » npm
+  
+  ◌ Generating scaffold...
+  ◌ Installing dependencies with npm...
+  
+  $>cd store-admin
+  $store-admin>code .
+  ```
+  
+- commit - Create Vuetify Vue3 store-admin UI app using vuetify CLI
