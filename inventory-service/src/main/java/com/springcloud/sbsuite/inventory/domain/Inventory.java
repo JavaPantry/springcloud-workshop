@@ -37,11 +37,13 @@ import java.util.UUID;
 public class Inventory extends BaseEntity {
 
     @Builder
-    public Inventory(Long productId, Integer quantity) {
+    public Inventory(Long productId, Long storeId, Integer quantity) {
         this.productId = productId;
+        this.storeId = storeId;
         this.quantity = quantity;
     }
 
     private Long productId;
+    private Long storeId;
     private Integer quantity = 0;
 }

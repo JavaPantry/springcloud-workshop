@@ -2712,3 +2712,7 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 - run docker-compose-local-dev-env.yml
 - confirm store db is created
 - commit - Add Store mysql database to docker-compose-local-dev-env.yml
+
+# July 5, 2023 - Revisit Store-service
+## Add storeId to Inventory-service database
+- commit - Add storeId to Inventory-service database
