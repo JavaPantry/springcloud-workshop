@@ -2736,3 +2736,8 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 - restore `@Autowired`	in `@Autowired private StoreRepository storeRepository;`
   - still working and db tables created. TODO: Why?!!!
 - commit - Add JPA, lombok, mapstruct mysql-connector-java, flyway dependencies to store-service pom
+
+## Merge nuxt-store-app branch into master
+- test apis with http-client
+  - TODO: - Not an error but need attention: -  "path": "/inventory/product/1"  "message": "query did not return a unique result: 5",
+commit - Merge nuxt-store-app branch into master
