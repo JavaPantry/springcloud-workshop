@@ -7,5 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class StoreServiceApplicationTest {
 	@Test
 	void contextLoads() {
+		System.out.println("StoreServiceApplicationTest::contextLoads");
 	}
 }

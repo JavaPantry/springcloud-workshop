@@ -2716,3 +2716,23 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 # July 5, 2023 - Revisit Store-service
 ## Add storeId to Inventory-service database
 - commit - Add storeId to Inventory-service database
+
+## Add JPA, lombok, mapstruct mysql-connector-java, flyway dependencies to store-service pom
+- add database to store-service
+- add storeId to order-service and inventory-service database
+- copy dependencies and annotationProcessorPaths from product-service pom
+  - add maven repository https://repo.maven.apache.org/maven2
+- add `StoreRepository  extends JpaRepository<Store, Long>`
+- add `class StoreServiceImpl implements StoreService`
+  - with `@Autowired private StoreRepository storeRepository;`
+    - `@Autowired` cause **runtime error** `Field storeRepository in com.springcloud.sbsuite.store.services.StoreServiceImpl required a bean of type 'com.springcloud.sbsuite.store.repositories.StoreRepository' that could not be found.`
+    - remove `@Autowired` for `storeRepository` in StoreServiceImpl - runtime error gone
+- add `db/migration/V1__init_database.sql` to store-service
+  - flyway migration **not triggered** on empty database
+  - Fix: comment `# spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration`
+    - if uncommented in any other service - flyway migration **NOT** triggered
+- ERROR `SchemaManagementException: Schema-validation: missing table [store]`
+  - Fix - By mistake crete teble `stores` instead of `store` in `db/migration/V1__init_database.sql`
+- restore `@Autowired`	in `@Autowired private StoreRepository storeRepository;`
+  - still working and db tables created. TODO: Why?!!!
+- commit - Add JPA, lombok, mapstruct mysql-connector-java, flyway dependencies to store-service pom
