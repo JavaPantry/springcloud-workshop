@@ -2713,7 +2713,7 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 - confirm store db is created
 - commit - Add Store mysql database to docker-compose-local-dev-env.yml
 
-# July 5, 2023 - Revisit Store-service
+# July 5, 2023 - Revisit Store-service, Vuetify store-admin UI app
 ## Add storeId to Inventory-service database
 - commit - Add storeId to Inventory-service database
 
@@ -2799,3 +2799,10 @@ commit - Merge nuxt-store-app branch into master
   ```
   
 - commit - Create Vuetify Vue3 store-admin UI app using vuetify CLI
+
+# July 6, 2023 - Vuetify store-admin UI app
+## Replace scaffolded AppBar.vue with navbar Nav.vue code from nuxt-store-app
+- copy Nav.vue from nuxt-store-app
+- replace `import DefaultBar from './AppBar.vue'` with `import DefaultBar from './Nav.vue'` in `layouts/Default.vue`
+- remove AppBar.vue
+- commit - Replace scaffolded AppBar.vue with navbar Nav.vue code from nuxt-store-app
