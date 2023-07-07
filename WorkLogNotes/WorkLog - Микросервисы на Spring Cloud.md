@@ -2746,7 +2746,7 @@ commit - Merge nuxt-store-app branch into master
 - create branch `vuetify-store-admin-ui`
 
 ## create Vuetify Vue3 store-admin UI app
-### Attempt to create plain Vue3 app and then add Vuetify
+### **WORST** Attempt to create plain vanilla Vue3 app and then add Vuetify
   - only `vuetify` dependency is added to `package.json`
   ```
     npm init vue@latest
@@ -2777,7 +2777,7 @@ commit - Merge nuxt-store-app branch into master
       - only `vuetify` dependency is added to `package.json`
   ``` 
  
-### Create Vuetify Vue3 store-admin UI app using vuetify CLI
+### **BEST** Create Vuetify Vue3 store-admin UI app using vuetify CLI
 - https://vuetifyjs.com/en/getting-started/installation/
 - `$npm create vuetify`
 
@@ -2806,3 +2806,44 @@ commit - Merge nuxt-store-app branch into master
 - replace `import DefaultBar from './AppBar.vue'` with `import DefaultBar from './Nav.vue'` in `layouts/Default.vue`
 - remove AppBar.vue
 - commit - Replace scaffolded AppBar.vue with navbar Nav.vue code from nuxt-store-app
+
+## Add views, components and store from nuxt-store-app
+- copy views, components and store from nuxt-store-app
+
+### useFetch not recognized
+- not recognised nor exported by @vueuse/core
+- search github  https://github.com/search?q=useFetch+language%3AVue&type=repositories&l=Vue
+    - https://github.com/emersonbottero/pinia-usefetch/blob/master/package.json
+
+    ```
+    "devDependencies": {
+        "@vueuse/core": "^9.1.0",
+     }
+    ```
+  
+- https://github.com/selemonjr/useFetch-composable/blob/master/src/components/Fetch.vue
+    ```ts
+    import { useFetch } from '@vueuse/core';
+    const url = "https://jsonplaceholder.typicode.com/photos";
+    const {isFetching: loading, data:response} = useFetch(url).json();
+    ```
+  
+# July 7, 2023 - Vuetify store-admin UI app
+
+## Add views, components and store from nuxt-store-app
+- copy views, components and store from nuxt-store-app
+- in `store-admin/src/store/shop.ts`
+  - replace `useFetch` with native `fetch`
+  ```ts
+  const response = await fetch('https://fakestoreapi.com/products');
+  const data = await response.json();
+  this.products = data as Product[];
+  ```
+- in `store-admin/src/views/Products.vue`
+  - import ProductCard component `import ProductCard from '@/components/product/Card.vue'`
+- in `store-admin/src/views/products/ProductDetail.vue`
+  - import ProductDetails component `import ProductDetails from '@/components/product/Details.vue'`
+  - retrieve product `const product = products.value[id-1]` from store
+  - TODO: should read backend for product with id
+- commit - fully functional store-admin vue3 replica of nuxt store-app
+ 
