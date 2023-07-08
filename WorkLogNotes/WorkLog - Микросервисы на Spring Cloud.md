@@ -2834,11 +2834,14 @@ commit - Merge nuxt-store-app branch into master
 - copy views, components and store from nuxt-store-app
 - in `store-admin/src/store/shop.ts`
   - replace `useFetch` with native `fetch`
-  ```ts
-  const response = await fetch('https://fakestoreapi.com/products');
-  const data = await response.json();
-  this.products = data as Product[];
-  ```
+  - [Using the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+
+    ```ts
+    const response = await fetch('https://fakestoreapi.com/products');
+    const data = await response.json();
+    this.products = data as Product[];
+    ```
+    
 - in `store-admin/src/views/Products.vue`
   - import ProductCard component `import ProductCard from '@/components/product/Card.vue'`
 - in `store-admin/src/views/products/ProductDetail.vue`
