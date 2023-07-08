@@ -2713,7 +2713,7 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 - confirm store db is created
 - commit - Add Store mysql database to docker-compose-local-dev-env.yml
 
-# July 5, 2023 - Revisit Store-service
+# July 5, 2023 - Revisit Store-service, Vuetify store-admin UI app
 ## Add storeId to Inventory-service database
 - commit - Add storeId to Inventory-service database
 
@@ -2741,3 +2741,16 @@ Please let me know if it's valid solution or not. I'm still learning Vue 3 and N
 - test apis with http-client
   - TODO: - Not an error but need attention: -  "path": "/inventory/product/1"  "message": "query did not return a unique result: 5",
 commit - Merge nuxt-store-app branch into master
+
+## Create store-admin Vutify app
+- create branch `vuetify-store-admin-ui`
+
+July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differs from Nuxt
+- work on Vue+Vuetify admin app to see how Vue development differs from Nuxt
+- see details in [vuetify-store-admin-ui/WorkLogNotes/WorkLog - Микросервисы на Spring Cloud.md](vuetify-store-admin-ui/WorkLogNotes/WorkLog - Микросервисы на Spring Cloud.md)
+
+# July 8, 2023 - research on Nuxt+Pinia+Vuetify vs. Vue+Pinia+Vuetify
+- freeze branch `vuetify-store-admin-ui`
+- remove dummy subproject `store-admin` folder 
+- will continue store-admin UI development in Nuxt
+- commit - minor worklog update on research on Nuxt+Pinia+Vuetify vs. Vue+Pinia+Vuetify
