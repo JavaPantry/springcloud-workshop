@@ -2782,3 +2782,11 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - in `shop.ts` replace `const {data} = await useFetch('https://fakestoreapi.com/products');` with
   - `const {data} = await useFetch('http://localhost:3099/products');`
 - commit - Add dev json-server
+
+## Add dummy unstyled MenuCard component
+- [Images, assets & public folder with Nuxt 3](https://youtu.be/tWQ2LWplmDc?t=68)
+  - assign alias to asset folder in `nuxt.config.ts` - [@](https://youtu.be/tWQ2LWplmDc?t=228)
+  - [vite-svg-loader](https://youtu.be/tWQ2LWplmDc?t=483)
+  - [icones.js.org](https://youtu.be/tWQ2LWplmDc?t=536)
+  - add svg icon as vue component [@](https://youtu.be/tWQ2LWplmDc?t=622)
+- commit - Add dummy unstyled MenuCard component
