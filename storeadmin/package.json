@@ -2,16 +2,20 @@
   "name": "nuxt-app",
   "private": true,
   "scripts": {
+    "jsondev": "concurrently \"npm run server\" \"npm run dev\"",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "server": "json-server -w json-server/db.json -p 3099"
   },
   "devDependencies": {
     "@invictus.codes/nuxt-vuetify": "^0.2.23",
     "@nuxt/devtools": "latest",
     "@types/node": "^18",
+    "concurrently": "^8.2.0",
+    "json-server": "^0.17.3",
     "nuxt": "^3.6.0",
     "typescript": "latest"
   },

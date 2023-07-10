@@ -44,7 +44,8 @@ export const useShopStore = defineStore('shop', {
         fetchProducts: async function () {
             try {
                 console.log('entry fetchProducts()');
-                const {data} = await useFetch('https://fakestoreapi.com/products');
+                //const {data} = await useFetch('https://fakestoreapi.com/products');
+                const {data} = await useFetch('http://localhost:3099/products');
                 console.log('fetchProducts() - data: ', data);
                 this.products = data.value as Product[];
             } catch (error) {

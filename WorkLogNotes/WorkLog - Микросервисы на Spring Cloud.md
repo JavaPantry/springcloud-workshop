@@ -2767,3 +2767,18 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - choose name `storeadmin` vs `store-admin` as project name to avoid confusion with `store-admin` in `vuetify-store-admin-ui` branch
 - copy Nuxt3 `store-app` to `storeadmin`
 - commit - Create storeadmin UI app
+
+## Add dev json-server
+- `Михаил Непомнящий` - Youtube channel - [json-server Локальный сервер для проектов и тестирования](https://youtu.be/odwOkxkmVH8)
+  - install for dev-t `npm i -D json-server`
+  - [npm json-server](https://www.npmjs.com/package/json-server)
+  - [typicode/json-server](https://github.com/typicode/json-server)
+  - run json-server from package.json `"scripts":{"server": "json-server -w server/db.json -p 3001"}`
+  - run json-server with app - https://youtu.be/odwOkxkmVH8?t=634
+    - install concurrently to run json-server in background `nmp i -D concurrently`
+    - in package.json `"scripts":{"dev": "concurrently \"npm run server\" \"npm run start\"}`
+  - `npm i -D json-server concurrently`
+  - to run json-server with app add to package.json `"scripts":{"jsondev": "concurrently \"npm run server\" \"npm run dev\"",}`
+- in `shop.ts` replace `const {data} = await useFetch('https://fakestoreapi.com/products');` with
+  - `const {data} = await useFetch('http://localhost:3099/products');`
+- commit - Add dev json-server
