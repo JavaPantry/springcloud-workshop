@@ -7,7 +7,7 @@ GET {{gateway-host}}/inventory-service/inventory
 ### get inventory with id from inventory-service
 GET {{gateway-host}}/inventory-service/inventory/1
 
-### get inventory with product id from inventory-service
+### get inventory with product id from inventory-service - TODO: - minor error in http-client test - After adding storeId to Inventory-service database minor error in http-client test "message": "query did not return a unique result: 5",
 GET {{gateway-host}}/inventory-service/inventory/product/1
 
 ### get store-service via gateway - OK

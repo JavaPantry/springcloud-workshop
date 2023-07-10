@@ -2758,3 +2758,7 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 # July 10, 2023 - Nuxt+Pinia+Vuetify store-admin-ui UI app
 ## Remove prototype-service dummy project
 - commit - remove prototype-service dummy project
+
+## Minor error in http-client test After adding storeId to Inventory-service database
+- TODO: - minor error in http-client test - "GET {{gateway-host}}/inventory-service/inventory/product/1"  "message": "query did not return a unique result: 5",
+- commit - Minor error in http-client test After adding storeId to Inventory-service database
