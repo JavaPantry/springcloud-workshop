@@ -2754,3 +2754,7 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - remove dummy subproject `store-admin` folder 
 - will continue store-admin UI development in Nuxt
 - commit - minor worklog update on research on Nuxt+Pinia+Vuetify vs. Vue+Pinia+Vuetify
+
+# July 10, 2023 - Nuxt+Pinia+Vuetify store-admin-ui UI app
+## Remove prototype-service dummy project
+- commit - remove prototype-service dummy project
