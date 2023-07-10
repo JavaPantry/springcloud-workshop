@@ -59,4 +59,8 @@ h2 {
 p {
     margin: 20px 0;
 }
+
+.menu-card-gap{
+  margin: 10px;
+}
 </style>

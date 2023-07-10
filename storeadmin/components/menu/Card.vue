@@ -1,9 +1,10 @@
 <template>
   <v-card xs12 sm4 md4 lg4 max-width="220" min-height="215" class="elevation-5 ml-4">
+    <v-card-title>
     <router-link :to="link">
-      <!-- <v-img class="mt-6 mb-0" :src="sectionImg" height="120" width="200" contain></v-img> -->
       <v-img class="mt-6 mb-0" :src="sectionImg" alt="logo"></v-img>
     </router-link>
+    </v-card-title>
     <v-card-actions>
       <v-spacer/>
       <h4 style="text-align: center">
@@ -40,11 +41,9 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
-
-<!-- <style lang="scss" scoped>
-.v-application a {
+<style lang="scss" scoped>
+.v-card-actions a {
   text-decoration: none;
 }
-</style> -->
+</style>
+

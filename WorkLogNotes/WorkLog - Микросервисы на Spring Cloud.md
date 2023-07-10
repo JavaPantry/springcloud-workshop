@@ -2781,6 +2781,7 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - to run json-server with app add to package.json `"scripts":{"jsondev": "concurrently \"npm run server\" \"npm run dev\"",}`
 - in `shop.ts` replace `const {data} = await useFetch('https://fakestoreapi.com/products');` with
   - `const {data} = await useFetch('http://localhost:3099/products');`
+- now you can run `storeadmin>npm run jsondev` to run json-server and app concurrently
 - commit - Add dev json-server
 
 ## Add dummy unstyled MenuCard component
@@ -2790,3 +2791,9 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - [icones.js.org](https://youtu.be/tWQ2LWplmDc?t=536)
   - add svg icon as vue component [@](https://youtu.be/tWQ2LWplmDc?t=622)
 - commit - Add dummy unstyled MenuCard component
+
+##  Add SCSS support
+- [Using Preprocessors](https://nuxt.com/docs/getting-started/styling#using-preprocessors)
+  - install `npm install sass`
+  - add `<style lang="scss" scoped>` to `MenuCard.vue` before that `lang="scss"` was caused error message `Cannot find module 'sass'` 
+- commit - Add SCSS support  
