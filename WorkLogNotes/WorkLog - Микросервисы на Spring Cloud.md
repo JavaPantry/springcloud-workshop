@@ -2762,3 +2762,8 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 ## Minor error in http-client test After adding storeId to Inventory-service database
 - TODO: - minor error in http-client test - "GET {{gateway-host}}/inventory-service/inventory/product/1"  "message": "query did not return a unique result: 5",
 - commit - Minor error in http-client test After adding storeId to Inventory-service database
+
+## Create storeadmin UI app
+- choose name `storeadmin` vs `store-admin` as project name to avoid confusion with `store-admin` in `vuetify-store-admin-ui` branch
+- copy Nuxt3 `store-app` to `storeadmin`
+- commit - Create storeadmin UI app
