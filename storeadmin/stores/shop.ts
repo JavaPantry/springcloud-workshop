@@ -1,43 +1,12 @@
 import { defineStore } from 'pinia'
 
-import Product  from "@/models/Product";
+import Product from "@/models/Product";
+import Shop from '@/models/Shop';
 
 export const useShopStore = defineStore('shop', {
     state: () => ({
         count: 3,
-        shops: [
-            {
-                id: 1,
-                name: 'Best Buy',
-                address: 'Address 1',
-                phone: 'Phone 1',
-                email: 'Email 1',
-                website: 'Website 1',
-                description: 'Description 1',
-                image: 'https://picsum.photos/200/300'
-            },
-            {
-                id: 2,
-                name: 'eCharge',
-                address: 'Address 2',
-                phone: 'Phone 2',
-                email: 'Email 2',
-                website: 'Website 2',
-                description: 'Description 2',
-                image: 'https://picsum.photos/200/300'
-            },
-            {
-                id: 3,
-                name: 'Canada Computers',
-                address: 'Address 2',
-                phone: 'Phone 2',
-                email: 'Email 2',
-                website: 'Website 2',
-                description: 'Description 2',
-                image: 'https://picsum.photos/200/300'
-            }
-            ],
-        //products: <Product[]>[]
+        shops: [] as Shop[],
         products: [] as Product[]
     }),
     actions: {
@@ -48,6 +17,17 @@ export const useShopStore = defineStore('shop', {
                 const {data} = await useFetch('http://localhost:3099/products');
                 console.log('fetchProducts() - data: ', data);
                 this.products = data.value as Product[];
+            } catch (error) {
+                //showTooltip(error) - let the form component display the error
+                return error
+            }
+        },
+        fetchShops: async function () {
+            try {
+                console.log('entry fetchShops()');
+                const {data} = await useFetch('http://localhost:3099/shops');
+                console.log('fetchShops() - data: ', data);
+                this.shops = data.value as Shop[];
             } catch (error) {
                 //showTooltip(error) - let the form component display the error
                 return error

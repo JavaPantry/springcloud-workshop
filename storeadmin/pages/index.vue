@@ -1,10 +1,11 @@
 <script setup>
- // use shop pinia store
- import { useShopStore } from '@/stores/shop'
+import { storeToRefs } from "pinia";
+import { useShopStore } from '@/stores/shop'
 
- const shop = useShopStore()
- const {count} = useShopStore() // decompose count from shop store
- const {shops} = useShopStore() // decompose shops from shop store
+const shopStore = useShopStore();
+shopStore.fetchShops(); // fetch shops from api
+
+const { count, shops} = storeToRefs(shopStore) // decompose count and shops from shop store
 
 </script>
 <template>

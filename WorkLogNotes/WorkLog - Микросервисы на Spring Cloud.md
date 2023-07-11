@@ -2755,7 +2755,7 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - will continue store-admin UI development in Nuxt
 - commit - minor worklog update on research on Nuxt+Pinia+Vuetify vs. Vue+Pinia+Vuetify
 
-# July 10, 2023 - Nuxt+Pinia+Vuetify store-admin-ui UI app
+# July 10, 2023 - Nuxt+Pinia+Vuetify storeadmin UI app
 ## Remove prototype-service dummy project
 - commit - remove prototype-service dummy project
 
@@ -2797,3 +2797,10 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - install `npm install sass`
   - add `<style lang="scss" scoped>` to `MenuCard.vue` before that `lang="scss"` was caused error message `Cannot find module 'sass'` 
 - commit - Add SCSS support  
+
+# July 11, 2023 - Nuxt+Pinia+Vuetify storeadmin UI app
+## Move Shops to db.json
+- add fetchShops() to `shop.ts` pinia store
+- add interface `Shop` to `shop.ts`
+- call fetchShops() in `MenuCard.vue` in `script setup`
+- commit - Move Shops to db.json
