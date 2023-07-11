@@ -6,6 +6,7 @@ import Shop from '@/models/Shop';
 export const useShopStore = defineStore('shop', {
     state: () => ({
         count: 3,
+        currentShop: <Shop> {},
         shops: [] as Shop[],
         products: [] as Product[]
     }),

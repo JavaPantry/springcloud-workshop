@@ -1,27 +1,40 @@
-<script setup>
+<script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { useShopStore } from '@/stores/shop'
-
+// import Shop from "models/Shop";
 const shopStore = useShopStore();
 shopStore.fetchShops(); // fetch shops from api
 
-const { count, shops} = storeToRefs(shopStore) // decompose count and shops from shop store
+let { count, shops, currentShop } = storeToRefs(shopStore) // decompose count and shops from shop store
+
+let selectedStoreId = ref(null); // selected store
+
+const selectedStore = computed(() => shops.value.find(shop => shop.id === selectedStoreId.value));
+
+watch(selectedStore, (newData) => {
+    currentShop = newData
+     // same currentShop.value = newData
+})
 
 </script>
 <template>
     <NuxtLayout>
-        <div>
-            <h2>Home</h2>
-            <h5>Counter: {{count}}</h5>
-            <ul>
-                <li v-for="shop in shops" :key="shop.id">
-                    {{shop.name}}
-                </li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In perspiciatis omnis consequatur quod necessitatibus autem repellat aperiam quia atque fugit praesentium earum rerum minus, porro asperiores explicabo inventore animi ducimus. Itaque voluptatum facilis nobis, praesentium, quasi pariatur veniam veritatis quo eligendi, ratione libero impedit. Distinctio, delectus sapiente adipisci assumenda obcaecati aliquid exercitationem sit ad autem! Veritatis nihil accusamus recusandae esse?</p>
-        </div>
         <v-container fluid>
-            <v-layout column>
+            <v-select label="Select Store" :items="shops" item-title="name" item-value="id" v-model="selectedStoreId"></v-select>
+            <div v-if="selectedStore">
+                <p>
+                    Selected Store: {{ selectedStoreId }} - {{ selectedStore.name }} - {{ selectedStore.address }}
+                </p>
+                <p>
+                {{ selectedStore.description }}
+                </p>
+                <p>Current Shop from Pinia store: {{ currentShop }}</p>
+                <v-img :src="currentShop.image" width="200" height="200"></v-img>
+            </div>
+            <div v-else>
+                Please select a store
+            </div>
+            <v-layout column  v-if="selectedStore">
                 <v-flex xs12>
                 <v-layout align-center justify-center row wrap fill-height class='menu-card-container'>
                 <!-- <img src="~/assets/reports.png" alt="logo" class="logo"> -->

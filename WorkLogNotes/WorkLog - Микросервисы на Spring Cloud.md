@@ -2804,3 +2804,11 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - add interface `Shop` to `shop.ts`
 - call fetchShops() in `MenuCard.vue` in `script setup`
 - commit - Move Shops to db.json
+
+## Add currentShop to pinia store
+- add `currentShop` to `shop.ts` pinia store
+- add random values to shops in db.json
+- refactor template in pages/index.vue to use `currentShop` from pinia store
+  - add random image from pinia's currentShop `<v-img :src="currentShop.image" width="200" height="200"></v-img>`
+  - print pinia's currentShop object `<p>Current Shop from Pinia store: {{ currentShop }}</p>`
+- commit - Add currentShop to pinia store
