@@ -2812,3 +2812,11 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - add random image from pinia's currentShop `<v-img :src="currentShop.image" width="200" height="200"></v-img>`
   - print pinia's currentShop object `<p>Current Shop from Pinia store: {{ currentShop }}</p>`
 - commit - Add currentShop to pinia store
+
+## Add dummy page to avoid warning messages and make currewnShop nullable
+- create `dummy.vue` page as placeholder for not existing routes
+  - point menu items to `pages\dummy\dummy.vue` to avoid warning about not existing page
+- replace `currentShop<Shop>: null` with `currentShop: null as Shop | null`
+  - `currentShop: null as Shop | null,` - TODO: this variable reset on every new visit to the page
+- commit - Add dummy page to avoid warning messages and make currewnShop nullable
+  

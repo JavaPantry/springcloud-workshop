@@ -20,6 +20,11 @@ watch(selectedStore, (newData) => {
 <template>
     <NuxtLayout>
         <v-container fluid>
+            <p v-if="currentShop"> currentShop Not empty</p>
+            <p v-else> currentShop empty</p>
+            <p>Current Shop from Pinia store: {{ currentShop }}
+                
+            </p>
             <v-select label="Select Store" :items="shops" item-title="name" item-value="id" v-model="selectedStoreId"></v-select>
             <div v-if="selectedStore">
                 <p>
@@ -40,22 +45,22 @@ watch(selectedStore, (newData) => {
                 <!-- <img src="~/assets/reports.png" alt="logo" class="logo"> -->
                     <MenuCard section-img="./assets/orders.png"
                                 section-description="Select Project"
-                                link="/selectProject"
+                                link="/dummy/dummy"
                                 class="menu-card-gap"
                                 key="selectProjectMenu"/>
                     <MenuCard section-img="./assets/reports.png"
                                 section-description="Reports"
-                                link="/selectProject"
+                                link="/dummy/dummy"
                                 class="menu-card-gap"
                                 key="selectProjectMenu1"/>
                     <MenuCard section-img="./assets/inventory.png"
                                 section-description="Inventory"
-                                link="/createProject"
+                                link="/dummy/dummy"
                                 class="menu-card-gap"
                                 key="ServiceSuppliesCall0"/>
                     <MenuCard section-img="./assets/status.png"
                                 section-description="Status"
-                                link="/createProject"
+                                link="/dummy/dummy"
                                 class="menu-card-gap"
                                 key="ServiceSuppliesCall1"/>
                 </v-layout>
