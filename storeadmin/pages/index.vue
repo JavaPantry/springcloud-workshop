@@ -40,9 +40,7 @@ watch(selectedStore, (newData) => {
                 Please select a store
             </div>
             <v-layout column  v-if="selectedStore">
-                <v-flex xs12>
                 <v-layout align-center justify-center row wrap fill-height class='menu-card-container'>
-                <!-- <img src="~/assets/reports.png" alt="logo" class="logo"> -->
                     <MenuCard section-img="./assets/orders.png"
                                 section-description="Select Project"
                                 link="/dummy/dummy"
@@ -64,7 +62,6 @@ watch(selectedStore, (newData) => {
                                 class="menu-card-gap"
                                 key="ServiceSuppliesCall1"/>
                 </v-layout>
-                </v-flex>
             </v-layout>
         </v-container>
     </NuxtLayout>

@@ -2819,4 +2819,8 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - replace `currentShop<Shop>: null` with `currentShop: null as Shop | null`
   - `currentShop: null as Shop | null,` - TODO: this variable reset on every new visit to the page
 - commit - Add dummy page to avoid warning messages and make currewnShop nullable
-  
+
+# July 12, 2023 - Nuxt+Pinia+Vuetify storeadmin UI app
+## remove `v-flex` from pages/index.vue
+- cause `[Vue warn]: Failed to resolve component: v-flex` warning
+- commit - remove `v-flex` from pages/index.vue
