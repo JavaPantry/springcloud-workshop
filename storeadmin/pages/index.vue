@@ -20,49 +20,54 @@ watch(selectedStore, (newData) => {
 <template>
     <NuxtLayout>
         <v-container fluid>
-            <p v-if="currentShop"> currentShop Not empty</p>
+            <!-- <p v-if="currentShop"> currentShop Not empty</p>
             <p v-else> currentShop empty</p>
-            <p>Current Shop from Pinia store: {{ currentShop }}
+            <p>Current Shop from Pinia store: {{ currentShop }} </p>-->
                 
-            </p>
+            
             <v-select label="Select Store" :items="shops" item-title="name" item-value="id" v-model="selectedStoreId"></v-select>
             <div v-if="selectedStore">
-                <p>
+                <!-- <p>
                     Selected Store: {{ selectedStoreId }} - {{ selectedStore.name }} - {{ selectedStore.address }}
                 </p>
                 <p>
                 {{ selectedStore.description }}
                 </p>
-                <p>Current Shop from Pinia store: {{ currentShop }}</p>
-                <v-img :src="currentShop.image" width="200" height="200"></v-img>
+                <p>Current Shop from Pinia store: {{ currentShop }}</p> -->
+                <v-container fluid>
+                    <v-row align-center justify-center>
+                    <v-img :src="currentShop.image" width="800" height="200"></v-img>
+                    </v-row>
+                </v-container>
+                <v-layout column>
+                    <v-layout align-center justify-center row wrap fill-height class='menu-card-container'>
+                        <MenuCard section-img="./assets/orders.png"
+                                    section-description="Select Project"
+                                    link="/dummy/dummy"
+                                    class="menu-card-gap"
+                                    key="selectProjectMenu"/>
+                        <MenuCard section-img="./assets/reports.png"
+                                    section-description="Reports"
+                                    link="/dummy/dummy"
+                                    class="menu-card-gap"
+                                    key="selectProjectMenu1"/>
+                        <MenuCard section-img="./assets/inventory.png"
+                                    section-description="Inventory"
+                                    link="/dummy/dummy"
+                                    class="menu-card-gap"
+                                    key="ServiceSuppliesCall0"/>
+                        <MenuCard section-img="./assets/status.png"
+                                    section-description="Status"
+                                    link="/dummy/dummy"
+                                    class="menu-card-gap"
+                                    key="ServiceSuppliesCall1"/>
+                    </v-layout>
+                </v-layout>
             </div>
             <div v-else>
                 Please select a store
             </div>
-            <v-layout column  v-if="selectedStore">
-                <v-layout align-center justify-center row wrap fill-height class='menu-card-container'>
-                    <MenuCard section-img="./assets/orders.png"
-                                section-description="Select Project"
-                                link="/dummy/dummy"
-                                class="menu-card-gap"
-                                key="selectProjectMenu"/>
-                    <MenuCard section-img="./assets/reports.png"
-                                section-description="Reports"
-                                link="/dummy/dummy"
-                                class="menu-card-gap"
-                                key="selectProjectMenu1"/>
-                    <MenuCard section-img="./assets/inventory.png"
-                                section-description="Inventory"
-                                link="/dummy/dummy"
-                                class="menu-card-gap"
-                                key="ServiceSuppliesCall0"/>
-                    <MenuCard section-img="./assets/status.png"
-                                section-description="Status"
-                                link="/dummy/dummy"
-                                class="menu-card-gap"
-                                key="ServiceSuppliesCall1"/>
-                </v-layout>
-            </v-layout>
+
         </v-container>
     </NuxtLayout>
 </template>

@@ -8,7 +8,7 @@
       "email": "Email 1",
       "website": "Website 1",
       "description": "Pricey and bad service",
-      "image": "https://picsum.photos/200/300?random=1"
+      "image": "https://picsum.photos/800/300?random=1"
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "email": "Email 2",
       "website": "Website 2",
       "description": "Batteries and chargers",
-      "image": "https://picsum.photos/200/300?random=2"
+      "image": "https://picsum.photos/800/300?random=2"
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "email": "Email 2",
       "website": "Website 2",
       "description": "Good refurbished stuff",
-      "image": "https://picsum.photos/200/300?random=3"
+      "image": "https://picsum.photos/800/300?random=3"
     }
   ],
   "categories": ["electronics","jewelery","men's clothing","women's clothing"],

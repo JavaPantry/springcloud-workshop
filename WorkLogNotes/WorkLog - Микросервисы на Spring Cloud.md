@@ -2824,3 +2824,4 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 ## remove `v-flex` from pages/index.vue
 - cause `[Vue warn]: Failed to resolve component: v-flex` warning
 - commit - remove `v-flex` from pages/index.vue
+- commit - minor layout refactoring pages/index.vue  
