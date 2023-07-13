@@ -2838,3 +2838,4 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - but come back from product page to index page reset selected shop to null (still visible in Nav.vue component)
 - commit - Show current shop name in Nav.vue button
 - commit - minor cleaning code and layout refactoring pages/index.vue
+- commit - remove dummy counter from pinia shop.ts store

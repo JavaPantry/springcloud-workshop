@@ -6,7 +6,6 @@ import Shop from '@/models/Shop';
 export const useShopStore = defineStore('shop', {
     state: () => {
         return {
-            count: 3,
             currentShop: null as Shop | null, //TODO: reset on every new visit to the page
             shops: [] as Shop[],
             products: [] as Product[]
