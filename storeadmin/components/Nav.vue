@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { storeToRefs } from "pinia";
+import { useShopStore } from '@/stores/shop'
+
+const shopStore = useShopStore();
+
+let { currentShop } = storeToRefs(shopStore)
+
+</script>
 <template>
         <v-app-bar
                 color="primary"
@@ -27,9 +36,10 @@
                   Home
                 </v-btn>
 
-                <v-btn to="/products">
+                <v-btn v-if="currentShop" to="/products">
+                <!-- <v-btn to="/products"> -->
                   <v-icon start icon="mdi-factory"></v-icon>
-                  Products
+                  Products in " {{ currentShop.name }} "
                 </v-btn>
                 <template v-slot:append>
                     <v-btn icon="mdi-dots-vertical"></v-btn>

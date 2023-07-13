@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import { mapWritableState } from 'pinia'
 import { useShopStore } from '@/stores/shop'
-// import Shop from "models/Shop";
+import Shop from "models/Shop";
 const shopStore = useShopStore();
+
+// let { currentShop } = mapWritableState(shopStore, ['currentShop'])
+
 shopStore.fetchShops(); // fetch shops from api
+
+
 
 let { count, shops, currentShop } = storeToRefs(shopStore) // decompose count and shops from shop store
 
@@ -11,9 +17,13 @@ let selectedStoreId = ref(null); // selected store
 
 const selectedStore = computed(() => shops.value.find(shop => shop.id === selectedStoreId.value));
 
-watch(selectedStore, (newData) => {
-    currentShop = newData
-     // same currentShop.value = newData
+watch(selectedStoreId, (newStoreIndex) => {
+    console.log('selectedStoreId was ', selectedStoreId.value)
+    console.log('selectedStoreId changed to ', newStoreIndex)
+    let  shop:Shop = shops.value.find(shop => shop.id === newStoreIndex) as Shop 
+    console.log('shop is ', shop)
+    shopStore.setCurrentShop(shop)
+
 })
 
 </script>

@@ -2818,10 +2818,22 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - point menu items to `pages\dummy\dummy.vue` to avoid warning about not existing page
 - replace `currentShop<Shop>: null` with `currentShop: null as Shop | null`
   - `currentShop: null as Shop | null,` - TODO: this variable reset on every new visit to the page
+    -  and/or not visible in Nav.vue component
 - commit - Add dummy page to avoid warning messages and make currewnShop nullable
 
 # July 12, 2023 - Nuxt+Pinia+Vuetify storeadmin UI app
 ## remove `v-flex` from pages/index.vue
 - cause `[Vue warn]: Failed to resolve component: v-flex` warning
 - commit - remove `v-flex` from pages/index.vue
-- commit - minor layout refactoring pages/index.vue  
+- commit - minor layout refactoring pages/index.vue
+
+# July 13, 2023 - Nuxt+Pinia+Vuetify storeadmin UI app
+## Show current shop name in Nav.vue button
+- need to resolve earlier issue with `currentShop` reset on every new visit to the page and/or not visible in Nav.vue component
+- add `currentShop` to `Nav.vue` component
+- add `setCurrentShop` action to `shop.ts` pinia store
+- use `setCurrentShop` pinia action in watcher in product/index.vue
+  - `watch(selectedStoreId, (newData) => {shopStore.setCurrentShop(shop)}`
+- now `currentShop` is visible in Nav.vue component
+  - but come back from product page to index page reset selected shop to null (still visible in Nav.vue component)
+- commit - Show current shop name in Nav.vue button
