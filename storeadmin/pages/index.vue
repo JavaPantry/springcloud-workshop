@@ -11,7 +11,7 @@ shopStore.fetchShops(); // fetch shops from api
 
 
 
-let { count, shops, currentShop } = storeToRefs(shopStore) // decompose count and shops from shop store
+let { shops, currentShop } = storeToRefs(shopStore) // decompose and shops from shop store
 
 let selectedStoreId = ref(null); // selected store
 
@@ -35,6 +35,7 @@ watch(selectedStoreId, (newStoreIndex) => {
                 
             
             <v-select label="Select Store" :items="shops" item-title="name" item-value="id" v-model="selectedStoreId"></v-select>
+
             <div v-if="selectedStore">
                 <v-container fluid>
                     <v-row align-center justify-center>
