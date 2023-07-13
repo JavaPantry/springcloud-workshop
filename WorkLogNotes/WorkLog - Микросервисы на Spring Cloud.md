@@ -2839,3 +2839,9 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - commit - Show current shop name in Nav.vue button
 - commit - minor cleaning code and layout refactoring pages/index.vue
 - commit - remove dummy counter from pinia shop.ts store
+
+## set selected shop in v-select on mounted
+- add on mount hook to set selected store in v-select component
+- use currentShop to set v-model selectedStoreId to preselect v-select component
+- commit - set selected shop in v-select on mounted
+

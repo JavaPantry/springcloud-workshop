@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import { mapWritableState } from 'pinia'
 import { useShopStore } from '@/stores/shop'
+import { onMounted } from 'vue'
 import Shop from "models/Shop";
 const shopStore = useShopStore();
 
@@ -24,6 +25,13 @@ watch(selectedStoreId, (newStoreIndex) => {
     console.log('shop is ', shop)
     shopStore.setCurrentShop(shop)
 
+}),
+
+// add on mount hook to set selected store in v-select component
+onMounted(() => {
+    if (currentShop.value) {
+        selectedStoreId.value = currentShop.value.id
+    }
 })
 
 </script>
