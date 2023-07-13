@@ -16,7 +16,7 @@ let { currentShop } = storeToRefs(shopStore)
                     <v-app-bar-nav-icon></v-app-bar-nav-icon>
                 </template>
     
-                <v-app-bar-title>Store UI</v-app-bar-title>
+                <v-app-bar-title>Store Admin</v-app-bar-title>
     
 
                 <!-- NOT available
@@ -37,10 +37,13 @@ let { currentShop } = storeToRefs(shopStore)
                 </v-btn>
 
                 <v-btn v-if="currentShop" to="/products">
-                <!-- <v-btn to="/products"> -->
                   <v-icon start icon="mdi-factory"></v-icon>
                   Products in " {{ currentShop.name }} "
                 </v-btn>
+                <div v-else>
+                  <v-icon start icon="mdi-factory"></v-icon>
+                  Select active Store
+                </div>
                 <template v-slot:append>
                     <v-btn icon="mdi-dots-vertical"></v-btn>
                 </template>

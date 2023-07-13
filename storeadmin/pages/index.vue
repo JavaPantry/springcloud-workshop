@@ -30,20 +30,12 @@ watch(selectedStoreId, (newStoreIndex) => {
 <template>
     <NuxtLayout>
         <v-container fluid>
-            <!-- <p v-if="currentShop"> currentShop Not empty</p>
-            <p v-else> currentShop empty</p>
-            <p>Current Shop from Pinia store: {{ currentShop }} </p>-->
+            <p v-if="currentShop"> currentShop {{ currentShop.name }}</p>
+            <p v-else> Shop not selected</p>
                 
             
             <v-select label="Select Store" :items="shops" item-title="name" item-value="id" v-model="selectedStoreId"></v-select>
             <div v-if="selectedStore">
-                <!-- <p>
-                    Selected Store: {{ selectedStoreId }} - {{ selectedStore.name }} - {{ selectedStore.address }}
-                </p>
-                <p>
-                {{ selectedStore.description }}
-                </p>
-                <p>Current Shop from Pinia store: {{ currentShop }}</p> -->
                 <v-container fluid>
                     <v-row align-center justify-center>
                     <v-img :src="currentShop.image" width="800" height="200"></v-img>
@@ -73,9 +65,6 @@ watch(selectedStoreId, (newStoreIndex) => {
                                     key="ServiceSuppliesCall1"/>
                     </v-layout>
                 </v-layout>
-            </div>
-            <div v-else>
-                Please select a store
             </div>
 
         </v-container>
