@@ -2845,10 +2845,18 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - use currentShop to set v-model selectedStoreId to preselect v-select component
 - commit - set selected shop in v-select on mounted
 
-# July 13, 2023 - Nuxt+Pinia+Vuetify storeadmin UI app
+# July 16, 2023 - Nuxt+Pinia+Vuetify storeadmin UI app
 ## Add inventory data in db.json
 - setup [DBeaver Community Free Universal Database Tool](https://dbeaver.io/download/)
   - resolve issue with mysql driver [Connection between DBeaver & MySQL](https://stackoverflow.com/questions/61749304/connection-between-dbeaver-mysql)
   - connect to project databases and export inventory table to json file
   - insert inventory data to db.json
 - commit - Add inventory data in db.json
+
+## Add inventory (with price) to pinia store
+- modify insert inventory data in db.json by adding price in store
+- add stores to shops in db.json
+- add Inventory interface to models
+- add inventory array and fetchInventory to pinia store
+- commit - Add inventory (with price) to pinia store
+

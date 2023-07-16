@@ -29,6 +29,26 @@
       "website": "Website 2",
       "description": "Good refurbished stuff",
       "image": "https://picsum.photos/800/300?random=3"
+    },
+    {
+      "id": 4,
+      "name": "DrugStore",
+      "address": "Address 2",
+      "phone": "Phone 2",
+      "email": "Email 2",
+      "website": "Website 2",
+      "description": "Convinience and drugs",
+      "image": "https://picsum.photos/800/300?random=2"
+    },
+    {
+      "id": 5,
+      "name": "Walmart",
+      "address": "Address 5",
+      "phone": "Phone 5",
+      "email": "Email5",
+      "website": "Website 5",
+      "description": "Convinience, Food, Drugs, Clothes and Electronics",
+      "image": "https://picsum.photos/800/300?random=2"
     }
   ],
   "inventory": [
@@ -37,6 +57,7 @@
       "product_id" : 1,
       "store_id" : 1,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -46,6 +67,7 @@
       "product_id" : 2,
       "store_id" : 1,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -55,6 +77,7 @@
       "product_id" : 3,
       "store_id" : 1,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -64,6 +87,7 @@
       "product_id" : 4,
       "store_id" : 1,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -73,6 +97,7 @@
       "product_id" : 5,
       "store_id" : 1,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -82,6 +107,7 @@
       "product_id" : 1,
       "store_id" : 2,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -91,6 +117,7 @@
       "product_id" : 2,
       "store_id" : 2,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -100,6 +127,7 @@
       "product_id" : 3,
       "store_id" : 2,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -109,6 +137,7 @@
       "product_id" : 4,
       "store_id" : 2,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -118,6 +147,7 @@
       "product_id" : 5,
       "store_id" : 2,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -127,6 +157,7 @@
       "product_id" : 1,
       "store_id" : 3,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -136,6 +167,7 @@
       "product_id" : 2,
       "store_id" : 3,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -145,6 +177,7 @@
       "product_id" : 3,
       "store_id" : 3,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -154,6 +187,7 @@
       "product_id" : 4,
       "store_id" : 3,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -163,6 +197,7 @@
       "product_id" : 5,
       "store_id" : 3,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -172,6 +207,7 @@
       "product_id" : 1,
       "store_id" : 4,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -181,6 +217,7 @@
       "product_id" : 2,
       "store_id" : 4,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -190,6 +227,7 @@
       "product_id" : 3,
       "store_id" : 4,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -199,6 +237,7 @@
       "product_id" : 4,
       "store_id" : 4,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -208,6 +247,7 @@
       "product_id" : 5,
       "store_id" : 4,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -217,6 +257,7 @@
       "product_id" : 1,
       "store_id" : 5,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -226,6 +267,7 @@
       "product_id" : 2,
       "store_id" : 5,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -235,6 +277,7 @@
       "product_id" : 3,
       "store_id" : 5,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -244,6 +287,7 @@
       "product_id" : 4,
       "store_id" : 5,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
@@ -253,6 +297,7 @@
       "product_id" : 5,
       "store_id" : 5,
       "quantity" : 10,
+      "price" : 100.00,
       "version" : 0,
       "created_date" : "2023-07-05 16:05:00",
       "last_modified_date" : "2023-07-05 16:05:00"
