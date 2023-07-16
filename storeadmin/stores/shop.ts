@@ -42,7 +42,7 @@ export const useShopStore = defineStore('shop', {
         fetchInventory: async function (store_id: number) {
             try {
                 console.log('entry fetch Shop inventory()');
-                const {data} = await useFetch('http://localhost:3099/inventory/' + store_id);
+                const {data} = await useFetch('http://localhost:3099/inventory?store_id=' + store_id);
                 console.log('fetch Shop inventory - data: ', data);
                 this.inventory = data.value as Inventory[];
             } catch (error) {

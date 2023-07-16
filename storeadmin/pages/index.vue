@@ -52,19 +52,19 @@ onMounted(() => {
                 </v-container>
                 <v-layout column>
                     <v-layout align-center justify-center row wrap fill-height class='menu-card-container'>
-                        <MenuCard section-img="./assets/orders.png"
-                                    section-description="Select Project"
-                                    link="/dummy/dummy"
+                        <!-- <MenuCard section-img="./assets/orders.png"
+                                    section-description="Store Inventory"
+                                    link="/inventory"
                                     class="menu-card-gap"
-                                    key="selectProjectMenu"/>
+                                    key="selectProjectMenu"/> -->
                         <MenuCard section-img="./assets/reports.png"
                                     section-description="Reports"
                                     link="/dummy/dummy"
                                     class="menu-card-gap"
                                     key="selectProjectMenu1"/>
                         <MenuCard section-img="./assets/inventory.png"
-                                    section-description="Inventory"
-                                    link="/dummy/dummy"
+                                    section-description="Store Inventory"
+                                    link="/inventory"
                                     class="menu-card-gap"
                                     key="ServiceSuppliesCall0"/>
                         <MenuCard section-img="./assets/status.png"

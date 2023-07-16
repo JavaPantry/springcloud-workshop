@@ -2860,3 +2860,11 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - add inventory array and fetchInventory to pinia store
 - commit - Add inventory (with price) to pinia store
 
+## Add Inventory pages
+- Add Inventory pages
+  - add `inventory/index.vue` page (as copy of `product/index.vue` page)
+    - fetch inventory in `setup()` function `shop.fetchInventory(shop.currentShop.id)`
+      - fetch products for selected active store `useFetch('http://localhost:3099/inventory?store_id=' + store_id)` 
+    - render primitive div for each inventory in template `<div v-for="item in inventory" :key="item.id"><span>{{item.name}}</span></div>`` 
+- in home page add link to inventory page in MenuCard component
+- commit - Add Inventory pages
