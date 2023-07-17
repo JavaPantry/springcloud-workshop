@@ -19,7 +19,7 @@ const hasInventory = computed(() => inventory.value.length > 0);
 
             <v-container fluid v-if="hasInventory">
                     <!-- <ProductCard :product="product" v-for="product in products" :key="product.id"/> -->
-                    <div>
+                    <!-- <div>
                         <span>product_id | </span>
                         <span>quantity | </span>
                         <span>price</span>
@@ -29,7 +29,31 @@ const hasInventory = computed(() => inventory.value.length > 0);
                         <span>{{item.quantity}} | </span>
                         <span>{{item.price}}</span>
                         <hr>
-                    </div>
+                    </div> -->
+
+                     <v-table density="compact">
+                        <thead>
+                        <tr>
+                            <th class="text-left">
+                            product id
+                            </th>
+                            <th class="text-left">
+                            quantity
+                            </th>
+                            <th class="text-left">
+                            price
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="item in inventory"
+                            :key="item.id">
+                            <td>{{ item.product_id }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.price }}</td>
+                        </tr>
+                        </tbody>
+                    </v-table>
             </v-container>
             <v-container fluid v-else>
                 <h3>Products NOT loaded</h3><br>

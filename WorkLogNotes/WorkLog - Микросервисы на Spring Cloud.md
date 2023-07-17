@@ -2868,3 +2868,8 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
     - render primitive div for each inventory in template `<div v-for="item in inventory" :key="item.id"><span>{{item.name}}</span></div>`` 
 - in home page add link to inventory page in MenuCard component
 - commit - Add Inventory pages
+
+# July 17, 2023 - Nuxt+Pinia+Vuetify storeadmin UI app
+## Render inventory in Inventory page as table
+- vuetify 2 `<v-data-table>` changed to `<v-table>` - see [vuetify tables](https://next.vuetifyjs.com/en/components/tables/)
+- commit - Render inventory in Inventory page as table
