@@ -2873,3 +2873,4 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 ## Render inventory in Inventory page as table
 - vuetify 2 `<v-data-table>` changed to `<v-table>` - see [vuetify tables](https://next.vuetifyjs.com/en/components/tables/)
 - commit - Render inventory in Inventory page as table
+- commit - styling table header and adding action icons

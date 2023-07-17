@@ -34,15 +34,10 @@ const hasInventory = computed(() => inventory.value.length > 0);
                      <v-table density="compact">
                         <thead>
                         <tr>
-                            <th class="text-left">
-                            product id
-                            </th>
-                            <th class="text-left">
-                            quantity
-                            </th>
-                            <th class="text-left">
-                            price
-                            </th>
+                            <th class="text-left">Product Id</th>
+                            <th class="text-left">Quantity</th>
+                            <th class="text-left">Price</th>
+                            <th class="text-left">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -51,6 +46,15 @@ const hasInventory = computed(() => inventory.value.length > 0);
                             <td>{{ item.product_id }}</td>
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.price }}</td>
+                            <td>
+                                <v-icon aria-hidden="false">
+                                mdi-playlist-edit
+                                </v-icon>
+                                <v-icon aria-hidden="false" color="red-darken-4">
+                                mdi-trash-can-outline
+                                </v-icon>
+                                <!-- mdi-delete-outline -->
+                            </td>
                         </tr>
                         </tbody>
                     </v-table>
@@ -63,5 +67,11 @@ const hasInventory = computed(() => inventory.value.length > 0);
 </template>
 
 
-<style scoped>
+
+<style lang="scss" scoped>
+.v-table__wrapper tr th {
+    background-color: lightgray;
+    font-size: larger;
+    font-weight: 600 !important;
+}
 </style>
