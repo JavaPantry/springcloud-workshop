@@ -11,11 +11,13 @@ const {inventory} = storeToRefs(shop)
 
 const hasInventory = computed(() => inventory.value.length > 0);
 
+const confirm = ref(null)
+const inventoryEditForm = ref(null)
+
 const editProduct = (item) => {
     console.log('editProduct', item)
+    inventoryEditForm.value.open(item)
 }
-
-const confirm = ref(null)
 
 const deleteProduct = (product) => {
     console.log('deleteProduct', product)
@@ -88,7 +90,8 @@ function deleteProductAction(product) {
             <v-container fluid v-else>
                 <h3>Products NOT loaded</h3><br>
             </v-container>
-	          <ConfirmDialog ref="confirm" />
+	        <ConfirmDialog ref="confirm" />
+            <InventoryEditForm ref="inventoryEditForm"/>
         </div>
     </NuxtLayout>
 </template>

@@ -2887,3 +2887,7 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - add `deleteProduct` function on delete icon click which call open ConfirmDialog component
   - open ConfirmDialog component with `confirm.value.open("Confirm", "question to confirm").then(decision => {... check response ...})`
 - commit - Add Confirm dialog component with reference
+
+## Add inventory edit form dialog component with reference
+- repeat same steps as for ConfirmDialog component
+- commit - Add inventory edit form dialog component with reference
