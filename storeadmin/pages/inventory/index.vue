@@ -1,6 +1,8 @@
 <script setup>
+import { ref } from 'vue'
 import { storeToRefs}   from "pinia";
 import { useShopStore } from '@/stores/shop'
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 const shop = useShopStore();
 shop.fetchInventory(shop.currentShop.id) // fetch inventory for current shop
@@ -8,6 +10,30 @@ shop.fetchInventory(shop.currentShop.id) // fetch inventory for current shop
 const {inventory} = storeToRefs(shop)
 
 const hasInventory = computed(() => inventory.value.length > 0);
+
+const editProduct = (item) => {
+    console.log('editProduct', item)
+}
+
+const confirm = ref(null)
+
+const deleteProduct = (product) => {
+    console.log('deleteProduct', product)
+    console.log('deleteProduct confirm reference ', confirm)
+    const id = product.product_id;
+    const question = "Do you really want to delete product "+ id +"?";
+    confirm.value
+      .open("Confirm", question)
+      .then(decision => {
+        if (decision) {
+          deleteProductAction(product)
+        }
+      });
+}
+
+function deleteProductAction(product) {
+  console.log('Confirmed deleteProductAction ', product);
+}
 
 </script>
 
@@ -47,10 +73,10 @@ const hasInventory = computed(() => inventory.value.length > 0);
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.price }}</td>
                             <td>
-                                <v-icon aria-hidden="false">
+                                <v-icon aria-hidden="false" @click.stop="editProduct(item)">
                                 mdi-playlist-edit
                                 </v-icon>
-                                <v-icon aria-hidden="false" color="red-darken-4">
+                                <v-icon aria-hidden="false" color="red-darken-4" @click.stop="deleteProduct(item)">
                                 mdi-trash-can-outline
                                 </v-icon>
                                 <!-- mdi-delete-outline -->
@@ -62,6 +88,7 @@ const hasInventory = computed(() => inventory.value.length > 0);
             <v-container fluid v-else>
                 <h3>Products NOT loaded</h3><br>
             </v-container>
+	          <ConfirmDialog ref="confirm" />
         </div>
     </NuxtLayout>
 </template>

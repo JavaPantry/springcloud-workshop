@@ -2874,3 +2874,16 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - vuetify 2 `<v-data-table>` changed to `<v-table>` - see [vuetify tables](https://next.vuetifyjs.com/en/components/tables/)
 - commit - Render inventory in Inventory page as table
 - commit - styling table header and adding action icons
+
+## Add Confirm dialog component with reference
+- Add `storeadmin/components/ConfirmDialog.vue` component
+- read how to use `ref` to component in Composition API [@](https://stackoverflow.com/questions/71093658/how-to-get-refs-using-composition-api-in-vue3)
+  - copy component from VueJs 2 project
+  - remove use i18n from component
+  - use composition api way to use `ref` for child component
+    - add component with reference `<ConfirmDialog ref="confirm" />` 
+    - init reference to `confirm` `const confirm = ref(null)`
+    - use reference in `openConfirmDialog` function `confirm.value.openConfirmDialog()`
+- add `deleteProduct` function on delete icon click which call open ConfirmDialog component
+  - open ConfirmDialog component with `confirm.value.open("Confirm", "question to confirm").then(decision => {... check response ...})`
+- commit - Add Confirm dialog component with reference
