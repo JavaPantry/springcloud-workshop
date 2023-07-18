@@ -36,3 +36,63 @@ create table products_in_store(
                        constraint store_product UNIQUE (store_id, product_id),
                        PRIMARY KEY (`id`)
 ) engine = InnoDB;
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (1, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (1, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (1, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (1, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (1, 5, 500.00, 0, now(), now());
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (2, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (2, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (2, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (2, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (2, 5, 500.00, 0, now(), now());
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (3, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (3, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (3, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (3, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (3, 5, 500.00, 0, now(), now());
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (4, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (4, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (4, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (4, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (4, 5, 500.00, 0, now(), now());
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (5, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (5, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (5, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (5, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (5, 5, 500.00, 0, now(), now());
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (6, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (6, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (6, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (6, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (6, 5, 500.00, 0, now(), now());
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (7, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (7, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (7, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (7, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (7, 5, 500.00, 0, now(), now());
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (8, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (8, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (8, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (8, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (8, 5, 500.00, 0, now(), now());
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (9, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (9, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (9, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (9, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (9, 5, 500.00, 0, now(), now());
+
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (10, 1, 100.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (10, 2, 200.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (10, 3, 300.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (10, 4, 400.00, 0, now(), now());
+INSERT INTO products_in_store (store_id, product_id, price, version, created_date, last_modified_date) VALUES (10, 5, 500.00, 0, now(), now());

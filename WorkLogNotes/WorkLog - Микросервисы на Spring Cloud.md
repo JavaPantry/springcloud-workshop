@@ -2891,3 +2891,8 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 ## Add inventory edit form dialog component with reference
 - repeat same steps as for ConfirmDialog component
 - commit - Add inventory edit form dialog component with reference
+
+# July 17, 2023 - Store-service API
+## Store-service - Populate products_in_store table with products with price 
+- add data to products_in_store table in migration sql script
+- commit - Store-service - Populate products_in_store table with products with price
