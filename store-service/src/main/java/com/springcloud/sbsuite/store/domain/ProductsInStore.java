@@ -8,6 +8,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,4 +21,13 @@ import lombok.*;
 public class ProductsInStore extends BaseEntity {
     @ManyToOne
     private Store store;
+
+    @NotBlank
+    @NotNull
+    private Long productId;
+
+    @NotBlank
+    @NotNull
+    @Column(precision=10, scale=2)
+    private BigDecimal price;
 }

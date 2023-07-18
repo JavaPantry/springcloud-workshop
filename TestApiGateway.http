@@ -13,6 +13,10 @@ GET {{gateway-host}}/inventory-service/inventory/product/1
 ### get store-service via gateway - OK
 GET {{gateway-host}}/store/inventory
 
+### get store inventory with prices
+GET {{gateway-host}}/store/inventory/1
+
+
 ### get direct store-service - OK
 GET {{gateway-host}}/store-service/store/inventory
 

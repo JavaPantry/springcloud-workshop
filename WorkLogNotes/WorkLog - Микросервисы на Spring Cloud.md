@@ -2892,7 +2892,30 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - repeat same steps as for ConfirmDialog component
 - commit - Add inventory edit form dialog component with reference
 
-# July 17, 2023 - Store-service API
+# July 18, 2023 - Store-service API
 ## Store-service - Populate products_in_store table with products with price 
 - add data to products_in_store table in migration sql script
 - commit - Store-service - Populate products_in_store table with products with price
+
+## add controller method to fetch products for store
+- add price in ProductsInStore entity
+  - Error in price mapping in ProductsInStore entity 
+    - org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: 
+      - [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: 
+      - Unable to determine SQL type name for column 'price' of table 'products_in_store'
+      - see `WorkLogNotes/GPTChat-JPA-Price-mapping.md`
+  - TODO - refactor  `@ManyToOne private Store store;` this is very expencive to include duplicated store json part in every product JSON entity in response
+    - ? add `@JsonIgnore` to `@ManyToOne private Store store;` to avoid duplicated store json part in every product JSON entity in response
+    - ? add `@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})` to `@ManyToOne private Store store;` to avoid duplicated store json part in every product JSON entity in response
+- add ProductsInStoreRepository
+  - add `public List<ProductsInStore> findByStoreId(Long storeId);` method to select products for store
+- add StoreService `fetchProductsInStore` method
+  - add `public List<ProductsInStore> fetchProductsInStore(Long storeId) {return productsInStoreRepository.findByStoreId(storeId);}`
+- add mapping `@GetMapping("/inventory/{id}")` in StoreController
+  - retrieve products for store Id from products_in_store table
+  - HTTP Error 404 in response to `GET {{gateway-host}}/store/inventory/1`
+    - fix load balancer mapping in `api-gateway/src/main/resources/application.properties`
+      - add `**` to `spring.cloud.gateway.routes[2].predicates[0]=Path=/store/inventory/**`
+      - this fix issue with `GET {{gateway-host}}/store/inventory/1` but TODO: refactor all routes to use `**` instead of detailed unique pathes for each service
+  - add test `GET {{gateway-host}}/store/inventory/1` to TestApiGateway.http
+ - commit - add controller method to fetch products for store
