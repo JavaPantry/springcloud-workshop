@@ -2,8 +2,7 @@ package com.springcloud.sbsuite.store.api;
 
 
 import com.springcloud.sbsuite.store.domain.ProductsInStore;
-import com.springcloud.sbsuite.store.eclient2.Eclient2Service;
-import com.springcloud.sbsuite.store.repositories.StoreRepository;
+import com.springcloud.sbsuite.store.eclient2.InventoryRestService;
 import com.springcloud.sbsuite.store.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,17 +23,17 @@ public class StoreController {
     @Value("${eureka.instance.instance-id}")
     private String instanceId;
 
-    private final Eclient2Service eclient2Service;
+    private final InventoryRestService inventoryRestService;
 
-    public StoreController(Eclient2Service eclient2Service) {
-        this.eclient2Service = eclient2Service;
+    public StoreController(InventoryRestService inventoryRestService) {
+        this.inventoryRestService = inventoryRestService;
     }
 
 
     // TODO check if "/store/inventory" will work
     @GetMapping("/inventory")
     public String testStore() {
-        String inventoryResponse = eclient2Service.getInventory();
+        String inventoryResponse = inventoryRestService.getInventory();
         return String.format("Test StoreController (instance %s) hidden call to Inventory service response > %s", instanceId, inventoryResponse);
     }
 

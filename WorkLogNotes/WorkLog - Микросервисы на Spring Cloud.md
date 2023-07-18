@@ -959,7 +959,7 @@ commit - Point config-server to config-server-repo folder
   - with dummy implementation in `eureka-client/src/main/java/com/springcloud/sbsuite/eurekaclient/eclient2/Eclient2ServiceRestTemplateImpl.java`
     - dummy - no actual contact to eclient2 service
 - wire `Eclient2Service` in `eureka-client/src/main/java/com/springcloud/sbsuite/eurekaclient/api/TestController.java`
-  - `private final Eclient2Service eclient2Service;` with constructor
+  - `private final Eclient2Service inventoryRestService;` with constructor
 - test http://localhost:eclientport/main/eclient2/name
   - twice asking for basic authentication -> enter `avp/password`
   - Response: `Test eureka-client (instance eclient:2ada3e91-79b8-4949-9ee1-f8e9c69f804c} ) eclient2 response > Test eureka-client 2 > Hello`
@@ -2919,3 +2919,6 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
       - this fix issue with `GET {{gateway-host}}/store/inventory/1` but TODO: refactor all routes to use `**` instead of detailed unique pathes for each service
   - add test `GET {{gateway-host}}/store/inventory/1` to TestApiGateway.http
  - commit - add controller method to fetch products for store
+
+## Rename dummy Eclient2Service to InventoryRestService
+- commit - Rename dummy Eclient2Service to InventoryRestService
