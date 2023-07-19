@@ -1,5 +1,6 @@
 package com.springcloud.sbsuite.store.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -19,6 +20,7 @@ import java.math.BigDecimal;
 @Builder
 @Entity
 public class ProductsInStore extends BaseEntity {
+    @JsonIgnore
     @ManyToOne
     private Store store;
 

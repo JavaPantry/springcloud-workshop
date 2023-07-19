@@ -1,7 +1,9 @@
 package com.springcloud.sbsuite.store.api;
 
 
+import com.springcloud.sbsuite.dto.ProductDto;
 import com.springcloud.sbsuite.store.domain.ProductsInStore;
+import com.springcloud.sbsuite.store.domain.Store;
 import com.springcloud.sbsuite.store.eclient2.InventoryRestService;
 import com.springcloud.sbsuite.store.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,14 @@ public class StoreController {
         this.inventoryRestService = inventoryRestService;
     }
 
+    @GetMapping()
+    public List<Store> getStores() {
+        List<Store> dtos = storeService.fetchStores();
+        return dtos;
+    }
 
     // TODO check if "/store/inventory" will work
-    @GetMapping("/inventory")
+    @GetMapping("/calltoinventory")
     public String testStore() {
         String inventoryResponse = inventoryRestService.getInventory();
         return String.format("Test StoreController (instance %s) hidden call to Inventory service response > %s", instanceId, inventoryResponse);

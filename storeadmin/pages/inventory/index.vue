@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import { storeToRefs}   from "pinia";
+import { storeToRefs}   from "pinia"
 import { useShopStore } from '@/stores/shop'
 import ConfirmDialog from "@/components/ConfirmDialog";
 
