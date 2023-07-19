@@ -2922,3 +2922,8 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 
 ## Rename dummy Eclient2Service to InventoryRestService
 - commit - Rename dummy Eclient2Service to InventoryRestService
+
+# July 19, 2023 - Store-service API
+## Put json-server to separate branch `json-server-development` and freeze it
+- will switch to use real database in respective services
+- commit - Put json-server to separate branch `json-server-development` and freeze it
