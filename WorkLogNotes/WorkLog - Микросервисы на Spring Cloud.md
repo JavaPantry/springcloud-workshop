@@ -2942,3 +2942,17 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - create routes for each service in api-gateway `application.properties`
   - use only path predicate `Path=/entry/**` for each service, where `entry` is a root url mapping from each service controller
 - commit - Refactor routes in api-gateway to use `**` instead of detailed unique pathes for each service
+
+## Read stores and ProductsInStore from store-service
+- add `@JsonIgnore` to `ProductsInStore.java` entity to avoid duplicated store json part in every product JSON entity in response
+- replace `useFetch('http://localhost:3099/shops');` with `useFetch('http://localhost:8765/store');`
+- replace `useFetch('http://localhost:3099/inventory?store_id=' + store_id);` with `useFetch('http://localhost:8765/store/inventory/' + store_id);`
+  - Error in `const { data } = await useFetch('http://localhost:8765/store/inventory/' + store_id);`
+    - `data.value` is empty
+    - Very strange because browser http://localhost:8765/store/inventory/1 returns correct JSON data
+    - also http://localhost:8765/store have no issues with reading data from app and no complains about CORS
+
+## Enable CORS in ApiGatewayApplication
+- see [Enable CORS in ApiGatewayApplication](WorkLogNotes/GPTChat-Enable-CORS-in-api-gateway.md)
+- This is resolved issue with CORS in api-gateway
+- commit - Enable CORS in ApiGatewayApplication
