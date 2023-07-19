@@ -2922,3 +2922,23 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 
 ## Rename dummy Eclient2Service to InventoryRestService
 - commit - Rename dummy Eclient2Service to InventoryRestService
+
+# July 19, 2023 - Store-service API
+## Put json-server to separate branch `json-server-development` and freeze it
+- will switch to use real database in respective services
+- commit - Put json-server to separate branch `json-server-development` and freeze it
+- back to master branch
+
+## Refactor routes in api-gateway to use `**` instead of detailed unique pathes for each service
+- google search `spring cloud gateway routes predicates`
+  - [Spring Cloud Gateway](https://cloud.spring.io/spring-cloud-gateway/reference/html)
+- load balancer routes in `api-gateway/src/main/resources/application.properties`
+  ```
+  spring.cloud.gateway.routes[2].id=store
+  spring.cloud.gateway.routes[2].uri=lb://store-service
+  spring.cloud.gateway.routes[2].predicates[0]=Path=/store/inventory/**
+  spring.cloud.gateway.routes[2].predicates[1]=Method=GET
+  ```
+  - create routes for each service in api-gateway `application.properties`
+  - use only path predicate `Path=/entry/**` for each service, where `entry` is a root url mapping from each service controller
+- commit - Refactor routes in api-gateway to use `**` instead of detailed unique pathes for each service
