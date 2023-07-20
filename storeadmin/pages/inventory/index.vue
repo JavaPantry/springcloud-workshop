@@ -63,6 +63,8 @@ function deleteProductAction(product) {
                         <thead>
                         <tr>
                             <th class="text-left">Product Id</th>
+                            <th class="text-left">Name</th>
+                            <th class="text-left">Description</th>
                             <th class="text-left">Quantity</th>
                             <th class="text-left">Price</th>
                             <th class="text-left">Actions</th>
@@ -71,7 +73,9 @@ function deleteProductAction(product) {
                         <tbody>
                         <tr v-for="item in inventory"
                             :key="item.id">
-                            <td>{{ item.product_id }}</td>
+                            <td>{{ item.productId }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.description }}</td>
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.price }}</td>
                             <td>

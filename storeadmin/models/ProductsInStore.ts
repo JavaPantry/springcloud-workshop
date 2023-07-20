@@ -1,7 +1,10 @@
 interface ProductInStore {
     id: number;
-    productId: number;
-    price: number;
+	productId: number;
+	name: string;
+	description: string;
+	quantity: number;
+	price: number;
 }
 
 /*
@@ -13,6 +16,12 @@ interface ProductInStore {
 	"productId": 4,
 	"price": 400.00,
 	"new": false
+
+	private String      name;
+	private String      description;
+
+	private Integer     quantity = 0;
+
   },
 */
 

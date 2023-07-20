@@ -2964,4 +2964,13 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - replace `useFetch('http://localhost:3099/inventory?store_id=' + store_id);` with `useFetch('http://localhost:8765/store/inventory/' + store_id);`
 - introduce intefaces ProductsInStore.ts and Shop.ts in `storeadmin/models/`
 - add `public List<Store> getStores()` to StoreController
-- commit - Read stores and ProductsInStore from store-service 
+- commit - Read stores and ProductsInStore from store-service
+
+# July 20, 2023 - Store-service API
+
+## Introduce composite dto for ProductsInStore
+- create `store-service/src/main/java/com/springcloud/sbsuite/dto/ProductsInStoreDto.java`
+  - add frontend interface dto for ProductsInStoreDto
+- change StoreController to return composite ProductsInStoreDto (for now it is just a copy of ProductsInStore with dummy quantity and description)
+- render Products in store in `storeadmin/pages/inventory/index.vue`
+- commit - Introduce composite dto for ProductsInStore

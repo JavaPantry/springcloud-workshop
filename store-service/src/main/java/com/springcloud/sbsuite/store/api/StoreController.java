@@ -2,6 +2,7 @@ package com.springcloud.sbsuite.store.api;
 
 
 import com.springcloud.sbsuite.dto.ProductDto;
+import com.springcloud.sbsuite.dto.ProductsInStoreDto;
 import com.springcloud.sbsuite.store.domain.ProductsInStore;
 import com.springcloud.sbsuite.store.domain.Store;
 import com.springcloud.sbsuite.store.eclient2.InventoryRestService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,8 +47,20 @@ public class StoreController {
     }
 
     @GetMapping("/inventory/{id}")
-    public List<ProductsInStore> fetchProductsInStore(@PathVariable Long id) {
+    public List<ProductsInStoreDto> fetchProductsInStore(@PathVariable Long id) {
+        List<ProductsInStoreDto> dtos = new ArrayList<>();
         List<ProductsInStore> products = storeService.fetchProductsInStore(id);
-        return products;
+        for (ProductsInStore product : products) {
+            ProductsInStoreDto dto = ProductsInStoreDto.builder()
+                    .id(product.getId())
+                    .productId(product.getProductId())
+                    .name("Fake name for now")
+                    .description("Fake description for now")
+                    .quantity(0)
+                    .price(product.getPrice())
+                    .build();
+            dtos.add(dto);
+        }
+        return dtos;
     }
 }
