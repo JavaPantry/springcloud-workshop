@@ -2,10 +2,12 @@ package com.springcloud.sbsuite.store.api;
 
 
 import com.springcloud.sbsuite.dto.InventoryDto;
+import com.springcloud.sbsuite.dto.ProductDto;
 import com.springcloud.sbsuite.dto.ProductsInStoreDto;
 import com.springcloud.sbsuite.store.domain.ProductsInStore;
 import com.springcloud.sbsuite.store.domain.Store;
 import com.springcloud.sbsuite.store.restclient.InventoryRestService;
+import com.springcloud.sbsuite.store.restclient.ProductRestService;
 import com.springcloud.sbsuite.store.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,8 +32,11 @@ public class StoreController {
 
     private final InventoryRestService inventoryRestService;
 
-    public StoreController(InventoryRestService inventoryRestService) {
+    private final ProductRestService productRestService;
+
+    public StoreController(InventoryRestService inventoryRestService, ProductRestService productRestService) {
         this.inventoryRestService = inventoryRestService;
+        this.productRestService = productRestService;
     }
 
     @GetMapping()
@@ -58,16 +63,25 @@ public class StoreController {
             productInventoryMap.put(product.getProductId(), product.getQuantity());
         }
 
+        List<ProductDto> productDtos = productRestService.getProductsInStore(products.stream().map(ProductsInStore::getProductId).toList());
+        HashMap<Long, ProductDto> productDtoMap = new HashMap<>();
+        for (ProductDto product : productDtos) {
+            productDtoMap.put(product.getId(), product);
+        }
+
         for (ProductsInStore product : products) {
             Integer inventory = productInventoryMap.get(product.getProductId());
             if (inventory == null) {
                 inventory = 0;
             }
+
+            ProductDto productDto = productDtoMap.get(product.getProductId());
+
             ProductsInStoreDto dto = ProductsInStoreDto.builder()
                     .id(product.getId())
                     .productId(product.getProductId())
-                    .name("Fake name for now")
-                    .description("Fake description for now")
+                    .name((productDto == null)?"Fake name for now":productDto.getName())
+                    .description((productDto == null)?"Fake description for now":productDto.getDescription())
                     .quantity(inventory)
                     .price(product.getPrice())
                     .build();

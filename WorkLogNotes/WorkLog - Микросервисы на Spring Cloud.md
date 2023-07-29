@@ -3015,4 +3015,10 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - add `public List<ProductDto> getProductsByIds(@PathVariable List<Long> ids)` mapped as `@GetMapping("/select/{ids}")` to ProductController
 - test `GET {{gateway-host}}/product-service/product/select/1,2,3` in TestApiGateway.http
 - commit - select productDtos for specific ids from product-service
-  
+
+### create RestTemplate call to product-service to get productDtos for specific ids
+- add `ProductRestService` interface with method `List<ProductDto> getProductsInStore(List<Long> ids)`
+- add `ProductRestServiceImpl` with method `List<ProductDto> getProductsInStore(List<Long> ids)`
+- add call to `productDtos = productRestService.getProductsInStore(products.stream().map(ProductsInStore::getProductId).toList());` in StoreController
+- test in storeadmin app - product name and description are rendered in inventory page
+- commit - create RestTemplate call to product-service to get productDtos for specific ids
