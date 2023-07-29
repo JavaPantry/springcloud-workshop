@@ -12,5 +12,7 @@ public interface ProductService {
 
 	public Optional<ProductDto> saveProduct(ProductDto dto);
 	public boolean deleteProduct(ProductDto entity);
+
+	List<ProductDto> fetchProductsByIds(List<Long> ids);
 }
 

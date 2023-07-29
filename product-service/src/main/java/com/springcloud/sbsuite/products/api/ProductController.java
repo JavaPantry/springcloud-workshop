@@ -2,6 +2,7 @@ package com.springcloud.sbsuite.products.api;
 
 
 import com.springcloud.sbsuite.dto.ProductDto;
+import com.springcloud.sbsuite.products.domain.Product;
 import com.springcloud.sbsuite.products.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +41,11 @@ public class ProductController {
     public ProductDto getProductById(@PathVariable Long id) {
         ProductDto dto = productService.fetchProductById(id).orElseThrow(NotFoundException::new);
         return dto;
+    }
+
+    @GetMapping("/select/{ids}")
+    public List<ProductDto> getProductsByIds(@PathVariable List<Long> ids) {
+        return productService.fetchProductsByIds(ids);
     }
 
 //    @GetMapping("/config-var")

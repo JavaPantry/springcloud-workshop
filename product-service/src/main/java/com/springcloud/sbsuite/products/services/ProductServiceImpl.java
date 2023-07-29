@@ -59,5 +59,14 @@ public class ProductServiceImpl implements ProductService {
 		return false;
 	}
 
+	@Override
+	public List<ProductDto> fetchProductsByIds(List<Long> ids) {
+		List<ProductDto> products = productRepository.findByIdIn(ids)
+				.stream()
+				.map(productMapper::productToProductDto)
+				.collect(Collectors.toList());
+		return products;
+	}
+
 
 }

@@ -3005,3 +3005,14 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - test in storeadmin app
 - commit - add getting store inventory RestTemplate call to store-service
 - commit - rename `eclient2` package with RestTemplates to `restclient` in store-service
+
+### select productDtos for specific ids from product-service
+- right now store-service returns only product id, price and quantity in store, we need to retrieve product's name and description from product-service for specific store
+- we'll ask product-service for product names and descriptions for array of product ids
+- see [Select Entities by array of Fields](WorkLogNotes/GPTChat-Select Entities by array of Fields.md)
+- add `List<Product> findByIdIn(List<Long> ids);` to ProductRepository
+- add `List<ProductDto> fetchProductsByIds(List<Long> ids);` to ProductService
+- add `public List<ProductDto> getProductsByIds(@PathVariable List<Long> ids)` mapped as `@GetMapping("/select/{ids}")` to ProductController
+- test `GET {{gateway-host}}/product-service/product/select/1,2,3` in TestApiGateway.http
+- commit - select productDtos for specific ids from product-service
+  
