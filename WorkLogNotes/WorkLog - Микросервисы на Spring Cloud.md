@@ -2978,3 +2978,11 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 # July 29, 2023 - Store-service API
 
 - commit - fix typo in `ProductsInStore` in shop.ts 
+
+## Select composite ProductsInStoreDto from store-service and inventory-service
+### select product inventory for specific store
+- No need for this now [Select Entities by array of Fields](WorkLogNotes/GPTChat-Select Entities by array of Fields.md)
+- add `List<Inventory> findByStoreId(Long storeId)` to Inventory repository
+- add `List<InventoryDto> getStoreInventory(@PathVariable Long id)` to InventoryController
+- test `GET {{gateway-host}}/inventory-service/inventory/store/1` in TestApiGateway.http
+- commit - select product inventory for specific store

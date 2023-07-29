@@ -46,6 +46,15 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
+	public List<InventoryDto> fetchByStoreId(Long storeId) {
+		List<InventoryDto> inventories = inventoryRepository.findByStoreId(storeId)
+				.stream()
+				.map(inventoryMapper::inventoryToInventoryDto)
+				.collect(Collectors.toList());
+		return inventories;
+	}
+
+	@Override
 	public Optional<InventoryDto> saveInventory(InventoryDto dto) {
 		Inventory inventory = null;
 		if(dto.getId() != null) {

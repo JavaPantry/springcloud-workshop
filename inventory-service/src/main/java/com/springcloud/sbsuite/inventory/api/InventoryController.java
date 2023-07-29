@@ -42,6 +42,12 @@ public class InventoryController {
         return dto;
     }
 
+    @GetMapping(value = "/store/{id}")
+    public List<InventoryDto> getStoreInventory(@PathVariable Long id) {
+        List<InventoryDto> dtos = inventoryService.fetchByStoreId(id);
+        return dtos;
+    }
+
     @GetMapping("/config-var")
     public String testConfigVar() {
         //return String.format("Test eureka-client config var > %s", configVar);
