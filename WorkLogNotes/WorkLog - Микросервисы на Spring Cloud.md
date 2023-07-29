@@ -2974,3 +2974,7 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - change StoreController to return composite ProductsInStoreDto (for now it is just a copy of ProductsInStore with dummy quantity and description)
 - render Products in store in `storeadmin/pages/inventory/index.vue`
 - commit - Introduce composite dto for ProductsInStore
+
+# July 29, 2023 - Store-service API
+
+- commit - fix typo in `ProductsInStore` in shop.ts 

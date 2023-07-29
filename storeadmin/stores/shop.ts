@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import Product from "@/models/Product";
 import Shop from '@/models/Shop';
 import Inventory from '@/models/Inventory';
-import ProductInStore from '@/models/ProductInStore';
+import ProductsInStore from '@/models/ProductsInStore';
 
 export const useShopStore = defineStore('shop', {
     state: () => {
@@ -11,7 +11,7 @@ export const useShopStore = defineStore('shop', {
             currentShop: null as Shop | null, //TODO: reset on every new visit to the page
             shops: [] as Shop[],
             products: [] as Product[],
-            inventory: [] as ProductInStore[] //Inventory[]
+            inventory: [] as ProductsInStore[] //Inventory[]
         }
     },
     actions: {
@@ -57,7 +57,7 @@ export const useShopStore = defineStore('shop', {
                 const data = await response.json();*/
                 
                 console.log('fetch Shop inventory - data: ', data);
-                this.inventory = data.value as ProductInStore[];
+                this.inventory = data.value as ProductsInStore[];
             } catch (error) {
                 //showTooltip(error) - let the form component display the error
                 return error
