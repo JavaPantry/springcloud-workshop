@@ -2,11 +2,10 @@ package com.springcloud.sbsuite.store.api;
 
 
 import com.springcloud.sbsuite.dto.InventoryDto;
-import com.springcloud.sbsuite.dto.ProductDto;
 import com.springcloud.sbsuite.dto.ProductsInStoreDto;
 import com.springcloud.sbsuite.store.domain.ProductsInStore;
 import com.springcloud.sbsuite.store.domain.Store;
-import com.springcloud.sbsuite.store.eclient2.InventoryRestService;
+import com.springcloud.sbsuite.store.restclient.InventoryRestService;
 import com.springcloud.sbsuite.store.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

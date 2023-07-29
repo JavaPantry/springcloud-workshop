@@ -3004,3 +3004,4 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - see - [Get list of JSON objects with Spring RestTemplate](https://www.baeldung.com/spring-resttemplate-json-list)
 - test in storeadmin app
 - commit - add getting store inventory RestTemplate call to store-service
+- commit - rename `eclient2` package with RestTemplates to `restclient` in store-service

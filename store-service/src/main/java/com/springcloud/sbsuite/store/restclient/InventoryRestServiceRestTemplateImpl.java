@@ -1,4 +1,4 @@
-package com.springcloud.sbsuite.store.eclient2;
+package com.springcloud.sbsuite.store.restclient;
 
 import com.springcloud.sbsuite.dto.InventoryDto;
 import org.springframework.beans.factory.annotation.Value;
