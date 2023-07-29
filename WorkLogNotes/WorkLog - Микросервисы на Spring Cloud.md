@@ -2986,3 +2986,21 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - add `List<InventoryDto> getStoreInventory(@PathVariable Long id)` to InventoryController
 - test `GET {{gateway-host}}/inventory-service/inventory/store/1` in TestApiGateway.http
 - commit - select product inventory for specific store
+
+### add getting store inventory RestTemplate call to store-service
+- Read [how to read list for entities from RestTemplate](WorkLogNotes/GPTChat-restTemplate which return list of entities.md)
+- add `List<InventoryDto> getInventoryInStore(Long storeId);` to InventoryRestService interface
+- implement `getInventoryInStore` in InventoryRestServiceImpl
+- test `GET {{gateway-host}}/store/inventory/1` in TestApiGateway.http
+  - java.lang.ClassCastException: class java.util.LinkedHashMap cannot be cast to class com.springcloud.sbsuite.dto.InventoryDto 
+    - storeInventory = {ArrayList@19888}  size = 5
+      0 = {LinkedHashMap@19894}  size = 6
+      "id" -> {Integer@15511} 1
+      "version" -> {Integer@15513} 0
+      "createdDate" -> "2023-07-05T12:05:00+0000"
+      "lastModifiedDate" -> "2023-07-05T12:05:00+0000"
+      "productId" -> {Integer@15511} 1
+      "quantity" -> {Integer@15511} 1
+  - see - [Get list of JSON objects with Spring RestTemplate](https://www.baeldung.com/spring-resttemplate-json-list)
+- test in storeadmin app
+- commit - add getting store inventory RestTemplate call to store-service
