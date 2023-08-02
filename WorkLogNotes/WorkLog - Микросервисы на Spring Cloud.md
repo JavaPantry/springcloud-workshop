@@ -3022,3 +3022,10 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - add call to `productDtos = productRestService.getProductsInStore(products.stream().map(ProductsInStore::getProductId).toList());` in StoreController
 - test in storeadmin app - product name and description are rendered in inventory page
 - commit - create RestTemplate call to product-service to get productDtos for specific ids
+
+# August 2, 2023 - storeadmin app
+## Clean up storeadmin inventory related page and store
+- remove `import ConfirmDialog from "@/components/ConfirmDialog";` in `storeadmin/pages/inventory/index.vue`
+  - old fashion declaration of ConfirmDialog component is not recognized as typescript export and discovered by Nuxt
+- remove commented out code in `storeadmin/stores/shop.ts`
+- commit - Clean up storeadmin inventory related page and store

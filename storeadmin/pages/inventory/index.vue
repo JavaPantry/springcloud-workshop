@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { storeToRefs}   from "pinia"
 import { useShopStore } from '@/stores/shop'
-import ConfirmDialog from "@/components/ConfirmDialog";
 
 const shop = useShopStore();
 shop.fetchInventory(shop.currentShop.id) // fetch inventory for current shop

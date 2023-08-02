@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 
 import Product from "@/models/Product";
 import Shop from '@/models/Shop';
-import Inventory from '@/models/Inventory';
 import ProductsInStore from '@/models/ProductsInStore';
 
 export const useShopStore = defineStore('shop', {
@@ -11,7 +10,7 @@ export const useShopStore = defineStore('shop', {
             currentShop: null as Shop | null, //TODO: reset on every new visit to the page
             shops: [] as Shop[],
             products: [] as Product[],
-            inventory: [] as ProductsInStore[] //Inventory[]
+            inventory: [] as ProductsInStore[]
         }
     },
     actions: {
@@ -32,7 +31,6 @@ export const useShopStore = defineStore('shop', {
         fetchShops: async function () {
             try {
                 console.log('entry fetchShops()');
-                //const {data} = await useFetch('http://localhost:3099/shops');
                 const {data} = await useFetch('http://localhost:8765/store');
                 console.log('fetchShops() - data: ', data);
                 this.shops = data.value as Shop[];
@@ -44,18 +42,7 @@ export const useShopStore = defineStore('shop', {
         fetchInventory: async function (store_id: number) {
             try {
                 console.log('entry fetch Shop inventory()');
-                //const {data} = await useFetch('http://localhost:3099/inventory?store_id=' + store_id);
                 const { data, error } = await useFetch('http://localhost:8765/store/inventory/' + store_id);
-                /* const response = await fetch('http://localhost:8765/store/inventory/' + store_id,
-                                                {
-                                                mode: 'cors',
-                                                headers: {
-                                                    'Access-Control-Allow-Origin':'*'
-                                                }
-                                                }
-                ); 
-                const data = await response.json();*/
-                
                 console.log('fetch Shop inventory - data: ', data);
                 this.inventory = data.value as ProductsInStore[];
             } catch (error) {
