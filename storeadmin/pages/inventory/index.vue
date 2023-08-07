@@ -29,7 +29,7 @@ const deleteProduct = (product: ProductInStore) => {
     // @ts-ignore
     confirmDeleteDialog.value
       .open("Confirm", question)
-      .then(decision => {
+      .then((decision: boolean) => {
         if (decision) {
           deleteProductAction(product)
         }
@@ -45,8 +45,8 @@ function deleteProductAction(product: ProductInStore) {
 <template>
     <NuxtLayout>
         <div class="container">
-            <h2>Products in store {{ shop.currentShop.name }} id: {{ shop.currentShop.id }}</h2>
-            <p> {{ shop.currentShop.description }}</p>
+            <h2>Products in store {{ shop.currentShop?.name }} id: {{ shop.currentShop?.id }}</h2>
+            <p> {{ shop.currentShop?.description }}</p>
 
             <v-container fluid v-if="hasInventory">
                      <v-table density="compact">

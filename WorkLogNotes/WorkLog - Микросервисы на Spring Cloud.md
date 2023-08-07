@@ -3036,3 +3036,6 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - use `@ts-ignore` to ignore ts lint error
 - rename `inventory: [] as ProductsInStore[]` to `productsInStore: [] as ProductsInStore[]`
 - commit - ts lint and fix name productId property in ProductsInStoreDto and rename inventory to productsInStore in pinia store
+- fix promise return type `.then(decision => {...})` to `.then((decision: boolean) => {...})`
+- fix ` {{ shop.currentShop.name }} ` to ` {{ shop.currentShop?.name }} ` to remove warning `__VLS_ctx.shop.currentShop' is possibly 'null'.ts(18047)`
+- commit - fix ts lint warnings
