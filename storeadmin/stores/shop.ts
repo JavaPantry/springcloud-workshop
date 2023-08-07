@@ -10,7 +10,7 @@ export const useShopStore = defineStore('shop', {
             currentShop: null as Shop | null, //TODO: reset on every new visit to the page
             shops: [] as Shop[],
             products: [] as Product[],
-            inventory: [] as ProductsInStore[]
+            productsInStore: [] as ProductsInStore[]
         }
     },
     actions: {
@@ -44,7 +44,7 @@ export const useShopStore = defineStore('shop', {
                 console.log('entry fetch Shop inventory()');
                 const { data, error } = await useFetch('http://localhost:8765/store/inventory/' + store_id);
                 console.log('fetch Shop inventory - data: ', data);
-                this.inventory = data.value as ProductsInStore[];
+                this.productsInStore = data.value as ProductsInStore[];
             } catch (error) {
                 //showTooltip(error) - let the form component display the error
                 return error

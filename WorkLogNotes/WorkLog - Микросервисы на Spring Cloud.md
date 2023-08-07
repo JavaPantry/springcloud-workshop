@@ -3029,3 +3029,10 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - old fashion declaration of ConfirmDialog component is not recognized as typescript export and discovered by Nuxt
 - remove commented out code in `storeadmin/stores/shop.ts`
 - commit - Clean up storeadmin inventory related page and store
+
+# August 7, 2023 - storeadmin app
+## ts lint and fix name productId property in ProductsInStoreDto and rename inventory to productsInStore in pinia store
+- cast product to ProductInStore
+- use `@ts-ignore` to ignore ts lint error
+- rename `inventory: [] as ProductsInStore[]` to `productsInStore: [] as ProductsInStore[]`
+- commit - ts lint and fix name productId property in ProductsInStoreDto and rename inventory to productsInStore in pinia store
