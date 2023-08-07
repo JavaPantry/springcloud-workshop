@@ -3039,3 +3039,13 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
 - fix promise return type `.then(decision => {...})` to `.then((decision: boolean) => {...})`
 - fix ` {{ shop.currentShop.name }} ` to ` {{ shop.currentShop?.name }} ` to remove warning `__VLS_ctx.shop.currentShop' is possibly 'null'.ts(18047)`
 - commit - fix ts lint warnings
+
+## Add ShoppingCart component and addProductToCart and removeProductFromCart actions to table with products in store
+- add actions with icon mapped to `addProductToCart` and `removeProductFromCart` to `storeadmin/inventory/index.vue`
+  - select mdi icons from https://materialdesignicons.com/  or https://pictogrammers.com/library/mdi/icon/cart-arrow-down/
+- create `ProductInCart` and `ShoppingCart` interfaces
+  - add them to inventory/index.vue
+- create `components\shop\Cart.vue` component
+  - add it to `storeadmin/pages/inventory/index.vue`
+- TODO: - add computed total price of products in cart
+- commit - Add ShoppingCart component and addProductToCart and removeProductFromCart actions to table with products in store

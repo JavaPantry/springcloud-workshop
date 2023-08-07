@@ -3,6 +3,14 @@ import { ref } from 'vue'
 import { storeToRefs}   from "pinia"
 import { useShopStore } from '@/stores/shop'
 import ProductInStore from 'models/ProductsInStore';
+import ShoppingCart from '@/models/ShoppingCart';
+import ProductInCart from '@/models/ProductInCart';
+
+
+const shoppingCart = ref<ShoppingCart>({
+    storeId: -1,
+    products: [] as ProductInCart[],
+});
 
 const shop = useShopStore();
 
@@ -40,14 +48,41 @@ function deleteProductAction(product: ProductInStore) {
   console.log('Confirmed deleteProductAction ', product.productId);
 }
 
+function addProductToCart(product: ProductInStore) {
+  console.log('addProductToCart ', product.productId);
+  const productToAdd = { productId: product.productId, quantity: 1 } as ProductInCart;
+  const index = shoppingCart.value.products.findIndex((p) => p.productId === productToAdd.productId);
+  if (index > -1) {
+    shoppingCart.value.products[index].quantity++;
+  } else {
+    shoppingCart.value.products.push(productToAdd);  
+  }
+  
+  console.log('addProductToCart ', shoppingCart.value.products);
+}
+function removeProductFromCart(product: ProductInStore) {
+  console.log('removeProductFromCart ', product.productId);
+    const productToDelete = { productId: product.productId, quantity: 1 } as ProductInCart;
+    const index = shoppingCart.value.products.findIndex((p) => p.productId === productToDelete.productId);
+    if (index > -1) {
+        const quantity = shoppingCart.value.products[index].quantity;
+        if (quantity > 1) {
+            shoppingCart.value.products[index].quantity--;
+        } else {
+            shoppingCart.value.products.splice(index, 1);
+        } 
+    }
+    console.log('removeProductFromCart ', shoppingCart.value.products);
+}
+
 </script>
 
 <template>
     <NuxtLayout>
         <div class="container">
             <h2>Products in store {{ shop.currentShop?.name }} id: {{ shop.currentShop?.id }}</h2>
-            <p> {{ shop.currentShop?.description }}</p>
-
+            <p> {{ shop.currentShop?.description }}  </p>
+            <p> <ShopCart :cart="shoppingCart"/> </p>
             <v-container fluid v-if="hasInventory">
                      <v-table density="compact">
                         <thead>
@@ -71,6 +106,8 @@ function deleteProductAction(product: ProductInStore) {
                             <td>
                                 <v-icon aria-hidden="false" @click.stop="editProduct(item)">mdi-playlist-edit</v-icon>
                                 <v-icon aria-hidden="false" color="red-darken-4" @click.stop="deleteProduct(item)">mdi-trash-can-outline</v-icon>
+                                <v-icon aria-hidden="false" @click.stop="addProductToCart(item)">mdi-cart-arrow-down</v-icon>
+                                <v-icon aria-hidden="false" @click.stop="removeProductFromCart(item)">mdi-cart-arrow-up</v-icon>
                             </td>
                         </tr>
                         </tbody>
