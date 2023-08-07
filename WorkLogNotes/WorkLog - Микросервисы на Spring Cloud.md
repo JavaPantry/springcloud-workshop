@@ -3049,3 +3049,58 @@ July 6-7, 2023 - work on Vue+Vuetify admin app to see how Vue development differ
   - add it to `storeadmin/pages/inventory/index.vue`
 - TODO: - add computed total price of products in cart
 - commit - Add ShoppingCart component and addProductToCart and removeProductFromCart actions to table with products in store
+
+## Fix computed total of products in cart
+- How I can "compute" total from ShoppingCart passed to vue component as property?
+- Assuming your component is named Cart.vue:
+
+    ```vue
+    I apologize for the ongoing confusion. It seems that I misunderstood your initial question. If you've aliased the prop as ShoppingCart using const { cart: ShoppingCart } = defineProps(['cart']), you need to use ShoppingCart as the alias, not cart.
+
+Here's the correct code:
+
+```vue
+
+<template>
+  <div>
+    <!-- Your template content here -->
+    <p>Total Products in Cart: {{ total }}</p>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { defineProps, computed } from 'vue';
+
+interface ProductInCart {
+  // Define your ProductInCart properties here
+  quantity: number;
+}
+
+interface ShoppingCart {
+  products: ProductInCart[];
+}
+
+const { cart: ShoppingCart } = defineProps(['cart']); // Use ShoppingCart as the alias
+               ^ this is the alias (NOT a type)
+const total = computed(() => {
+  return ShoppingCart.products.reduce((total, product) => total + product.quantity, 0);
+});
+</script>
+```
+
+
+User
+YES!!!
+
+```
+const { cart: shoppingCart } = defineProps(['cart'])
+
+const total = computed(() => {
+   return shoppingCart.products.reduce((total, product) => total + product.quantity, 0)
+}) 
+```
+
+
+My mistake - I mistreat `cart: shoppingCart` which means "decompose cart from component properties and use shoppingCart as variable name". I was thinking that this is cart of type ShoppingCart ... My mistake!
+
+- commit - Fix computed total of products in cart

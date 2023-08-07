@@ -1,21 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-// import ShoppingCart from '@/models/ShoppingCart'
 
-const { cart: ShoppingCart } = defineProps(['cart'])
+const { cart: shoppingCart } = defineProps(['cart'])
+const total = computed(() => {
+   return shoppingCart.products.reduce((total, product) => total + product.quantity, 0)
+}) 
 
-/* const total = computed(() => {
-    cart.products.reduce((total, product) => total + product.quantity, 0)
-}) */
-
-/* function computedTotal(cart: ShoppingCart) {
-    let total = 0;
-    console.log('computedTotal from')
-    // cart.products.forEach(product => {
-    //     total += product.quantity;
-    // });
-    return total;
-} */
 </script>
 
 <template>
@@ -28,7 +18,7 @@ const { cart: ShoppingCart } = defineProps(['cart'])
                     {{ product.productId }} - {{ product.quantity }}
                 </v-list-item>
                 <hr>
-                Total: 
+                Total: {{ total }}
         </v-card-text>
     </v-card>
 
