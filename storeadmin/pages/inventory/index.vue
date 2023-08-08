@@ -79,10 +79,16 @@ function removeProductFromCart(product: ProductInStore) {
 
 <template>
     <NuxtLayout>
+        <header class="store-header">
+            <div class="store-name">{{ shop.currentShop?.name }} id: {{ shop.currentShop?.id }}</div>
+            <div class="cart-container">
+            <ShopCart :cart="shoppingCart" />
+            </div>
+        </header>
         <div class="container">
-            <h2>Products in store {{ shop.currentShop?.name }} id: {{ shop.currentShop?.id }}</h2>
+            <!-- <h2>Products in store {{ shop.currentShop?.name }} id: {{ shop.currentShop?.id }}</h2>
             <p> {{ shop.currentShop?.description }}  </p>
-            <p> <ShopCart :cart="shoppingCart"/> </p>
+            <p> <ShopCart :cart="shoppingCart"/> </p> -->
             <v-container fluid v-if="hasInventory">
                      <v-table density="compact">
                         <thead>
@@ -129,5 +135,23 @@ function removeProductFromCart(product: ProductInStore) {
     background-color: lightgray;
     font-size: larger;
     font-weight: 600 !important;
+}
+
+.store-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+}
+
+.store-name {
+  font-size: 1.2rem;
+}
+
+.cart-container {
+  display: flex;
+  align-items: center;
 }
 </style>

@@ -3124,5 +3124,8 @@ const { cart: shoppingCart } = defineProps<{ cart: ShoppingCart }>();
 - commit - Refactor how to declare ShoppingCart property in Cart.vue component
 
 ## Style shop/Cart.vue component
+- It should be rendered as a small ellipsis with cart mdi icon and total number of products in it.
 - see [GPTChat-ShopCartComponent](./GPTChat-ShopCartComponent.md)
 - commit - Style shop/Cart.vue component
+- commit - render cart in `storeadmin/pages/inventory/index.vue` in header section
+
