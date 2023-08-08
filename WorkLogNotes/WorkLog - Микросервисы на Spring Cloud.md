@@ -3139,3 +3139,4 @@ const { cart: shoppingCart } = defineProps<{ cart: ShoppingCart }>();
   - <ShopCart :cart="shoppingCart" @openCartDetail="openCartDetail"/>
   - to access `openCart()` method within component you need to make it exposed `defineExpose({ openCart })`
 - commit - Create ShoppingCartDetail component to send order to order-service
+- commit - render ShoppingCartDetail content as v-table

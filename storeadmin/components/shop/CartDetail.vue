@@ -42,22 +42,34 @@ const onSubmit = () => {
             <v-toolbar-title><v-icon left>mdi-cart</v-icon>Shopping Cart</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <v-row v-for="(product, idx) in cart.products">
-                <v-col cols="12" sm="4">
-                    {{ product.productId }}
-                </v-col>
-                <v-col cols="12" sm="4">
-                    {{ product.quantity }}
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col cols="12" sm="4">
-                    Total:
-                </v-col>
-                <v-col cols="12" sm="4">
-                    {{ total }}
-                </v-col>
-            </v-row>
+            <v-table density="compact">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Product Id</th>
+                                    <!-- <th class="text-left">Name</th> -->
+                                    <!-- <th class="text-left">Description</th> -->
+                                    <th class="text-left">Quantity</th>
+                                    <!-- <th class="text-left">Price</th> -->
+                                    <th class="text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(product, idx) in cart.products" :key="product.productId">
+                                    <td>{{ product.productId }}</td>
+                                    <td>{{ product.quantity }}</td>
+                                    <!-- <td>{{ item.price }}</td> -->
+                                    <td>
+                                        <v-icon aria-hidden="false" color="red-darken-4" @click.stop="deleteProduct(item)">mdi-trash-can-outline</v-icon>
+                                        <v-icon aria-hidden="false" @click.stop="addProductToCart(item)">mdi-cart-arrow-down</v-icon>
+                                        <v-icon aria-hidden="false" @click.stop="removeProductFromCart(item)">mdi-cart-arrow-up</v-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>{{ total }}</td>
+                                </tr>
+                            </tbody>
+                        </v-table>
           </v-card-text>
           <v-card-actions>
             <v-btn text small @click="closeCart">Close</v-btn>
