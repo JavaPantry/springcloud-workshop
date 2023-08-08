@@ -141,17 +141,17 @@ function removeProductFromCart(product: ProductInStore) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #200fb9;
   color: white;
   padding: 1rem;
-}
 
-.store-name {
-  font-size: 1.2rem;
-}
+  .store-name {
+    font-size: 1.2rem;
+  }
 
-.cart-container {
-  display: flex;
-  align-items: center;
+  .cart-container {
+    display: flex;
+    align-items: center;
+  }
 }
 </style>

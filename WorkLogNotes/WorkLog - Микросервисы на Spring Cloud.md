@@ -3128,4 +3128,4 @@ const { cart: shoppingCart } = defineProps<{ cart: ShoppingCart }>();
 - see [GPTChat-ShopCartComponent](./GPTChat-ShopCartComponent.md)
 - commit - Style shop/Cart.vue component
 - commit - render cart in `storeadmin/pages/inventory/index.vue` in header section
-
+- commit - rewrite CSS styles to SCSS
