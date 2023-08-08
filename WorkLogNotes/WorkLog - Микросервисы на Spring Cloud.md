@@ -3104,3 +3104,21 @@ const total = computed(() => {
 My mistake - I mistreat `cart: shoppingCart` which means "decompose cart from component properties and use shoppingCart as variable name". I was thinking that this is cart of type ShoppingCart ... My mistake!
 
 - commit - Fix computed total of products in cart
+
+# August 8, 2023 - storeadmin app
+## Refactor how to declare ShoppingCart property in Cart.vue component
+- all two declarations are valid, but second one is more readable and typescript friendly
+
+```ts
+// first declaration
+const { cart: shoppingCart } = defineProps(['cart'])// Use shoppingCart as the alias
+
+// following declaration need to import ShoppingCart interface
+import ShoppingCart from "~/models/ShoppingCart";
+
+// second declaration
+const { cart: shoppingCart } = defineProps<{ cart: ShoppingCart }>();
+
+```
+
+- commit - Refactor how to declare ShoppingCart property in Cart.vue component

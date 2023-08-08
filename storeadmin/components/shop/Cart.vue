@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import ShoppingCart from "~/models/ShoppingCart";
 
-const { cart: shoppingCart } = defineProps(['cart'])
+// 1st: const { cart: shoppingCart } = defineProps(['cart'])
+// 2nd: - more readable and typescript friendly
+const { cart: shoppingCart } = defineProps<{ cart: ShoppingCart }>();
+
 const total = computed(() => {
    return shoppingCart.products.reduce((total, product) => total + product.quantity, 0)
 }) 
