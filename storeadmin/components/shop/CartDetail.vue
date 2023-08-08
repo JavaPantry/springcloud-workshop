@@ -33,6 +33,36 @@ const onSubmit = () => {
     dialog.value = false;
 };
 
+function deleteProductAction(product: ProductInStore) {
+    console.log('Confirmed deleteProductAction ', product.productId);
+}
+
+function addProductToCart(product: ProductInStore) {
+    console.log('addProductToCart ', product.productId);
+    const productToAdd = { productId: product.productId, quantity: 1 } as ProductInCart;
+    const index = shoppingCart.products.findIndex((p) => p.productId === productToAdd.productId);
+    if (index > -1) {
+        shoppingCart.products[index].quantity++;
+    } else {
+        shoppingCart.products.push(productToAdd);
+    }
+    console.log('addProductToCart ', shoppingCart.products);
+}
+function removeProductFromCart(product: ProductInStore) {
+    console.log('removeProductFromCart ', product.productId);
+    const productToDelete = { productId: product.productId, quantity: 1 } as ProductInCart;
+    const index = shoppingCart.products.findIndex((p) => p.productId === productToDelete.productId);
+    if (index > -1) {
+        const quantity = shoppingCart.products[index].quantity;
+        if (quantity > 1) {
+            shoppingCart.products[index].quantity--;
+        } else {
+            shoppingCart.products.splice(index, 1);
+        }
+    }
+    console.log('removeProductFromCart ', shoppingCart.products);
+}
+
 </script>
 
 <template>
@@ -57,11 +87,11 @@ const onSubmit = () => {
                                 <tr v-for="(product, idx) in cart.products" :key="product.productId">
                                     <td>{{ product.productId }}</td>
                                     <td>{{ product.quantity }}</td>
-                                    <!-- <td>{{ item.price }}</td> -->
+                                    <!-- <td>{{ product.price }}</td> -->
                                     <td>
-                                        <v-icon aria-hidden="false" color="red-darken-4" @click.stop="deleteProduct(item)">mdi-trash-can-outline</v-icon>
-                                        <v-icon aria-hidden="false" @click.stop="addProductToCart(item)">mdi-cart-arrow-down</v-icon>
-                                        <v-icon aria-hidden="false" @click.stop="removeProductFromCart(item)">mdi-cart-arrow-up</v-icon>
+                                        <v-icon aria-hidden="false" color="red-darken-4" @click.stop="deleteProduct(product)">mdi-trash-can-outline</v-icon>
+                                        <v-icon aria-hidden="false" @click.stop="addProductToCart(product)">mdi-cart-arrow-down</v-icon>
+                                        <v-icon aria-hidden="false" @click.stop="removeProductFromCart(product)">mdi-cart-arrow-up</v-icon>
                                     </td>
                                 </tr>
                                 <tr>
