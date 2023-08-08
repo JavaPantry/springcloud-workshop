@@ -3141,3 +3141,4 @@ const { cart: shoppingCart } = defineProps<{ cart: ShoppingCart }>();
 - commit - Create ShoppingCartDetail component to send order to order-service
 - commit - render ShoppingCartDetail content as v-table
 - commit - add `deleteProductAction` and `addProductAction` handlers to `ShoppingCartDetail` component
+- commit - validate shopping cart to prevent order with empty shopping cart

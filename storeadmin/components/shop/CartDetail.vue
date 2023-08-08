@@ -28,6 +28,12 @@ const closeCart = () => {
 const onSubmit = () => {
     // make an order
     console.log('onSubmit action')
+    // validate shopping cart
+    if (total.value == 0) {
+        console.log('onSubmit action - no products in cart')
+        return;
+    }
+    // save order
     // clear shopping cart
     shoppingCart.products = [];
     dialog.value = false;
