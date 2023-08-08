@@ -3122,3 +3122,7 @@ const { cart: shoppingCart } = defineProps<{ cart: ShoppingCart }>();
 ```
 
 - commit - Refactor how to declare ShoppingCart property in Cart.vue component
+
+## Style shop/Cart.vue component
+- see [GPTChat-ShopCartComponent](./GPTChat-ShopCartComponent.md)
+- commit - Style shop/Cart.vue component

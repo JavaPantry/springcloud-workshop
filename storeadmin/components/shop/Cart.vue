@@ -10,20 +10,38 @@ const total = computed(() => {
    return shoppingCart.products.reduce((total, product) => total + product.quantity, 0)
 }) 
 
+const openCart = () => {
+    // Implement logic to open the cart or navigate to the cart page
+    console.log('openCart action')
+};
 </script>
 
 <template>
-
-    <v-card class="mx-auto">
-        <v-card-title class="text-h5">Shopping Cart</v-card-title>
-        <v-card-subtitle>Store: {{ cart.storeId }}</v-card-subtitle>
-        <v-card-text>
-                <v-list-item v-for="product in cart.products" :key="product.productId">
-                    {{ product.productId }} - {{ product.quantity }}
-                </v-list-item>
-                <hr>
-                Total: {{ total }}
-        </v-card-text>
-    </v-card>
-
+    <div class="shop-cart" @click="openCart">
+        <span class="cart-icon">
+            <i class="mdi mdi-cart"></i>
+        </span>
+        <span class="cart-count">{{ total }}</span>
+    </div>
 </template>
+
+<style scoped>
+.shop-cart {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cart-icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.cart-count {
+    background-color: #f44336;
+    color: white;
+    border-radius: 50%;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+</style>
