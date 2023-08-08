@@ -75,6 +75,14 @@ function removeProductFromCart(product: ProductInStore) {
     console.log('removeProductFromCart ', shoppingCart.value.products);
 }
 
+
+const shoppingCartDetail = ref(null)
+
+const openCartDetail = () => {
+    console.log('openCartDetail action')
+    // @ts-ignore
+    shoppingCartDetail.value.openCart()
+}
 </script>
 
 <template>
@@ -82,7 +90,7 @@ function removeProductFromCart(product: ProductInStore) {
         <header class="store-header">
             <div class="store-name">{{ shop.currentShop?.name }} id: {{ shop.currentShop?.id }}</div>
             <div class="cart-container">
-            <ShopCart :cart="shoppingCart" />
+            <ShopCart :cart="shoppingCart" @openCartDetail="openCartDetail"/>
             </div>
         </header>
         <div class="container">
@@ -124,6 +132,7 @@ function removeProductFromCart(product: ProductInStore) {
             </v-container>
 	        <ConfirmDialog ref="confirmDeleteDialog" />
             <InventoryEditForm ref="inventoryEditForm"/>
+            <ShopCartDetail ref="shoppingCartDetail" :cart="shoppingCart"/>
         </div>
     </NuxtLayout>
 </template>

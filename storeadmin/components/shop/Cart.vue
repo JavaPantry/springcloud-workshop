@@ -10,9 +10,12 @@ const total = computed(() => {
    return shoppingCart.products.reduce((total, product) => total + product.quantity, 0)
 }) 
 
+
+const emit = defineEmits(['openCartDetail'])
 const openCart = () => {
     // Implement logic to open the cart or navigate to the cart page
     console.log('openCart action')
+    emit('openCartDetail')
 };
 </script>
 

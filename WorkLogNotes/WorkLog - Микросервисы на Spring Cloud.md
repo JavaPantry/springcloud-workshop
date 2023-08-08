@@ -3129,3 +3129,13 @@ const { cart: shoppingCart } = defineProps<{ cart: ShoppingCart }>();
 - commit - Style shop/Cart.vue component
 - commit - render cart in `storeadmin/pages/inventory/index.vue` in header section
 - commit - rewrite CSS styles to SCSS
+
+## Create ShoppingCartDetail component to send order to order-service
+- create `components\shop\CartDetail.vue` component
+  - render products in cart - Fixed issue with access property alias in template html code 
+  - see [GPTChat-Fixing Undefined ShoppingCart Error](WorkLogNotes/GPTChat-Fixing Undefined ShoppingCart Error.md)
+- emit `openCartDetail` event from `components\shop\Cart.vue` component on click on cart icon
+- catch `openCartDetail` event in `storeadmin/pages/inventory/index.vue` and open `showCartDetail` to true
+  - <ShopCart :cart="shoppingCart" @openCartDetail="openCartDetail"/>
+  - to access `openCart()` method within component you need to make it exposed `defineExpose({ openCart })`
+- commit - Create ShoppingCartDetail component to send order to order-service

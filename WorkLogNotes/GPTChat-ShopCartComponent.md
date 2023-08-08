@@ -183,3 +183,77 @@ import StoreHeader from '@/components/StoreHeader.vue'; // Adjust the path as ne
 ```
 
 Remember to adjust the code according to your actual data structure, design requirements, and file paths. This setup allows you to easily include the `ShopCart` component along with the store name in the header of your parent component.
+
+## User
+Rewrite css style to scss (i.e. use lang="scss")
+
+```vue
+<template>
+        <header class="store-header">
+            <div class="store-name">{{ shop.currentShop?.name }} id: {{ shop.currentShop?.id }}</div>
+            <div class="cart-container">
+            <ShopCart :cart="shoppingCart" />
+            </div>
+        </header>
+</template>
+
+<style scoped>
+.store-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+}
+
+.store-name {
+  font-size: 1.2rem;
+}
+
+.cart-container {
+  display: flex;
+  align-items: center;
+}
+</style>
+```
+
+
+Sure, here's the equivalent SCSS code for the provided CSS styles:
+
+```vue
+<template>
+  <header class="store-header">
+    <div class="store-name">{{ shop.currentShop?.name }} id: {{ shop.currentShop?.id }}</div>
+    <div class="cart-container">
+      <ShopCart :cart="shoppingCart" />
+    </div>
+  </header>
+</template>
+
+<style lang="scss" scoped>
+.store-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+
+  .store-name {
+    font-size: 1.2rem;
+  }
+
+  .cart-container {
+    display: flex;
+    align-items: center;
+  }
+}
+</style>
+```
+
+In this SCSS code, I've nested the `.store-name` and `.cart-container` styles within the `.store-header` block, 
+which is a common practice in SCSS to create more organized and structured code. 
+Remember that SCSS is a superset of CSS, so the compiled CSS output will remain the same, 
+but you get the advantage of nesting and other features that SCSS offers for better maintainability.
+
