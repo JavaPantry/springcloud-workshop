@@ -5,6 +5,8 @@ import lombok.*;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Embeddable
 public class Address {
 	private String streetAddress;
