@@ -3161,11 +3161,11 @@ const callSayHello = () => {
 </template>
 ```
 
-- nullable type warning in pages/index.vue
-  - `<v-img :src="currentShop.image" width="800" height="200"></v-img>`
 
 ## Resolve tslint warnings in ShoppingCartDetail
 - missing imports ProductInCart (replace ProductInStore)
 - rename `deleteProduct` to `deleteProductAction`
 - change `ref(null)` to `ref()`
 - commit - Resolve tslint warnings in ShoppingCartDetail
+- commit - fix nullable type warning in pages/index.vue
+  - change `:src="currentShop?.image"` in `<v-img :src="currentShop.image" width="800" height="200"></v-img>`

@@ -47,7 +47,7 @@ onMounted(() => {
             <div v-if="selectedStore">
                 <v-container fluid>
                     <v-row align-center justify-center>
-                    <v-img :src="currentShop.image" width="800" height="200"></v-img>
+                    <v-img :src="currentShop?.image" width="800" height="200"></v-img>
                     </v-row>
                 </v-container>
                 <v-layout column>
