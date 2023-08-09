@@ -3138,7 +3138,34 @@ const { cart: shoppingCart } = defineProps<{ cart: ShoppingCart }>();
 - catch `openCartDetail` event in `storeadmin/pages/inventory/index.vue` and open `showCartDetail` to true
   - <ShopCart :cart="shoppingCart" @openCartDetail="openCartDetail"/>
   - to access `openCart()` method within component you need to make it exposed `defineExpose({ openCart })`
+  - see [call method in child component](https://stackoverflow.com/questions/55316490/vue-best-practice-for-calling-a-method-in-a-child-component)
 - commit - Create ShoppingCartDetail component to send order to order-service
 - commit - render ShoppingCartDetail content as v-table
 - commit - add `deleteProductAction` and `addProductAction` handlers to `ShoppingCartDetail` component
 - commit - validate shopping cart to prevent order with empty shopping cart
+
+# August 9, 2023 - storeadmin app
+## TODO: 
+- ~~try change `ref(null)` to `ref()`~~
+```ts
+<script setup lang="ts">
+const childRef = ref()
+
+const callSayHello = () => {
+  childRef.value.sayHello()
+}
+</script>
+
+<template>
+  <child ref="childRef"></child>
+</template>
+```
+
+- nullable type warning in pages/index.vue
+  - `<v-img :src="currentShop.image" width="800" height="200"></v-img>`
+
+## Resolve tslint warnings in ShoppingCartDetail
+- missing imports ProductInCart (replace ProductInStore)
+- rename `deleteProduct` to `deleteProductAction`
+- change `ref(null)` to `ref()`
+- commit - Resolve tslint warnings in ShoppingCartDetail

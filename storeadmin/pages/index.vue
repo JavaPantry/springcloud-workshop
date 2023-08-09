@@ -14,7 +14,7 @@ shopStore.fetchShops(); // fetch shops from api
 
 let { shops, currentShop } = storeToRefs(shopStore) // decompose and shops from shop store
 
-let selectedStoreId = ref(null); // selected store
+let selectedStoreId = ref(); // selected store
 
 const selectedStore = computed(() => shops.value.find(shop => shop.id === selectedStoreId.value));
 

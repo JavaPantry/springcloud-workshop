@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+import ProductInCart from 'models/ProductInCart';
 import { ref, computed } from 'vue'
 import ShoppingCart from "~/models/ShoppingCart";
 
@@ -39,11 +40,11 @@ const onSubmit = () => {
     dialog.value = false;
 };
 
-function deleteProductAction(product: ProductInStore) {
+function deleteProductAction(product: ProductInCart) {
     console.log('Confirmed deleteProductAction ', product.productId);
 }
 
-function addProductToCart(product: ProductInStore) {
+function addProductToCart(product: ProductInCart) {
     console.log('addProductToCart ', product.productId);
     const productToAdd = { productId: product.productId, quantity: 1 } as ProductInCart;
     const index = shoppingCart.products.findIndex((p) => p.productId === productToAdd.productId);
@@ -54,7 +55,7 @@ function addProductToCart(product: ProductInStore) {
     }
     console.log('addProductToCart ', shoppingCart.products);
 }
-function removeProductFromCart(product: ProductInStore) {
+function removeProductFromCart(product: ProductInCart) {
     console.log('removeProductFromCart ', product.productId);
     const productToDelete = { productId: product.productId, quantity: 1 } as ProductInCart;
     const index = shoppingCart.products.findIndex((p) => p.productId === productToDelete.productId);
@@ -95,7 +96,7 @@ function removeProductFromCart(product: ProductInStore) {
                                     <td>{{ product.quantity }}</td>
                                     <!-- <td>{{ product.price }}</td> -->
                                     <td>
-                                        <v-icon aria-hidden="false" color="red-darken-4" @click.stop="deleteProduct(product)">mdi-trash-can-outline</v-icon>
+                                        <v-icon aria-hidden="false" color="red-darken-4" @click.stop="deleteProductAction(product)">mdi-trash-can-outline</v-icon>
                                         <v-icon aria-hidden="false" @click.stop="addProductToCart(product)">mdi-cart-arrow-down</v-icon>
                                         <v-icon aria-hidden="false" @click.stop="removeProductFromCart(product)">mdi-cart-arrow-up</v-icon>
                                     </td>
@@ -108,7 +109,7 @@ function removeProductFromCart(product: ProductInStore) {
                         </v-table>
           </v-card-text>
           <v-card-actions>
-            <v-btn text small @click="closeCart">Close</v-btn>
+            <v-btn small @click="closeCart">Close</v-btn>
             <v-spacer/>
             <v-btn color="primary" @click="onSubmit"> <v-icon left>mdi-content-save-outline</v-icon>Make an Order</v-btn>
           </v-card-actions>

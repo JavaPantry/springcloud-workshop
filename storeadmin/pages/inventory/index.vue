@@ -21,8 +21,8 @@ const {productsInStore} = storeToRefs(shop)
 
 const hasInventory = computed(() => productsInStore.value.length > 0);
 
-const confirmDeleteDialog = ref(null)
-const inventoryEditForm = ref(null)
+const confirmDeleteDialog = ref()
+const inventoryEditForm = ref()
 
 const editProduct = (product: ProductInStore) => {
     console.log('editProduct', product)
@@ -76,7 +76,7 @@ function removeProductFromCart(product: ProductInStore) {
 }
 
 
-const shoppingCartDetail = ref(null)
+const shoppingCartDetail = ref()
 
 const openCartDetail = () => {
     console.log('openCartDetail action')
