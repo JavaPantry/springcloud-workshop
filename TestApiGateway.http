@@ -13,6 +13,8 @@ GET {{gateway-host}}/inventory-service/inventory/product/1
 ### get inventory for store with id from inventory-service
 GET {{gateway-host}}/inventory-service/inventory/store/1
 
+
+
 ### get list of stores from store-service
 GET {{gateway-host}}/store
 
@@ -22,9 +24,10 @@ GET {{gateway-host}}/store/calltoinventory
 ### get store inventory with prices
 GET {{gateway-host}}/store/inventory/1
 
-
 ### get direct store-service - OK
-GET {{gateway-host}}/store-service/store/inventory
+GET {{gateway-host}}/store-service/store/inventory/1
+
+
 
 ### get direct product-service
 GET {{gateway-host}}/product-service/product
