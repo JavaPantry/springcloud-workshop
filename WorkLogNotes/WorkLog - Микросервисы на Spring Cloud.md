@@ -3185,3 +3185,20 @@ const callSayHello = () => {
 - Error in test MapperTest::testAddressMappingInOrderHeader
   - java.lang.NullPointerException: Cannot invoke "com.springcloud.sbsuite.orders.mappers.AddressMapper.addressDtoToAddress(com.springcloud.sbsuite.dto.AddressDto)" because "this.addressMapper" is null
 - commit - Create `mapstruct-mapper-issues` branch to investigate mapping issues
+
+## Turns out that OrderHeaderMapper don't instantiate embedded AddressMapper and ContactMapper instances
+- include autowired mappers in MapperTest.java fix the problem 
+  ```java
+  @SpringBootTest
+  public class MapperTest {
+	@Autowired	OrderLineRepository orderLineRepository;
+	@Autowired	OrderLineMapper orderLineMapper;
+	@Autowired	OrderHeaderMapper orderHeaderMapper;
+	@Autowired	CustomerMapper customerMapper;
+	@Autowired	DateMapper dateMapper;
+  // ...
+  }
+```
+- remove experimental `@Mapper(componentModel = "spring")` from mappers
+- remove custom mapping method  `public OffsetDateTime map(Timestamp value) {return asOffsetDateTime(value);}` from `DateMapper`
+- commit - Fix OrderHeaderMapper don't instantiate embedded AddressMapper and ContactMapper instances

@@ -28,9 +28,4 @@ public class DateMapper {
             return null;
         }
     }
-
-    // Custom mapping method
-    /*public OffsetDateTime map(Timestamp value) {
-        return asOffsetDateTime(value);
-    }*/
 }
