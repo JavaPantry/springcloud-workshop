@@ -7,13 +7,11 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
+@Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString(callSuper = true)
 @Builder
-@Entity
 @AttributeOverrides({
         @AttributeOverride(
                 name = "shippingAddress.streetAddress",
@@ -63,7 +61,9 @@ public class OrderHeader extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @OneToMany(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    //(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "orderHeader", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude // Exclude this field from hash code calculation
     private Set<OrderLine> orderLines;
 
     /*@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "orderHeader")

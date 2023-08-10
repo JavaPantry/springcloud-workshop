@@ -29,6 +29,7 @@ public class OrderLineDto {
     @JsonProperty("lastModifiedDate")
     private OffsetDateTime lastModifiedDate = null;
 
+    private OrderHeaderDto orderHeader;
     private Long productId;
     private Integer quantityOrdered;
 }

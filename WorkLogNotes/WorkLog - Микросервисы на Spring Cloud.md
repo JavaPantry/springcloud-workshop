@@ -3187,7 +3187,8 @@ const callSayHello = () => {
 - commit - Create `mapstruct-mapper-issues` branch to investigate mapping issues
 
 ## Turns out that OrderHeaderMapper don't instantiate embedded AddressMapper and ContactMapper instances
-- include autowired mappers in MapperTest.java fix the problem 
+- include autowired mappers in MapperTest.java fix the problem
+
   ```java
   @SpringBootTest
   public class MapperTest {
@@ -3199,6 +3200,14 @@ const callSayHello = () => {
   // ...
   }
 ```
+
 - remove experimental `@Mapper(componentModel = "spring")` from mappers
 - remove custom mapping method  `public OffsetDateTime map(Timestamp value) {return asOffsetDateTime(value);}` from `DateMapper`
 - commit - Fix OrderHeaderMapper don't instantiate embedded AddressMapper and ContactMapper instances
+
+## Fix Test `OrderServiceTest::saveOrderHeader`
+- fail reading saved order from database because product id and quantity are null
+  - java.lang.NullPointerException: Cannot invoke "java.lang.Long.longValue()" because the return value of "com.springcloud.sbsuite.dto.OrderLineDto.getProductId()" is null
+- GPTChat-Mapstruct Recursive Dto issue
+- long way to fix this issue is to save for OrderHeader and OrderLine [GPTChat-Mapstruct Recursive Dto issue.md](GPTChat-Mapstruct Recursive Dto issue.md)
+- commit - Fix Test `OrderServiceTest::saveOrderHeader`
