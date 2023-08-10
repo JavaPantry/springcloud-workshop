@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface ContactMapper {
-	Contact orderHeaderDtoToOrderLine(ContactDto contactDto);
-	ContactDto orderHeaderToOrderHeaderDto(Contact contact);
+	Contact contactDtoToContact(ContactDto contactDto);
+	ContactDto contactToContactDto(Contact contact);
 }

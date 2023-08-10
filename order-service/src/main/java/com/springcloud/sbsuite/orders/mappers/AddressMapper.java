@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface AddressMapper {
-	Address orderHeaderDtoToOrderLine(AddressDto addressDto);
-	AddressDto orderHeaderToOrderHeaderDto(Address address);
+	Address addressDtoToAddress(AddressDto addressDto);
+	AddressDto addressToAddressDto(Address address);
 }

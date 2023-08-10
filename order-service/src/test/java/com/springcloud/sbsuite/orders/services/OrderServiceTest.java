@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -109,7 +111,18 @@ class OrderServiceTest {
 	@Transactional
 	@Test
 	void saveOrderHeader() {
-		OrderHeaderDto orderHeader = new OrderHeaderDto().builder().orderStatus(OrderStatus.COMPLETED).build();
+		OrderLineDto orderLine1 = new OrderLineDto().builder().quantityOrdered(1).productId(1L).build();
+		OrderLineDto orderLine2 = new OrderLineDto().builder().quantityOrdered(1).productId(2L).build();
+
+		OrderHeaderDto orderHeader = new OrderHeaderDto().builder()
+																	.name("test order")
+																	.orderLines(new HashSet<OrderLineDto>() {{
+																		add(orderLine1);
+																		add(orderLine2);
+																	}})
+																	.orderStatus(OrderStatus.COMPLETED)
+																	.build();
+
 		OrderHeaderDto newOrderHeader = orderService.saveOrderHeader(orderHeader).orElseThrow(NotFoundException::new);
 		assertNotNull(newOrderHeader);
 		assertEquals(OrderStatus.COMPLETED, newOrderHeader.getOrderStatus());

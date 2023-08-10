@@ -3169,3 +3169,19 @@ const callSayHello = () => {
 - commit - Resolve tslint warnings in ShoppingCartDetail
 - commit - fix nullable type warning in pages/index.vue
   - change `:src="currentShop?.image"` in `<v-img :src="currentShop.image" width="800" height="200"></v-img>`
+
+- Stuck with Mapping for OrderHeader to OrderHeaderDto (DateMapper)
+
+# August 10, 2023 - OrderService
+- google `mapstruct OffsetDateTime to Timestamp mapper`
+- [Quick Guide to MapStruct](https://www.baeldung.com/mapstruct)
+- TODO: try set same Date format for Dto and entity
+
+## Create `mapstruct-mapper-issues` branch to investigate mapping issues
+- failed test `saveOrderHeader` in OrderServiceTest.java
+  - order saved with proper number of OrderLines but only one empty OrderLine had been returned after mapstruct mapping entity to dto
+- rename `orderHeaderDtoToOrderLine` to `addressDtoToAddress` in `AddressMapper`
+- rename `orderHeaderDtoToOrderLine` to `contactDtoToContact` in `ContactMapper`
+- Error in test MapperTest::testAddressMappingInOrderHeader
+  - java.lang.NullPointerException: Cannot invoke "com.springcloud.sbsuite.orders.mappers.AddressMapper.addressDtoToAddress(com.springcloud.sbsuite.dto.AddressDto)" because "this.addressMapper" is null
+- commit - Create `mapstruct-mapper-issues` branch to investigate mapping issues
