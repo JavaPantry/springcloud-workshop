@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 class OrderHeaderRepositoryTest {
@@ -97,5 +98,40 @@ class OrderHeaderRepositoryTest {
         assertEquals(orderHeaderSaved.getId(), orderLine2Saved.getOrderHeader().getId());
 
         System.out.println("Test OrderHeaderRepositoryTest.testOrderHeaderRepository() passed.");
+    }
+
+    @Test
+    public void testCustomerRetrieve() {
+        assertNotNull(customerRepository);
+        Customer customer = customerRepository.findById(1L).orElseThrow(() -> new NotFoundException("Customer not found"));
+        assertNotNull(customer);
+        assertNotNull(customer.getId());
+        assertNotNull(customer.getCreatedDate());
+        assertNotNull(customer.getLastModifiedDate());
+        assertNotNull(customer.getAddress());
+        assertNotNull(customer.getContact());
+        assertNotNull(customer.getOrders());
+        Set<OrderHeader> orders = customer.getOrders();
+        assertNotNull(orders);
+        assertEquals(2, orders.size());
+        OrderHeader orderHeader = orders.stream().findFirst().get();
+        assertNotNull(orderHeader);
+        assertNotNull(orderHeader.getId());
+        assertNotNull(orderHeader.getCreatedDate());
+        assertNotNull(orderHeader.getLastModifiedDate());
+        assertNotNull(orderHeader.getBillToAddress());
+        assertNotNull(orderHeader.getShippingAddress());
+        assertNotNull(orderHeader.getOrderLines());
+        Set<OrderLine> orderLines = orderHeader.getOrderLines();
+        OrderLine orderLine = orderLines.stream().findFirst().get();
+        assertNotNull(orderLine);
+        assertNotNull(orderLine.getId());
+        assertNotNull(orderLine.getCreatedDate());
+        assertNotNull(orderLine.getLastModifiedDate());
+        assertNotNull(orderLine.getOrderHeader());
+        assertNotNull(orderLine.getProductId());
+        assertNotNull(orderLine.getQuantityOrdered());
+
+        System.out.println("Test OrderHeaderRepositoryTest.testCustomerRepository() passed.");
     }
 }

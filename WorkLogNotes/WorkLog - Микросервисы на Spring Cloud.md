@@ -3219,3 +3219,5 @@ const callSayHello = () => {
 -commit - Fix empty product_id in orderdb database table order-line  
 -commit - add chat GPTChat-Flyway-migration.md
 
+## Test Customer repository `OrderServiceTest::testCustomerRetrieve`
+- commit - Test Customer repository `OrderServiceTest::testCustomerRetrieve`
