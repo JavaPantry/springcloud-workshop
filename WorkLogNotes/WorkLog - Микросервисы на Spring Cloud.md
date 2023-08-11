@@ -3210,4 +3210,6 @@ const callSayHello = () => {
   - java.lang.NullPointerException: Cannot invoke "java.lang.Long.longValue()" because the return value of "com.springcloud.sbsuite.dto.OrderLineDto.getProductId()" is null
 - GPTChat-Mapstruct Recursive Dto issue
 - long way to fix this issue is to save for OrderHeader and OrderLine [GPTChat-Mapstruct Recursive Dto issue.md](GPTChat-Mapstruct Recursive Dto issue.md)
+  - main issue appears when you try to map OrderLine in OrderHeader with `(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)`
+    - changed to `@OneToMany(mappedBy = "orderHeader", cascade = CascadeType.ALL, fetch = FetchType.EAGER)`   
 - commit - Fix Test `OrderServiceTest::saveOrderHeader`
