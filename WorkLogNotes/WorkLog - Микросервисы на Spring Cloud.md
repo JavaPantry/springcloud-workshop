@@ -3189,7 +3189,7 @@ const callSayHello = () => {
 ## Turns out that OrderHeaderMapper don't instantiate embedded AddressMapper and ContactMapper instances
 - include autowired mappers in MapperTest.java fix the problem
 
-  ```java
+```java
   @SpringBootTest
   public class MapperTest {
 	@Autowired	OrderLineRepository orderLineRepository;
@@ -3213,3 +3213,9 @@ const callSayHello = () => {
   - main issue appears when you try to map OrderLine in OrderHeader with `(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)`
     - changed to `@OneToMany(mappedBy = "orderHeader", cascade = CascadeType.ALL, fetch = FetchType.EAGER)`   
 - commit - Fix Test `OrderServiceTest::saveOrderHeader`
+
+# August 11, 2023 - OrderService testing
+
+-commit - Fix empty product_id in orderdb database table order-line  
+-commit - add chat GPTChat-Flyway-migration.md
+
