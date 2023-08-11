@@ -572,6 +572,8 @@ By using @EqualsAndHashCode.Exclude, you can specify that the specified field sh
 
 Remember to analyze your use case and relationships carefully when excluding fields from hash code calculation. Fields that are necessary for equality comparison or hash code calculation should not be excluded.
 
+- main issue appears when you try to map OrderLine in OrderHeader with `(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)`  
+	- changed to `@OneToMany(mappedBy = "orderHeader", cascade = CascadeType.ALL, fetch = FetchType.EAGER)`
 
 User
 WOW!!!  That was the last piece in puzzle we solved! Thank you!
