@@ -58,11 +58,11 @@ INSERT INTO order_header (name, order_status, version, created_date, last_modifi
 INSERT INTO order_header (name, order_status, version, created_date, last_modified_date, customer_id) VALUES ('order3', 'COMPLETED', 0, now(), now(), 2);
 INSERT INTO order_header (name, order_status, version, created_date, last_modified_date, customer_id) VALUES ('order4', 'COMPLETED', 0, now(), now(), 2);
 
-INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id) VALUES (1, 0, now(), now(), 1);
-INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id) VALUES (2, 0, now(), now(), 1);
-INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id) VALUES (3, 0, now(), now(), 2);
-INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id) VALUES (4, 0, now(), now(), 2);
-INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id) VALUES (5, 0, now(), now(), 3);
-INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id) VALUES (6, 0, now(), now(), 3);
-INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id) VALUES (7, 0, now(), now(), 4);
-INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id) VALUES (8, 0, now(), now(), 4);
+INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id, product_id) VALUES (1, 0, now(), now(), 1, 1);
+INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id, product_id) VALUES (2, 0, now(), now(), 1, 2);
+INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id, product_id) VALUES (3, 0, now(), now(), 2, 1);
+INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id, product_id) VALUES (4, 0, now(), now(), 2, 2);
+INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id, product_id) VALUES (5, 0, now(), now(), 3, 1);
+INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id, product_id) VALUES (6, 0, now(), now(), 3, 2);
+INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id, product_id) VALUES (7, 0, now(), now(), 4, 1);
+INSERT INTO order_line (quantity_ordered, version, created_date, last_modified_date, order_header_id, product_id) VALUES (8, 0, now(), now(), 4, 2);
