@@ -22,7 +22,9 @@ public class Customer extends BaseEntity {
     @Embedded
     private Contact contact;
 
-    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    //(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<OrderHeader> orders = new LinkedHashSet<>();
 
 //    public void addOrderHeader(OrderHeader orderHeader) {
