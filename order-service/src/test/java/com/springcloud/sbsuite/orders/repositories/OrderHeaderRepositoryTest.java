@@ -1,14 +1,12 @@
 package com.springcloud.sbsuite.orders.repositories;
 
-import com.springcloud.sbsuite.dto.AddressDto;
-import com.springcloud.sbsuite.dto.OrderHeaderDto;
-import com.springcloud.sbsuite.dto.OrderLineDto;
-import com.springcloud.sbsuite.dto.OrderStatus;
+import com.springcloud.sbsuite.dto.*;
 import com.springcloud.sbsuite.orders.api.NotFoundException;
 import com.springcloud.sbsuite.orders.domain.Address;
 import com.springcloud.sbsuite.orders.domain.Customer;
 import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
+import com.springcloud.sbsuite.orders.mappers.CustomerMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -100,6 +98,8 @@ class OrderHeaderRepositoryTest {
         System.out.println("Test OrderHeaderRepositoryTest.testOrderHeaderRepository() passed.");
     }
 
+    @Autowired
+    CustomerMapper customerMapper;
     @Test
     public void testCustomerRetrieve() {
         assertNotNull(customerRepository);
@@ -131,6 +131,10 @@ class OrderHeaderRepositoryTest {
         assertNotNull(orderLine.getOrderHeader());
         assertNotNull(orderLine.getProductId());
         assertNotNull(orderLine.getQuantityOrdered());
+
+        System.out.println("map customr to customerDto");
+        CustomerDto customerDto = customerMapper.customerToCustomerDto(customer);
+        assertNotNull(customerDto);
 
         System.out.println("Test OrderHeaderRepositoryTest.testCustomerRepository() passed.");
     }

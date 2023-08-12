@@ -3228,3 +3228,41 @@ const callSayHello = () => {
 add lombok annotation `@ToString.Exclude` to prevent recursive toString() call
 - commit - Change Cascade type and toString.Exclude in Customer entity
 
+## TODO: Fix Test OrderServiceTest
+- stackoverflow in OrderServiceTest
+  - stackoverflow in mapper `CustomerDto customerDto = customerMapper.customerToCustomerDto(customer);`
+
+```
+* [ERROR]   OrderServiceTest.fetchCustomenrs » StackOverflow
+* [ERROR]   OrderServiceTest.fetchCustomerById » StackOverflow
+* [ERROR]   OrderServiceTest.fetchOrderHeaderById » StackOverflow
+* [ERROR]   OrderServiceTest.fetchOrderHeaders » StackOverflow
+* [ERROR]   OrderServiceTest.fetchOrderLines » StackOverflow
+* [ERROR]   OrderServiceTest.saveOrderHeader » StackOverflow
+* [ERROR]   OrderServiceTest.testGetOrderLineById » StackOverflow
+```
+
+- reproduce StackOverflow in OrderHeaderRepositoryTest::testCustomerRetrieve
+
+```
+Recursion > orderLineDto.orderHeader( orderHeaderToOrderHeaderDto( orderLine.getOrderHeader() ) );
+orderLineToOrderLineDto:55, OrderLineMapperImpl (com.springcloud.sbsuite.orders.mappers)
+  orderLineSetToOrderLineDtoSet:88, OrderHeaderMapperImpl (com.springcloud.sbsuite.orders.mappers)
+    orderHeaderToOrderHeaderDto:63, OrderHeaderMapperImpl (com.springcloud.sbsuite.orders.mappers)
+      orderHeaderSetToOrderHeaderDtoSet:86, CustomerMapperImpl (com.springcloud.sbsuite.orders.mappers)
+        customerToCustomerDto:61, CustomerMapperImpl (com.springcloud.sbsuite.orders.mappers)
+          testCustomerRetrieve:136, OrderHeaderRepositoryTest (com.springcloud.sbsuite.orders.repositories)
+```
+
+- [GPTChat-MapStruct Avoid Recursive Map](GPTChat-MapStruct Avoid Recursive Map.md)
+- [MapStruct issue while recursive mapping](https://stackoverflow.com/questions/58776970/mapstruct-issue-while-recursive-mapping)
+- [Mapper should be able to ignore one attribute from nested List #933](https://github.com/mapstruct/mapstruct/issues/933)
+- google `mapstruct bidirectional relationship`
+  - [Mapping objects with bi-directional relations with Mapstruct](https://stackoverflow.com/questions/55646904/mapping-objects-with-bi-directional-relations-with-mapstruct)
+  - [Mapstruct bidirectional mapping](https://stackoverflow.com/questions/59895166/mapstruct-bidirectional-mapping)
+    - Check out the Mapstruct mapping with cycles example.
+    - A solution to your problem is also demonstrated in the documentation for Context annotation. https://mapstruct.org/documentation/stable/reference/html/#source-presence-check
+    - Example: A complete example: https://github.com/jannis-baratheon/stackoverflow--mapstruct-mapping-graph-with-cycles.
+  - [Mapping Bidirectional Object Associations using MapStruct](Mapping%20Bidirectional%20Object%20Associations%20using%20MapStruct.pdff)
+- Side note: [Testing Microservices with Testcontainers](Testing%20Microservices%20with%20Testcontainers.pdf)
+- commit - TODO: NOT COMPLETED - Fix Test OrderServiceTest
