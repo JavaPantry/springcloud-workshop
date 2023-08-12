@@ -3221,3 +3221,10 @@ const callSayHello = () => {
 
 ## Test Customer repository `OrderServiceTest::testCustomerRetrieve`
 - commit - Test Customer repository `OrderServiceTest::testCustomerRetrieve`
+
+## Change Cascade type and toString.Exclude in Customer entity
+- replace `@OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)`
+- with `@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)`
+add lombok annotation `@ToString.Exclude` to prevent recursive toString() call
+- commit - Change Cascade type and toString.Exclude in Customer entity
+
