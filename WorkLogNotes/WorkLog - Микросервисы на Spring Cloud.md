@@ -3259,10 +3259,22 @@ orderLineToOrderLineDto:55, OrderLineMapperImpl (com.springcloud.sbsuite.orders.
 - [Mapper should be able to ignore one attribute from nested List #933](https://github.com/mapstruct/mapstruct/issues/933)
 - google `mapstruct bidirectional relationship`
   - [Mapping objects with bi-directional relations with Mapstruct](https://stackoverflow.com/questions/55646904/mapping-objects-with-bi-directional-relations-with-mapstruct)
-  - [Mapstruct bidirectional mapping](https://stackoverflow.com/questions/59895166/mapstruct-bidirectional-mapping)
-    - Check out the Mapstruct mapping with cycles example.
-    - A solution to your problem is also demonstrated in the documentation for Context annotation. https://mapstruct.org/documentation/stable/reference/html/#source-presence-check
-    - Example: A complete example: https://github.com/jannis-baratheon/stackoverflow--mapstruct-mapping-graph-with-cycles.
-  - [Mapping Bidirectional Object Associations using MapStruct](Mapping%20Bidirectional%20Object%20Associations%20using%20MapStruct.pdff)
+  - Xernya [Mapping Bidirectional Object Associations using MapStruct](Mapping%20Bidirectional%20Object%20Associations%20using%20MapStruct.pdff)
 - Side note: [Testing Microservices with Testcontainers](Testing%20Microservices%20with%20Testcontainers.pdf)
 - commit - TODO: NOT COMPLETED - Fix Test OrderServiceTest
+
+# August 12, 2023 - OrderService testing
+
+## Fix MapperTest.testOrderHeaderMapping
+- [Mapstruct bidirectional mapping](https://stackoverflow.com/questions/59895166/mapstruct-bidirectional-mapping)
+  - Check out the [Mapstruct mapping with cycles example](https://github.com/mapstruct/mapstruct-examples/tree/2f351577c1cb595c7c239eb6f8e7c000ed8a5ce2/mapstruct-mapping-with-cycles).
+  - A solution to your problem is also demonstrated in the documentation for [Context annotation](https://mapstruct.org/documentation/1.3/api/org/mapstruct/Context.html).
+  - https://mapstruct.org/documentation/stable/reference/html/#source-presence-check
+  - Example: A complete example: https://github.com/jannis-baratheon/stackoverflow--mapstruct-mapping-graph-with-cycles.
+- Three big issues:
+  - Fix bidirectional mapping - see [Mapstruct bidirectional mapping](https://stackoverflow.com/questions/59895166/mapstruct-bidirectional-mapping)
+    - also rename long method names in `OrderHeaderMapper` and `OrderLineMapper` to shorter `entityToDto` and `dtoToEntity`
+  - Fix StackOverflow caused by
+    - lombok toString recursive call - added `@ToString.Exclude` to Header and Line entities/dto
+    - lombok equals recursive call - added `@EqualsAndHashCode.Exclude` to Header and Line entities/dto
+- commit - Fix MapperTest.testOrderHeaderMapping

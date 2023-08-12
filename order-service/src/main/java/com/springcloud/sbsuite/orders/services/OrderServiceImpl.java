@@ -8,6 +8,7 @@ import com.springcloud.sbsuite.dto.CustomerDto;
 import com.springcloud.sbsuite.dto.OrderHeaderDto;
 import com.springcloud.sbsuite.dto.OrderLineDto;
 import com.springcloud.sbsuite.orders.mappers.CustomerMapper;
+import com.springcloud.sbsuite.orders.mappers.CycleAvoidingMappingContext;
 import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapper;
 import com.springcloud.sbsuite.orders.mappers.OrderLineMapper;
 import com.springcloud.sbsuite.orders.repositories.CustomerRepository;
@@ -60,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderHeader> headers = orderHeaderRepository.findAll();
 
 		List<OrderHeaderDto> orderHeaders = headers.stream()
-												.map(orderHeaderMapper::orderHeaderToOrderHeaderDto)
+												.map(entity -> orderHeaderMapper.entityToDto(entity, new CycleAvoidingMappingContext()))
 												.collect(Collectors.toList());
 
 		/*List<OrderHeaderDto> orderHeaders = orderHeaderRepository.findAll()
@@ -74,23 +75,24 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderLineDto> fetchOrderLines() {
 		List<OrderLineDto> orderLines = orderLineRepository.findAll()
 															.stream()
-															.map(orderLineMapper::orderLineToOrderLineDto)
+															.map(entity ->orderLineMapper.entityToDto(entity, new CycleAvoidingMappingContext()))
 															.collect(Collectors.toList());
 		return orderLines;
 	}
 
 	@Override
 	public Optional<OrderLineDto> fetchOrderLineById(Long id) {
-		return Optional.ofNullable(orderLineMapper.orderLineToOrderLineDto(
+		return Optional.ofNullable(orderLineMapper.entityToDto(
 											orderLineRepository.findById(id).orElse(null)
+											, new CycleAvoidingMappingContext()
 											)
 		);
 	}
 
 	@Override
 	public Optional<OrderHeaderDto> fetchOrderHeaderById(Long id) {
-		return Optional.ofNullable(orderHeaderMapper.orderHeaderToOrderHeaderDto(
-						orderHeaderRepository.findById(id).orElse(null)
+		return Optional.ofNullable(orderHeaderMapper.entityToDto(
+						orderHeaderRepository.findById(id).orElse(null), new CycleAvoidingMappingContext()
 				)
 		);
 	}
@@ -110,10 +112,10 @@ public class OrderServiceImpl implements OrderService {
 			orderLine = orderLineRepository.findById(dto.getId()).orElse(null);
 			orderLine.setQuantityOrdered(dto.getQuantityOrdered());
 		}else {
-			orderLine = orderLineMapper.orderLineDtoToOrderLine(dto);
+			orderLine = orderLineMapper.dtoToEntity(dto, new CycleAvoidingMappingContext());
 		}
 		OrderLine updated = orderLineRepository.save(orderLine);
-		return Optional.of(orderLineMapper.orderLineToOrderLineDto(updated) );
+		return Optional.of(orderLineMapper.entityToDto(updated, new CycleAvoidingMappingContext()) );
 	}
 
 	@Override
@@ -132,10 +134,10 @@ public class OrderServiceImpl implements OrderService {
 			orderHeader = orderHeaderRepository.findById(dto.getId()).orElse(null);
 			orderHeader.setOrderStatus(dto.getOrderStatus());
 		}else {
-			orderHeader = orderHeaderMapper.orderHeaderDtoToOrderHeader((dto));
+			orderHeader = orderHeaderMapper.dtoToEntity(dto, new CycleAvoidingMappingContext());
 		}
 		OrderHeader updated = orderHeaderRepository.save(orderHeader);
-		return Optional.of(orderHeaderMapper.orderHeaderToOrderHeaderDto(updated) );
+		return Optional.of(orderHeaderMapper.entityToDto(updated, new CycleAvoidingMappingContext()) );
 	}
 
 	@Override

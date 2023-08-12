@@ -7,10 +7,7 @@ import com.springcloud.sbsuite.orders.domain.Address;
 import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
 import com.springcloud.sbsuite.dto.OrderLineDto;
-import com.springcloud.sbsuite.orders.mappers.CustomerMapper;
-import com.springcloud.sbsuite.orders.mappers.DateMapper;
-import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapper;
-import com.springcloud.sbsuite.orders.mappers.OrderLineMapper;
+import com.springcloud.sbsuite.orders.mappers.*;
 import com.springcloud.sbsuite.orders.repositories.OrderHeaderRepository;
 import com.springcloud.sbsuite.orders.repositories.OrderLineRepository;
 import org.junit.jupiter.api.Test;
@@ -50,7 +47,7 @@ public class MapperTest {
 		orderLine.setId(1L);
 		orderLine.setProductId(1L);
 		orderLine.setQuantityOrdered(1);
-		OrderLineDto orderLineDto = orderLineMapper.orderLineToOrderLineDto(orderLine);
+		OrderLineDto orderLineDto = orderLineMapper.entityToDto(orderLine, new CycleAvoidingMappingContext());
 		assertNotNull(orderLineDto);
 		assertEquals(orderLine.getId(), orderLineDto.getId());
 		assertEquals(orderLine.getProductId(), orderLineDto.getProductId());
@@ -65,8 +62,8 @@ public class MapperTest {
 				.state("NY")
 				.zipCode("12345").build();
 
-		OrderLineDto orderLine1 = OrderLineDto.builder().quantityOrdered(1).productId(1L).build();
-		OrderLineDto orderLine2 = OrderLineDto.builder().quantityOrdered(1).productId(2L).build();
+		OrderLineDto orderLineDto1 = OrderLineDto.builder().quantityOrdered(1).productId(1L).build();
+		OrderLineDto orderLineDto2 = OrderLineDto.builder().quantityOrdered(1).productId(2L).build();
 
 		OrderHeaderDto orderHeaderDto = OrderHeaderDto.builder()
 				.name("test order")
@@ -74,14 +71,18 @@ public class MapperTest {
 				.shippingAddress(fakeAddress)
 				.orderStatus(OrderStatus.COMPLETED)
 				.orderLines(new HashSet<OrderLineDto>() {{
-					add(orderLine1);
-					add(orderLine2);
+					add(orderLineDto1);
+					add(orderLineDto2);
 				}})
 				.createdDate(OffsetDateTime.now())
 				.lastModifiedDate(OffsetDateTime.now())
 				.build();
 
-		OrderHeader orderHeader = orderHeaderMapper.orderHeaderDtoToOrderHeader(orderHeaderDto);
+		// test bidirectional mapping
+		orderLineDto1.setOrderHeader(orderHeaderDto);
+		orderLineDto2.setOrderHeader(orderHeaderDto);
+
+ 		OrderHeader orderHeader = orderHeaderMapper.dtoToEntity(orderHeaderDto, new CycleAvoidingMappingContext());
 		assertNotNull(orderHeader);
 		assertEquals(orderHeaderDto.getName(), orderHeader.getName());
 		assertEquals(orderHeaderDto.getOrderStatus(), orderHeader.getOrderStatus());
@@ -94,7 +95,7 @@ public class MapperTest {
 		assertEquals(orderHeaderDto.getShippingAddress().getState(), orderHeader.getShippingAddress().getState());
 		assertEquals(orderHeaderDto.getShippingAddress().getZipCode(), orderHeader.getShippingAddress().getZipCode());
 
-		OrderHeaderDto orderHeaderDto2 = orderHeaderMapper.orderHeaderToOrderHeaderDto(orderHeader);
+		OrderHeaderDto orderHeaderDto2 = orderHeaderMapper.entityToDto(orderHeader, new CycleAvoidingMappingContext());
 		assertNotNull(orderHeaderDto2);
 		assertEquals(orderHeaderDto.getName(), orderHeaderDto2.getName());
 		assertEquals(orderHeaderDto.getOrderStatus(), orderHeaderDto2.getOrderStatus());
@@ -111,13 +112,13 @@ public class MapperTest {
 		Set<OrderLineDto> orderLines = orderHeaderDto2.getOrderLines();
 		assertEquals(2, orderLines.size());
 
-		OrderLineDto orderLineDto1 = orderLines.stream().filter(orderLineDto -> orderLineDto.getProductId() == 1L).findFirst().get();
-		assertEquals(orderLine1.getProductId(), orderLineDto1.getProductId());
-		assertEquals(orderLine1.getQuantityOrdered(), orderLineDto1.getQuantityOrdered());
+		OrderLineDto orderLineDto2_1 = orderLines.stream().filter(orderLineDto -> orderLineDto.getProductId() == 1L).findFirst().get();
+		assertEquals(orderLineDto2_1.getProductId(), orderLineDto1.getProductId());
+		assertEquals(orderLineDto2_1.getQuantityOrdered(), orderLineDto1.getQuantityOrdered());
 
-		OrderLineDto orderLineDto2 = orderLines.stream().filter(orderLineDto -> orderLineDto.getProductId() == 2L).findFirst().get();
-		assertEquals(orderLine2.getProductId(), orderLineDto2.getProductId());
-		assertEquals(orderLine2.getQuantityOrdered(), orderLineDto2.getQuantityOrdered());
+		OrderLineDto orderLineDto2_2 = orderLines.stream().filter(orderLineDto -> orderLineDto.getProductId() == 2L).findFirst().get();
+		assertEquals(orderLineDto2_2.getProductId(), orderLineDto2.getProductId());
+		assertEquals(orderLineDto2_2.getQuantityOrdered(), orderLineDto2.getQuantityOrdered());
 
 		System.out.println("orderHeaderDto2 " + orderHeaderDto2);
 	}

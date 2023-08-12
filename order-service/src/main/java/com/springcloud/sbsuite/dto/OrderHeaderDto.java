@@ -2,10 +2,7 @@ package com.springcloud.sbsuite.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 import java.util.Set;
@@ -35,5 +32,6 @@ public class OrderHeaderDto {
     private AddressDto shippingAddress;
     private AddressDto billToAddress;
     private OrderStatus orderStatus;
+    @EqualsAndHashCode.Exclude // Exclude this field from hash code calculation
     private Set<OrderLineDto> orderLines;
 }
