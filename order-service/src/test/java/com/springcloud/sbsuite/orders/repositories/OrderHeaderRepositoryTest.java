@@ -7,6 +7,7 @@ import com.springcloud.sbsuite.orders.domain.Customer;
 import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
 import com.springcloud.sbsuite.orders.mappers.CustomerMapper;
+import com.springcloud.sbsuite.orders.mappers.CycleAvoidingMappingContext;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -132,7 +133,7 @@ class OrderHeaderRepositoryTest {
         assertNotNull(orderLine.getQuantityOrdered());
 
         System.out.println("map customr to customerDto");
-        CustomerDto customerDto = customerMapper.entityToDto(customer);
+        CustomerDto customerDto = customerMapper.entityToDto(customer, new CycleAvoidingMappingContext());
         assertNotNull(customerDto);
 
         System.out.println("Test OrderHeaderRepositoryTest.testCustomerRepository() passed.");

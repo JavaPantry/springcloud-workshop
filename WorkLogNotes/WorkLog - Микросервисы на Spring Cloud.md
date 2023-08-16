@@ -3283,3 +3283,9 @@ orderLineToOrderLineDto:55, OrderLineMapperImpl (com.springcloud.sbsuite.orders.
 ## Refactor names in Mappers
 - replace long method names in Mappers to shorter `entityToDto` and `dtoToEntity`
 - commit - Refactor names in Mappers
+
+## Fix StackOverflow in OrderHeaderRepositoryTest::testCustomerRetrieve
+- add `@EqualsAndHashCode.Exclude` to `Set<OrderHeaderDto> orders;` in `CustomerDto`
+- add `, @Context CycleAvoidingMappingContext cycleAvoidingMappingContext` to `dtoToEntity` and `entityToDto` methods in `CustomerMapper`
+- fix references to `customerMapper::dtoToEntity`
+- commit - Fix StackOverflow in OrderHeaderRepositoryTest::testCustomerRetrieve
