@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -133,7 +132,7 @@ class OrderHeaderRepositoryTest {
         assertNotNull(orderLine.getQuantityOrdered());
 
         System.out.println("map customr to customerDto");
-        CustomerDto customerDto = customerMapper.customerToCustomerDto(customer);
+        CustomerDto customerDto = customerMapper.entityToDto(customer);
         assertNotNull(customerDto);
 
         System.out.println("Test OrderHeaderRepositoryTest.testCustomerRepository() passed.");

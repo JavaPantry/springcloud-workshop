@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
 	public List<CustomerDto> fetchCustomenrs(){
 		List<CustomerDto> customenrs = customerRepository.findAll()
 				.stream()
-				.map(customerMapper::customerToCustomerDto)
+				.map(customerMapper::entityToDto)
 				.collect(Collectors.toList());
 		return customenrs;
 	}
@@ -99,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Optional<CustomerDto> fetchCustomerById(Long id) {
-		return Optional.ofNullable(customerMapper.customerToCustomerDto(
+		return Optional.ofNullable(customerMapper.entityToDto(
 								customerRepository.findById(id).orElse(null)
 				)
 		);
@@ -156,10 +156,10 @@ public class OrderServiceImpl implements OrderService {
 			customer = customerRepository.findById(dto.getId()).orElse(null);
 			customer.getContact().setName(dto.getContact().getName());
 		}else {
-			customer = customerMapper.customerDtoToCustomer((dto));
+			customer = customerMapper.dtoToEntity((dto));
 		}
 		Customer updated = customerRepository.save(customer);
-		return Optional.of(customerMapper.customerToCustomerDto(updated) );
+		return Optional.of(customerMapper.entityToDto(updated) );
 
 	}
 

@@ -3278,3 +3278,8 @@ orderLineToOrderLineDto:55, OrderLineMapperImpl (com.springcloud.sbsuite.orders.
     - lombok toString recursive call - added `@ToString.Exclude` to Header and Line entities/dto
     - lombok equals recursive call - added `@EqualsAndHashCode.Exclude` to Header and Line entities/dto
 - commit - Fix MapperTest.testOrderHeaderMapping
+
+# August 16, 2023 - OrderService testing
+## Refactor names in Mappers
+- replace long method names in Mappers to shorter `entityToDto` and `dtoToEntity`
+- commit - Refactor names in Mappers

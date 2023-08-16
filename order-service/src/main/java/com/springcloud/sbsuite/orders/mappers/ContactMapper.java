@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface ContactMapper {
-	Contact contactDtoToContact(ContactDto contactDto);
-	ContactDto contactToContactDto(Contact contact);
+	Contact dtoToEntity(ContactDto contactDto);
+	ContactDto entityToDto(Contact contact);
 }
