@@ -5,7 +5,9 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -66,7 +68,7 @@ public class OrderHeader extends BaseEntity {
     //(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "orderHeader", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude // Exclude this field from hash code calculation
-    private Set<OrderLine> orderLines = new HashSet<OrderLine>();
+    private List<OrderLine> orderLines = new ArrayList<>();
 
     /*@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "orderHeader")
     private OrderApproval orderApproval;

@@ -13,7 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,7 +59,7 @@ class OrderHeaderRepositoryTest {
                 .orderStatus(OrderStatus.COMPLETED)
                 .build();
 
-        orderHeader.setOrderLines(new HashSet<OrderLine>() {{
+        orderHeader.setOrderLines(new ArrayList<>() {{
             add(orderLine1);
             add(orderLine2);
         }});
@@ -80,7 +82,7 @@ class OrderHeaderRepositoryTest {
         assertEquals("12345", orderHeaderSaved.getBillToAddress().getZipCode());
 
         assertEquals(2, orderHeaderSaved.getOrderLines().size());
-        Set<OrderLine> orderLines = orderHeaderSaved.getOrderLines();
+        List<OrderLine> orderLines = orderHeaderSaved.getOrderLines();
 
         OrderLine orderLine1Saved = orderLines.stream().filter(orderLine -> orderLine.getProductId() == 1L).findFirst().get();
         assertNotNull(orderLine1Saved);
@@ -123,7 +125,7 @@ class OrderHeaderRepositoryTest {
                 .orderStatus(OrderStatus.COMPLETED)
                 .build();
 
-        orderHeaderDto.setOrderLines(new HashSet<OrderLineDto>() {{
+        orderHeaderDto.setOrderLines(new ArrayList<>() {{
             add(orderLine1);
             add(orderLine2);
         }});
@@ -148,7 +150,7 @@ class OrderHeaderRepositoryTest {
         assertEquals("12345", orderHeaderSaved.getBillToAddress().getZipCode());
 
         assertEquals(2, orderHeaderSaved.getOrderLines().size());
-        Set<OrderLine> orderLines = orderHeaderSaved.getOrderLines();
+        List<OrderLine> orderLines = orderHeaderSaved.getOrderLines();
 
         OrderLine orderLine1Saved = orderLines.stream().filter(orderLine -> orderLine.getProductId() == 1L).findFirst().get();
         assertNotNull(orderLine1Saved);
@@ -196,7 +198,7 @@ class OrderHeaderRepositoryTest {
         assertNotNull(orderHeader.getBillToAddress());
         assertNotNull(orderHeader.getShippingAddress());
         assertNotNull(orderHeader.getOrderLines());
-        Set<OrderLine> orderLines = orderHeader.getOrderLines();
+        List<OrderLine> orderLines = orderHeader.getOrderLines();
         OrderLine orderLine = orderLines.stream().findFirst().get();
         assertNotNull(orderLine);
         assertNotNull(orderLine.getId());

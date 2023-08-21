@@ -126,7 +126,7 @@ class OrderServiceTest {
 
 		OrderHeaderDto orderHeaderDto = new OrderHeaderDto().builder()
 																	.name("test order")
-																	.orderLines(new HashSet<OrderLineDto>() {{
+																	.orderLines(new ArrayList<OrderLineDto>() {{
 																		add(orderLine1);
 																		add(orderLine2);
 																	}})
@@ -157,7 +157,7 @@ class OrderServiceTest {
 		assertEquals(orderHeaderDto.getShippingAddress().getZipCode(), orderHeaderDto2.getShippingAddress().getZipCode());
 
 		assertNotNull(orderHeaderDto2.getOrderLines());
-		Set<OrderLineDto> orderLines = orderHeaderDto2.getOrderLines();
+		List<OrderLineDto> orderLines = orderHeaderDto2.getOrderLines();
 		assertEquals(2, orderLines.size());
 
 		OrderLineDto orderLineDto1 = orderLines.stream().filter(orderLineDto -> orderLineDto.getProductId() == 1L).findFirst().get();

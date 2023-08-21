@@ -16,9 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.OffsetDateTime;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -70,7 +68,7 @@ public class MapperTest {
 				.billToAddress(fakeAddress)
 				.shippingAddress(fakeAddress)
 				.orderStatus(OrderStatus.COMPLETED)
-				.orderLines(new HashSet<OrderLineDto>() {{
+				.orderLines(new ArrayList<>() {{
 					add(orderLineDto1);
 					add(orderLineDto2);
 				}})
@@ -109,7 +107,7 @@ public class MapperTest {
 		assertEquals(orderHeaderDto.getShippingAddress().getZipCode(), orderHeaderDto2.getShippingAddress().getZipCode());
 
 		assertNotNull(orderHeaderDto2.getOrderLines());
-		Set<OrderLineDto> orderLines = orderHeaderDto2.getOrderLines();
+		List<OrderLineDto> orderLines = orderHeaderDto2.getOrderLines();
 		assertEquals(2, orderLines.size());
 
 		OrderLineDto orderLineDto2_1 = orderLines.stream().filter(orderLineDto -> orderLineDto.getProductId() == 1L).findFirst().get();
