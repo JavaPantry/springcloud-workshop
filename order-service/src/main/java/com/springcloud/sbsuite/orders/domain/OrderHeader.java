@@ -5,6 +5,7 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -61,10 +62,12 @@ public class OrderHeader extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+    //AVP August 17 @14:30 replace fetch = FetchType.EAGER with fetch = FetchType.LAZY)
     //(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
-    @OneToMany(mappedBy = "orderHeader", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "orderHeader", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@OneToMany(mappedBy = "orderHeader", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude // Exclude this field from hash code calculation
-    private Set<OrderLine> orderLines;
+    private Set<OrderLine> orderLines = new HashSet<OrderLine>();
 
     /*@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "orderHeader")
     private OrderApproval orderApproval;

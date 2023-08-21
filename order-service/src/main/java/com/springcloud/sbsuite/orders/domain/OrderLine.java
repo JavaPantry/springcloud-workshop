@@ -1,8 +1,6 @@
 package com.springcloud.sbsuite.orders.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -14,6 +12,8 @@ public class OrderLine extends BaseEntity {
 
     private Integer quantityOrdered;
 
+    //AVP August 17 @14:30 add (fetch = FetchType.LAZY)
+    //AVP August 21 @19:00 , @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST) cause error
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "order_header_id") // Specifies the column name for the foreign key

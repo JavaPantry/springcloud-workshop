@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -33,5 +34,5 @@ public class OrderHeaderDto {
     private AddressDto billToAddress;
     private OrderStatus orderStatus;
     @EqualsAndHashCode.Exclude // Exclude this field from hash code calculation
-    private Set<OrderLineDto> orderLines;
+    private Set<OrderLineDto> orderLines = new HashSet<>();
 }

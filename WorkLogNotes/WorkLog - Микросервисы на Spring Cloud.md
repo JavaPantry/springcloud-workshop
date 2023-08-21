@@ -3289,3 +3289,55 @@ orderLineToOrderLineDto:55, OrderLineMapperImpl (com.springcloud.sbsuite.orders.
 - add `, @Context CycleAvoidingMappingContext cycleAvoidingMappingContext` to `dtoToEntity` and `entityToDto` methods in `CustomerMapper`
 - fix references to `customerMapper::dtoToEntity`
 - commit - Fix StackOverflow in OrderHeaderRepositoryTest::testCustomerRetrieve
+
+## Fix hibernate error in OrderServiceImpl::saveOrderHeader
+- org.springframework.dao.InvalidDataAccessApiUsageException: 
+  - org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - 
+  - save the transient instance before flushing : 
+  - com.springcloud.sbsuite.orders.domain.OrderLine.orderHeader -> com.springcloud.sbsuite.orders.domain.OrderHeader
+  - at com.springcloud.sbsuite.orders.services.OrderServiceImpl.saveOrderHeader(OrderServiceImpl.java:140)
+  - at com.springcloud.sbsuite.orders.services.OrderServiceTest.saveOrderHeader(OrderServiceTest.java:145)
+
+# August 21, 2023 - mapstruct bidirectional mapping issue
+
+## backup copy of OrderHeaderMapper 
+
+```java
+@Mapper(uses = {DateMapper.class, OrderLineMapper.class, AddressMapper.class})
+public interface OrderHeaderMapper {
+  //AVP August 17 @14:15 @Mapping(target = "orderLines", source = "orderLines")
+  //AVP August 21 @11:10 	remove , qualifiedByName = "toHashSet"
+  @Mapping(target = "orderLines", source = "orderLines")
+  OrderHeader dtoToEntity(OrderHeaderDto orderHeaderDto, @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
+
+  //AVP August 18 @15:50 	replace @Named("toHashSet") with @Qualifier("toHashSet")
+  //AVP August 21 @11:10 	remove , qualifiedByName = "toHashSet" @Named(value="toHashSet")
+  default Set<OrderLine> toHashSet(Set<OrderLine> set) {
+    return new HashSet<>(set);
+  }
+  /*AVP August 17 @16:00
+   */
+
+/* AVP August 17 @14:15
+	@BeforeMapping
+	default void prepareOrderLines(OrderHeaderDto orderHeaderDto, @MappingTarget OrderHeader orderHeader) {
+		// Initialize and set up the orderLines collection in the OrderHeader entity
+		orderHeader.setOrderLines(new HashSet<>());
+	}
+
+	@AfterMapping
+	default void addOrderLines(OrderHeaderDto orderHeaderDto, @MappingTarget OrderHeader orderHeader) {
+		// Manually map and add OrderLine entities to the OrderHeader entity
+		for (OrderLineDto orderLineDto : orderHeaderDto.getOrderLines()) {
+			orderHeader.getOrderLines().add(OrderLineMapper.INSTANCE.dtoToEntity(orderLineDto, new CycleAvoidingMappingContext()));
+		}
+	}
+*/
+
+  //AVP August 17 @14:15 @InheritInverseConfiguration
+  OrderHeaderDto entityToDto(OrderHeader orderHeader, @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
+}
+```
+
+## Error in saving OrderHeader with OrderLines created from DTOs
+- commit - Error in saving OrderHeader with OrderLines created from DTOs

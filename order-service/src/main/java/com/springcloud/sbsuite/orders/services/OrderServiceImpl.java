@@ -14,6 +14,7 @@ import com.springcloud.sbsuite.orders.mappers.OrderLineMapper;
 import com.springcloud.sbsuite.orders.repositories.CustomerRepository;
 import com.springcloud.sbsuite.orders.repositories.OrderHeaderRepository;
 import com.springcloud.sbsuite.orders.repositories.OrderLineRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -128,6 +129,7 @@ public class OrderServiceImpl implements OrderService {
 		return false;
 	}
 
+	//AVP August 21  remove @Transactional
 	@Override
 	public Optional<OrderHeaderDto> saveOrderHeader(OrderHeaderDto dto) {
 		OrderHeader orderHeader = null;
