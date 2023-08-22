@@ -3342,3 +3342,12 @@ public interface OrderHeaderMapper {
 ## Error in saving OrderHeader with OrderLines created from DTOs
 - commit - Error in saving OrderHeader with OrderLines created from DTOs
 - commit - change Set to List in OrderHeaderDto and OrderHeader same Error in saving OrderHeader with OrderLines created from DTOs
+
+# August 22, 2023 - create OrderHeaderMapper
+
+## create OrderHeaderMapper class to replace Mapstruct's OrderHeaderMapper interface
+- rename Mapstruct's OrderHeaderMapper interface to OrderHeaderMapperStruct
+- create OrderHeaderMapper class out of OrderHeaderMapperStructImpl.java
+- create OrderHeaderMapperTest class to test OrderHeaderMapper
+- stop at `testOrderHeaderMapping` test (without testing save to database)
+- commit - create OrderHeaderMapper class to replace Mapstruct's OrderHeaderMapper interface

@@ -2,41 +2,46 @@ package com.springcloud.sbsuite.orders;
 
 import com.springcloud.sbsuite.dto.AddressDto;
 import com.springcloud.sbsuite.dto.OrderHeaderDto;
+import com.springcloud.sbsuite.dto.OrderLineDto;
 import com.springcloud.sbsuite.dto.OrderStatus;
 import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
-import com.springcloud.sbsuite.dto.OrderLineDto;
 import com.springcloud.sbsuite.orders.mappers.*;
 import com.springcloud.sbsuite.orders.repositories.OrderLineRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.OffsetDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
+//ExtendWith(SpringExtension.class)
+//WebMvcTest({OrderLineMapper.class, DateMapper.class, OrderHeaderMapper.class, AddressMapper.class, ContactMapper.class})
+//ContextConfiguration(classes = {OrderLineMapper.class, DateMapper.class, OrderHeaderMapper.class, AddressMapper.class, ContactMapper.class})
 @SpringBootTest
-public class MapperTest {
+public class OrderHeaderMapperTest {
 
 	@Autowired
-	OrderLineRepository orderLineRepository;
+	OrderHeaderMapper orderHeaderMapper;// = new OrderHeaderMapper();
 
-	@Autowired
+	/*@Autowired
 	OrderLineMapper orderLineMapper;
 
-	@Autowired
-	OrderHeaderMapperStruct orderHeaderMapperStruct;
 
 	@Autowired
-	CustomerMapper customerMapper;
+	DateMapper dateMapper;*/
 
-	@Autowired
-	DateMapper dateMapper;
-
-	@Test
+	/* @ Test
 	public void testOrderLine() {
 		OrderLine orderLine = new OrderLine();
 		orderLine.setId(1L);
@@ -47,7 +52,7 @@ public class MapperTest {
 		assertEquals(orderLine.getId(), orderLineDto.getId());
 		assertEquals(orderLine.getProductId(), orderLineDto.getProductId());
 		assertEquals(orderLine.getQuantityOrdered(), orderLineDto.getQuantityOrdered());
-	}
+	}*/
 
 	@Test
 	public void testOrderHeaderMapping() {
@@ -77,7 +82,7 @@ public class MapperTest {
 		orderLineDto1.setOrderHeader(orderHeaderDto);
 		orderLineDto2.setOrderHeader(orderHeaderDto);
 
- 		OrderHeader orderHeader = orderHeaderMapperStruct.dtoToEntity(orderHeaderDto, new CycleAvoidingMappingContext());
+ 		OrderHeader orderHeader = orderHeaderMapper.dtoToEntity(orderHeaderDto);
 		assertNotNull(orderHeader);
 		assertEquals(orderHeaderDto.getName(), orderHeader.getName());
 		assertEquals(orderHeaderDto.getOrderStatus(), orderHeader.getOrderStatus());
@@ -90,7 +95,7 @@ public class MapperTest {
 		assertEquals(orderHeaderDto.getShippingAddress().getState(), orderHeader.getShippingAddress().getState());
 		assertEquals(orderHeaderDto.getShippingAddress().getZipCode(), orderHeader.getShippingAddress().getZipCode());
 
-		OrderHeaderDto orderHeaderDto2 = orderHeaderMapperStruct.entityToDto(orderHeader, new CycleAvoidingMappingContext());
+		OrderHeaderDto orderHeaderDto2 = orderHeaderMapper.entityToDto(orderHeader);
 		assertNotNull(orderHeaderDto2);
 		assertEquals(orderHeaderDto.getName(), orderHeaderDto2.getName());
 		assertEquals(orderHeaderDto.getOrderStatus(), orderHeaderDto2.getOrderStatus());

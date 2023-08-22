@@ -8,13 +8,12 @@ import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
 import com.springcloud.sbsuite.orders.mappers.CustomerMapper;
 import com.springcloud.sbsuite.orders.mappers.CycleAvoidingMappingContext;
-import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapper;
+import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapperStruct;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +28,7 @@ class OrderHeaderRepositoryTest {
     CustomerRepository customerRepository;
 
     @Autowired
-    OrderHeaderMapper orderHeaderMapper;
+    OrderHeaderMapperStruct orderHeaderMapperStruct;
 
     @Test
     public void testOrderHeaderRepository() {
@@ -134,7 +133,7 @@ class OrderHeaderRepositoryTest {
         orderLine1.setOrderHeader(orderHeaderDto);
         orderLine2.setOrderHeader(orderHeaderDto);
 
-        OrderHeader orderHeader = orderHeaderMapper.dtoToEntity(orderHeaderDto, new CycleAvoidingMappingContext());
+        OrderHeader orderHeader = orderHeaderMapperStruct.dtoToEntity(orderHeaderDto, new CycleAvoidingMappingContext());
 
         OrderHeader orderHeaderSaved = orderHeaderRepository.save(orderHeader);
 
