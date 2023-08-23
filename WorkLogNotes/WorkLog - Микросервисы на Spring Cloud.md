@@ -3355,3 +3355,10 @@ public interface OrderHeaderMapper {
 
 ## Extract CustomerRepositoryTest and OrderHeaderRepositoryTestWithMapper from OrderHeaderRepositoryTest
 - commit - Extract CustomerRepositoryTest and OrderHeaderRepositoryTestWithMapper from OrderHeaderRepositoryTest
+
+## Test new OrderHeaderMapper class with JPA OrderHeaderRepository
+- new extracted OrderHeaderRepositoryTestWithMapper class to test only OrderHeaderRepository with OrderHeaderMapper
+- find Bug in OrderHeaderMapper 
+### Bug in MapStruct OrderHeaderMapper using builder stored in CycleAvoidingMappingContext instead of creating new OrderHeader
+- DtoToEntity mapper produce new instances of OrderHeader which cause jpa OrderHeaderRepository::save(orderHeader) to fail
+  - ![](./assets/OrderHeaderMapper-Error-Result.png)

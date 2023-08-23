@@ -24,15 +24,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class OrderHeaderRepositoryTestWithMapper {
     @Autowired
     OrderHeaderRepository orderHeaderRepository;
-    @Autowired
-    CustomerRepository customerRepository;
 
     @Autowired
     OrderHeaderMapper orderHeaderMapper;
 
     @Test
     public void testOrderHeaderRepositoryWithDto() {
-//        Customer customer = customerRepository.findById(1L).orElseThrow(() -> new NotFoundException("Customer not found"));
 
         AddressDto fakeAddress = AddressDto.builder()
                 .streetAddress("123 Main St")
@@ -98,45 +95,4 @@ class OrderHeaderRepositoryTestWithMapper {
         System.out.println("Test OrderHeaderRepositoryTest.testOrderHeaderRepositoryWithDto() passed.");
     }
 
-
-    @Autowired
-    CustomerMapper customerMapper;
-    @Test
-    public void testCustomerRetrieve() {
-        assertNotNull(customerRepository);
-        Customer customer = customerRepository.findById(1L).orElseThrow(() -> new NotFoundException("Customer not found"));
-        assertNotNull(customer);
-        assertNotNull(customer.getId());
-        assertNotNull(customer.getCreatedDate());
-        assertNotNull(customer.getLastModifiedDate());
-        assertNotNull(customer.getAddress());
-        assertNotNull(customer.getContact());
-        assertNotNull(customer.getOrders());
-        Set<OrderHeader> orders = customer.getOrders();
-        assertNotNull(orders);
-        assertEquals(2, orders.size());
-        OrderHeader orderHeader = orders.stream().findFirst().get();
-        assertNotNull(orderHeader);
-        assertNotNull(orderHeader.getId());
-        assertNotNull(orderHeader.getCreatedDate());
-        assertNotNull(orderHeader.getLastModifiedDate());
-        assertNotNull(orderHeader.getBillToAddress());
-        assertNotNull(orderHeader.getShippingAddress());
-        assertNotNull(orderHeader.getOrderLines());
-        List<OrderLine> orderLines = orderHeader.getOrderLines();
-        OrderLine orderLine = orderLines.stream().findFirst().get();
-        assertNotNull(orderLine);
-        assertNotNull(orderLine.getId());
-        assertNotNull(orderLine.getCreatedDate());
-        assertNotNull(orderLine.getLastModifiedDate());
-        assertNotNull(orderLine.getOrderHeader());
-        assertNotNull(orderLine.getProductId());
-        assertNotNull(orderLine.getQuantityOrdered());
-
-        System.out.println("map customr to customerDto");
-        CustomerDto customerDto = customerMapper.entityToDto(customer, new CycleAvoidingMappingContext());
-        assertNotNull(customerDto);
-
-        System.out.println("Test OrderHeaderRepositoryTest.testCustomerRepository() passed.");
-    }
 }
