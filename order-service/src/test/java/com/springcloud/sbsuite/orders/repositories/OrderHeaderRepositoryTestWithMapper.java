@@ -1,14 +1,10 @@
 package com.springcloud.sbsuite.orders.repositories;
 
 import com.springcloud.sbsuite.dto.*;
-import com.springcloud.sbsuite.orders.api.NotFoundException;
-import com.springcloud.sbsuite.orders.domain.Address;
-import com.springcloud.sbsuite.orders.domain.Customer;
 import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
-import com.springcloud.sbsuite.orders.mappers.CustomerMapper;
 import com.springcloud.sbsuite.orders.mappers.CycleAvoidingMappingContext;
-import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapper;
+import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapperStruct;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +22,7 @@ class OrderHeaderRepositoryTestWithMapper {
     OrderHeaderRepository orderHeaderRepository;
 
     @Autowired
-    OrderHeaderMapper orderHeaderMapper;
+    OrderHeaderMapperStruct orderHeaderMapper;
 
     @Test
     public void testOrderHeaderRepositoryWithDto() {
@@ -37,15 +33,17 @@ class OrderHeaderRepositoryTestWithMapper {
                 .state("NY")
                 .zipCode("12345").build();
 
-        OrderLineDto orderLine1 = OrderLineDto.builder().quantityOrdered(1).productId(1L).build();
-        OrderLineDto orderLine2 = OrderLineDto.builder().quantityOrdered(1).productId(2L).build();
+        OrderLineDto orderLine1 = new OrderLineDto();
+        orderLine1.setQuantityOrdered(1);orderLine1.setProductId(1L);
+        OrderLineDto orderLine2 = new OrderLineDto();
+        orderLine2.setQuantityOrdered(1);orderLine2.setProductId(2L);
 
-        OrderHeaderDto orderHeaderDto = OrderHeaderDto.builder()
-                .name("test order")
-                .billToAddress(fakeAddress)
-                .shippingAddress(fakeAddress)
-                .orderStatus(OrderStatus.COMPLETED)
-                .build();
+        OrderHeaderDto orderHeaderDto = new OrderHeaderDto();
+        orderHeaderDto.setName("test order");
+        orderHeaderDto.setBillToAddress(fakeAddress);
+        orderHeaderDto.setShippingAddress(fakeAddress);
+        orderHeaderDto.setOrderStatus(OrderStatus.COMPLETED);
+
 
         orderHeaderDto.setOrderLines(new ArrayList<>() {{
             add(orderLine1);
@@ -56,7 +54,7 @@ class OrderHeaderRepositoryTestWithMapper {
         orderLine1.setOrderHeader(orderHeaderDto);
         orderLine2.setOrderHeader(orderHeaderDto);
 
-        OrderHeader orderHeader = orderHeaderMapper.dtoToEntity(orderHeaderDto);
+        OrderHeader orderHeader = orderHeaderMapper.dtoToEntity(orderHeaderDto, new CycleAvoidingMappingContext());
 
         OrderHeader orderHeaderSaved = orderHeaderRepository.save(orderHeader);
 

@@ -4,7 +4,6 @@ import com.springcloud.sbsuite.dto.*;
 import com.springcloud.sbsuite.orders.domain.Address;
 import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
-import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,9 +19,6 @@ class OrderHeaderRepositoryTest {
     @Autowired
     OrderHeaderRepository orderHeaderRepository;
 
-    @Autowired
-    OrderHeaderMapper orderHeaderMapper;
-
     @Test
     public void testOrderHeaderRepository() {
         assertNotNull(orderHeaderRepository);
@@ -33,7 +29,7 @@ class OrderHeaderRepositoryTest {
                 .state("NY")
                 .zipCode("12345").build();
 
-        OrderLine orderLine1 = OrderLine.builder().quantityOrdered(1).productId(1L).build();
+        /*OrderLine orderLine1 = OrderLine.builder().quantityOrdered(1).productId(1L).build();
         OrderLine orderLine2 = OrderLine.builder().quantityOrdered(1).productId(2L).build();
 
         OrderHeader orderHeader = OrderHeader.builder()
@@ -41,8 +37,18 @@ class OrderHeaderRepositoryTest {
                 .billToAddress(fakeAddress)
                 .shippingAddress(fakeAddress)
                 .orderStatus(OrderStatus.COMPLETED)
-                .build();
+                .build();*/
 
+        OrderLine orderLine1 = new OrderLine();
+        orderLine1.setQuantityOrdered(1);orderLine1.setProductId(1L);
+        OrderLine orderLine2 = new OrderLine();
+        orderLine2.setQuantityOrdered(1);orderLine2.setProductId(2L);
+
+        OrderHeader orderHeader = new OrderHeader();
+        orderHeader.setName("test order");
+        orderHeader.setBillToAddress(fakeAddress);
+        orderHeader.setShippingAddress(fakeAddress);
+        orderHeader.setOrderStatus(OrderStatus.COMPLETED);
         orderHeader.setOrderLines(new ArrayList<>() {{
             add(orderLine1);
             add(orderLine2);

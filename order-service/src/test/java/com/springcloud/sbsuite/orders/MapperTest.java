@@ -49,7 +49,7 @@ public class MapperTest {
 		assertEquals(orderLine.getQuantityOrdered(), orderLineDto.getQuantityOrdered());
 	}
 
-	@Test
+	/*@Test
 	public void testOrderHeaderMapping() {
 		AddressDto fakeAddress = AddressDto.builder()
 				.streetAddress("123 Main St")
@@ -116,5 +116,5 @@ public class MapperTest {
 		assertEquals(orderLineDto2_2.getQuantityOrdered(), orderLineDto2.getQuantityOrdered());
 
 		System.out.println("orderHeaderDto2 " + orderHeaderDto2);
-	}
+	}*/
 }

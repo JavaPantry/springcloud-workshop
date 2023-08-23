@@ -9,7 +9,6 @@ import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
 import com.springcloud.sbsuite.orders.mappers.CustomerMapper;
 import com.springcloud.sbsuite.orders.mappers.CycleAvoidingMappingContext;
-import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

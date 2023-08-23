@@ -9,7 +9,6 @@ import java.time.OffsetDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class OrderLineDto {
 
     @JsonProperty("id")

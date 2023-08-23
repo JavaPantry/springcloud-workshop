@@ -3362,3 +3362,11 @@ public interface OrderHeaderMapper {
 ### Bug in MapStruct OrderHeaderMapper using builder stored in CycleAvoidingMappingContext instead of creating new OrderHeader
 - DtoToEntity mapper produce new instances of OrderHeader which cause jpa OrderHeaderRepository::save(orderHeader) to fail
   - ![](./assets/OrderHeaderMapper-Error-Result.png)
+  - [StackOverflow and solution](./StackOverflow - MapStruct TransientProperty Issue.md)
+  - remove my implementation of `OrderHeaderMapper.java` i.e. make backup as `OrderHeaderMapper.javabak`
+- remove `@Builder` annotation from OrderHeader, OrderLine and theit dtos
+- modify tests to "NOT use builders"
+- OrderHeaderRepositoryTestWithMapper.java - succeeds
+- I see correct instances of OrderHeader are created after mapping and database is updated correctly
+  - ![](./assets/OrderHeaderMapper-Fixed-Result.png)
+- commit - Fixed Bug in MapStruct OrderHeaderMapper using builder stored in CycleAvoidingMappingContext instead of creating new OrderHeader
