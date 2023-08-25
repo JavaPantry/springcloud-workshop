@@ -3371,7 +3371,7 @@ public interface OrderHeaderMapper {
   - ![](./assets/OrderHeaderMapper-Fixed-Result.png)
 - commit - Fixed Bug in MapStruct OrderHeaderMapper using builder stored in CycleAvoidingMappingContext instead of creating new OrderHeader
 
-# August 23, 2023 - 
+# August 25, 2023 - 
 
 ## clean OrderHeader Mapper related code
 - commit - clean OrderHeader Mapper related code and tests
@@ -3393,3 +3393,4 @@ public interface OrderHeaderMapper {
 - Instead use `@Transactional` whole `OrderService` class
   - [GPTChat-Lazy Fetching in JPA.md](./GPTChat-Lazy%20Fetching%20in%20JPA.md)
 - commit - Fix Error in retrieving OrderHeader from database in OrderServiceTest.fetchOrderHeaders
+- commit - Enable all tests in com.springcloud.sbsuite.orders.services.OrderServiceTest

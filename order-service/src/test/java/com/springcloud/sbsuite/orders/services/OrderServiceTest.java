@@ -40,7 +40,7 @@ class OrderServiceTest {
 		assertEquals("order1", orderHeader.getName());
 	}
 
-	/*@Test
+	@Test
 	void fetchOrderLines() {
 		List<OrderLineDto> orderLines = orderService.fetchOrderLines();
 		assertNotNull(orderLines);
@@ -54,50 +54,33 @@ class OrderServiceTest {
 		OrderLineDto orderLine = orderService.fetchOrderLineById(1L).orElseThrow(NotFoundException::new);
 		assertNotNull(orderLine);
 		assertEquals(1, orderLine.getQuantityOrdered());
-	}*/
+	}
 
 	@Test
 	void testGetOrderLineByIdNotFound() {
 		assertNull(orderService.fetchOrderLineById(100L).orElse(null));
 	}
 
-	/*@Test
+	@Test
 	void fetchOrderHeaderById() {
 		OrderHeaderDto orderHeaderDto = orderService.fetchOrderHeaderById(1L).orElseThrow(NotFoundException::new);
 		assertNotNull(orderHeaderDto);
 		assertEquals(OrderStatus.COMPLETED, orderHeaderDto.getOrderStatus());
-	}*/
+	}
 	@Test
 	void testGetOrderHeaderByIdNotFound() {
 		assertNull(orderService.fetchOrderHeaderById(100L).orElse(null));
 	}
-	/*@Test
+	@Test
 	void fetchCustomerById() {
 		CustomerDto customerDto = orderService.fetchCustomerById(1L).orElseThrow(NotFoundException::new);
 		assertNotNull(customerDto);
 		assertEquals(1L, customerDto.getId());
-	}*/
+	}
 	@Test
 	void testGetCustomerByIdNotFound() {
 		assertNull(orderService.fetchCustomerById(100L).orElse(null));
 	}
-
-	/*@Rollback
-	@Transactional
-	@Test
-	void saveOrderLine() {
-		OrderLineDto orderLine = new OrderLineDto();
-		orderLine.setQuantityOrdered(1);orderLine.setProductId(1L);
-
-		OrderLineDto newOrderLine = orderService.saveOrderLine(orderLine).orElseThrow(NotFoundException::new);
-		assertNotNull(newOrderLine);
-		assertEquals(11, newOrderLine.getQuantityOrdered());
-		assertEquals(1L, newOrderLine.getProductId());
-		orderLine = orderService.fetchOrderLineById(newOrderLine.getId()).orElseThrow(NotFoundException::new);
-		assertNotNull(orderLine);
-		assertEquals(11, orderLine.getQuantityOrdered());
-		assertEquals(1L, orderLine.getProductId());
-	}*/
 
 	@Rollback
 	@Transactional
