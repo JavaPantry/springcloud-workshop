@@ -3370,3 +3370,8 @@ public interface OrderHeaderMapper {
 - I see correct instances of OrderHeader are created after mapping and database is updated correctly
   - ![](./assets/OrderHeaderMapper-Fixed-Result.png)
 - commit - Fixed Bug in MapStruct OrderHeaderMapper using builder stored in CycleAvoidingMappingContext instead of creating new OrderHeader
+
+# August 23, 2023 - 
+
+## clean OrderHeader Mapper related code
+- commit - clean OrderHeader Mapper related code and tests

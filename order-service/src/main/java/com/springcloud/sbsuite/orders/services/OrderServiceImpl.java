@@ -9,7 +9,7 @@ import com.springcloud.sbsuite.dto.OrderHeaderDto;
 import com.springcloud.sbsuite.dto.OrderLineDto;
 import com.springcloud.sbsuite.orders.mappers.CustomerMapper;
 import com.springcloud.sbsuite.orders.mappers.CycleAvoidingMappingContext;
-import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapperStruct;
+import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapper;
 import com.springcloud.sbsuite.orders.mappers.OrderLineMapper;
 import com.springcloud.sbsuite.orders.repositories.CustomerRepository;
 import com.springcloud.sbsuite.orders.repositories.OrderHeaderRepository;
@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 	OrderLineMapper orderLineMapper;
 
 	@Autowired
-	OrderHeaderMapperStruct orderHeaderMapperStruct;
+	OrderHeaderMapper orderHeaderMapper;
 
 	@Autowired
 	CustomerMapper customerMapper;
@@ -61,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderHeader> headers = orderHeaderRepository.findAll();
 
 		List<OrderHeaderDto> orderHeaders = headers.stream()
-												.map(entity -> orderHeaderMapperStruct.entityToDto(entity, new CycleAvoidingMappingContext()))
+												.map(entity -> orderHeaderMapper.entityToDto(entity, new CycleAvoidingMappingContext()))
 												.collect(Collectors.toList());
 
 		/*List<OrderHeaderDto> orderHeaders = orderHeaderRepository.findAll()
@@ -91,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Optional<OrderHeaderDto> fetchOrderHeaderById(Long id) {
-		return Optional.ofNullable(orderHeaderMapperStruct.entityToDto(
+		return Optional.ofNullable(orderHeaderMapper.entityToDto(
 						orderHeaderRepository.findById(id).orElse(null), new CycleAvoidingMappingContext()
 				)
 		);
@@ -136,10 +136,10 @@ public class OrderServiceImpl implements OrderService {
 			orderHeader = orderHeaderRepository.findById(dto.getId()).orElse(null);
 			orderHeader.setOrderStatus(dto.getOrderStatus());
 		}else {
-			orderHeader = orderHeaderMapperStruct.dtoToEntity(dto, new CycleAvoidingMappingContext());
+			orderHeader = orderHeaderMapper.dtoToEntity(dto, new CycleAvoidingMappingContext());
 		}
 		OrderHeader updated = orderHeaderRepository.save(orderHeader);
-		return Optional.of(orderHeaderMapperStruct.entityToDto(updated, new CycleAvoidingMappingContext()) );
+		return Optional.of(orderHeaderMapper.entityToDto(updated, new CycleAvoidingMappingContext()) );
 	}
 
 	@Override

@@ -1,9 +1,5 @@
 package com.springcloud.sbsuite.orders;
 
-import com.springcloud.sbsuite.dto.AddressDto;
-import com.springcloud.sbsuite.dto.OrderHeaderDto;
-import com.springcloud.sbsuite.dto.OrderStatus;
-import com.springcloud.sbsuite.orders.domain.OrderHeader;
 import com.springcloud.sbsuite.orders.domain.OrderLine;
 import com.springcloud.sbsuite.dto.OrderLineDto;
 import com.springcloud.sbsuite.orders.mappers.*;
@@ -11,9 +7,6 @@ import com.springcloud.sbsuite.orders.repositories.OrderLineRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.time.OffsetDateTime;
-import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -28,7 +21,7 @@ public class MapperTest {
 	OrderLineMapper orderLineMapper;
 
 	@Autowired
-	OrderHeaderMapperStruct orderHeaderMapperStruct;
+	OrderHeaderMapper orderHeaderMapper;
 
 	@Autowired
 	CustomerMapper customerMapper;

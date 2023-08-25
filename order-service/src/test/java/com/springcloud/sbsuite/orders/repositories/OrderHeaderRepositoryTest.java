@@ -29,16 +29,6 @@ class OrderHeaderRepositoryTest {
                 .state("NY")
                 .zipCode("12345").build();
 
-        /*OrderLine orderLine1 = OrderLine.builder().quantityOrdered(1).productId(1L).build();
-        OrderLine orderLine2 = OrderLine.builder().quantityOrdered(1).productId(2L).build();
-
-        OrderHeader orderHeader = OrderHeader.builder()
-                .name("test order")
-                .billToAddress(fakeAddress)
-                .shippingAddress(fakeAddress)
-                .orderStatus(OrderStatus.COMPLETED)
-                .build();*/
-
         OrderLine orderLine1 = new OrderLine();
         orderLine1.setQuantityOrdered(1);orderLine1.setProductId(1L);
         OrderLine orderLine2 = new OrderLine();

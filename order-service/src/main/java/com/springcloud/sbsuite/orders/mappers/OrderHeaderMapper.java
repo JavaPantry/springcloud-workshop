@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(uses = {DateMapper.class, OrderLineMapper.class, AddressMapper.class})
-public interface OrderHeaderMapperStruct {
+public interface OrderHeaderMapper {
 	@Mapping(target = "orderLines", source = "orderLines")
 	OrderHeader dtoToEntity(OrderHeaderDto orderHeaderDto, @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
 	@InheritInverseConfiguration
