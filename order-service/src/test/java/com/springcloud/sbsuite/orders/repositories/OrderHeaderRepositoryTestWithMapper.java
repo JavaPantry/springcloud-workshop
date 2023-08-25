@@ -8,9 +8,10 @@ import com.springcloud.sbsuite.orders.mappers.OrderHeaderMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -24,6 +25,7 @@ class OrderHeaderRepositoryTestWithMapper {
     OrderHeaderMapper orderHeaderMapper;
 
     @Test
+    @Transactional
     public void testOrderHeaderRepositoryWithDto() {
 
         AddressDto fakeAddress = AddressDto.builder()
@@ -43,12 +45,10 @@ class OrderHeaderRepositoryTestWithMapper {
         orderHeaderDto.setShippingAddress(fakeAddress);
         orderHeaderDto.setOrderStatus(OrderStatus.COMPLETED);
 
-
-        orderHeaderDto.setOrderLines(new ArrayList<>() {{
+        orderHeaderDto.setOrderLines(new HashSet<>() {{
             add(orderLine1);
             add(orderLine2);
         }});
-
 
         orderLine1.setOrderHeader(orderHeaderDto);
         orderLine2.setOrderHeader(orderHeaderDto);
@@ -69,7 +69,7 @@ class OrderHeaderRepositoryTestWithMapper {
         assertEquals("12345", orderHeaderSaved.getBillToAddress().getZipCode());
 
         assertEquals(2, orderHeaderSaved.getOrderLines().size());
-        List<OrderLine> orderLines = orderHeaderSaved.getOrderLines();
+        Set<OrderLine> orderLines = orderHeaderSaved.getOrderLines();
 
         OrderLine orderLine1Saved = orderLines.stream().filter(orderLine -> orderLine.getProductId() == 1L).findFirst().get();
         assertNotNull(orderLine1Saved);

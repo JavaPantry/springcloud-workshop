@@ -39,7 +39,7 @@ public class TestCustomerWithOrders {
 		assertNotNull(orderHeaders);
 		OrderHeader orderHeader = (OrderHeader)orderHeaders.toArray()[0];
 		assertNotNull(orderHeader);
-		List<OrderLine> orderLines = orderHeader.getOrderLines();
+		Set<OrderLine> orderLines = orderHeader.getOrderLines();
 		OrderLine orderLine = (OrderLine)orderLines.toArray()[0];
 		assertNotNull(orderLine);
 	}

@@ -63,11 +63,9 @@ public class OrderHeader extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    //AVP August 17 @14:30 replace fetch = FetchType.EAGER with fetch = FetchType.LAZY)
-    //(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "orderHeader", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude // Exclude this field from hash code calculation
-    private List<OrderLine> orderLines = new ArrayList<>();
+    private Set<OrderLine> orderLines;
 
     /*@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "orderHeader")
     private OrderApproval orderApproval;

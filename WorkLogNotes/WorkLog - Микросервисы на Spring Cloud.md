@@ -3375,3 +3375,8 @@ public interface OrderHeaderMapper {
 
 ## clean OrderHeader Mapper related code
 - commit - clean OrderHeader Mapper related code and tests
+
+## Roll back to use HashSet instead of List in OrderHeader and add @Transactional to OrderHeaderRepositoryTest* classes
+- replace List with HashSet in OrderHeader and dto
+- add @Transactional to OrderHeaderRepositoryTest* classes
+- commit - Roll back to use HashSet instead of List in OrderHeader and add @Transactional to OrderHeaderRepositoryTest* classes

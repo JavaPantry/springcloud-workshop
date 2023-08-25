@@ -49,7 +49,7 @@ class CustomerRepositoryTest {
         assertNotNull(orderHeader.getBillToAddress());
         assertNotNull(orderHeader.getShippingAddress());
         assertNotNull(orderHeader.getOrderLines());
-        List<OrderLine> orderLines = orderHeader.getOrderLines();
+        Set<OrderLine> orderLines = orderHeader.getOrderLines();
         OrderLine orderLine = orderLines.stream().findFirst().get();
         assertNotNull(orderLine);
         assertNotNull(orderLine.getId());
