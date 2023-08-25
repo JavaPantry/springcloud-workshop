@@ -3383,3 +3383,13 @@ public interface OrderHeaderMapper {
 
 ## Restore - restore OrderServiceTest::saveOrderHeader
 - commit - Restore - restore OrderServiceTest::saveOrderHeader
+
+## Error in retrieving OrderHeader from database in OrderServiceTest.fetchOrderHeaders
+- com.springcloud.sbsuite.orders.services.OrderServiceTest.fetchOrderHeaders
+  - com.springcloud.sbsuite.orders.services.OrderServiceImpl.fetchOrderHeaders
+    - org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.springcloud.sbsuite.orders.domain.OrderHeader.orderLines: could not initialize proxy - no Session
+- FIX change `fetch = FetchType.LAZY` to `fetch = FetchType.EAGER` in `OrderHeader.java`
+  - Roll back lazy fetch type
+- Instead use `@Transactional` whole `OrderService` class
+  - [GPTChat-Lazy Fetching in JPA.md](./GPTChat-Lazy%20Fetching%20in%20JPA.md)
+- commit - Fix Error in retrieving OrderHeader from database in OrderServiceTest.fetchOrderHeaders

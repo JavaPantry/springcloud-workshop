@@ -17,12 +17,14 @@ import com.springcloud.sbsuite.orders.repositories.OrderLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
@@ -64,10 +66,6 @@ public class OrderServiceImpl implements OrderService {
 												.map(entity -> orderHeaderMapper.entityToDto(entity, new CycleAvoidingMappingContext()))
 												.collect(Collectors.toList());
 
-		/*List<OrderHeaderDto> orderHeaders = orderHeaderRepository.findAll()
-				.stream()
-				.map(orderHeaderMapper::orderHeaderToOrderHeaderDto)
-				.collect(Collectors.toList());*/
 		return orderHeaders;
 	}
 

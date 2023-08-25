@@ -31,14 +31,14 @@ class OrderServiceTest {
 		assertEquals("Alexey Pashin", customer.getContact().getName());
 	}*/
 
-	/*@Test
+	@Test
 	void fetchOrderHeaders() {
 		List<OrderHeaderDto> orderHeaders = orderService.fetchOrderHeaders();
 		assertNotNull(orderHeaders);
 		OrderHeaderDto orderHeader = orderHeaders.get(0);
 		assertNotNull(orderHeader);
 		assertEquals("order1", orderHeader.getName());
-	}*/
+	}
 
 	/*@Test
 	void fetchOrderLines() {
