@@ -3394,3 +3394,7 @@ public interface OrderHeaderMapper {
   - [GPTChat-Lazy Fetching in JPA.md](./GPTChat-Lazy%20Fetching%20in%20JPA.md)
 - commit - Fix Error in retrieving OrderHeader from database in OrderServiceTest.fetchOrderHeaders
 - commit - Enable all tests in com.springcloud.sbsuite.orders.services.OrderServiceTest
+
+# August 28, 2023 -
+## merge `mapstruct-mapper-issues` branch into `master`
+- commit - merge `mapstruct-mapper-issues` branch into `master`
