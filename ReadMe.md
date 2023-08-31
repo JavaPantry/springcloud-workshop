@@ -1,0 +1,1 @@
+migrated from  git@bitbucket.org:JavaPantry/spring-cloud-eureka-base.git
